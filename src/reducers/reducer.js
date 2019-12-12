@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const intialState = {
+const initialState = {
 }
 
 
