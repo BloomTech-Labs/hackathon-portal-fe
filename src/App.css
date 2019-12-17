@@ -1,6 +1,6 @@
-.App {
+/* .App {
   text-align: center;
-}
+} */
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -20,5 +20,8 @@
 /* NOTE: css code for Dashabord */
  .createEventButton {
    background-color: white;
+   padding: 50px 40px;
+   width: 40px;
    color: silver;
+   border: 2px solid red;
  }
