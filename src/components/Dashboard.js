@@ -13,11 +13,11 @@ const Dashboard = () => {
                 <div id='createEventButtonText'>Create Event</div>
             </div> */}
             <div className='eventsList'>
-                <div className='createEventButton' onClick={console.log('create event button was clicked')}>
-                    <SvgIcon id='addIcon' component={AddIcon} style={{ fontSize: 300 }}></SvgIcon>
-                    <div id='createEventButtonText'>Create Event</div>
+                <div className='event' onClick={console.log('create event button was clicked')}>
+                    <SvgIcon className='eventImage' id='addIcon' component={AddIcon} style={{ fontSize: 300 }}></SvgIcon>
+                    <div className='eventName' id='createEventButtonText'>Create Event</div>
                 </div>
-                <Events/>
+                <Events></Events>
             </div>
         </div>
     )

@@ -18,32 +18,29 @@
 }
 
 /* NOTE: css code for Dashabord */
- .createEventButton {
-   display: flex;
-   flex-direction: column;
-   background-color: white;
-   padding: 0% 7% 2% 7%;
-   width: 10%;
-   color: silver;
- }
  .eventsList {
    display: flex;
+   flex-wrap: wrap;
+   margin: -30px -50px;
  }
 
  #addIcon {
-   width: 100%;
-   margin-top: -25%;
+   width: 50%;
+   margin-top: -12%;
+   margin-bottom: -15%;
+   color:silver;
  }
 #createEventButtonText {
-  margin-top: -75%;
-  margin-left: 5%;
+  margin-top: -8%;
+  color:silver;
+  /* margin-left: 5%; */
 }
 
-/*css code for the events file*/
+/*css code for the Events.js file*/
 
 .event {
-  width: 24%;
-  margin: 0% 0% 0% 3%;
+  width: 300px;
+  margin: 2% 0% 0% 3%;
   background-color: white;
   text-align: center;
 }
