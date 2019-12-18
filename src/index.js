@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import * as Sentry from '@sentry/browser';
+// import * as Sentry from '@sentry/browser';
 import App from './App';
 
 
@@ -17,7 +17,7 @@ import history from "./utils/history";
 
 const store = createStore(reducer, applyMiddleware(thunk))
 
-Sentry.init({dsn: "https://26bacf2042764db6a7a1af49e8dde7e1@sentry.io/1855868"});
+// Sentry.init({dsn: "https://26bacf2042764db6a7a1af49e8dde7e1@sentry.io/1855868"});
 
 // A function that routes the user to the right place
 // after login

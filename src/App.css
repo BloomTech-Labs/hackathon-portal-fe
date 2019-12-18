@@ -19,9 +19,18 @@
 
 /* NOTE: css code for Dashabord */
  .createEventButton {
+   display: flex;
+   flex-direction: column;
    background-color: white;
-   padding: 50px 40px;
-   width: 40px;
+   padding: 0% 7% 2% 7%;
+   width: 10%;
    color: silver;
-   border: 2px solid red;
  }
+
+ #addIcon {
+   width: 100%;
+   margin-top: -25%;
+ }
+#createEventButtonText {
+  margin-top: -70%;
+}
