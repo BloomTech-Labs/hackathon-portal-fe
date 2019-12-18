@@ -26,11 +26,33 @@
    width: 10%;
    color: silver;
  }
+ .eventsList {
+   display: flex;
+ }
 
  #addIcon {
    width: 100%;
    margin-top: -25%;
  }
 #createEventButtonText {
-  margin-top: -70%;
+  margin-top: -75%;
+  margin-left: 5%;
+}
+
+/*css code for the events file*/
+
+.event {
+  width: 24%;
+  margin: 0% 0% 0% 3%;
+  background-color: white;
+  text-align: center;
+}
+
+.eventImage {
+  display: flex;
+  margin: auto;
+}
+
+.eventName {
+  margin-bottom: 3%;
 }
