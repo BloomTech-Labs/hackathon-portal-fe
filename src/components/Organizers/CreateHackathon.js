@@ -26,12 +26,12 @@ const CreateHackathon = () => {
   const [page1Info, setPage1Info] = useState(true)
   const [page2, setPage2] = useState(false)
   const [page2Info, setPage2Info] = useState(false)
-  const [selectedDate, setSelectedDate] = useState();
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   let { register, handleSubmit, errors, clearError} = useForm()
 
   const handleDateChange = date => {
-    setSelectedDate(date);
+    setSelectedDate(new Date(date));
   };
 
   const handleFormSubmit = (data, e) => {
@@ -39,7 +39,7 @@ const CreateHackathon = () => {
     console.log('ONSUBMIT', data)
   }
 
-  console.log(selectedDate)
+  console.log(selectedDate.getTime())
 
   const toPage1 = () => {
     setPage1(true)
@@ -209,10 +209,9 @@ const CreateHackathon = () => {
               <br />
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <KeyboardDatePicker
-                  name='startDate'
                   autoOk
+                  name='startDate'
                   margin='dense'
-                  variant="inline"
                   inputVariant="outlined"
                   format="MM/dd/yyyy"
                   keyboardIcon={<TodayIcon style={{ color:'black' }} />}
@@ -229,10 +228,9 @@ const CreateHackathon = () => {
               <br />
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <KeyboardDatePicker
-                  name='endDate'
                   autoOk
+                  name='endDate'
                   margin='dense'
-                  variant="inline"
                   inputVariant="outlined"
                   format="MM/dd/yyyy"
                   keyboardIcon={<EventIcon style={{ color:'black' }} />}
@@ -261,6 +259,20 @@ const CreateHackathon = () => {
                   ),
                 }}
               />
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <KeyboardTimePicker
+                  ampm={true}
+                  name='startTime'
+                  // variant="inline"
+                  inputVariant="outlined"
+                  label="With keyboard"
+                  value={selectedDate.getTime()}
+                  onChange={handleDateChange}
+                  inputRef={register}
+                  keyboardIcon={<ScheduleIcon style={{ color:'black' }} />}
+                  InputAdornmentProps={{ position: "start" }}
+                />
+              </MuiPickersUtilsProvider>
             </label>
             <label className='endTime'>
               <br />
