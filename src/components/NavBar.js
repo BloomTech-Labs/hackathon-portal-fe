@@ -12,7 +12,7 @@ const NavBar = () => {
           <Link to="/">Home</Link>&nbsp;
           <button onClick={() => loginWithRedirect({})}>Log in</button>
           {/* TEMPORARY LINK */}
-          <Link to='/hackathon/create'>Create a Hackathon</Link> 
+          <Link to='/hackathon/create'>Create a Hackathon</Link>
         </>
       )}
 
@@ -23,6 +23,9 @@ const NavBar = () => {
         <Link to="/">Home</Link>&nbsp;
         <Link to="/profile">Profile</Link>
         <Link to='/hackathon/create'>Create a Hackathon</Link>
+
+        {/* NEW - Add a link to the /external-api route for testing */}
+      <Link to="/external-api">External API</Link>
       </span>
     )}
     </div>
