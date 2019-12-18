@@ -13,7 +13,7 @@ const Dashboard = () => {
                 <div id='createEventButtonText'>Create Event</div>
             </div> */}
             <div className='eventsList'>
-                <div className='event' onClick={console.log('create event button was clicked')}>
+                <div className='event' onClick={() => console.log('create event button was clicked')}>
                     <SvgIcon className='eventImage' id='addIcon' component={AddIcon} style={{ fontSize: 300 }}></SvgIcon>
                     <div className='eventName' id='createEventButtonText'>Create Event</div>
                 </div>
