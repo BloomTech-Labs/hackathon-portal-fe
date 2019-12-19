@@ -8,6 +8,7 @@ import history from "./utils/history";
 import PrivateRoute from "./components/PrivateRoute";
 import NavBar from './components/NavBar';
 import Profile from './components/Profile';
+import HackerList from './components/hackerList';
 import CreateHackathon from './components/Organizers/CreateHackathon';
 
 
@@ -31,7 +32,9 @@ function App() {
           <PrivateRoute path="/external-api" component={ExternalApi} />
         </Switch>
       </Router>
+      <HackerList />
     </div>
+
   );
 }
 
