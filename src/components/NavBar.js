@@ -2,7 +2,7 @@ import React from "react";
 import { useAuth0 } from "../auth0-hooks/react-auth0-spa";
 import { Link } from "react-router-dom";
 
-import Dashboard from './Dashboard';
+// import Dashboard from './Dashboard';
 
 const NavBar = () => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
@@ -30,7 +30,7 @@ const NavBar = () => {
       <Link to="/external-api">External API</Link>
       </span>
     )}
-    <Dashboard/>
+    {/* <Dashboard/> */}
     </div>
   );
 };
