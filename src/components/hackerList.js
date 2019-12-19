@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -9,6 +10,9 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 
 import HackerInfoModal from './hackerInfo';
+
+// ACTIONS
+import { getHackers } from '../actions/actions'; 
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -21,8 +25,17 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const HackerList = () => {
+const HackerList = (props) => {
+  const isFetching = useSelector(state => state.isFetching);
+  const hackers = useSelector(state => state.hackers);
   const classes = useStyles();
+
+  useEffect(() => {
+    props.getHackers()
+
+  }, [])
+
+  console.log('HACKERLIST HACKERS', hackers)
 
   return (
     <List className={classes.root}>
@@ -111,5 +124,7 @@ const HackerList = () => {
   );
 }
 
-export default HackerList;
+export default connect(null,
+  { getHackers }
+)(HackerList);
 

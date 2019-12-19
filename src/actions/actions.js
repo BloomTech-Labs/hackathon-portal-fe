@@ -4,24 +4,26 @@ import { connect } from "react-redux";
 
 // ACTION TYPES
 export const FETCH_START = 'FETCH_START';
+export const FETCH_FAILURE = 'FETCH_FAILURE';
+export const FETCH_HACKERS = 'FETCH_HACKERS';
 
 // ACTIONS
 export const getHackathons = () => dispatch => {
-  dispatch({ type: FETCH_START })
-  axiosWithAuth()
-    .get(`/hackathons`)
-    .then(response => {
-      console.log('GET HACKATHONS', response.data)
-    })
-    .catch(error => {
-      console.log(error)
-    })
+    dispatch({ type: FETCH_START })
+    axiosWithAuth()
+        .get(`/hackathons`)
+        .then(response => {
+        console.log('GET HACKATHONS', response.data)
+        })
+        .catch(error => {
+        console.log(error)
+        })
 }
 
 export const getSpecificHackathon = ( id ) => dispatch => {
     dispatch({ type: FETCH_START })
     axiosWithAuth()
-    .get(`/thackathons/${id}`)
+    .get(`/hackathons/${id}`)
     .then(response => {
         console.log(response)
     })
@@ -59,10 +61,12 @@ export const getHackers = () => dispatch => {
     axiosWithAuth()
     .get(`/users`)
     .then(response => {
-        console.log(response)
+        dispatch({ type: FETCH_HACKERS, payload: response.data })
+        console.log('GET HACKERS', response.data)
     })
     .catch(error => {
         console.log(error)
+        dispatch({ type: FETCH_FAILURE, payload: error.response })
     })
 }
 

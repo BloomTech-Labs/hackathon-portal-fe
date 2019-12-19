@@ -14,7 +14,7 @@ import CreateHackathon from './components/Organizers/CreateHackathon';
 
 import Homepage from './components/Homepage';
 import Dashboard from './components/Dashboard';
-import { getHackathons } from './actions/index'
+import { getHackathons } from './actions/actions'
 
 function App(props) {
 
@@ -37,9 +37,9 @@ function App(props) {
           <Route path="/hackathon/create" component={CreateHackathon} />
           {/* NEW - add a route to the ExternalApi component for testing atm */}
           <PrivateRoute path="/external-api" component={ExternalApi} />
+          <Route path='/hackerlist' component={HackerList}/>
         </Switch>
       </Router>
-      <HackerList />
     </div>
 
   );

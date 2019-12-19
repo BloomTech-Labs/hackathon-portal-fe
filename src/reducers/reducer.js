@@ -1,7 +1,8 @@
 import axios from "axios";
-import { FETCH_START } from '../actions/index';
+import { FETCH_START, FETCH_FAILURE, FETCH_HACKERS } from '../actions/actions';
 
 const initialState = {
+    hackers: [],
     isFetching: false,
     error: ''
 }
@@ -12,6 +13,18 @@ const reducer = (state = initialState, action) => {
         case FETCH_START:
             return{
                 isFetching: true,
+                error: ''
+            };
+        case FETCH_FAILURE:
+            return{
+                isFetching: false,
+                error: action.payload
+            };
+        case FETCH_HACKERS:
+            return{
+                ...state,
+                hackers: action.payload,
+                isFetching: false,
                 error: ''
             };
         default:
