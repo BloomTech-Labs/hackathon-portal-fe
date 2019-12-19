@@ -7,6 +7,7 @@ import history from "./utils/history";
 import PrivateRoute from "./components/PrivateRoute";
 import NavBar from './components/NavBar';
 import Profile from './components/Profile';
+import HackerList from './components/hackerList';
 
 
 function App() {
@@ -24,7 +25,9 @@ function App() {
           <PrivateRoute path="/profile" component={Profile} />
         </Switch>
       </Router>
+      <HackerList />
     </div>
+
   );
 }
 
