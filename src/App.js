@@ -10,11 +10,13 @@ import PrivateRoute from "./components/PrivateRoute";
 import NavBar from './components/NavBar';
 import Profile from './components/Profile';
 import HackerList from './components/hackerList';
-import CreateHackathon from './components/Organizers/CreateHackathon';
-
 import Homepage from './components/Homepage';
 import Dashboard from './components/Dashboard';
-import { getHackathons } from './actions/index'
+import CreateHackathon from './components/Organizers/CreateHackathon';
+import SinglePage from './components/Hackathons/SinglePage';
+
+// ACTIONS
+import { getHackathons } from './actions/index';
 
 function App(props) {
 
@@ -34,12 +36,13 @@ function App(props) {
           <PrivateRoute path="/profile" component={Profile} />
           <Route path="/dashboard" component={Dashboard} />
           {/* TEMPORARILY ROUTE */}
-          <Route path="/hackathon/create" component={CreateHackathon} />
+          <Route exact path="/hackathon/create" component={CreateHackathon} />
+          <Route path={`/hackathon/:id`} component={SinglePage} />
           {/* NEW - add a route to the ExternalApi component for testing atm */}
           <PrivateRoute path="/external-api" component={ExternalApi} />
         </Switch>
       </Router>
-      <HackerList />
+      {/* <HackerList /> */}
     </div>
 
   );
