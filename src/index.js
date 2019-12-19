@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import * as Sentry from '@sentry/browser';
+// import * as Sentry from '@sentry/browser';
 import App from './App';
 
 
