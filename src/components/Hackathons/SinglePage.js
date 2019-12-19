@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect, useSelector } from 'react-redux';
 
 // ACTIONS
-import { getSpecificHackathon } from '../../actions/index';
+import { getSpecificHackathon } from '../../actions/actions';
 
 const SinglePage = (props) => {
   const hackathon = useSelector(state => state.singleHackathon)

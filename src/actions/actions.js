@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 // ACTION TYPES
 export const FETCH_START = 'FETCH_START';
 export const FETCH_HACKATHON = 'FETCH_HACKATHON';
+export const FETCH_FAILURE = 'FETCH_FAILURE';
+export const FETCH_HACKERS = 'FETCH_HACKERS';
 
 // ACTIONS
 export const getHackathons = () => dispatch => {
@@ -61,10 +63,12 @@ export const getHackers = () => dispatch => {
     axiosWithAuth()
     .get(`/users`)
     .then(response => {
-        console.log(response)
+        dispatch({ type: FETCH_HACKERS, payload: response.data })
+        console.log('GET HACKERS', response.data)
     })
     .catch(error => {
         console.log(error)
+        dispatch({ type: FETCH_FAILURE, payload: error.response })
     })
 }
 

@@ -16,7 +16,7 @@ import CreateHackathon from './components/Organizers/CreateHackathon';
 import SinglePage from './components/Hackathons/SinglePage';
 
 // ACTIONS
-import { getHackathons } from './actions/index';
+import { getHackathons } from './actions/actions'
 
 function App(props) {
 
@@ -40,9 +40,9 @@ function App(props) {
           <Route path={`/hackathon/:id`} component={SinglePage} />
           {/* NEW - add a route to the ExternalApi component for testing atm */}
           <PrivateRoute path="/external-api" component={ExternalApi} />
+          <Route path='/hackerlist' component={HackerList}/>
         </Switch>
       </Router>
-      {/* <HackerList /> */}
     </div>
 
   );
