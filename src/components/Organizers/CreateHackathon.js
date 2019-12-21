@@ -364,11 +364,11 @@ const CreateHackathon = () => {
                 onClick={() => toPage1()}
                 style={{ fontSize: "1.5rem" }}
               />
-              <Typography variant="h7">Step</Typography>
-              <Typography variant="h7" style={{ color: "lightGrey" }}>
+              <Typography>Step</Typography>
+              <Typography style={{ color: "lightGrey" }}>
                 1
               </Typography>
-              <Typography variant="h7">2</Typography>
+              <Typography>2</Typography>
               <ArrowForwardIosIcon
                 onClick={() => toPage2()}
                 style={{ fontSize: "1.5rem", color: "lightGrey" }}

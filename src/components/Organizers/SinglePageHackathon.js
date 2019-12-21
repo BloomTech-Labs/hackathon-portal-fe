@@ -51,11 +51,30 @@ const SinglePage = (props) => {
         <button>delete</button>
         <h4>Participants:</h4>
         <p>
-          {hackathon.teams.map(team => {
+          {(hackathon.teams.map(team => {
             return team.devs.length
-          }).reduce((acc, curr)=>acc + curr)}
+          }).reduce((acc, curr)=>acc + curr) + hackathon.individual_devs.length)}
         </p>
         <h4>Admins</h4>
+        {hackathon.admins.map((admin, index) => {
+          return(
+            <div key={index}>
+              <p>{admin.username}</p>
+              <p>{admin.user_hackathon_role}</p>
+            </div>
+          )
+        })}
+        <h4>Teams</h4>
+        {hackathon.teams.map((team, index) => {
+          console.log(team)
+          return(
+            <div key={index}>
+              <p>{team.team_name}</p>
+              <p>members: {team.devs.length}</p>
+            </div>
+          )
+        })}
+        <h4>Individual participants ({hackathon.individual_devs.length})</h4>
       </div>
     )
   }
