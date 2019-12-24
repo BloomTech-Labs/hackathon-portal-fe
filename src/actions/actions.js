@@ -7,8 +7,11 @@ export const FETCH_START = 'FETCH_START';
 export const FETCH_HACKATHON = 'FETCH_HACKATHON';
 export const FETCH_FAILURE = 'FETCH_FAILURE';
 export const FETCH_HACKERS = 'FETCH_HACKERS';
+export const POSTHACKATHON_SUCCESS = 'POSTHACKATHON_SUCCESS';
 
 // ACTIONS
+
+// HACKATHONS
 export const getHackathons = () => dispatch => {
     dispatch({ type: FETCH_START })
     axiosWithAuth()
@@ -24,16 +27,31 @@ export const getHackathons = () => dispatch => {
 export const getSpecificHackathon = ( id ) => dispatch => {
     dispatch({ type: FETCH_START })
     axiosWithAuth()
-    .get(`/hackathons/${id}`)
-    .then(response => {
-        console.log('GET SPECIFIC HACKATHON', response.data)
-        dispatch({ type: FETCH_HACKATHON, payload: response.data })
-    })
-    .catch(error => {
-        console.log(error)
-    })
+        .get(`/hackathons/${id}`)
+        .then(response => {
+            console.log('GET SPECIFIC HACKATHON', response.data)
+            dispatch({ type: FETCH_HACKATHON, payload: response.data })
+        })
+        .catch(error => {
+            console.log(error)
+        })
 }
 
+export const createHackathon = (user_id, hackathonInfo, history) => dispatch => {
+    dispatch({ type: FETCH_START })
+    axiosWithAuth()
+        .post(`/hackathons/u/${user_id}`, hackathonInfo)
+        .then(response => {
+            dispatch({ type: POSTHACKATHON_SUCCESS })
+            console.log(response, history)
+            history.push(`/hackathon/${response.data.id}`)
+        })
+        .catch(error => {
+            console.log(error.response)
+        })
+}
+
+// TEAMS
 export const getTeams = () => dispatch => {
     dispatch({ type: FETCH_START })
     axiosWithAuth()
@@ -58,6 +76,7 @@ export const getSpecificTeam = ( id ) => dispatch => {
     })
 }
 
+// HACKERS
 export const getHackers = () => dispatch => {
     dispatch({ type: FETCH_START })
     axiosWithAuth()

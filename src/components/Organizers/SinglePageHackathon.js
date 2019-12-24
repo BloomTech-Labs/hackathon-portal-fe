@@ -24,7 +24,6 @@ const SinglePage = (props) => {
     const day = days[newDate.getDay()]
     return `${day}, ${m} ${d}, ${y}`
   }
-  {console.log(hackathon)}
 
   if(isFetching){
     return(
@@ -50,11 +49,16 @@ const SinglePage = (props) => {
         <button>edit</button>
         <button>delete</button>
         <h4>Participants:</h4>
-        <p>
+        {hackathon.teams[0] ? (
+          <p>
           {(hackathon.teams.map(team => {
             return team.devs.length
           }).reduce((acc, curr)=>acc + curr) + hackathon.individual_devs.length)}
         </p>
+        ) : (
+          <p>{0 + hackathon.individual_devs.length}</p>
+        )
+        }
         <h4>Admins</h4>
         {hackathon.admins.map((admin, index) => {
           return(
@@ -65,15 +69,19 @@ const SinglePage = (props) => {
           )
         })}
         <h4>Teams</h4>
-        {hackathon.teams.map((team, index) => {
-          console.log(team)
-          return(
-            <div key={index}>
-              <p>{team.team_name}</p>
-              <p>members: {team.devs.length}</p>
-            </div>
-          )
-        })}
+        {hackathon.teams[0] ? (
+          hackathon.teams.map((team, index) => {
+            console.log(team)
+            return(
+              <div key={index}>
+                <p>{team.team_name}</p>
+                <p>members: {team.devs.length}</p>
+              </div>
+            )
+          })
+        ) : (
+        <p>No teams</p>)
+        }
         <h4>Individual participants ({hackathon.individual_devs.length})</h4>
       </div>
     )
