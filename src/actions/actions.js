@@ -14,6 +14,8 @@ export const getHackathons = () => dispatch => {
         .get(`/hackathons`)
         .then(response => {
         console.log('GET HACKATHONS', response.data)
+        dispatch({ type: FETCH_HACKERS, payload: response.data })
+        // .catch(err => dispatch({ type: FETCH_FAILURE, payload: err.response }));
         })
         .catch(error => {
         console.log(error)

@@ -3,6 +3,7 @@ import { FETCH_START, FETCH_FAILURE, FETCH_HACKERS } from '../actions/actions';
 
 const initialState = {
     hackers: [],
+    hackathons: [],
     isFetching: false,
     error: ''
 }
