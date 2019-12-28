@@ -84,7 +84,6 @@ const CreateHackathon = (props) => {
     }
     const id = user.sub.replace("auth0|", "")
     e.preventDefault();
-    console.log('STATE ON SUBMIT', hackathonInfo, id, props.history);
     dispatch(createHackathon(id, hackathonInfo, props.history));
   };
 

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
-import { connect, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 
-import { Router, Route, Switch, Link } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import ExternalApi from "./components/ExternalApi";
 import history from "./utils/history";
 import PrivateRoute from "./components/PrivateRoute";
@@ -14,6 +14,7 @@ import Homepage from './components/Homepage';
 import Dashboard from './components/Dashboard';
 import CreateHackathon from './components/Organizers/CreateHackathon';
 import SinglePage from './components/Organizers/SinglePageHackathon';
+import SuccessPage from './components/SuccessPage';
 
 // ACTIONS
 import { getHackathons } from './actions/actions'
@@ -36,10 +37,11 @@ function App(props) {
           <PrivateRoute path="/profile" component={Profile} />
           <Route path="/dashboard" component={Dashboard} />
           {/* TEMPORARILY ROUTE */}
-          <Route exact path="/hackathon/create" component={CreateHackathon} />
+          <PrivateRoute exact path="/hackathon/create" component={CreateHackathon} />
           <PrivateRoute path={`/hackathon/:id`} component={SinglePage} />
           {/* NEW - add a route to the ExternalApi component for testing atm */}
           <PrivateRoute path="/external-api" component={ExternalApi} />
+          <Route path='/success' component={SuccessPage}/>
           <Route path='/hackerlist' component={HackerList}/>
         </Switch>
       </Router>

@@ -1,13 +1,13 @@
 import { axiosWithAuth } from '../utils/axiosWithAuth'; 
 import { connect } from "react-redux";
 
-
 // ACTION TYPES
 export const FETCH_START = 'FETCH_START';
 export const FETCH_HACKATHON = 'FETCH_HACKATHON';
 export const FETCH_FAILURE = 'FETCH_FAILURE';
 export const FETCH_HACKERS = 'FETCH_HACKERS';
 export const POSTHACKATHON_SUCCESS = 'POSTHACKATHON_SUCCESS';
+export const POSTORGANIZER_SUCCESS = 'POSTORGANIZER_SUCCESS';
 
 // ACTIONS
 
@@ -20,7 +20,7 @@ export const getHackathons = () => dispatch => {
         console.log('GET HACKATHONS', response.data)
         })
         .catch(error => {
-        console.log(error)
+            dispatch({ type: FETCH_FAILURE, payload: error.response })
         })
 }
 
@@ -29,11 +29,10 @@ export const getSpecificHackathon = ( id ) => dispatch => {
     axiosWithAuth()
         .get(`/hackathons/${id}`)
         .then(response => {
-            console.log('GET SPECIFIC HACKATHON', response.data)
             dispatch({ type: FETCH_HACKATHON, payload: response.data })
         })
         .catch(error => {
-            console.log(error)
+            dispatch({ type: FETCH_FAILURE, payload: error.response })
         })
 }
 
@@ -43,11 +42,10 @@ export const createHackathon = (user_id, hackathonInfo, history) => dispatch => 
         .post(`/hackathons/u/${user_id}`, hackathonInfo)
         .then(response => {
             dispatch({ type: POSTHACKATHON_SUCCESS })
-            console.log(response, history)
-            history.push(`/hackathon/${response.data.id}`)
+            history.push(`/success`, response.data.id)
         })
         .catch(error => {
-            console.log(error.response)
+            dispatch({ type: FETCH_FAILURE, payload: error.response })
         })
 }
 

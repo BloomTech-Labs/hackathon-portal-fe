@@ -25,6 +25,8 @@ const SinglePage = (props) => {
     return `${day}, ${m} ${d}, ${y}`
   }
 
+  console.log('HACKATHON PAGE', hackathon, isFetching)
+
   if(isFetching){
     return(
       <div>
