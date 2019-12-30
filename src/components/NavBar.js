@@ -12,24 +12,27 @@ const NavBar = () => {
       {!isAuthenticated && (
         <>
           <Link to="/">Home</Link>&nbsp;
+          <br />
           <button onClick={() => loginWithRedirect({})}>Log in</button>
-          {/* TEMPORARY LINK */}
-          <Link to='/hackathon/create'>Create a Hackathon</Link>
         </>
       )}
 
-      {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
-
       {isAuthenticated && (
-      <span>
+        <span>
         <Link to="/">Home</Link>&nbsp;
+        <br />
         <Link to="/profile">Profile</Link>
+        <br />
         <Link to='/hackathon/create'>Create a Hackathon</Link>
+        <br />
 
         {/* NEW - Add a link to the /external-api route for testing */}
       <Link to="/external-api">External API</Link>
       </span>
     )}
+
+    <br />
+    {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
     {/* <Dashboard/> */}
     </div>
   );

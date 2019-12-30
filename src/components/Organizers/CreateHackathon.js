@@ -1,20 +1,26 @@
-import React, { useState } from "react";
-import "date-fns";
+import React, { useState, useEffect } from "react";
 import useForm from "react-hook-form";
+import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
+import { useDispatch } from "react-redux";
+
+// ACTIONS
+import { createHackathon } from '../../actions/actions';
+
+// STYLE
+import "date-fns";
 import {
   Button,
   FormLabel,
   TextField,
   Typography,
   InputAdornment,
-  makeStyles
+  makeStyles,
+  Checkbox,
+  FormControlLabel
 } from "@material-ui/core";
 import PersonIcon from "@material-ui/icons/Person";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
+import DescriptionIcon from '@material-ui/icons/Description';
 import LanguageIcon from "@material-ui/icons/Language";
-import TitleIcon from "@material-ui/icons/Title";
-import CardGiftcardIcon from "@material-ui/icons/CardGiftcard";
-import GroupIcon from "@material-ui/icons/Group";
 import TodayIcon from "@material-ui/icons/Today";
 import EventIcon from "@material-ui/icons/Event";
 import ScheduleIcon from "@material-ui/icons/Schedule";
@@ -29,33 +35,38 @@ import {
 
 // const useStyles = makeStyles(theme => ({}));
 
-const CreateHackathon = () => {
-  // const classes = useStyles();
-
+const CreateHackathon = (props) => {
   const [page1, setPage1] = useState(true);
   const [page1Info, setPage1Info] = useState({});
   const [page2, setPage2] = useState(false);
-  const [page2Info, setPage2Info] = useState({});
-  const [selectedStartDate, setSelectedStartDate] = useState(new Date());
-  const [selectedEndDate, setSelectedEndDate] = useState(new Date());
+  const [start_date, setStart_date] = useState(`${new Date()}`);
+  const [end_date, setEnd_date] = useState(`${new Date()}`);
+  const [hackathonInfo, setHackathonInfo] = useState({ name: '', description: '', url: '', start_date: '', end_date: '', is_open: '' })
+  const [state, setState] = useState({ is_open:true });
+  const { loading, user } = useAuth0();
+  const dispatch = useDispatch();
 
   let { register, handleSubmit, errors, clearError } = useForm();
+
+  useEffect(() => {
+    setHackathonInfo({ name: `${page1Info.name}`, description: `${page1Info.description}`, url: `${page1Info.url}`, start_date: `${start_date}`, end_date: `${end_date}`, is_open: state.is_open })
+  }, [page1Info, start_date, end_date, state])
 
   const handlePage1Change = e => {
     setPage1Info({ ...page1Info, [e.target.name]:e.target.value });
   };
 
-  const handlePage2Change = e => {
-    setPage2Info({ ...page2Info, [e.target.name]:e.target.value });
-  };
-
   const handleStartDateChange = date => {
-    setSelectedStartDate(date);
+    setStart_date(date);
   };
 
   const handleEndDateChange = date => {
-    setSelectedEndDate(date);
+    setEnd_date(date);
   };
+
+  const handleOpenChange = name => e => {
+    setState({ [name]: e.target.checked })
+  }
 
   const toPage1 = () => {
     setPage1(true);
@@ -68,13 +79,12 @@ const CreateHackathon = () => {
   };
 
   const handleFormSubmit = (data, e) => {
+    if(loading){
+      return;
+    }
+    const id = user.sub.replace("auth0|", "")
     e.preventDefault();
-    const hackathonName = page1Info.hackathonName
-    const hackathonLocation = page1Info.hackathonLocation
-    const hackathonURL = page1Info.hackathonURL
-    const pageTitle = page1Info.pageTitle
-    const prize = page1Info.prize
-    console.log('STATE ON SUBMIT', { ...data, hackathonName, hackathonLocation, hackathonURL, pageTitle, prize});
+    dispatch(createHackathon(id, hackathonInfo, props.history));
   };
 
   return (
@@ -86,17 +96,18 @@ const CreateHackathon = () => {
         {page1 && (
           <>
             <FormLabel>Hackathon info</FormLabel>
-            <label className="hackathonName">
+            <br />
+            <label className="name">
               <br />
               <FormLabel>Hackathon name</FormLabel>
               <br />
               <TextField
                 type="text"
                 fullWidth
-                name="hackathonName"
+                name="name"
                 variant="outlined"
                 margin="dense"
-                defaultValue={page1Info.hackathonName}
+                defaultValue={page1Info.name}
                 onChange={handlePage1Change}
                 inputRef={register}
                 InputProps={{
@@ -108,89 +119,47 @@ const CreateHackathon = () => {
                 }}
               />
             </label>
-            <label className="hackathonLocation">
+            <label className="description">
               <br />
-              <FormLabel>Hackathon location</FormLabel>
+              <FormLabel>Hackathon description</FormLabel>
               <br />
               <TextField
                 type="text"
                 fullWidth
-                name="hackathonLocation"
+                multiline
+                rows='4'
+                name="description"
                 variant="outlined"
                 margin="dense"
-                defaultValue={page1Info.hackathonLocation}
+                defaultValue={page1Info.description}
                 onChange={handlePage1Change}
                 inputRef={register}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <LocationOnIcon />
+                      <DescriptionIcon />
                     </InputAdornment>
                   )
                 }}
               />
             </label>
-            <label className="hackathonURL">
+            <label className="url">
               <br />
               <FormLabel>Event URL</FormLabel>
               <br />
               <TextField
                 type="text"
                 fullWidth
-                name="hackathonURL"
+                name="url"
                 variant="outlined"
                 margin="dense"
-                defaultValue={page1Info.hackathonURL}
+                defaultValue={page1Info.url}
                 onChange={handlePage1Change}
                 inputRef={register}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
                       <LanguageIcon />
-                    </InputAdornment>
-                  )
-                }}
-              />
-            </label>
-            <label className="pageTitle">
-              <br />
-              <FormLabel>Page title</FormLabel>
-              <br />
-              <TextField
-                type="text"
-                fullWidth
-                name="pageTitle"
-                variant="outlined"
-                margin="dense"
-                defaultValue={page1Info.pageTitle}
-                onChange={handlePage1Change}
-                inputRef={register}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <TitleIcon />
-                    </InputAdornment>
-                  )
-                }}
-              />
-            </label>
-            <label className="prize">
-              <br />
-              <FormLabel>Prize</FormLabel>
-              <br />
-              <TextField
-                type="text"
-                fullWidth
-                name="prize"
-                variant="outlined"
-                margin="dense"
-                defaultValue={page1Info.prize}
-                onChange={handlePage1Change}
-                inputRef={register}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <CardGiftcardIcon />
                     </InputAdornment>
                   )
                 }}
@@ -209,9 +178,9 @@ const CreateHackathon = () => {
                 onClick={() => toPage1()}
                 style={{ fontSize: "1.5rem", color: "lightGrey" }}
               />
-              <Typography variant="h7">Step</Typography>
-              <Typography variant="h7">1</Typography>
-              <Typography variant="h7" style={{ color: "lightGrey" }}>
+              <Typography>Step</Typography>
+            <Typography>1</Typography>
+            <Typography style={{ color: "lightGrey" }}>
                 2
               </Typography>
               <ArrowForwardIosIcon
@@ -224,53 +193,9 @@ const CreateHackathon = () => {
         {page2 && (
           <>
             <FormLabel>Hackathon info</FormLabel>
-            <label className="teamMin">
-              <br />
-              <FormLabel>Team size (min.)</FormLabel>
-              <br />
-              <TextField
-                type="text"
-                fullWidth
-                name="teamMin"
-                variant="outlined"
-                margin="dense"
-                defaultValue={page2Info.teamMin}
-                onChange={handlePage2Change}
-                inputRef={register}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <GroupIcon />
-                    </InputAdornment>
-                  )
-                }}
-              />
-            </label>
-            <label className="teamMax">
-              <br />
-              <FormLabel>Team size (max.)</FormLabel>
-              <br />
-              <TextField
-                type="text"
-                fullWidth
-                name="teamMax"
-                variant="outlined"
-                margin="dense"
-                defaultValue={page2Info.teamMax}
-                onChange={handlePage2Change}
-                inputRef={register}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <GroupIcon />
-                    </InputAdornment>
-                  )
-                }}
-              />
-            </label>
             <div>
+              <br />
               <label className="startDate">
-                <br />
                 <FormLabel>Event start date</FormLabel>
                 <br />
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -283,7 +208,7 @@ const CreateHackathon = () => {
                     format="MM/dd/yyyy"
                     keyboardIcon={<TodayIcon style={{ color: "black" }} />}
                     inputRef={register}
-                    value={selectedStartDate}
+                    value={start_date}
                     InputAdornmentProps={{ position: "start" }}
                     onChange={handleStartDateChange}
                   />
@@ -300,7 +225,7 @@ const CreateHackathon = () => {
                     name="startTime"
                     margin="dense"
                     inputVariant="outlined"
-                    value={selectedStartDate}
+                    value={start_date}
                     onChange={handleStartDateChange}
                     inputRef={register}
                     keyboardIcon={<ScheduleIcon style={{ color: "black" }} />}
@@ -324,7 +249,7 @@ const CreateHackathon = () => {
                     format="MM/dd/yyyy"
                     keyboardIcon={<EventIcon style={{ color: "black" }} />}
                     inputRef={register}
-                    value={selectedEndDate}
+                    value={end_date}
                     InputAdornmentProps={{ position: "start" }}
                     onChange={handleEndDateChange}
                   />
@@ -341,13 +266,26 @@ const CreateHackathon = () => {
                     name="endTime"
                     margin="dense"
                     inputVariant="outlined"
-                    value={selectedEndDate}
+                    value={end_date}
                     onChange={handleEndDateChange}
                     inputRef={register}
                     keyboardIcon={<ScheduleIcon style={{ color: "black" }} />}
                     InputAdornmentProps={{ position: "start" }}
                   />
                 </MuiPickersUtilsProvider>
+              </label>
+              <label>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={state.is_open}
+                    onChange={handleOpenChange('is_open')}
+                    value="checked"
+                    color="primary"
+                  />
+                }
+                label="Open hackathon (this lets participants sign up)"
+              />
               </label>
             </div>
             <br />
@@ -364,11 +302,11 @@ const CreateHackathon = () => {
                 onClick={() => toPage1()}
                 style={{ fontSize: "1.5rem" }}
               />
-              <Typography variant="h7">Step</Typography>
-              <Typography variant="h7" style={{ color: "lightGrey" }}>
+              <Typography>Step</Typography>
+              <Typography style={{ color: "lightGrey" }}>
                 1
               </Typography>
-              <Typography variant="h7">2</Typography>
+              <Typography>2</Typography>
               <ArrowForwardIosIcon
                 onClick={() => toPage2()}
                 style={{ fontSize: "1.5rem", color: "lightGrey" }}
