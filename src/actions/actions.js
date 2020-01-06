@@ -5,6 +5,7 @@ export const FETCH_START = 'FETCH_START';
 export const FETCH_HACKATHON = 'FETCH_HACKATHON';
 export const FETCH_FAILURE = 'FETCH_FAILURE';
 export const FETCH_HACKERS = 'FETCH_HACKERS';
+export const FETCH_USER = 'FETCH_USER';
 export const POSTHACKATHON_SUCCESS = 'POSTHACKATHON_SUCCESS';
 export const POSTORGANIZER_SUCCESS = 'POSTORGANIZER_SUCCESS';
 
@@ -92,12 +93,13 @@ export const getHackers = () => dispatch => {
       });
 };
 
-export const getSpecificHacker = id => dispatch => {
+export const getUser = id => dispatch => {
    dispatch({ type: FETCH_START });
    axiosWithAuth()
       .get(`/users/${id}`)
       .then(response => {
-         console.log(response);
+         dispatch({ type: FETCH_USER, payload: response.data });
+         console.log('getUser', response);
       })
       .catch(error => {
          console.log(error);
