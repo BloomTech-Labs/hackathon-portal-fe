@@ -7,7 +7,7 @@ const Events = (props) => {
                 return(
                 <div className='event'>
                     <img className='eventImage' src={e.url}></img>
-                    <div className='eventName'>{e.name}</div>
+                    <a className='eventName'>{e.name}</a>
                 </div>
                 )
             })}

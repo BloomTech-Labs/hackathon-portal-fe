@@ -3,6 +3,7 @@ import AddIcon from '@material-ui/icons/Add';
 import SvgIcon from '@material-ui/icons/Add';
 
 import Events from './Events';
+import { getNodeText } from '@testing-library/react';
 
 let events = [
     {
@@ -30,10 +31,10 @@ var blockList = [];
 
 function comparingNames(inputInSearch, nameOfEvent){
     if(nameOfEvent.indexOf(inputInSearch) != -1){
-        console.log('this works', nameOfEvent);
+        // console.log('this works', nameOfEvent);
     } else {
         blockList.push(nameOfEvent);
-        console.log('this is the list of display none', blockList);
+        // console.log('this is the list of display none', blockList);
     }
 }
 
@@ -46,6 +47,11 @@ const searchFunction = () => {
         comparingNames(input, events[i].name);
     };
     console.log('this is the super last list of ', blockList)
+    blockList.map((e) =>{
+        console.log(document.getElementsByTagName('a'));
+        let block = document.getElementsByClassName('event')[1];
+        block.style.display = "none";
+    })
 }
 
 //this function turns the background black
