@@ -22,10 +22,25 @@
   justify-content: center;
   border: 2px solid #d0ddff;
   border-radius: 8px;
+  margin: auto;
+}
+
+.class {
+  padding: 0% 4%;
+  font-size: 35px;
+}
+
+#searchBar {
+  display: flex;
+  justify-content: center;
+  margin: 2%;
 }
 
 #searchInput {
-  width: 60%;
+  width: 90%;
+  height: 45px;
+  border-radius: 8px;
+  font-size: 24px;
 }
 
  .eventList {
@@ -57,7 +72,7 @@
 }
 
 .event {
-  width: 30%;
+  width: 28%;
   margin: 1.5%;
   background-color: black;
   text-align: center;

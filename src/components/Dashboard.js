@@ -47,11 +47,13 @@ const Dashboard = () => {
     return (
         <div className='dashboard'>
             <h3>
-                <span>hacker</span>
-                <span>judge</span>
-                <span>organizer</span>
+                <span class='class'>hacker</span>
+                <span class='class'>judge</span>
+                <span class='class'>organizer</span>
             </h3>
-            <input id='searchInput'type="text" onKeyUp={searchFunction} placeholder="Search"></input>
+            <div id='searchBar'>
+                <input id='searchInput'type="text" onKeyUp={searchFunction} placeholder="Search"></input>
+            </div>
             <Events events={events}/>
         </div>
     )
