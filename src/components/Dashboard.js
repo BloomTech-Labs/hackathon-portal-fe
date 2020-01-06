@@ -3,7 +3,6 @@ import AddIcon from '@material-ui/icons/Add';
 import SvgIcon from '@material-ui/icons/Add';
 
 import Events from './Events';
-import { getNodeText } from '@testing-library/react';
 
 let events = [
     {
