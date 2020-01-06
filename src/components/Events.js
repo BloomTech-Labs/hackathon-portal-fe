@@ -2,7 +2,7 @@
 
 const Events = (props) => {
     return(
-        <div className='eventList'>
+        <div className='eventList' id='eventList'>
             {props.events.map(e => {
                 return(
                 <div className='event'>
