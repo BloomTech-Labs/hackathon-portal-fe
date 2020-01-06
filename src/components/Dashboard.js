@@ -28,20 +28,6 @@ let events = [
     }
 ]
 
-//this function compares the input and event Name to see if the event name should be shown
-var blockList = [];
-// let thisIsTheInput = 'Na';
-// let thisistheName = 'Name';
-
-// function comparingNames(inputInSearch, nameOfEvent){
-//     if(nameOfEvent.indexOf(inputInSearch) != -1){
-//         // console.log('this works', nameOfEvent);
-//     } else {
-//         blockList.push(nameOfEvent);
-//         // console.log('this is the list of display none', blockList);
-//     }
-// }
-
 const searchFunction = () => {
     //The line below recieves input and labels it as a variable called 'input'
     let input = document.getElementById("searchInput");
@@ -58,19 +44,7 @@ const searchFunction = () => {
             div[i].style.display = "none";
         }
       }
-    // console.log('this is the super last list of ', blockList)
-    // blockList.map((e) =>{
-    //     console.log(document.getElementsByTagName('a'));
-    //     let block = document.getElementsByClassName('event')[1];
-    //     block.style.display = "none";
-    // })
 }
-
-//this function turns the background black
-// function blackbg (){
-//     let li = document.getElementById('12345');
-//     li.style.backgroundColor = "yellow";
-// }
 
 const Dashboard = () => {
 
