@@ -23,14 +23,36 @@ let events = [
     }
 ]
 
+//this function compares the input and event Name to see if the event name should be shown
+let thisIsTheInput = 'Na';
+let thisistheName = 'Name';
+var blockList = [];
+
+function comparingNames(inputInSearch, nameOfEvent){
+    if(nameOfEvent.indexOf(inputInSearch) != -1){
+        console.log('this works', nameOfEvent);
+    } else {
+        blockList.push(nameOfEvent);
+        console.log('this is the list of display none', blockList);
+    }
+}
+
 const searchFunction = () => {
     //The line below recieves input and labels it as a variable called 'input'
     let input = document.getElementById("searchInput").value;
-    //
+    //this loop will go through each event name and compare them to the search input
     for(let i = 0; i < events.length; i++){
-        console.log('there are this many events =>', i)
-    }
+        // console.log('there are this many events =>', i)
+        comparingNames(input, events[i].name);
+    };
+    console.log('this is the super last list of ', blockList)
 }
+
+//this function turns the background black
+// function blackbg (){
+//     let li = document.getElementById('12345');
+//     li.style.backgroundColor = "yellow";
+// }
 
 const Dashboard = () => {
 
