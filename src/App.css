@@ -18,10 +18,20 @@
 }
 
 /* NOTE: css code for Dashabord */
- .eventsList {
+.dashboard {
+  justify-content: center;
+  border: 2px solid #d0ddff;
+  border-radius: 8px;
+}
+
+#searchInput {
+  width: 60%;
+}
+
+ .eventList {
    display: flex;
    flex-wrap: wrap;
-   margin-left: -10px;
+   align-self: auto;
  }
 
  #addIcon {
@@ -37,12 +47,22 @@
 }
 
 /*css code for the Events.js file*/
-
-.event {
+.createEvent{
   width: 300px;
   margin: 10px;
-  background-color: white;
+  background-color: black;
   text-align: center;
+  border: 2px solid #d0ddff;
+  border-radius: 8px;
+}
+
+.event {
+  width: 30%;
+  margin: 1.5%;
+  background-color: black;
+  text-align: center;
+  border: 2px solid #d0ddff;
+  border-radius: 8px;
 }
 
 .eventImage {

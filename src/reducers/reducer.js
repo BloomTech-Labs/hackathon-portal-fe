@@ -3,6 +3,7 @@ import { FETCH_START, FETCH_FAILURE, FETCH_HACKERS, FETCH_HACKATHON, POSTHACKATH
 const initialState = {
     singleHackathon: [],
     hackers: [],
+    hackathons: [],
     isFetching: false,
     error: ''
 }
