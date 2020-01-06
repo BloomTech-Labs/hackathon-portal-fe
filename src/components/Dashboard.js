@@ -1,7 +1,4 @@
 import React from 'react';
-import AddIcon from '@material-ui/icons/Add';
-import SvgIcon from '@material-ui/icons/Add';
-
 import Events from './Events';
 
 let events = [
@@ -49,15 +46,13 @@ const Dashboard = () => {
 
     return (
         <div className='dashboard'>
-            <h3>Dashboard</h3>
+            <h3>
+                <span>hacker</span>
+                <span>judge</span>
+                <span>organizer</span>
+            </h3>
             <input id='searchInput'type="text" onKeyUp={searchFunction} placeholder="Search"></input>
-            <div className='eventsList'>
-                <div className='event'>
-                    <SvgIcon className='eventImage' id='addIcon' component={AddIcon} style={{ fontSize: 300 }}></SvgIcon>
-                    <div className='eventName' id='createEventButtonText'>Create Event</div>
-                </div>
-                <Events events={events}></Events>
-            </div>
+            <Events events={events}/>
         </div>
     )
 }
