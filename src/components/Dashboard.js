@@ -1,5 +1,7 @@
 import React from 'react';
 import Events from './Events';
+import AddIcon from '@material-ui/icons/Add';
+import SvgIcon from '@material-ui/icons/Add';
 
 let events = [
     {
@@ -28,11 +30,13 @@ const searchFunction = () => {
     //The line below recieves input and labels it as a variable called 'input'
     let input = document.getElementById("searchInput");
     let filter = input.value.toUpperCase();
-    let ul = document.getElementById("eventList");
-    let div = ul.getElementsByTagName('div');
+    let eventList = document.getElementById("eventList");
+    let div = eventList.getElementsByTagName('div');
     //this loop will go through each event name and compare them to the search input
     for (let i = 0; i < div.length; i++) {
+        console.log(div);
         let a = div[i].getElementsByTagName("a")[0];
+        console.log('this is a', a);
         let txtValue = a.textContent || a.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
             div[i].style.display = "";
@@ -54,6 +58,10 @@ const Dashboard = () => {
             <div id='searchBar'>
                 <input id='searchInput'type="text" onKeyUp={searchFunction} placeholder="Search"></input>
             </div>
+            {/* <div className='createEvent'>
+                    <SvgIcon className='createEventImage' id='addIcon' component={AddIcon} style={{ fontSize: 300 }}></SvgIcon>
+                    <div className='createEventName' id='createEventButtonText'>Create Event</div>
+            </div> */}
             <Events events={events}/>
         </div>
     )
