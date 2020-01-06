@@ -5,7 +5,7 @@ const Homepage = () => {
     return(
         <div className='Homepage'>
             <h3>this is the homepage for now</h3>
-            <Link to='/Dashboard'>Dashboard</Link>
+            
         </div>
     )
 }

@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
 import './App.css';
-import { connect, useSelector } from 'react-redux';
+
 
 import { Router, Route, Switch, Link } from "react-router-dom";
 import ExternalApi from "./components/ExternalApi";
@@ -11,16 +11,13 @@ import NavBar from './components/NavBar';
 import Profile from './components/Profile';
 import HackerList from './components/hackerList';
 import CreateHackathon from './components/Organizers/CreateHackathon';
-
+import Hackathons from './components/hackathons'
 import Homepage from './components/Homepage';
 import Dashboard from './components/Dashboard';
-import { getHackathons } from './actions/actions'
+
 
 function App(props) {
 
-  useEffect(() => {
-    props.getHackathons()
-  }, [])
 
   return (
     <div className="App">
@@ -34,8 +31,9 @@ function App(props) {
           <PrivateRoute path="/profile" component={Profile} />
           <Route path="/dashboard" component={Dashboard} />
           {/* TEMPORARILY ROUTE */}
-          <Route path="/hackathon/create" component={CreateHackathon} />
+          <Route path="/hackathons/create" component={CreateHackathon} />
           {/* NEW - add a route to the ExternalApi component for testing atm */}
+          <Route path="/hackathons" component={Hackathons} />
           <PrivateRoute path="/external-api" component={ExternalApi} />
           <Route path='/hackerlist' component={HackerList}/>
         </Switch>
@@ -45,6 +43,4 @@ function App(props) {
   );
 }
 
-export default connect(null,
-  { getHackathons }
-)(App);
+export default App;
