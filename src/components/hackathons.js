@@ -12,7 +12,10 @@ import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles(theme => ({
    card: {
-      maxWidth: 345
+      maxWidth: '100%',
+      margin: '10%',
+
+      
    },
    media: {
       height: 0,
@@ -56,7 +59,9 @@ function Hackathons(props) {
                <Card className={classes.card}>
                   <CardHeader
                      title={hackathon.name}
-                     subheader={hackathon.start_date - hackathon.end_date}
+                     subheader={hackathon.start_date}
+
+                     
                   />
 
                   <CardContent>

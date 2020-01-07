@@ -3,6 +3,7 @@ import {
    FETCH_FAILURE,
    FETCH_HACKERS,
    FETCH_HACKATHON,
+   FETCH_HACKATHONS,
    FETCH_USER,
    POSTHACKATHON_SUCCESS
 } from '../actions/actions';
@@ -10,6 +11,7 @@ import {
 const initialState = {
    singleHackathon: [],
    hackers: [],
+   hackathons: [],
    userInfo: [],
    isFetching: false,
    error: ''
@@ -51,6 +53,13 @@ const reducer = (state = initialState, action) => {
       case POSTHACKATHON_SUCCESS:
          return {
             ...state,
+            isFetching: false,
+            error: ''
+         };
+      case FETCH_HACKATHONS:
+         return {
+            ...state,
+            hackathons: action.payload,
             isFetching: false,
             error: ''
          };
