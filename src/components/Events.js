@@ -1,4 +1,6 @@
 import React from 'react';
+import AddIcon from '@material-ui/icons/Add';
+import SvgIcon from '@material-ui/icons/Add';
 
 const Events = props => {
    return (
