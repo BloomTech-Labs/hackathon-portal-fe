@@ -48,6 +48,7 @@ export const createHackathon = (
    (await axiosWithAuth())
       .post(`/hackathons/u/${user_id}`, hackathonInfo)
       .then(response => {
+         console.log('CREATE HACKATHON ACTIONS', response)
          dispatch({ type: POSTHACKATHON_SUCCESS });
          history.push(`/success`, response.data.id);
       })

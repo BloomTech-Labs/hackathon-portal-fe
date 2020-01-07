@@ -83,6 +83,7 @@ const CreateHackathon = (props) => {
       return;
     }
     const id = user.sub.replace("auth0|", "")
+    console.log(id, hackathonInfo, props)
     e.preventDefault();
     dispatch(createHackathon(id, hackathonInfo, props.history));
   };

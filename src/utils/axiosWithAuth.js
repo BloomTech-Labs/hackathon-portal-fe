@@ -24,8 +24,8 @@ export const axiosWithAuth = async () => {
       console.log(err);
    } finally {
       return axios.create({
-         baseURL: 'https://hackathon-portal.herokuapp.com/api',
-         // baseURL: 'http://localhost:5000/api',
+         // baseURL: 'https://hackathon-portal.herokuapp.com/api',
+         baseURL: 'http://localhost:5000/api',
          headers: {
             Authorization: `Bearer ${token}`
          }
