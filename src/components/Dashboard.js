@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Events from './Events';
-import AddIcon from '@material-ui/icons/Add';
-import SvgIcon from '@material-ui/icons/Add';
+import { useDispatch, useSelector } from 'react-redux';
+import { getHackathons } from '../actions/actions'
 
 let events = [
    {
@@ -47,11 +47,25 @@ const searchFunction = () => {
         } else {
             div[i].style.display = "none";
         }
-    }
-}
+    };
+};
 
 const Dashboard = () => {
-   return (
+    const dispatch = useDispatch();
+    const isFetching = useSelector(state => state.isFetching);
+    const hackathons = useSelector(state => state.hackathons);
+
+    console.log('this is passing just fine', hackathons)
+
+    useEffect(() => {
+        dispatch(getHackathons());
+     }, []);
+
+    if (isFetching) {
+        return <h2>Loading Events...</h2>;
+    }
+
+    return (
       <div className="dashboard">
          <h3>
             <span>hacker</span>
@@ -69,4 +83,4 @@ const Dashboard = () => {
    );
 };
 
-export default Dashboard
+export default Dashboard;
