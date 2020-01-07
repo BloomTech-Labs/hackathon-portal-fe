@@ -48,7 +48,9 @@ const Dashboard = () => {
       <div className="dashboard">
          <h3>
             <span>hacker</span>
+            <br></br>
             <span>judge</span>
+            <br></br>
             <span>organizer</span>
          </h3>
          <input

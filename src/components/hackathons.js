@@ -12,11 +12,24 @@ import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles(theme => ({
    card: {
-      maxWidth: '100%',
+      
+      maxWidth: '30%',
       margin: '10%',
 
-      
+      background: '#1c1c1f',
+      border: '1px solid #D0DDFF',
+      boxSizing: 'border-box',
+      borderRadius: '13.5px',
+      color: '#D0DDFF',
+
+
    },
+   cardparent: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    
+  },
+
    media: {
       height: 0,
       paddingTop: '56.25%' // 16:9
@@ -53,7 +66,7 @@ function Hackathons(props) {
    }
 
    return (
-      <div>
+      <div className={classes.cardparent}>
          {hackathons.map(hackathon => {
             return (
                <Card className={classes.card}>
