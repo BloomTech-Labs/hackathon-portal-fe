@@ -71,6 +71,7 @@
 }
 
 /*navBar styling*/
+
 .navBar {
   display: flex;
   flex-direction: row;
@@ -78,4 +79,5 @@
 
 .navBarLink {
   color: #d0ddff;
+  text-decoration: none;
 }

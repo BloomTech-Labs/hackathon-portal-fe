@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth0 } from "../auth0-hooks/react-auth0-spa";
 import { Link } from "react-router-dom";
+import HackathonLogo from '../../public/HackathonLogo.png';
 
 // import Dashboard from './Dashboard';
 
@@ -9,6 +10,7 @@ const NavBar = () => {
 
   return (
     <div className='navBar'>
+      
       {!isAuthenticated && (
         <>
           <Link to="/">Home</Link>&nbsp;
