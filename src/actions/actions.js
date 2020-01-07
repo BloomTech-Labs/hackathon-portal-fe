@@ -12,12 +12,11 @@ export const POSTORGANIZER_SUCCESS = 'POSTORGANIZER_SUCCESS';
 // ACTIONS
 
 // HACKATHONS
-export const getHackathons = () => dispatch => {
+export const getHackathons = () => async dispatch => {
    dispatch({ type: FETCH_START });
-   axiosWithAuth()
+   (await axiosWithAuth())
       .get(`/hackathons`)
       .then(response => {
-         console.log('GET HACKATHONS', response.data);
          dispatch({ type: FETCH_HACKERS, payload: response.data });
          // .catch(err => dispatch({ type: FETCH_FAILURE, payload: err.response }));
       })
@@ -26,9 +25,9 @@ export const getHackathons = () => dispatch => {
       });
 };
 
-export const getSpecificHackathon = id => dispatch => {
+export const getSpecificHackathon = id => async dispatch => {
    dispatch({ type: FETCH_START });
-   axiosWithAuth()
+   (await axiosWithAuth())
       .get(`/hackathons/${id}`)
       .then(response => {
          dispatch({ type: FETCH_HACKATHON, payload: response.data });
@@ -42,9 +41,9 @@ export const createHackathon = (
    user_id,
    hackathonInfo,
    history
-) => dispatch => {
+) => async dispatch => {
    dispatch({ type: FETCH_START });
-   axiosWithAuth()
+   (await axiosWithAuth())
       .post(`/hackathons/u/${user_id}`, hackathonInfo)
       .then(response => {
          dispatch({ type: POSTHACKATHON_SUCCESS });
@@ -56,9 +55,9 @@ export const createHackathon = (
 };
 
 // TEAMS
-export const getTeams = () => dispatch => {
+export const getTeams = () => async dispatch => {
    dispatch({ type: FETCH_START });
-   axiosWithAuth()
+   (await axiosWithAuth())
       .get(`/teams`)
       .then(response => {
          console.log(response);
@@ -68,9 +67,9 @@ export const getTeams = () => dispatch => {
       });
 };
 
-export const getSpecificTeam = id => dispatch => {
+export const getSpecificTeam = id => async dispatch => {
    dispatch({ type: FETCH_START });
-   axiosWithAuth()
+   (await axiosWithAuth())
       .get(`/teams/${id}`)
       .then(response => {
          console.log(response);
@@ -81,9 +80,9 @@ export const getSpecificTeam = id => dispatch => {
 };
 
 // HACKERS
-export const getHackers = () => dispatch => {
+export const getHackers = () => async dispatch => {
    dispatch({ type: FETCH_START });
-   axiosWithAuth()
+   (await axiosWithAuth())
       .get(`/users`)
       .then(response => {
          dispatch({ type: FETCH_HACKERS, payload: response.data });
@@ -95,9 +94,9 @@ export const getHackers = () => dispatch => {
       });
 };
 
-export const getUser = id => dispatch => {
+export const getUser = id => async dispatch => {
    dispatch({ type: FETCH_START });
-   axiosWithAuth()
+   (await axiosWithAuth())
       .get(`/users/${id}`)
       .then(response => {
          dispatch({ type: FETCH_USER, payload: response.data });

@@ -33,7 +33,7 @@ export const Auth0Provider = ({
 
          if (isAuthenticated) {
             const user = await auth0FromHook.getUser();
-            setUser({ ...user, id: user.sub.replace('auth0|', '') });
+            setUser({ ...user, id: parseInt(user.sub.replace('auth0|', '')) });
          }
 
          setLoading(false);
