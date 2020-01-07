@@ -31,24 +31,25 @@ const NavBar = () => {
       )}
 
       {isAuthenticated && (
-        <span>
-         
+      <span>
         <Link to="/">Home</Link>&nbsp;
         <br />
         <Link to="/profile">Profile</Link>
         <br />
         <Link to='/hackathon/create'>Create a Hackathon</Link>
         <br />
+        <Link to='/dashboard'>Dashboard</Link>
+        <br />
+        <Link to='/hackathons'>Hackathons</Link>
+        <br />
 
         {/* NEW - Add a link to the /external-api route for testing */}
-      <Link to="/external-api">External API</Link>
-      
+        <Link to="/external-api">External API</Link>
       </span>
     )}
 
     <br />
     {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
-    {/* <Dashboard/> */}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import Events from './Events';
+import { getHackathons } from '../actions/actions'
 
 let events = [
     {
@@ -25,36 +26,41 @@ let events = [
 ]
 
 const searchFunction = () => {
-    //The line below recieves input and labels it as a variable called 'input'
-    let input = document.getElementById("searchInput");
-    let filter = input.value.toUpperCase();
-    let ul = document.getElementById("eventList");
-    let div = ul.getElementsByTagName('div');
-    //this loop will go through each event name and compare them to the search input
-    for (let i = 0; i < div.length; i++) {
-        let a = div[i].getElementsByTagName("a")[0];
-        let txtValue = a.textContent || a.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            div[i].style.display = "";
-        } else {
-            div[i].style.display = "none";
-        }
+   //The line below recieves input and labels it as a variable called 'input'
+   let input = document.getElementById('searchInput');
+   let filter = input.value.toUpperCase();
+   let ul = document.getElementById('eventList');
+   let div = ul.getElementsByTagName('div');
+   //this loop will go through each event name and compare them to the search input
+   for (let i = 0; i < div.length; i++) {
+      let a = div[i].getElementsByTagName('a')[0];
+      let txtValue = a.textContent || a.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+         div[i].style.display = '';
+      } else {
+         div[i].style.display = 'none';
       }
+   }
 }
 
 const Dashboard = () => {
+   return (
+      <div className="dashboard">
+         <h3>
+            <span>hacker</span>
+            <span>judge</span>
+            <span>organizer</span>
+         </h3>
+         <input
+            id="searchInput"
+            type="text"
+            onKeyUp={searchFunction}
+            placeholder="Search"
+         ></input>
+         <Events events={events} />
+      </div>
+   );
+};
 
-    return (
-        <div className='dashboard'>
-            <h3>
-                <span>hacker</span>
-                <span>judge</span>
-                <span>organizer</span>
-            </h3>
-            <input id='searchInput'type="text" onKeyUp={searchFunction} placeholder="Search"></input>
-            <Events events={events}/>
-        </div>
-    )
-}
 
-export default Dashboard
+export default Dashboard;

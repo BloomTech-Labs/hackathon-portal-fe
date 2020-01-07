@@ -56,7 +56,8 @@ function Hackathons(props) {
                <Card className={classes.card}>
                   <CardHeader
                      title={hackathon.name}
-                     subheader={hackathon.start_date - hackathon.end_date}
+                     subheader={hackathon.start_date}
+                     subheader={hackathon.end_date}
                   />
 
                   <CardContent>
