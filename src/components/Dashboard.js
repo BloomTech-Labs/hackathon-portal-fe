@@ -23,12 +23,20 @@ let events = [
     }
 ]
 
+const searchFunction = () => {
+    let input = document.getElementById('searchInput').TEXT_NODE;
+    events.forEach(e => {
+        console.log(e);
+    })
+    console.log('this is input', input);
+}
+
 const Dashboard = () => {
 
     return (
         <div className='dashboard'>
             <h3>Dashboard</h3>
-            {/* <input type="text" onKeyUp={searchFunction} placeholder="Search"></input> */}
+            <input id="searchInput" type="text" onKeyUp={searchFunction} placeholder="Search"></input>
             <div className='eventsList'>
                 <div className='event'>
                     <SvgIcon className='eventImage' id='addIcon' component={AddIcon} style={{ fontSize: 300 }}></SvgIcon>
