@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHackathons } from '../actions/actions';
 
+
 //material UI
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -66,6 +67,9 @@ function Hackathons(props) {
    }
 
    return (
+
+ 
+
       <div className={classes.cardparent}>
          {hackathons.map(hackathon => {
             return (

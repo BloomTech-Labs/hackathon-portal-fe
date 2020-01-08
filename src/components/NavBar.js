@@ -22,7 +22,8 @@ const NavBar = () => {
   const classes = useStyles();
   const preventDefault = event => event.preventDefault();
   return (
-    <div>
+    <div className='navBar'>
+      
       {!isAuthenticated && (
         <>
           <Link to="/">Home</Link>&nbsp;
@@ -32,12 +33,12 @@ const NavBar = () => {
       )}
 
       {isAuthenticated && (
-      <span>
-        <Link to="/">Home</Link>&nbsp;
+        <span className='navBar'>
+        <Link className='navBarLink' to="/">Home</Link>&nbsp;
         <br />
-        <Link to="/profile">Profile</Link>
+        <Link className='navBarLink' to="/profile">Profile</Link>
         <br />
-        <Link to='/hackathon/create'>Create a Hackathon</Link>
+        <Link className='navBarLink' to='/hackathon/create'>Create a Hackathon</Link>
         <br />
         <Link to='/dashboard'>Dashboard</Link>
         <br />
