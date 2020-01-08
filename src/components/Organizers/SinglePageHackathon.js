@@ -1,5 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
+
+// COMPONENTS
+import DeleteHackathon from './DeleteHackathon';
 
 // ACTIONS
 import { getSpecificHackathon } from '../../actions/actions';
@@ -9,7 +14,8 @@ const SinglePage = props => {
    const dispatch = useDispatch();
    const hackathon = useSelector(state => state.singleHackathon);
    const isFetching = useSelector(state => state.isFetching);
-   console.log(props.match.params.id, typeof(Number(props.match.params.id)))
+   const [user_id, setUser_id] = useState(0)
+   const { loading, user } = useAuth0();
 
    useEffect(() => {
       dispatch(getSpecificHackathon((props.match.params.id)));
@@ -51,10 +57,10 @@ const SinglePage = props => {
 
    if (isFetching) {
       return <div>Loading...</div>;
-   } 
+   }
    if (hackathon === undefined) {
       return <div>Loading...</div>;
-   } 
+   }
    return (
       <div>
          <h2>{hackathon.name}</h2>
@@ -69,8 +75,12 @@ const SinglePage = props => {
          <p>{formatDate(hackathon.start_date)}</p>
          <h4>End date:</h4>
          <p>{formatDate(hackathon.end_date)}</p>
-         <button>edit</button>
-         <button>delete</button>
+         {user.id === hackathon.organizer_id && (
+            <>
+               <Link to={`/hackathon/edit/${hackathon.id}`}><button>edit</button></Link>
+               <DeleteHackathon id={hackathon.id} org_id={hackathon.organizer_id} history={props.history} />
+            </>
+         )}
          <h4>Participants:</h4>
          {hackathon.teams[0] ? (
             <p>
