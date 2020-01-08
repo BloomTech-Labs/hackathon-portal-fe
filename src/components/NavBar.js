@@ -3,6 +3,7 @@ import { useAuth0 } from "../auth0-hooks/react-auth0-spa";
 import { Link } from "react-router-dom";
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { SvgIcon } from "@material-ui/core";
 // import Dashboard from './Dashboard';
 
 const useStyles = makeStyles(theme => ({
