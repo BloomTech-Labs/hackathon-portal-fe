@@ -4,8 +4,12 @@ import{ Link } from 'react-router-dom';
 const Homepage = () => {
     return(
         <div className='Homepage'>
-            <h3>HomePage</h3>
-            
+            <section className='carosel'>
+                <h3>the carosel with the arrows will go here</h3>
+            </section>
+            <section>
+                <h2>Open Hackathons</h2>
+            </section>
         </div>
     )
 }

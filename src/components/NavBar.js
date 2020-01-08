@@ -39,13 +39,13 @@ const NavBar = () => {
         {/* &nbsp; */}
         {/* <br />
         <Link className='navBarLink' to='/hackathon/create'>Create a Hackathon</Link> */}
-        <br />
+        {/* <br /> */}
         <Link className='navBarLink' to='/hackathons'>Hackathons<FiberManualRecordIcon className='dot' style={{ fontSize: 10 }}/></Link>
-        <br />
+        {/* <br /> */}
         <Link className='navBarLink' to="/profile">Profile<FiberManualRecordIcon className='dot' style={{ fontSize: 10 }}/></Link>
-        <br />
+        {/* <br /> */}
         <Link className='navBarLink' to='/dashboard'>Dashboard<FiberManualRecordIcon className='dot' style={{ fontSize: 10 }}/></Link>
-        <br />
+        {/* <br /> */}
         <Link className='navBarLink' onClick={() => logout()}>Log out</Link>
         {/* NEW - Add a link to the /external-api route for testing */}
         {/* <Link className='navBarLink' to="/external-api">External API</Link> */}

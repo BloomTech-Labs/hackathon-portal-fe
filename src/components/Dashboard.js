@@ -31,6 +31,7 @@ const searchFunction = () => {
     let input = document.getElementById("searchInput");
     let filter = input.value.toUpperCase();
     let eventList = document.getElementById("eventList");
+    console.log('this is alos an eventList', eventList);
     let div = eventList.getElementsByTagName('div');
     //this loop will go through each event name and compare them to the search input
     for (let i = 0; i < div.length; i++) {
