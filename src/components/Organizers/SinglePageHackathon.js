@@ -77,8 +77,8 @@ const SinglePage = props => {
          <p>{formatDate(hackathon.end_date)}</p>
          {user.id === hackathon.organizer_id && (
             <>
-               <Link to='/hackathon/edit'><button>edit</button></Link>
-               <DeleteHackathon id={hackathon.id} org_id={hackathon.organizer_id} />
+               <Link to={`/hackathon/edit/${hackathon.id}`}><button>edit</button></Link>
+               <DeleteHackathon id={hackathon.id} org_id={hackathon.organizer_id} history={props.history} />
             </>
          )}
          <h4>Participants:</h4>

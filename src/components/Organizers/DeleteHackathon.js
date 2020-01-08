@@ -56,7 +56,7 @@ export default function DeleteHackathonModal(props) {
             <h2 id="transition-modal-title">Deleting Hackathon</h2>
             <p id="transition-modal-description">Are you sure you want to delete this event? This can not be undone.</p>
             <button onClick={()=>dispatch(deleteHackathon(props.id, props.org_id, props.history))}>YES, DELETE</button>
-            <button onCLick={()=>handleClose()}>NO, CANCEL</button>
+            <button onClick={()=>handleClose()}>NO, CANCEL</button>
             
           </div>
         </Fade>

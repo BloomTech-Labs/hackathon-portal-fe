@@ -26,6 +26,7 @@ import EventIcon from '@material-ui/icons/Event';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
 import DateFnsUtils from '@date-io/date-fns';
 import {
    MuiPickersUtilsProvider,
@@ -41,33 +42,26 @@ const EditHackathon = props => {
    const [page2, setPage2] = useState(false);
    const [start_date, setStart_date] = useState(`${new Date()}`);
    const [end_date, setEnd_date] = useState(`${new Date()}`);
-   const [hackathonInfo, setHackathonInfo] = useState({
-      name: '',
-      description: '',
-      url: '',
-      start_date: '',
-      end_date: '',
-      is_open: ''
-   });
+   const [hackathonInfo, setHackathonInfo] = useState();
    const [state, setState] = useState({ is_open: true });
    const { loading, user } = useAuth0();
    const dispatch = useDispatch();
-
    let { register, handleSubmit, errors, clearError } = useForm();
 
-   useEffect(() => {
-      setHackathonInfo({
-         name: `${page1Info.name}`,
-         description: `${page1Info.description}`,
-         url: `${page1Info.url}`,
-         start_date: `${start_date}`,
-         end_date: `${end_date}`,
-         is_open: state.is_open
-      });
-   }, [page1Info, start_date, end_date, state]);
+  //  useEffect(() => {
+  //     setHackathonInfo({
+  //        name: `${page1Info.name}`,
+  //        description: `${page1Info.description}`,
+  //        location: `${page1Info.location}`,
+  //        url: `${page1Info.url}`,
+  //        start_date: `${start_date}`,
+  //        end_date: `${end_date}`,
+  //        is_open: state.is_open
+  //     });
+  //  }, [page1Info, start_date, end_date, state]);
 
    const handlePage1Change = e => {
-      setPage1Info({ ...page1Info, [e.target.name]: e.target.value });
+    setHackathonInfo({ ...hackathonInfo, [e.target.name]: e.target.value });
    };
 
    const handleStartDateChange = date => {
@@ -98,7 +92,8 @@ const EditHackathon = props => {
       }
       const id = user.sub.replace('auth0|', '');
       e.preventDefault();
-      dispatch(editHackathon(id, hackathonInfo, props.history));
+      dispatch(editHackathon(props.match.params.id, id, hackathonInfo, props.history));
+      console.log(props.match.params.id, id, hackathonInfo, props.history, page1Info)
    };
 
    return (
@@ -157,6 +152,29 @@ const EditHackathon = props => {
                         }}
                      />
                   </label>
+                  <label className="location">
+                     <br />
+                     <FormLabel>Hackathon Location</FormLabel>
+                     <br />
+                     <TextField
+                        type="text"
+                        fullWidth
+                        name="location"
+                        variant="outlined"
+                        margin="dense"
+                        defaultValue={page1Info.location}
+                        onChange={handlePage1Change}
+                        inputRef={register}
+                        InputProps={{
+                           startAdornment: (
+                              <InputAdornment position="start">
+                                 <LocationOnIcon />
+                              </InputAdornment>
+                           )
+                        }}
+                     />
+                  </label>
+                  <br />
                   <label className="url">
                      <br />
                      <FormLabel>Event URL</FormLabel>

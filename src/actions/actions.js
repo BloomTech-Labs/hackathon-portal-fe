@@ -77,18 +77,18 @@ export const editHackathon = (
 }
 
 export const deleteHackathon = (id, org_id, history) => async dispatch => {
-   dispatch({ type: FETCH_START })
-   (await axiosWithAuth)
-      .delete(` /hackathons/${id}/u/${org_id}`)
+   dispatch({ type: FETCH_START });
+   (await axiosWithAuth())
+      .delete(`/hackathons/${id}/u/${org_id}`)
       .then(response => {
          console.log(response)
-         // dispatch({ type: DELETEHACKATHON_SUCCESS });
-         // history.push(`/`)
+         dispatch({ type: DELETEHACKATHON_SUCCESS });
+         history.push(`/`)
       })
       .catch(error => {
          dispatch({ type: FETCH_FAILURE, payload: error.response });
       });
-}
+};
 
 // TEAMS
 export const getTeams = () => async dispatch => {

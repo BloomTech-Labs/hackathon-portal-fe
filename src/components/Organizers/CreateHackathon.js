@@ -26,6 +26,7 @@ import EventIcon from '@material-ui/icons/Event';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
 import DateFnsUtils from '@date-io/date-fns';
 import {
    MuiPickersUtilsProvider,
@@ -44,6 +45,7 @@ const CreateHackathon = props => {
    const [hackathonInfo, setHackathonInfo] = useState({
       name: '',
       description: '',
+      location: '',
       url: '',
       start_date: '',
       end_date: '',
@@ -59,6 +61,7 @@ const CreateHackathon = props => {
       setHackathonInfo({
          name: `${page1Info.name}`,
          description: `${page1Info.description}`,
+         location: `${page1Info.location}`,
          url: `${page1Info.url}`,
          start_date: `${start_date}`,
          end_date: `${end_date}`,
@@ -152,6 +155,28 @@ const CreateHackathon = props => {
                            startAdornment: (
                               <InputAdornment position="start">
                                  <DescriptionIcon />
+                              </InputAdornment>
+                           )
+                        }}
+                     />
+                  </label>
+                  <label className="location">
+                     <br />
+                     <FormLabel>Hackathon Location</FormLabel>
+                     <br />
+                     <TextField
+                        type="text"
+                        fullWidth
+                        name="location"
+                        variant="outlined"
+                        margin="dense"
+                        defaultValue={page1Info.location}
+                        onChange={handlePage1Change}
+                        inputRef={register}
+                        InputProps={{
+                           startAdornment: (
+                              <InputAdornment position="start">
+                                 <LocationOnIcon />
                               </InputAdornment>
                            )
                         }}
