@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function TransitionsModal(props) {
+export default function DeleteHackathonModal(props) {
   const dispatch = useDispatch();
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -41,8 +41,7 @@ export default function TransitionsModal(props) {
         DELETE
       </button>
       <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
+        aria-labelledby="delete-hackathon"
         className={classes.modal}
         open={open}
         onClose={handleClose}
@@ -57,7 +56,7 @@ export default function TransitionsModal(props) {
             <h2 id="transition-modal-title">Deleting Hackathon</h2>
             <p id="transition-modal-description">Are you sure you want to delete this event? This can not be undone.</p>
             <button onClick={()=>dispatch(deleteHackathon(props.id, props.org_id, props.history))}>YES, DELETE</button>
-            <button>NO, CANCEL</button>
+            <button onCLick={()=>handleClose()}>NO, CANCEL</button>
             
           </div>
         </Fade>

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHackathons } from '../actions/actions';
+import { Link } from 'react-router-dom';
 
 
 //material UI
@@ -85,6 +86,9 @@ function Hackathons(props) {
    if (isFetching) {
       return <h2>Loading Events...</h2>;
    }
+   if (!hackathons) {
+      return <div>Loading...</div>;
+   } 
 
    return (
       <div>
@@ -92,7 +96,9 @@ function Hackathons(props) {
          <div className={classes.cardparent}>
             {hackathons.map(hackathon => {
                return (
+                 
                   <Card className={classes.card}>
+                    <Link to={`/hackathon/${hackathon.id}`}>
                      <CardHeader
                         title={hackathon.name}
                         subheader={hackathon.start_date}
@@ -112,6 +118,7 @@ function Hackathons(props) {
                            
                         </Typography>
                      </CardContent>
+                     </Link>
                   </Card>
                );
             })}

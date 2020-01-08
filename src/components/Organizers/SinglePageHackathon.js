@@ -60,7 +60,7 @@ const SinglePage = props => {
    }
    if (hackathon === undefined) {
       return <div>Loading...</div>;
-   } 
+   }
    return (
       <div>
          <h2>{hackathon.name}</h2>
