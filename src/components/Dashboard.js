@@ -26,7 +26,7 @@ let events = [
     }
 ]
 
-const searchFunction = () => {
+export const searchFunction = () => {
     //The line below recieves input and labels it as a variable called 'input'
     let input = document.getElementById("searchInput");
     let filter = input.value.toUpperCase();
@@ -66,7 +66,9 @@ const Dashboard = () => {
       <div className="dashboard">
          <h3>
             <span>hacker</span>
+            <br></br>
             <span>judge</span>
+            <br></br>
             <span>organizer</span>
          </h3>
          <input

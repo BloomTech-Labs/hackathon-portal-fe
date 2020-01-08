@@ -4,7 +4,7 @@ import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import { useDispatch } from 'react-redux';
 
 // ACTIONS
-import { createHackathon } from '../../actions/actions';
+import { editHackathon } from '../../actions/actions';
 
 // STYLE
 import 'date-fns';
@@ -36,41 +36,19 @@ import {
 
 // const useStyles = makeStyles(theme => ({}));
 
-const CreateHackathon = props => {
+const EditHackathon = props => {
    const [page1, setPage1] = useState(true);
-   const [page1Info, setPage1Info] = useState({});
    const [page2, setPage2] = useState(false);
    const [start_date, setStart_date] = useState(`${new Date()}`);
    const [end_date, setEnd_date] = useState(`${new Date()}`);
-   const [hackathonInfo, setHackathonInfo] = useState({
-      name: '',
-      description: '',
-      location: '',
-      url: '',
-      start_date: '',
-      end_date: '',
-      is_open: ''
-   });
+   const [hackathonInfo, setHackathonInfo] = useState();
    const [state, setState] = useState({ is_open: true });
    const { loading, user } = useAuth0();
    const dispatch = useDispatch();
-
    let { register, handleSubmit, errors, clearError } = useForm();
 
-   useEffect(() => {
-      setHackathonInfo({
-         name: `${page1Info.name}`,
-         description: `${page1Info.description}`,
-         location: `${page1Info.location}`,
-         url: `${page1Info.url}`,
-         start_date: `${start_date}`,
-         end_date: `${end_date}`,
-         is_open: state.is_open
-      });
-   }, [page1Info, start_date, end_date, state]);
-
    const handlePage1Change = e => {
-      setPage1Info({ ...page1Info, [e.target.name]: e.target.value });
+    setHackathonInfo({ ...hackathonInfo, [e.target.name]: e.target.value });
    };
 
    const handleStartDateChange = date => {
@@ -88,6 +66,7 @@ const CreateHackathon = props => {
    const toPage1 = () => {
       setPage1(true);
       setPage2(false);
+      setHackathonInfo(hackathonInfo);
    };
 
    const toPage2 = () => {
@@ -101,7 +80,8 @@ const CreateHackathon = props => {
       }
       const id = user.sub.replace('auth0|', '');
       e.preventDefault();
-      dispatch(createHackathon(id, hackathonInfo, props.history));
+      dispatch(editHackathon(props.match.params.id, id, hackathonInfo, props.history));
+      console.log(props.match.params.id, id, hackathonInfo)
    };
 
    return (
@@ -124,7 +104,7 @@ const CreateHackathon = props => {
                         name="name"
                         variant="outlined"
                         margin="dense"
-                        defaultValue={page1Info.name}
+                        defaultValue={hackathonInfo.name}
                         onChange={handlePage1Change}
                         inputRef={register}
                         InputProps={{
@@ -148,7 +128,7 @@ const CreateHackathon = props => {
                         name="description"
                         variant="outlined"
                         margin="dense"
-                        defaultValue={page1Info.description}
+                        defaultValue={hackathonInfo.description}
                         onChange={handlePage1Change}
                         inputRef={register}
                         InputProps={{
@@ -170,7 +150,7 @@ const CreateHackathon = props => {
                         name="location"
                         variant="outlined"
                         margin="dense"
-                        defaultValue={page1Info.location}
+                        defaultValue={hackathonInfo.location}
                         onChange={handlePage1Change}
                         inputRef={register}
                         InputProps={{
@@ -182,6 +162,7 @@ const CreateHackathon = props => {
                         }}
                      />
                   </label>
+                  <br />
                   <label className="url">
                      <br />
                      <FormLabel>Event URL</FormLabel>
@@ -192,7 +173,7 @@ const CreateHackathon = props => {
                         name="url"
                         variant="outlined"
                         margin="dense"
-                        defaultValue={page1Info.url}
+                        defaultValue={hackathonInfo.url}
                         onChange={handlePage1Change}
                         inputRef={register}
                         InputProps={{
@@ -362,4 +343,4 @@ const CreateHackathon = props => {
    );
 };
 
-export default CreateHackathon;
+export default EditHackathon;

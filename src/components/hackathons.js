@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHackathons } from '../actions/actions';
+import { Link } from 'react-router-dom';
+ 
 
 
 //material UI
@@ -99,6 +101,7 @@ function Hackathons(props) {
             {hackathons.map(hackathon => {
                return (
                   <Card className={classes.card}>
+                    <Link to={`/hackathon/${hackathon.id}`}>
                      <CardHeader
                         title={hackathon.name}
                         subheader={hackathon.start_date}
@@ -118,6 +121,7 @@ function Hackathons(props) {
                            
                         </Typography>
                      </CardContent>
+                     </Link>
                   </Card>
                );
             })}

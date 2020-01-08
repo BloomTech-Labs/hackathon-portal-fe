@@ -5,7 +5,9 @@ import {
    FETCH_HACKATHON,
    FETCH_HACKATHONS,
    FETCH_USER,
-   POSTHACKATHON_SUCCESS
+   POSTHACKATHON_SUCCESS,
+   EDITHACKATHON_SUCCESS,
+   DELETEHACKATHON_SUCCESS
 } from '../actions/actions';
 
 const initialState = {
@@ -46,10 +48,12 @@ const reducer = (state = initialState, action) => {
       case FETCH_USER:
          return {
             ...state,
-            user: action.payload,
+            userInfo: action.payload,
             isFetch: false,
             error: ''
          };
+      case DELETEHACKATHON_SUCCESS:
+      case EDITHACKATHON_SUCCESS:
       case POSTHACKATHON_SUCCESS:
          return {
             ...state,

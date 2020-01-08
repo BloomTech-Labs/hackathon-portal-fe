@@ -5,8 +5,7 @@ export const axiosWithAuth = async () => {
    try {
       await axios({
          method: 'post',
-         url:
-            'https://cors-anywhere.herokuapp.com/https://hackathonportal.auth0.com/oauth/token',
+         url: 'https://hackathonportal.auth0.com/oauth/token',
          headers: {
             'content-type': 'application/json'
          },
