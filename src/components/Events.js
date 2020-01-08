@@ -1,13 +1,19 @@
- import React from 'react';
+import React from 'react';
+import AddIcon from '@material-ui/icons/Add';
+import SvgIcon from '@material-ui/icons/Add';
 
 const Events = (props) => {
     return(
-        <div className='eventList'>
+        <div className='eventList' id='eventList'>
+            <div className='createEvent'>
+                    <SvgIcon className='createEventImage' id='addIcon' component={AddIcon} style={{ fontSize: 300 }}></SvgIcon>
+                    <a className='createEventName' id='createEventButtonText'>Create Event</a>
+            </div>
             {props.events.map(e => {
                 return(
                 <div className='event'>
                     <img className='eventImage' src={e.url}></img>
-                    <div className='eventName'>{e.name}</div>
+                    <a className='eventName'>{e.name}</a>
                 </div>
                 )
             })}

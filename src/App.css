@@ -1,27 +1,33 @@
-/* .App {
-  text-align: center;
-} */
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 /* NOTE: css code for Dashabord */
- .eventsList {
+.dashboard {
+  justify-content: center;
+  border: 2px solid #d0ddff;
+  border-radius: 8px;
+  margin: auto;
+}
+
+.class {
+  padding: 0% 4%;
+  font-size: 35px;
+}
+
+#searchBar {
+  display: flex;
+  justify-content: center;
+  margin: 2%;
+}
+
+#searchInput {
+  width: 90%;
+  height: 45px;
+  border-radius: 8px;
+  font-size: 24px;
+}
+
+ .eventList {
    display: flex;
    flex-wrap: wrap;
-   margin-left: -10px;
+   align-self: auto;
  }
 
  #addIcon {
@@ -37,12 +43,22 @@
 }
 
 /*css code for the Events.js file*/
+.createEvent{
+  width: 28%;
+  margin: 1.5%;
+  background-color: black;
+  text-align: center;
+  border: 2px solid #d0ddff;
+  border-radius: 8px;
+}
 
 .event {
-  width: 300px;
-  margin: 10px;
-  background-color: white;
+  width: 28%;
+  margin: 1.5%;
+  background-color: black;
   text-align: center;
+  border: 2px solid #d0ddff;
+  border-radius: 8px;
 }
 
 .eventImage {
@@ -52,4 +68,15 @@
 
 .eventName {
   margin-bottom: 3%;
+}
+
+/*navBar styling*/
+.navBar {
+  display: flex;
+  flex-direction: row;
+}
+
+.navBarLink {
+  color: #d0ddff;
+  text-decoration: none;
 }

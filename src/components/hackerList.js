@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { connect, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -12,119 +12,107 @@ import Typography from '@material-ui/core/Typography';
 import HackerInfoModal from './hackerInfo';
 
 // ACTIONS
-import { getHackers } from '../actions/actions'; 
+import { getHackers } from '../actions/actions';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
-  inline: {
-    display: 'inline',
-  },
+   root: {
+      width: '100%',
+      maxWidth: 360,
+      backgroundColor: theme.palette.background.paper
+   },
+   inline: {
+      display: 'inline'
+   }
 }));
 
-const HackerList = (props) => {
-  const isFetching = useSelector(state => state.isFetching);
-  const hackers = useSelector(state => state.hackers);
-  const classes = useStyles();
+const HackerList = props => {
+   const isFetching = useSelector(state => state.isFetching);
+   const hackers = useSelector(state => state.hackers);
+   const classes = useStyles();
+   const dispatch = useDispatch();
 
-  useEffect(() => {
-    props.getHackers()
+   useEffect(() => {
+      dispatch(getHackers());
+   }, []);
 
-  }, [])
+   console.log('HACKERLIST HACKERS', hackers);
 
-  console.log('HACKERLIST HACKERS', hackers)
+   if (isFetching) {
+      return <div>Loading</div>;
+   }
 
-  return (
-    <List className={classes.root}>
-    
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="hacker name"
-          secondary={
-            <React.Fragment>
-              <Typography
-                component="span"
-                variant="body2"
-                className={classes.inline}
-                color="textPrimary"
-              >
-               
-              </Typography>
-              "Team: "
-              "Role: "
-            </React.Fragment>
+   return (
+      <List className={classes.root}>
+         <ListItem alignItems="flex-start">
+            <ListItemAvatar>
+               <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            </ListItemAvatar>
+            <ListItemText
+               primary="hacker name"
+               secondary={
+                  <React.Fragment>
+                     <Typography
+                        component="span"
+                        variant="body2"
+                        className={classes.inline}
+                        color="textPrimary"
+                     ></Typography>
+                     "Team: " "Role: "
+                  </React.Fragment>
+               }
+            />
+            <HackerInfoModal />
+         </ListItem>
 
-            
-          }
-        />
-        <HackerInfoModal />
-      </ListItem>
-     
-      <Divider variant="inset" component="li" />
-      
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="hacker name"
-          secondary={
-            <React.Fragment>
-              <Typography
-                component="span"
-                variant="body2"
-                className={classes.inline}
-                color="textPrimary"
-              >
-               
-              </Typography>
-              "Team: "
-              "Role: "
-            </React.Fragment>
-          }
-        />
+         <Divider variant="inset" component="li" />
 
-        <HackerInfoModal />
-      </ListItem>
-    
-      <Divider variant="inset" component="li" />
+         <ListItem alignItems="flex-start">
+            <ListItemAvatar>
+               <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
+            </ListItemAvatar>
+            <ListItemText
+               primary="hacker name"
+               secondary={
+                  <React.Fragment>
+                     <Typography
+                        component="span"
+                        variant="body2"
+                        className={classes.inline}
+                        color="textPrimary"
+                     ></Typography>
+                     "Team: " "Role: "
+                  </React.Fragment>
+               }
+            />
 
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="hacker name"
-          secondary={
-            <React.Fragment>
-              <Typography
-                component="span"
-                variant="body2"
-                className={classes.inline}
-                color="textPrimary"
-              >
-                
-              </Typography>
-              "Team: "
-              "Role: "
-            </React.Fragment>
-          }
-        />
+            <HackerInfoModal />
+         </ListItem>
 
-        <HackerInfoModal />
+         <Divider variant="inset" component="li" />
 
-      </ListItem>
-    </List>
-  );
-}
+         <ListItem alignItems="flex-start">
+            <ListItemAvatar>
+               <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
+            </ListItemAvatar>
+            <ListItemText
+               primary="hacker name"
+               secondary={
+                  <React.Fragment>
+                     <Typography
+                        component="span"
+                        variant="body2"
+                        className={classes.inline}
+                        color="textPrimary"
+                     ></Typography>
+                     "Team: " "Role: "
+                  </React.Fragment>
+               }
+            />
 
-export default connect(null,
-  { getHackers }
-)(HackerList);
+            <HackerInfoModal />
+         </ListItem>
+      </List>
+   );
+};
 
+export default HackerList;
