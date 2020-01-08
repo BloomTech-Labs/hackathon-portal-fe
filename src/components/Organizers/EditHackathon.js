@@ -38,7 +38,6 @@ import {
 
 const EditHackathon = props => {
    const [page1, setPage1] = useState(true);
-   const [page1Info, setPage1Info] = useState({});
    const [page2, setPage2] = useState(false);
    const [start_date, setStart_date] = useState(`${new Date()}`);
    const [end_date, setEnd_date] = useState(`${new Date()}`);
@@ -47,18 +46,6 @@ const EditHackathon = props => {
    const { loading, user } = useAuth0();
    const dispatch = useDispatch();
    let { register, handleSubmit, errors, clearError } = useForm();
-
-  //  useEffect(() => {
-  //     setHackathonInfo({
-  //        name: `${page1Info.name}`,
-  //        description: `${page1Info.description}`,
-  //        location: `${page1Info.location}`,
-  //        url: `${page1Info.url}`,
-  //        start_date: `${start_date}`,
-  //        end_date: `${end_date}`,
-  //        is_open: state.is_open
-  //     });
-  //  }, [page1Info, start_date, end_date, state]);
 
    const handlePage1Change = e => {
     setHackathonInfo({ ...hackathonInfo, [e.target.name]: e.target.value });
@@ -79,6 +66,7 @@ const EditHackathon = props => {
    const toPage1 = () => {
       setPage1(true);
       setPage2(false);
+      setHackathonInfo(hackathonInfo);
    };
 
    const toPage2 = () => {
@@ -93,7 +81,7 @@ const EditHackathon = props => {
       const id = user.sub.replace('auth0|', '');
       e.preventDefault();
       dispatch(editHackathon(props.match.params.id, id, hackathonInfo, props.history));
-      console.log(props.match.params.id, id, hackathonInfo, props.history, page1Info)
+      console.log(props.match.params.id, id, hackathonInfo)
    };
 
    return (
@@ -116,7 +104,7 @@ const EditHackathon = props => {
                         name="name"
                         variant="outlined"
                         margin="dense"
-                        defaultValue={page1Info.name}
+                        defaultValue={hackathonInfo.name}
                         onChange={handlePage1Change}
                         inputRef={register}
                         InputProps={{
@@ -140,7 +128,7 @@ const EditHackathon = props => {
                         name="description"
                         variant="outlined"
                         margin="dense"
-                        defaultValue={page1Info.description}
+                        defaultValue={hackathonInfo.description}
                         onChange={handlePage1Change}
                         inputRef={register}
                         InputProps={{
@@ -162,7 +150,7 @@ const EditHackathon = props => {
                         name="location"
                         variant="outlined"
                         margin="dense"
-                        defaultValue={page1Info.location}
+                        defaultValue={hackathonInfo.location}
                         onChange={handlePage1Change}
                         inputRef={register}
                         InputProps={{
@@ -185,7 +173,7 @@ const EditHackathon = props => {
                         name="url"
                         variant="outlined"
                         margin="dense"
-                        defaultValue={page1Info.url}
+                        defaultValue={hackathonInfo.url}
                         onChange={handlePage1Change}
                         inputRef={register}
                         InputProps={{
