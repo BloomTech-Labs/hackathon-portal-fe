@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAuth0 } from '../auth0-hooks/react-auth0-spa';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 
 // ACTIONS
@@ -12,18 +13,6 @@ const UserProfile = props => {
    const userProfile = useSelector(state => state.userInfo);
    const isFetching = useSelector(state => state.isFetching);
    const currentDate = new Date().toString();
-
-   // const splitDates = arr => {
-   //    let currentDate = new Date().toString();
-   //    console.log(currentDate);
-   //    arr.map(hackathon => {
-   //       if (hackathon.end_date < currentDate) {
-   //          setPast([...past, hackathon]);
-   //       } else {
-   //          setPresent([...present, hackathon]);
-   //       }
-   //    });
-   // };
 
    useEffect(() => {
       dispatch(getUser(props.match.params.id));
@@ -49,71 +38,64 @@ const UserProfile = props => {
    });
 
    return (
-      <>
-         {user.id === userProfile.id ? (
-            <>
-               <h2>{userProfile.username}</h2>
-               <h1>{userProfile.id}</h1>
-               <button>Edit</button>
+      <div>
+         <>
+            <h1>
+               {userProfile.first_name} {userProfile.last_name}
+            </h1>
+            <h2>{userProfile.username}</h2>
+            {user.id === userProfile.id ? (
+               <>
+                  <button>Edit Profile</button>
+                  <button>Delete Profile</button>
+               </>
+            ) : null}
+            <div>
+               <h1>Hackathons</h1>
+               <h1>Present:</h1>
                <div>
-                  <h1>Present Hackathons</h1>
-                  <div>
+                  <ol>
                      {presentHackathons.map(hackathon => (
-                        <h1>
-                           {hackathon.hackathon_name},{' '}
-                           {hackathon.user_hackathon_role}
-                        </h1>
+                        <li key={hackathon.hackathon_id}>
+                           {hackathon.hackathon_name}
+                           <Link to={`/hackathon/${hackathon.hackathon_id}`}>
+                              See more
+                           </Link>
+                           <ul>
+                              {hackathon.team_name ? (
+                                 <li>Team: {hackathon.team_name}</li>
+                              ) : null}
+                              <li>Role: {hackathon.user_hackathon_role}</li>
+                           </ul>
+                        </li>
                      ))}
-                  </div>
+                  </ol>
                </div>
+            </div>
+            <div>
+               <h1>Past:</h1>
                <div>
-                  <h1>Past Hackathons</h1>
-                  <div>
+                  <ol>
                      {pastHackathons.map(hackathon => (
-                        <h1>
-                           {hackathon.hackathon_name},{' '}
-                           {hackathon.user_hackathon_role}
-                        </h1>
+                        <li>
+                           {hackathon.hackathon_name}
+                           <Link to={`/hackathon/${hackathon.hackathon_id}`}>
+                              See more
+                           </Link>
+                           <ul>
+                              {hackathon.team_name ? (
+                                 <li>Team: {hackathon.team_name}</li>
+                              ) : null}
+                              <li>Role: {hackathon.user_hackathon_role}</li>
+                           </ul>
+                        </li>
                      ))}
-                  </div>
+                  </ol>
                </div>
-            </>
-         ) : (
-            <>
-               <h2>{userProfile.username}</h2>
-               <h1>{userProfile.id}</h1>
-               <div>
-                  <h1>Present Hackathons</h1>
-                  <div>
-                     {presentHackathons.map(hackathon => (
-                        <h1>
-                           {hackathon.hackathon_name},{' '}
-                           {hackathon.user_hackathon_role}
-                        </h1>
-                     ))}
-                  </div>
-               </div>
-               <div>
-                  <h1>Past hackathons</h1>
-                  <div>
-                     {pastHackathons.map(hackathon => (
-                        <h1>
-                           {hackathon.hackathon_name},{' '}
-                           {hackathon.user_hackathon_role}
-                        </h1>
-                     ))}
-                  </div>
-               </div>
-            </>
-         )}
-      </>
+            </div>
+         </>
+      </div>
    );
-   // first_name
-   // last_name
-   // username
-   // h1 Hackathons
-   // Present - includes start_date, end_date, hackathon_description
-   // Past - includes start_date, end_date, hackathon_description
 };
 
 export default UserProfile;

@@ -100,7 +100,6 @@ export const getUser = id => async dispatch => {
       .get(`/users/${id}`)
       .then(response => {
          dispatch({ type: FETCH_USER, payload: response.data });
-         console.log('getUser', response);
       })
       .catch(error => {
          console.log(error);
