@@ -1,31 +1,27 @@
-/* .App {
-  text-align: center;
-} */
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 /* NOTE: css code for Dashabord */
 .dashboard {
   justify-content: center;
   border: 2px solid #d0ddff;
   border-radius: 8px;
+  margin: auto;
+}
+
+.class {
+  padding: 0% 4%;
+  font-size: 35px;
+}
+
+#searchBar {
+  display: flex;
+  justify-content: center;
+  margin: 2%;
 }
 
 #searchInput {
-  width: 60%;
+  width: 90%;
+  height: 45px;
+  border-radius: 8px;
+  font-size: 24px;
 }
 
  .eventList {
@@ -48,8 +44,8 @@
 
 /*css code for the Events.js file*/
 .createEvent{
-  width: 300px;
-  margin: 10px;
+  width: 28%;
+  margin: 1.5%;
   background-color: black;
   text-align: center;
   border: 2px solid #d0ddff;
@@ -57,7 +53,7 @@
 }
 
 .event {
-  width: 30%;
+  width: 28%;
   margin: 1.5%;
   background-color: black;
   text-align: center;
@@ -72,4 +68,30 @@
 
 .eventName {
   margin-bottom: 3%;
+}
+
+/*navBar styling*/
+
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  /* width: 50%; */
+}
+
+/* #logo {
+  margin-right: 52%;
+} */
+
+.navBarLink {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-evenly; */
+  /* width: 100%; */
+  color: #d0ddff;
+  text-decoration: none;
+}
+
+.dot {
+  display: flex;
+  padding: 10%;
 }
