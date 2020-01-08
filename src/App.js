@@ -45,7 +45,7 @@ function App(props) {
                <PrivateRoute path={`/hackathon/:id`} component={SinglePage} />
                {/* NEW - add a route to the ExternalApi component for testing atm */}
                <PrivateRoute path="/external-api" component={ExternalApi} />
-               <PrivateRoute path={`/user/`} component={UserProfile} />
+               <PrivateRoute path={`/users/:id`} component={UserProfile} />
                <Route path="/success" component={SuccessPage} />
                <Route path="/hackerlist" component={HackerList} />
             </Switch>
