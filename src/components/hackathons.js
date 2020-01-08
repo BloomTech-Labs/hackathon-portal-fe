@@ -88,6 +88,9 @@ function Hackathons(props) {
                         component="p"
                      >
                         {hackathon.description}
+                        {hackathon.is_open ? <button>JOIN</button> : "closed" } 
+
+                        
                      </Typography>
                   </CardContent>
                </Card>

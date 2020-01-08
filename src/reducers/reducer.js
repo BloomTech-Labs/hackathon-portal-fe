@@ -46,7 +46,7 @@ const reducer = (state = initialState, action) => {
       case FETCH_USER:
          return {
             ...state,
-            user: action.payload,
+            userInfo: action.payload,
             isFetch: false,
             error: ''
          };
