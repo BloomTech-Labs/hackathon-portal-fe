@@ -7,6 +7,8 @@ export const FETCH_FAILURE = 'FETCH_FAILURE';
 export const FETCH_HACKERS = 'FETCH_HACKERS';
 export const FETCH_USER = 'FETCH_USER';
 export const POSTHACKATHON_SUCCESS = 'POSTHACKATHON_SUCCESS';
+export const DELETEHACKATHON_SUCCESS = 'DELETEHACKATHON_SUCCESS';
+export const EDITHACKATHON_SUCCESS = 'EDITHACKATHON_SUCCESS';
 export const POSTORGANIZER_SUCCESS = 'POSTORGANIZER_SUCCESS';
 export const FETCH_HACKATHONS = 'FETCH_HACKATHONS';
 
@@ -55,6 +57,38 @@ export const createHackathon = (
          dispatch({ type: FETCH_FAILURE, payload: error.response });
       });
 };
+
+export const editHackathon = (
+    id,
+    org_id,
+    history,
+    hackathonInfo
+ ) => async dispatch => {
+    dispatch({ type: FETCH_START });
+    (await axiosWithAuth())
+       .put(`/hackathons/${id}/u/${org_id}`, hackathonInfo)
+       .then(response => {
+          dispatch({ type: EDITHACKATHON_SUCCESS });
+          history.push(`/success`, response.data.id);
+       })
+       .catch(error => {
+          dispatch({ type: FETCH_FAILURE, payload: error.response });
+       });
+}
+
+export const deleteHackathon = (id, org_id, history) => async dispatch => {
+   dispatch({ type: FETCH_START })
+   (await axiosWithAuth)
+      .delete(` /hackathons/${id}/u/${org_id}`)
+      .then(response => {
+         console.log(response)
+         // dispatch({ type: DELETEHACKATHON_SUCCESS });
+         // history.push(`/`)
+      })
+      .catch(error => {
+         dispatch({ type: FETCH_FAILURE, payload: error.response });
+      });
+}
 
 // TEAMS
 export const getTeams = () => async dispatch => {

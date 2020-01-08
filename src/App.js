@@ -14,6 +14,7 @@ import Homepage from './components/Homepage';
 import Dashboard from './components/Dashboard';
 import Hackathons from './components/hackathons'
 import CreateHackathon from './components/Organizers/CreateHackathon';
+import EditHackathon from './components/Organizers/EditHackathon';
 import SinglePage from './components/Organizers/SinglePageHackathon';
 import SuccessPage from './components/SuccessPage';
 import UserProfile from './components/UserProfile';
@@ -42,6 +43,11 @@ function App(props) {
                   exact
                   path="/hackathon/create"
                   component={CreateHackathon}
+               />
+               <PrivateRoute
+                  exact
+                  path="/hackathon/edit"
+                  component={EditHackathon}
                />
                <PrivateRoute path={`/hackathon/:id`} component={SinglePage} />
                {/* NEW - add a route to the ExternalApi component for testing atm */}

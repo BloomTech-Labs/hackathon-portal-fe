@@ -74,10 +74,24 @@
 
 .navBar {
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
+  /* width: 50%; */
 }
 
+/* #logo {
+  margin-right: 52%;
+} */
+
 .navBarLink {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-evenly; */
+  /* width: 100%; */
   color: #d0ddff;
   text-decoration: none;
+}
+
+.dot {
+  display: flex;
+  padding: 10%;
 }

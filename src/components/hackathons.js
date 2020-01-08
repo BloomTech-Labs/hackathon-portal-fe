@@ -50,6 +50,26 @@ const useStyles = makeStyles(theme => ({
    }
 }));
 
+const searchHackathon = () => {
+   //The line below recieves input and labels it as a variable called 'input'
+   let input = document.getElementById("searchHackathon");
+   let filter = input.value.toUpperCase();
+   let eventList = document.getElementById("makeStyles-cardparent-3");
+   let span = eventList.getElementsByTagName('span');
+   //this loop will go through each event name and compare them to the search input
+   for (let i = 0; i < span.length; i++) {
+       console.log(span);
+       let a = span[i].getElementsByTagName("a")[0];
+       console.log('this is a', a);
+       let txtValue = a.textContent || a.innerText;
+       if (txtValue.toUpperCase().indexOf(filter) > -1) {
+         span[i].style.display = "";
+       } else {
+         span[i].style.display = "none";
+       }
+   };
+};
+
 function Hackathons(props) {
    const classes = useStyles();
    const isFetching = useSelector(state => state.isFetching);
@@ -67,35 +87,35 @@ function Hackathons(props) {
    }
 
    return (
+      <div>
+         <input id='searchHackathon' type='text' onKeyUp={searchHackathon} placeholder='Search Hackathons'></input>
+         <div className={classes.cardparent}>
+            {hackathons.map(hackathon => {
+               return (
+                  <Card className={classes.card}>
+                     <CardHeader
+                        title={hackathon.name}
+                        subheader={hackathon.start_date}
+                     />
 
- 
+                     <CardContent>
+                        <Typography
+                           variant="body2"
+                           color="textSecondary"
+                           component="p"
+                        >
+                           {hackathon.description}
+                           <br></br>
+                           {/* is_open join button will be added to 1.1 when we build out a modal for a user to join hackathons */}
+                           {/* {hackathon.is_open ? <button>JOIN</button> : <div className="closedHackathon">closed</div> }  */}
 
-      <div className={classes.cardparent}>
-         {hackathons.map(hackathon => {
-            return (
-               <Card className={classes.card}>
-                  <CardHeader
-                     title={hackathon.name}
-                     subheader={hackathon.start_date}
-
-                     
-                  />
-
-                  <CardContent>
-                     <Typography
-                        variant="body2"
-                        color="textSecondary"
-                        component="p"
-                     >
-                        {hackathon.description}
-                        {hackathon.is_open ? <button>JOIN</button> : "closed" } 
-
-                        
-                     </Typography>
-                  </CardContent>
-               </Card>
-            );
-         })}
+                           
+                        </Typography>
+                     </CardContent>
+                  </Card>
+               );
+            })}
+         </div>
       </div>
    );
 }
