@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Logo from '../logo.png'
 // import Dashboard from './Dashboard';
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,7 +24,7 @@ const NavBar = () => {
   const preventDefault = event => event.preventDefault();
   return (
     <div className='navBar'>
-      <img src={Logo} alt='logo'/>
+      <img id='logo' src={Logo} alt='logo'/>
       {!isAuthenticated && (
         <>
           <Link to="/">Home</Link>&nbsp;
@@ -34,19 +35,20 @@ const NavBar = () => {
 
       {isAuthenticated && (
         <span className='navBar'>
-        <Link className='navBarLink' to="/">Home</Link>&nbsp;
+        <Link className='navBarLink' to="/">Home<FiberManualRecordIcon className='dot' style={{ fontSize: 10 }}/></Link>
+        {/* &nbsp; */}
+        {/* <br />
+        <Link className='navBarLink' to='/hackathon/create'>Create a Hackathon</Link> */}
         <br />
-        <Link className='navBarLink' to="/profile">Profile</Link>
+        <Link className='navBarLink' to='/hackathons'>Hackathons<FiberManualRecordIcon className='dot' style={{ fontSize: 10 }}/></Link>
         <br />
-        <Link className='navBarLink' to='/hackathon/create'>Create a Hackathon</Link>
+        <Link className='navBarLink' to="/profile">Profile<FiberManualRecordIcon className='dot' style={{ fontSize: 10 }}/></Link>
         <br />
-        <Link className='navBarLink' to='/dashboard'>Dashboard</Link>
+        <Link className='navBarLink' to='/dashboard'>Dashboard<FiberManualRecordIcon className='dot' style={{ fontSize: 10 }}/></Link>
         <br />
-        <Link className='navBarLink' to='/hackathons'>Hackathons</Link>
-        <br />
-        {isAuthenticated && <Link className='navBarLink' onClick={() => logout()}>Log out</Link>}
+        <Link className='navBarLink' onClick={() => logout()}>Log out</Link>
         {/* NEW - Add a link to the /external-api route for testing */}
-        <Link className='navBarLink' to="/external-api">External API</Link>
+        {/* <Link className='navBarLink' to="/external-api">External API</Link> */}
       </span>
     )}
 
