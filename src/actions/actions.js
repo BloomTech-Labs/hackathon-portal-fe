@@ -8,6 +8,7 @@ export const FETCH_HACKERS = 'FETCH_HACKERS';
 export const FETCH_USER = 'FETCH_USER';
 export const POSTHACKATHON_SUCCESS = 'POSTHACKATHON_SUCCESS';
 export const POSTORGANIZER_SUCCESS = 'POSTORGANIZER_SUCCESS';
+export const FETCH_HACKATHONS = 'FETCH_HACKATHONS';
 
 // ACTIONS
 
@@ -17,7 +18,8 @@ export const getHackathons = () => async dispatch => {
    (await axiosWithAuth())
       .get(`/hackathons`)
       .then(response => {
-         dispatch({ type: FETCH_HACKERS, payload: response.data });
+         console.log(response)
+         dispatch({ type: FETCH_HACKATHONS, payload: response.data });
          // .catch(err => dispatch({ type: FETCH_FAILURE, payload: err.response }));
       })
       .catch(error => {
