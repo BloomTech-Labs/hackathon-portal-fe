@@ -12,7 +12,7 @@ import Profile from './components/Profile';
 import HackerList from './components/hackerList';
 import Homepage from './components/Homepage';
 import Dashboard from './components/Dashboard';
-import Hackathons from './components/hackathons'
+import Hackathons from './components/hackathons';
 import CreateHackathon from './components/Organizers/CreateHackathon';
 import EditHackathon from './components/Organizers/EditHackathon';
 import SinglePage from './components/Organizers/SinglePageHackathon';
@@ -36,7 +36,7 @@ function App(props) {
             </header>
             <Switch>
                <Route exact path="/" component={Homepage} />
-               <Route exact path='/hackathons' component={Hackathons} />
+               <Route exact path="/hackathons" component={Hackathons} />
                <PrivateRoute path="/profile" component={Profile} />
                <PrivateRoute path="/dashboard" component={Dashboard} />
                <PrivateRoute

@@ -11,6 +11,9 @@ export const DELETEHACKATHON_SUCCESS = 'DELETEHACKATHON_SUCCESS';
 export const EDITHACKATHON_SUCCESS = 'EDITHACKATHON_SUCCESS';
 export const POSTORGANIZER_SUCCESS = 'POSTORGANIZER_SUCCESS';
 export const FETCH_HACKATHONS = 'FETCH_HACKATHONS';
+export const DELETE_USER = 'DELETE_USER';
+export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
+export const DELETE_USER_FAIL = 'DELETE_USER_FAIL';
 
 // ACTIONS
 
@@ -20,7 +23,7 @@ export const getHackathons = () => async dispatch => {
    (await axiosWithAuth())
       .get(`/hackathons`)
       .then(response => {
-         console.log(response)
+         console.log(response);
          dispatch({ type: FETCH_HACKATHONS, payload: response.data });
          // .catch(err => dispatch({ type: FETCH_FAILURE, payload: err.response }));
       })
@@ -71,7 +74,6 @@ export const editHackathon = (
     (await axiosWithAuth())
        .put(`/hackathons/${id}/u/${org_id}`, hackathonInfo)
        .then(response => {
-          console.log(response)
           dispatch({ type: EDITHACKATHON_SUCCESS });
           history.push(`/success`, response.data.id);
        })
@@ -140,9 +142,20 @@ export const getUser = id => async dispatch => {
       .get(`/users/${id}`)
       .then(response => {
          dispatch({ type: FETCH_USER, payload: response.data });
-         console.log('getUser', response);
       })
       .catch(error => {
          console.log(error);
+      });
+};
+
+export const deleteUser = id => async dispatch => {
+   dispatch({ type: DELETE_USER });
+   (await axiosWithAuth())
+      .delete(`/users/${id}`)
+      .then(res => {
+         dispatch({ type: DELETE_USER_SUCCESS, payload: res.data });
+      })
+      .catch(err => {
+         dispatch({ type: DELETE_USER_FAIL });
       });
 };
