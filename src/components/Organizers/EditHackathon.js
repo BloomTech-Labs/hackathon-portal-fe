@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import useForm from 'react-hook-form';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // ACTIONS
-import { editHackathon } from '../../actions/actions';
+import { editHackathon, getSpecificHackathon } from '../../actions/actions';
 
 // STYLE
 import 'date-fns';
@@ -34,9 +34,11 @@ import {
    KeyboardDatePicker
 } from '@material-ui/pickers';
 
-// const useStyles = makeStyles(theme => ({}));
-
 const EditHackathon = props => {
+  const dispatch = useDispatch();
+  let { register, handleSubmit, errors, clearError } = useForm();
+  const isFetching = useSelector(state => state.isFetching)
+  const hackathon = useSelector(state => state.singleHackathon)
    const [page1, setPage1] = useState(true);
    const [page2, setPage2] = useState(false);
    const [start_date, setStart_date] = useState(`${new Date()}`);
@@ -44,8 +46,18 @@ const EditHackathon = props => {
    const [hackathonInfo, setHackathonInfo] = useState();
    const [state, setState] = useState({ is_open: true });
    const { loading, user } = useAuth0();
-   const dispatch = useDispatch();
-   let { register, handleSubmit, errors, clearError } = useForm();
+
+   console.log(hackathon, props.match.params.id)
+
+   useEffect(() => {
+      dispatch(getSpecificHackathon(props.match.params.id))
+   }, [])
+   useEffect(() => {
+    if(hackathon) {
+      setStart_date(`${hackathon.start_date}`)
+      setEnd_date(`${hackathon.end_date}`)
+    }
+   }, [hackathon])
 
    const handlePage1Change = e => {
     setHackathonInfo({ ...hackathonInfo, [e.target.name]: e.target.value });
@@ -80,9 +92,14 @@ const EditHackathon = props => {
       }
       const id = user.sub.replace('auth0|', '');
       e.preventDefault();
-      dispatch(editHackathon(props.match.params.id, id, hackathonInfo, props.history));
-      console.log(props.match.params.id, id, hackathonInfo)
+      dispatch(editHackathon(Number(props.match.params.id), Number(id), props.history, hackathonInfo));
    };
+
+   if(isFetching || !hackathon) {
+     return (
+      <div>Loading...</div>
+     )
+   }
 
    return (
       <div className="createHackathonContainer1">
@@ -104,7 +121,7 @@ const EditHackathon = props => {
                         name="name"
                         variant="outlined"
                         margin="dense"
-                        defaultValue={hackathonInfo.name}
+                        defaultValue={hackathon.name}
                         onChange={handlePage1Change}
                         inputRef={register}
                         InputProps={{
@@ -128,7 +145,7 @@ const EditHackathon = props => {
                         name="description"
                         variant="outlined"
                         margin="dense"
-                        defaultValue={hackathonInfo.description}
+                        defaultValue={hackathon.description}
                         onChange={handlePage1Change}
                         inputRef={register}
                         InputProps={{
@@ -150,7 +167,7 @@ const EditHackathon = props => {
                         name="location"
                         variant="outlined"
                         margin="dense"
-                        defaultValue={hackathonInfo.location}
+                        defaultValue={hackathon.location}
                         onChange={handlePage1Change}
                         inputRef={register}
                         InputProps={{
@@ -173,7 +190,7 @@ const EditHackathon = props => {
                         name="url"
                         variant="outlined"
                         margin="dense"
-                        defaultValue={hackathonInfo.url}
+                        defaultValue={hackathon.url}
                         onChange={handlePage1Change}
                         inputRef={register}
                         InputProps={{
@@ -228,6 +245,7 @@ const EditHackathon = props => {
                                  <TodayIcon style={{ color: 'black' }} />
                               }
                               inputRef={register}
+                              defaultValue={hackathon.start_date}
                               value={start_date}
                               InputAdornmentProps={{ position: 'start' }}
                               onChange={handleStartDateChange}
@@ -245,6 +263,7 @@ const EditHackathon = props => {
                               name="startTime"
                               margin="dense"
                               inputVariant="outlined"
+                              defaultValue={hackathon.start_date}
                               value={start_date}
                               onChange={handleStartDateChange}
                               inputRef={register}

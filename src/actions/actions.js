@@ -66,10 +66,12 @@ export const editHackathon = (
     history,
     hackathonInfo
  ) => async dispatch => {
+    console.log(id, org_id, history, hackathonInfo)
     dispatch({ type: FETCH_START });
     (await axiosWithAuth())
        .put(`/hackathons/${id}/u/${org_id}`, hackathonInfo)
        .then(response => {
+          console.log(response)
           dispatch({ type: EDITHACKATHON_SUCCESS });
           history.push(`/success`, response.data.id);
        })

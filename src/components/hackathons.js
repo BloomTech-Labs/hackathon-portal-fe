@@ -85,7 +85,7 @@ function Hackathons(props) {
       dispatch(getHackathons());
    }, []);
 
-   if (isFetching) {
+   if (isFetching || !hackathons) {
       return <h2>Loading Events...</h2>;
    }
 
