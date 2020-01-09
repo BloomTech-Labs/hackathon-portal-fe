@@ -79,7 +79,7 @@ function Hackathons(props) {
    const dispatch = useDispatch();
    const hackathons = useSelector(state => state.hackathons);
 
-   console.log(hackathons);
+   console.log(hackathons, isFetching);
 
    useEffect(() => {
       dispatch(getHackathons());

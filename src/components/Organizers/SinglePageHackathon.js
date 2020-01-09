@@ -18,7 +18,7 @@ const SinglePage = props => {
    const { loading, user } = useAuth0();
   
    useEffect(() => {
-      dispatch(getSpecificHackathon(props.match.params.id));
+      dispatch(getSpecificHackathon((props.match.params.id)));
    }, []);
 
 
@@ -55,8 +55,6 @@ const SinglePage = props => {
       return `${day}, ${m} ${d}, ${y}`;
    };
 
-   console.log('HACKATHON PAGE', hackathon, isFetching);
-
    if (isFetching) {
       return <div>Loading...</div>;
    }
@@ -87,7 +85,7 @@ const SinglePage = props => {
          <p>{formatDate(hackathon.end_date)}</p>
          {user.id === hackathon.organizer_id && (
             <>
-               <Link to={`/hackathon/edit/${hackathon.id}`}><button>edit</button></Link>
+               <Link to={`/hackathon/edit/${hackathon.id}`}><button>EDIT</button></Link>
                <DeleteHackathon id={hackathon.id} org_id={hackathon.organizer_id} history={props.history} />
             </>
          )}
