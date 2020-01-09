@@ -3,8 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 
+
 // COMPONENTS
 import DeleteHackathon from './DeleteHackathon';
+import { editHackathon } from '../../actions/actions';
 
 // ACTIONS
 import { getSpecificHackathon } from '../../actions/actions';
@@ -14,14 +16,24 @@ const SinglePage = props => {
    const dispatch = useDispatch();
    const hackathon = useSelector(state => state.singleHackathon);
    const isFetching = useSelector(state => state.isFetching);
+   const [isOpen, setIsOpen] = useState({ is_open: true });
    const [user_id, setUser_id] = useState(0)
    const { loading, user } = useAuth0();
   
    useEffect(() => {
       dispatch(getSpecificHackathon((props.match.params.id)));
    }, []);
+   
+   useEffect(() => {
+      if(hackathon){
+         setIsOpen({ is_open: hackathon.is_open })
+      }
+   }, [hackathon]);
 
-
+   const handleIsOpen = () => {
+      setIsOpen({ is_open: !isOpen.is_open })
+      dispatch(editHackathon(props.match.params.id, hackathon.organizer_id, props.history, { is_open: !isOpen.is_open }))
+   }
  
    const formatDate = date => {
       const days = [
@@ -67,13 +79,13 @@ const SinglePage = props => {
 
          {user.id === hackathon.organizer_id && (
             <>
-         {!hackathon.is_open ? (
-            <button>open</button>
-         ) : (
-            
-            <button>close</button>
-         )}
-         </>
+               {!hackathon.is_open ? (
+                  <button type="button" onClick={()=>handleIsOpen()}>OPEN</button>
+               ) : (
+                  
+                  <button type="button" onClick={()=>handleIsOpen()}>CLOSE</button>
+               )}
+            </>
 
          )}
 

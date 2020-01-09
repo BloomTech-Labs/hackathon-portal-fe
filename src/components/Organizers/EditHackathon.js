@@ -56,8 +56,11 @@ const EditHackathon = props => {
     if(hackathon) {
       setStart_date(`${hackathon.start_date}`)
       setEnd_date(`${hackathon.end_date}`)
+      setState({ is_open: hackathon.is_open })
     }
    }, [hackathon])
+
+   console.log(state.is_open)
 
    const handlePage1Change = e => {
     setHackathonInfo({ ...hackathonInfo, [e.target.name]: e.target.value });
@@ -65,14 +68,17 @@ const EditHackathon = props => {
 
    const handleStartDateChange = date => {
       setStart_date(date.toString());
+      setHackathonInfo({ ...hackathonInfo, start_date: date.toString() });
    };
 
    const handleEndDateChange = date => {
       setEnd_date(date.toString());
+      setHackathonInfo({ ...hackathonInfo, end_date: date.toString() });
    };
 
    const handleOpenChange = name => e => {
       setState({ [name]: e.target.checked });
+      setHackathonInfo({ ...hackathonInfo, [name]: e.target.checked });
    };
 
    const toPage1 = () => {
@@ -94,6 +100,9 @@ const EditHackathon = props => {
       e.preventDefault();
       dispatch(editHackathon(Number(props.match.params.id), Number(id), props.history, hackathonInfo));
    };
+   
+
+   console.log(hackathonInfo)
 
    if(isFetching || !hackathon) {
      return (
@@ -325,7 +334,6 @@ const EditHackathon = props => {
                               <Checkbox
                                  checked={state.is_open}
                                  onChange={handleOpenChange('is_open')}
-                                 value="checked"
                                  color="primary"
                               />
                            }
