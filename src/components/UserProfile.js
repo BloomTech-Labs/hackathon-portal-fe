@@ -4,6 +4,7 @@ import { useAuth0 } from '../auth0-hooks/react-auth0-spa';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+
 import {
    Dialog,
    DialogActions,
@@ -16,14 +17,16 @@ import {
 
 // ACTIONS
 import { getUser } from '../actions/actions';
+import { deleteUser } from '../actions/actions';
 
 const UserProfile = props => {
    const dispatch = useDispatch();
-   const { loading, user } = useAuth0();
+   const { loading, user, logout } = useAuth0();
    const userProfile = useSelector(state => state.userInfo);
    const isFetching = useSelector(state => state.isFetching);
    const currentDate = new Date().toString();
    const [open, setOpen] = useState(false);
+   const [deleteOpen, setDeleteOpen] = useState(false);
    const [profileInfo, setProfileInfo] = useState({
       first_name: '',
       last_name: '',
@@ -58,6 +61,14 @@ const UserProfile = props => {
 
    const handleClose = () => {
       setOpen(false);
+   };
+
+   const handleDeleteClick = () => {
+      setDeleteOpen(true);
+   };
+
+   const handleDeleteClose = () => {
+      setDeleteOpen(false);
    };
 
    const handleChange = event => {
@@ -116,7 +127,7 @@ const UserProfile = props => {
             {user.id === userProfile.id ? (
                <>
                   <button onClick={handleClickOpen}>Edit Profile</button>
-                  <button>Delete Profile</button>
+                  <button onClick={handleDeleteClick}>Delete Profile</button>
                </>
             ) : null}
             <div>
@@ -218,6 +229,30 @@ const UserProfile = props => {
                   </Button>
                   <Button onClick={handleSubmit} color="primary">
                      Confirm
+                  </Button>
+               </DialogActions>
+            </Dialog>
+            <Dialog
+               open={deleteOpen}
+               onClose={handleDeleteClose}
+               aria-labelledby="alert-dialog-title"
+               aria-describedby="alert-dialog-description"
+            >
+               <DialogTitle id="alert-dialog-title">
+                  {'Are you sure you want to delete your account?'}
+               </DialogTitle>
+               <DialogActions>
+                  <Button onClick={handleDeleteClose} color="primary">
+                     Cancel
+                  </Button>
+                  <Button
+                     onClick={() =>
+                        dispatch(deleteUser(`${user.id}`)).then(() => logout())
+                     }
+                     color="primary"
+                     autoFocus
+                  >
+                     Delete
                   </Button>
                </DialogActions>
             </Dialog>
