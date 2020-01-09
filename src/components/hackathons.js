@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHackathons } from '../actions/actions';
-
+import { Link } from 'react-router-dom';
+ 
 
 //material UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -54,18 +55,20 @@ const searchHackathon = () => {
    //The line below recieves input and labels it as a variable called 'input'
    let input = document.getElementById("searchHackathon");
    let filter = input.value.toUpperCase();
-   let eventList = document.getElementById("makeStyles-cardparent-3");
-   let span = eventList.getElementsByTagName('span');
+   //eventList is the parent for all the cards 
+   let eventList = document.getElementsByClassName("MuiPaper-root MuiPaper-elevation1 MuiCard-root makeStyles-card-2 MuiPaper-rounded");
+   console.log('this is eventList', eventList);
+   // let span = eventList.getElementsByTagName("div");
    //this loop will go through each event name and compare them to the search input
-   for (let i = 0; i < span.length; i++) {
-       console.log(span);
-       let a = span[i].getElementsByTagName("a")[0];
+   for (let i = 0; i < eventList.length; i++) {
+       console.log('this is span', eventList);
+       let a = eventList[i].getElementsByTagName("span")[0];
        console.log('this is a', a);
        let txtValue = a.textContent || a.innerText;
        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-         span[i].style.display = "";
+         eventList[i].style.display = "";
        } else {
-         span[i].style.display = "none";
+         eventList[i].style.display = "none";
        }
    };
 };
@@ -76,23 +79,28 @@ function Hackathons(props) {
    const dispatch = useDispatch();
    const hackathons = useSelector(state => state.hackathons);
 
-   console.log(hackathons);
+   console.log(hackathons, isFetching);
 
    useEffect(() => {
       dispatch(getHackathons());
    }, []);
 
-   if (isFetching) {
+   if (isFetching || !hackathons) {
       return <h2>Loading Events...</h2>;
    }
 
    return (
       <div>
-         <input id='searchHackathon' type='text' onKeyUp={searchHackathon} placeholder='Search Hackathons'></input>
+         <input id='searchHackathon' 
+            type='text' 
+            onKeyUp={searchHackathon} 
+            placeholder='Search Hackathons'>
+         </input>
          <div className={classes.cardparent}>
             {hackathons.map(hackathon => {
                return (
                   <Card className={classes.card}>
+                    <Link to={`/hackathon/${hackathon.id}`}>
                      <CardHeader
                         title={hackathon.name}
                         subheader={hackathon.start_date}
@@ -112,6 +120,7 @@ function Hackathons(props) {
                            
                         </Typography>
                      </CardContent>
+                     </Link>
                   </Card>
                );
             })}

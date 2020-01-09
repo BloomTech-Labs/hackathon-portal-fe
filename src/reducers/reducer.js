@@ -14,7 +14,7 @@ import {
 } from '../actions/actions';
 
 const initialState = {
-   singleHackathon: [],
+   singleHackathon: {},
    hackers: [],
    hackathons: [],
    userInfo: [],
