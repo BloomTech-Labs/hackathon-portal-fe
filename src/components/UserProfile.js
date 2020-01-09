@@ -36,7 +36,7 @@ const UserProfile = props => {
 
    const getAndSetUserHook = async () => {
       (await axiosWithAuth())
-         .get(`/users/${props.match.params.id}`)
+         .get(`/users/${user.id}`)
          .then(res => {
             setProfileInfo({
                first_name: res.data.first_name,
@@ -51,9 +51,9 @@ const UserProfile = props => {
    };
 
    useEffect(() => {
-      dispatch(getUser(props.match.params.id));
+      dispatch(getUser(user.id));
       getAndSetUserHook();
-   }, [props.match.params.id]);
+   }, [user.id]);
 
    const handleClickOpen = () => {
       setOpen(true);
