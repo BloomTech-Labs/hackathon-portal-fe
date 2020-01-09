@@ -16,11 +16,13 @@ const SinglePage = props => {
    const isFetching = useSelector(state => state.isFetching);
    const [user_id, setUser_id] = useState(0)
    const { loading, user } = useAuth0();
-
+  
    useEffect(() => {
       dispatch(getSpecificHackathon(props.match.params.id));
    }, []);
 
+
+ 
    const formatDate = date => {
       const days = [
          'Sunday',
@@ -64,11 +66,19 @@ const SinglePage = props => {
    return (
       <div>
          <h2>{hackathon.name}</h2>
+
+         {user.id === hackathon.organizer_id && (
+            <>
          {!hackathon.is_open ? (
             <button>open</button>
          ) : (
+            
             <button>close</button>
          )}
+         </>
+
+         )}
+
          <h4>Description:</h4>
          <p>{hackathon.description}</p>
          <h4>Start date:</h4>
