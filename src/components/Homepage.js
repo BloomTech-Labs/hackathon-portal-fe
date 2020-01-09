@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getHackathons } from '../actions/actions';
 import { Link } from 'react-router-dom';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import Carousel from './carousel';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
@@ -94,7 +95,7 @@ const Homepage = () => {
     return(
         <div className='Homepage'>
             <section className={classes.section}>
-                <h3>the carosel with the arrows will go here</h3>
+                <Carousel></Carousel>
             </section>
             <section className={classes.section}>
                 <h2>Open Hackathons</h2>
