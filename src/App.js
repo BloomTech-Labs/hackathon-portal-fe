@@ -12,7 +12,9 @@ import Profile from './components/Profile';
 import HackerList from './components/hackerList';
 import Homepage from './components/Homepage';
 import Dashboard from './components/Dashboard';
+import Hackathons from './components/hackathons'
 import CreateHackathon from './components/Organizers/CreateHackathon';
+import EditHackathon from './components/Organizers/EditHackathon';
 import SinglePage from './components/Organizers/SinglePageHackathon';
 import SuccessPage from './components/SuccessPage';
 import UserProfile from './components/UserProfile';
@@ -34,13 +36,18 @@ function App(props) {
             </header>
             <Switch>
                <Route exact path="/" component={Homepage} />
+               <Route exact path='/hackathons' component={Hackathons} />
                <PrivateRoute path="/profile" component={Profile} />
-               <Route path="/dashboard" component={Dashboard} />
-               {/* TEMPORARILY ROUTE */}
+               <PrivateRoute path="/dashboard" component={Dashboard} />
                <PrivateRoute
                   exact
                   path="/hackathon/create"
                   component={CreateHackathon}
+               />
+               <PrivateRoute
+                  exact
+                  path="/hackathon/edit"
+                  component={EditHackathon}
                />
                <PrivateRoute path={`/hackathon/:id`} component={SinglePage} />
                {/* NEW - add a route to the ExternalApi component for testing atm */}
