@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '../auth0-hooks/react-auth0-spa';
 import { Link } from 'react-router-dom';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import HackathonLogo from '../components/images/HackathonLogo.png';
-// import Dashboard from './Dashboard';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
 const useStyles = makeStyles(theme => ({
@@ -16,17 +14,17 @@ const useStyles = makeStyles(theme => ({
    }
 }));
 
-const NavBar = () => {
+const NavBar = props => {
    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
    const classes = useStyles();
-   const preventDefault = event => event.preventDefault();
+
    return (
       <div className="navBar">
          <img id="logo" src={HackathonLogo} alt="logo" />
          {!isAuthenticated && (
             <>
-               <Link to="/">Home</Link>&nbsp;
-               <br />
+               <Link to="/">Home</Link>
+
                <button onClick={() => loginWithRedirect({})}>Log in</button>
             </>
          )}
@@ -40,10 +38,7 @@ const NavBar = () => {
                      style={{ fontSize: 10 }}
                   />
                </Link>
-               {/* &nbsp; */}
-               {/* <br />
-        <Link className='navBarLink' to='/hackathon/create'>Create a Hackathon</Link> */}
-               {/* <br /> */}
+
                <Link className="navBarLink" to="/hackathons">
                   Hackathons
                   <FiberManualRecordIcon
@@ -51,15 +46,15 @@ const NavBar = () => {
                      style={{ fontSize: 10 }}
                   />
                </Link>
-               {/* <br /> */}
-               <Link className="navBarLink" to="/profile">
+
+               <Link className="navBarLink" to={`/profile`}>
                   Profile
                   <FiberManualRecordIcon
                      className="dot"
                      style={{ fontSize: 10 }}
                   />
                </Link>
-               {/* <br /> */}
+
                <Link className="navBarLink" to="/hackathon/create">
                   Create A Hackathon
                   <FiberManualRecordIcon
@@ -67,18 +62,11 @@ const NavBar = () => {
                      style={{ fontSize: 10 }}
                   />
                </Link>
-               {/* <Link className='navBarLink' to='/dashboard'>Dashboard<FiberManualRecordIcon className='dot' style={{ fontSize: 10 }}/></Link> */}
-               {/* <br /> */}
                <Link className="navBarLink" onClick={() => logout()}>
                   Log out
                </Link>
-               {/* NEW - Add a link to the /external-api route for testing */}
-               {/* <Link className='navBarLink' to="/external-api">External API</Link> */}
             </span>
          )}
-
-         {/* <br />
-    {isAuthenticated && <button onClick={() => logout()}>Log out</button>} */}
       </div>
    );
 };
