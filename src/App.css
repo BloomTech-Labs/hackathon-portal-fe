@@ -298,7 +298,7 @@ color: #D0DDFF;
   color: #D0DDFF;
 }
 
-.division {
+.division6 {
   position: absolute;
   width: 1121px;
   height: 0px;
@@ -464,4 +464,90 @@ color: #D0DDFF;
   text-align: center;
   
   color: #D0DDFF;
+}
+
+.group1 {
+  position: absolute;
+  width: 51px;
+  height: 23px;
+  left: 524px;
+  top: 2118px;
+  
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: center;
+  
+  color: #4885E1;
+}
+
+.group2 {
+  position: absolute;
+  width: 104px;
+  height: 23px;
+  left: 615.1px;
+  top: 2118px;
+  
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: center;
+  
+  color: #D0DDFF;
+}
+
+.group3 {
+  position: absolute;
+  width: 49px;
+  height: 23px;
+  left: 759.2px;
+  top: 2118px;
+  
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: center;
+  
+  color: #D0DDFF;
+}
+
+.group4 {
+  position: absolute;
+  width: 68px;
+  height: 23px;
+  left: 848.3px;
+  top: 2118px;
+  
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: center;
+  
+  color: #D0DDFF;
+}
+
+.division4 {
+  position: absolute;
+  width: 1121px;
+  height: 0px;
+  left: 160px;
+  top: 1253px;
+  
+  border: 1.35px solid #D0DDFF;
+}
+
+.carousel {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
 }

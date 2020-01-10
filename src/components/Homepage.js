@@ -49,29 +49,6 @@ const useStyles = makeStyles(theme => ({
 
 
    },
-//    cardparent: {
-//     display: 'flex',
-//     flexWrap: 'wrap',
-    
-//   },
-
-//    media: {
-//       height: 0,
-//       paddingTop: '56.25%' // 16:9
-//    },
-//    expand: {
-//       transform: 'rotate(0deg)',
-//       marginLeft: 'auto',
-//       transition: theme.transitions.create('transform', {
-//          duration: theme.transitions.duration.shortest
-//       })
-//    },
-//    expandOpen: {
-//       transform: 'rotate(180deg)'
-//    },
-//    avatar: {
-//       backgroundColor: red[500]
-//    }
 }));
 
 const Homepage = () => {
@@ -92,10 +69,12 @@ const Homepage = () => {
 
     return(
         <div className='Homepage'>
-                <Carousel></Carousel>
+                <Carousel className='carousel'></Carousel>
                 <div className='leftArrow'>></div>
                 <div className='rightArrow'>></div>
-                <div className='blurb2'>Start Date: February 15, 2020  Location: Silicon Valley  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At urna condimentum mattis pellentesque. Facilisis gravida neque convallis a cras semper.</div>
+                <div className='blurb2'>Start Date: February 15, 2020
+                  Location: Silicon Valley 
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At urna condimentum mattis pellentesque. Facilisis gravida neque convallis a cras semper.</div>
 
                 <div id='openhackathon'>Open Hackathons</div>
                 
@@ -109,7 +88,8 @@ const Homepage = () => {
           
                 <div className='rectangle3'></div>
                 <div className='hackathonTitle3'>And Another</div>
-                <div className='location3'>Based in Canada</div>     
+                <div className='location3'>Based in Canada</div>    
+                <div className='division4'></div> 
 
                <div className='blurb'>
                   Hackthon Portal is the hub for everything hackathon. Whether you are coordination a hackathon, judging a project, or particpating, Hackathon Portal is the best way to stay up to date on the event's activity.
@@ -124,8 +104,11 @@ const Homepage = () => {
                 <div className='number3'>750</div>
                 <div className='projectsText'>Projects Judged</div>
 
-                <div className='divsion'></div>
-               
+                <div className='divsion6'></div>
+               <div className='group1'>home</div>
+               <div className='group2'>hackathons</div>
+               <div className='group3'>log in</div>
+               <div className='group4'>register</div>
         </div>
     )
 }
