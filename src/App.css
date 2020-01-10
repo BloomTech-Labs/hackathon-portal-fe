@@ -1,7 +1,10 @@
 /* NOTE: css code for Dashabord */
 .App {
   text-align: center;
-  
+}
+
+a {
+  text-decoration: none;
 }
 .dashboard {
   justify-content: center;
@@ -76,23 +79,23 @@
 
 /*navBar styling*/
 
+header {
+  margin-bottom: 5%;
+}
+
 .navBar {
   display: flex;
   justify-content: space-between;
-  /* width: 50%; */
 }
 
-/* #logo {
-  margin-right: 52%;
-} */
+
 
 .navBarLink {
   display: flex;
   align-items: center;
-  /* justify-content: space-evenly; */
-  /* width: 100%; */
   color: #d0ddff;
   text-decoration: none;
+  margin: 0 30px;
 }
 
 .dot {
@@ -145,13 +148,34 @@ color: #4885E1;
 .profile-buttons {
   display: flex;
   flex-direction: column;
+  margin-top: -10%;
+  align-items: space-between;
 }
 
+#profile-edit-btn {
+  color: #d0ddff;;
+  border: 1px solid #d0ddff;
+  margin-bottom: 10%;
+}
 
+#profile-delete-btn {
+  color: rgb(255, 134, 134);
+  border: 1px solid;
+}
 
 #profile-img {
   height: 200px;
   margin-right: 2%;
   border-radius: 100%;
   border: 2px solid #D0DDFF;
+}
+
+.MuiCardActions-root {
+  justify-content: center;
+}
+
+.profile-hackathon-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
