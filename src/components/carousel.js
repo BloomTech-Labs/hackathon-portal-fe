@@ -39,32 +39,32 @@ const tutorialSteps = [
   // },
 ];
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    maxWidth: '70%',
-    flexGrow: 1,
-  },
-  header: {
-    display: 'flex',
-    alignItems: 'center',
-    height: 50,
-    paddingLeft: theme.spacing(4),
-    // backgroundColor: theme.palette.background.default,
-  },
-  img: {
-    position: 'absolute',
-    left: '0%',
-    right: '0%',
-    top: '0%',
-    bottom: '0%',
-  },
-}));
+// const useStyles = makeStyles(theme => ({
+//   root: {
+//     display: 'flex',
+//     flexDirection: 'column',
+//     justifyContent: 'center',
+//     maxWidth: '70%',
+//     flexGrow: 1,
+//   },
+//   header: {
+//     display: 'flex',
+//     alignItems: 'center',
+//     height: 50,
+//     paddingLeft: theme.spacing(4),
+//     // backgroundColor: theme.palette.background.default,
+//   },
+//   img: {
+//     position: 'absolute',
+//     left: '0%',
+//     right: '0%',
+//     top: '0%',
+//     bottom: '0%',
+//   },
+// }));
 
 function Carousel() {
-  const classes = useStyles();
+  // const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   // const maxSteps = tutorialSteps.length;
@@ -86,11 +86,13 @@ function Carousel() {
       <div square elevation={0} className='header'>
         <Typography>{tutorialSteps[activeStep].label}</Typography>
       </div>
+
       <AutoPlaySwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={activeStep}
         onChangeIndex={handleStepChange}
         enableMouseEvents
+        id='imageimage'
       >
         {tutorialSteps.map((step, index) => (
           <div key={step.label}>
@@ -100,20 +102,21 @@ function Carousel() {
           </div>
         ))}
       </AutoPlaySwipeableViews>
+
       <MobileStepper
       variant="dots"
       steps={3}
       position="static"
       activeStep={activeStep}
-      className={classes.root}
+      id='tripledots'
       nextButton={
-        <Button size="small" onClick={handleNext} disabled={activeStep === 2}>
+        <Button id="button1" size="small" onClick={handleNext} disabled={activeStep === 2}>
           Next
           {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
         </Button>
       }
       backButton={
-        <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+        <Button id="button2" size="small" onClick={handleBack} disabled={activeStep === 0}>
           {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
           Back
         </Button>

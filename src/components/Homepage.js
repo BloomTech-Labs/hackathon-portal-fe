@@ -5,54 +5,54 @@ import { Link } from 'react-router-dom';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Carousel from './carousel';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
+// import Card from '@material-ui/core/Card';
+// import CardHeader from '@material-ui/core/CardHeader';
+// import CardContent from '@material-ui/core/CardContent';
+// import Typography from '@material-ui/core/Typography';
+// import { red } from '@material-ui/core/colors';
 
-const useStyles = makeStyles(theme => ({
-   section: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      justifyContent: 'center'
-   },
+// const useStyles = makeStyles(theme => ({
+//    section: {
+//       display: 'flex',
+//       flexWrap: 'wrap',
+//       justifyContent: 'center'
+//    },
 
-   paragraph: {
-      display: 'flex',
-      justifyContent: 'center',
-      width: '70%',
-      textAlign: 'center',
-      color: 'royalblue'
-   },
+//    paragraph: {
+//       display: 'flex',
+//       justifyContent: 'center',
+//       width: '70%',
+//       textAlign: 'center',
+//       color: 'royalblue'
+//    },
 
-   liveInformation: {
-      display: 'flex',
-   },
+//    liveInformation: {
+//       display: 'flex',
+//    },
 
-   information: {
-      display: 'flex',
-      flexDirection: 'column',
-      margin: '0% 5%'
-   },
+//    information: {
+//       display: 'flex',
+//       flexDirection: 'column',
+//       margin: '0% 5%'
+//    },
 
-   card: {
+//    card: {
       
-      maxWidth: '30%',
-      margin: '10%',
+//       maxWidth: '30%',
+//       margin: '10%',
 
-      background: '#1c1c1f',
-      border: '1px solid #D0DDFF',
-      boxSizing: 'border-box',
-      borderRadius: '13.5px',
-      color: '#D0DDFF',
+//       background: '#1c1c1f',
+//       border: '1px solid #D0DDFF',
+//       boxSizing: 'border-box',
+//       borderRadius: '13.5px',
+//       color: '#D0DDFF',
 
 
-   },
-}));
+//    },
+// }));
 
 const Homepage = () => {
-        const classes = useStyles();
+      //   const classes = useStyles();
         const isFetching = useSelector(state => state.isFetching);
         const dispatch = useDispatch();
         const hackathons = useSelector(state => state.hackathons);

@@ -552,9 +552,13 @@ color: #D0DDFF;
   bottom: 0%;
 }
 
-.root {
-
-  border: 3px solid red;
+.react-swipeable-view-container {
+  position: absolute;
+  left: 30%;
+  right: 30%;
+  top: 30%;
+  bottom: 30%;
+  border: 3px solid blue;
 }
 
 .header {
@@ -574,11 +578,35 @@ color: #D0DDFF;
   /* border: 3px solid orange; */
 }
 
-.carouselImage {
-  /* position: absolute; */
-  /* left: 30%;
-  right: 30%;
-  top: 30%;
-  bottom: 30%; */
-  border: 3px solid purple;
+.root {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+  
+  border: 3px solid red;
+}
+
+.button {
+  border: 3px solid blue;
+  display: none;
+}
+
+#button1 {
+  display: none;
+}
+
+#button2 {
+  display: none;
+}
+
+#tripledots {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  left: 714px;
+  top: 513px;
+  
+  background: #D0DDFF;
 }
