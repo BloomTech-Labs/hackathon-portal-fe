@@ -82,7 +82,7 @@ function Carousel() {
   };
 
   return (
-    <div className={classes.root}>
+    <div className='root'>
       <Paper square elevation={0} className={classes.header}>
         <Typography>{tutorialSteps[activeStep].label}</Typography>
       </Paper>

@@ -3,8 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 
+
 // COMPONENTS
 import DeleteHackathon from './DeleteHackathon';
+import { editHackathon } from '../../actions/actions';
 
 // ACTIONS
 import { getSpecificHackathon } from '../../actions/actions';
@@ -14,13 +16,25 @@ const SinglePage = props => {
    const dispatch = useDispatch();
    const hackathon = useSelector(state => state.singleHackathon);
    const isFetching = useSelector(state => state.isFetching);
+   const [isOpen, setIsOpen] = useState({ is_open: true });
    const [user_id, setUser_id] = useState(0)
    const { loading, user } = useAuth0();
-
+  
    useEffect(() => {
-      dispatch(getSpecificHackathon(props.match.params.id));
+      dispatch(getSpecificHackathon((props.match.params.id)));
    }, []);
+   
+   useEffect(() => {
+      if(hackathon){
+         setIsOpen({ is_open: hackathon.is_open })
+      }
+   }, [hackathon]);
 
+   const handleIsOpen = () => {
+      setIsOpen({ is_open: !isOpen.is_open })
+      dispatch(editHackathon(props.match.params.id, hackathon.organizer_id, props.history, { is_open: !isOpen.is_open }))
+   }
+ 
    const formatDate = date => {
       const days = [
          'Sunday',
@@ -53,8 +67,6 @@ const SinglePage = props => {
       return `${day}, ${m} ${d}, ${y}`;
    };
 
-   console.log('HACKATHON PAGE', hackathon, isFetching);
-
    if (isFetching) {
       return <div>Loading...</div>;
    }
@@ -64,11 +76,19 @@ const SinglePage = props => {
    return (
       <div>
          <h2>{hackathon.name}</h2>
-         {!hackathon.is_open ? (
-            <button>open</button>
-         ) : (
-            <button>close</button>
+
+         {user.id === hackathon.organizer_id && (
+            <>
+               {!hackathon.is_open ? (
+                  <button type="button" onClick={()=>handleIsOpen()}>OPEN</button>
+               ) : (
+                  
+                  <button type="button" onClick={()=>handleIsOpen()}>CLOSE</button>
+               )}
+            </>
+
          )}
+
          <h4>Description:</h4>
          <p>{hackathon.description}</p>
          <h4>Start date:</h4>
@@ -77,7 +97,7 @@ const SinglePage = props => {
          <p>{formatDate(hackathon.end_date)}</p>
          {user.id === hackathon.organizer_id && (
             <>
-               <Link to={`/hackathon/edit/${hackathon.id}`}><button>edit</button></Link>
+               <Link to={`/hackathon/edit/${hackathon.id}`}><button>EDIT</button></Link>
                <DeleteHackathon id={hackathon.id} org_id={hackathon.organizer_id} history={props.history} />
             </>
          )}

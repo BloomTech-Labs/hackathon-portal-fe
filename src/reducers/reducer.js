@@ -7,11 +7,14 @@ import {
    FETCH_USER,
    POSTHACKATHON_SUCCESS,
    EDITHACKATHON_SUCCESS,
-   DELETEHACKATHON_SUCCESS
+   DELETEHACKATHON_SUCCESS,
+   DELETE_USER,
+   DELETE_USER_SUCCESS,
+   DELETE_USER_FAIL
 } from '../actions/actions';
 
 const initialState = {
-   singleHackathon: [],
+   singleHackathon: {},
    hackers: [],
    hackathons: [],
    userInfo: [],
@@ -66,6 +69,18 @@ const reducer = (state = initialState, action) => {
             hackathons: action.payload,
             isFetching: false,
             error: ''
+         };
+      case DELETE_USER:
+      case DELETE_USER_SUCCESS:
+         return {
+            ...state,
+            isFetching: false,
+            error: ''
+         };
+      case DELETE_USER_FAIL:
+         return {
+            ...state,
+            error: action.payload
          };
       default:
          return state;

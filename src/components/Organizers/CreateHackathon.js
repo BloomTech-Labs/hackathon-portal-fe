@@ -113,11 +113,10 @@ const CreateHackathon = props => {
             {page1 && (
                <>
                   <FormLabel>Hackathon info</FormLabel>
-                  <br />
+
                   <label className="name">
-                     <br />
                      <FormLabel>Hackathon name</FormLabel>
-                     <br />
+
                      <TextField
                         type="text"
                         fullWidth
@@ -137,9 +136,8 @@ const CreateHackathon = props => {
                      />
                   </label>
                   <label className="description">
-                     <br />
                      <FormLabel>Hackathon description</FormLabel>
-                     <br />
+
                      <TextField
                         type="text"
                         fullWidth
@@ -161,9 +159,8 @@ const CreateHackathon = props => {
                      />
                   </label>
                   <label className="location">
-                     <br />
                      <FormLabel>Hackathon Location</FormLabel>
-                     <br />
+
                      <TextField
                         type="text"
                         fullWidth
@@ -183,9 +180,8 @@ const CreateHackathon = props => {
                      />
                   </label>
                   <label className="url">
-                     <br />
                      <FormLabel>Event URL</FormLabel>
-                     <br />
+
                      <TextField
                         type="text"
                         fullWidth
@@ -204,7 +200,7 @@ const CreateHackathon = props => {
                         }}
                      />
                   </label>
-                  <br />
+
                   <div
                      style={{
                         width: '16%',
@@ -231,10 +227,9 @@ const CreateHackathon = props => {
                <>
                   <FormLabel>Hackathon info</FormLabel>
                   <div>
-                     <br />
                      <label className="startDate">
                         <FormLabel>Event start date</FormLabel>
-                        <br />
+
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardDatePicker
                               autoOk
@@ -254,9 +249,8 @@ const CreateHackathon = props => {
                         </MuiPickersUtilsProvider>
                      </label>
                      <label className="startTime">
-                        <br />
                         <FormLabel>Event start time</FormLabel>
-                        <br />
+
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardTimePicker
                               fullWidth
@@ -277,9 +271,8 @@ const CreateHackathon = props => {
                   </div>
                   <div>
                      <label className="endDate">
-                        <br />
                         <FormLabel>Event end date</FormLabel>
-                        <br />
+
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardDatePicker
                               fullWidth
@@ -299,9 +292,8 @@ const CreateHackathon = props => {
                         </MuiPickersUtilsProvider>
                      </label>
                      <label className="endTime">
-                        <br />
                         <FormLabel>Event end time</FormLabel>
-                        <br />
+
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardTimePicker
                               fullWidth
@@ -333,7 +325,7 @@ const CreateHackathon = props => {
                         />
                      </label>
                   </div>
-                  <br />
+
                   <Button type="submit">Submit</Button>
                   <div
                      style={{
