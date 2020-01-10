@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHackathons } from '../actions/actions';
 import { Link } from 'react-router-dom';
+import standIn from './images/standIn.jpg';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Carousel from './carousel';
@@ -50,14 +51,13 @@ import Carousel from './carousel';
 
 //    },
 // }));
+let openHackathonsArray = []
 
 const Homepage = () => {
       //   const classes = useStyles();
         const isFetching = useSelector(state => state.isFetching);
         const dispatch = useDispatch();
         const hackathons = useSelector(state => state.hackathons);
-     
-        console.log(hackathons);
      
         useEffect(() => {
            dispatch(getHackathons());
@@ -67,28 +67,40 @@ const Homepage = () => {
            return <h2>Loading Events...</h2>;
         }
 
+               // console.log(hackathons[3].is_open);
+            //   function pickthreeopenhackathons () {
+            //    for(let i = 0 ; i <= hackathons.length ; i++){
+            //       openHackathonsArray.push(hackathons[i].is_open);
+            //    }
+            // }
+            // pickthreeopenhackathons();
+            // console.log('open hackacthons array', openHackathonsArray);
+
     return(
         <div className='Homepage'>
                 <Carousel className='carousel'></Carousel>
                 <div className='leftArrow'>></div>
                 <div className='rightArrow'>></div>
-                {/* <div className='blurb2'>Start Date: February 15, 2020
-                  Location: Silicon Valley 
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At urna condimentum mattis pellentesque. Facilisis gravida neque convallis a cras semper.</div> */}
 
                 <div id='openhackathon'>Open Hackathons</div>
                 
-                <div className='rectangle'></div>
-                <div className='hackathonTitle'>Big Hackathon</div>
-                <div className='location'>Based in Vancouver</div>
+                <div className='rectangle'>
+                   <img class='hackathonImage' src={standIn}></img>
+                </div>
+                <div className='hackathonTitle'>{hackathons[2].name}</div>
+                <div className='location'>{hackathons[2].location}</div>
             
-                <div className='rectangle2'></div>
-                <div className='hackathonTitle2'>Another one</div>
-                <div className='location2'>Based in California</div>
+                <div className='rectangle2'>
+                  <img class='hackathonImage' src={standIn}></img>
+                </div>
+                <div className='hackathonTitle2'>{hackathons[7].name}</div>
+                <div className='location2'>{hackathons[7].location}</div>
           
-                <div className='rectangle3'></div>
-                <div className='hackathonTitle3'>And Another</div>
-                <div className='location3'>Based in Canada</div>    
+                <div className='rectangle3'>
+                  <img class='hackathonImage' src={standIn}></img>
+                </div>
+                <div className='hackathonTitle3'>{hackathons[1].name}</div>
+                <div className='location3'>{hackathons[1].location}</div>    
                 <div className='division4'></div> 
 
                <div className='blurb'>

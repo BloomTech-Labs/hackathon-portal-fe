@@ -310,7 +310,7 @@ color: #D0DDFF;
 
 .hackathonTitle {
   position: absolute;
-  width: 138px;
+  width: 350px;
   height: 23px;
   left: 165px;
   top: 1172px;
@@ -326,7 +326,7 @@ color: #D0DDFF;
 
 .hackathonTitle2 {
   position: absolute;
-  width: 138px;
+  width: 350px;
   height: 23px;
   left: 539px;
   top: 1172px;
@@ -342,7 +342,7 @@ color: #D0DDFF;
 
 .hackathonTitle3 {
   position: absolute;
-  width: 138px;
+  width: 350px;
   height: 23px;
   left: 918px;
   top: 1172px;
@@ -357,8 +357,9 @@ color: #D0DDFF;
 }
 
 .location {
+  /* border: solid 3px red; */
   position: absolute;
-  width: 176px;
+  width: 350px;
   height: 23px;
   left: 165px;
   top: 1199px;
@@ -376,7 +377,7 @@ color: #D0DDFF;
 
 .location2 {
   position: absolute;
-  width: 176px;
+  width: 350px;
   height: 23px;
   left: 539px;
   top: 1199px;
@@ -394,7 +395,7 @@ color: #D0DDFF;
 
 .location3 {
   position: absolute;
-  width: 176px;
+  width: 350px;
   height: 23px;
   left: 918px;
   top: 1199px;
@@ -544,21 +545,22 @@ color: #D0DDFF;
   border: 1.35px solid #D0DDFF;
 }
 
-.carousel {
-  position: absolute;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
+.carouselImage {
+  display: flex;
+  justify-content: center;
+  /* border: 3px solid yellow; */
 }
 
 .react-swipeable-view-container {
+  /* display: flex; */
+  /* justify-content: center; */
+  /* margin-right: 4px; */
   position: absolute;
   left: 30%;
   right: 30%;
   top: 30%;
   bottom: 30%;
-  border: 3px solid blue;
+  /* border: 3px solid purple; */
 }
 
 .header {
@@ -585,13 +587,15 @@ color: #D0DDFF;
   top: 0%;
   bottom: 0%;
   
-  border: 3px solid red;
+  /* border: 3px solid red; */
 }
 
-.button {
+/* .button {
+  display: flex;
+  justify-content: center;
   border: 3px solid blue;
-  display: none;
-}
+  margin-right: 3000px;
+   display: none; */
 
 #button1 {
   display: none;
@@ -603,10 +607,19 @@ color: #D0DDFF;
 
 #tripledots {
   position: absolute;
-  width: 12px;
+  width: 35px;
   height: 12px;
   left: 714px;
   top: 513px;
-  
-  background: #D0DDFF;
+  background: black;
+  /* border: 4px solid green; */
+}
+
+/* #test {
+  border: 3px solid purple;
+} */
+
+.hackathonImage {
+  height: 271px;
+  width: 363px;
 }
