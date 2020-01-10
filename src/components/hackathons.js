@@ -143,12 +143,21 @@ function Hackathons(props) {
    const isFetching = useSelector(state => state.isFetching);
    const dispatch = useDispatch();
    const hackathons = useSelector(state => state.hackathons);
+   const [searchTerm, setSearchTerm] = React.useState('');
 
-   console.log(hackathons, isFetching);
+   const handleChange = event => {
+      setSearchTerm(event.target.value);
+   };
 
    useEffect(() => {
       dispatch(getHackathons());
    }, []);
+
+   const results = !searchTerm.length
+      ? hackathons
+      : hackathons.filter(hackathon =>
+           hackathon.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
 
    if (isFetching || !hackathons) {
       return <h2>Loading Events...</h2>;

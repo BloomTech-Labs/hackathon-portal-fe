@@ -9,7 +9,6 @@ import {
    Dialog,
    DialogActions,
    DialogContent,
-   DialogContentText,
    DialogTitle,
    Button,
    TextField
@@ -23,7 +22,6 @@ const UserProfile = props => {
    const dispatch = useDispatch();
    const { loading, user, logout } = useAuth0();
    const userProfile = useSelector(state => state.userInfo);
-   const isFetching = useSelector(state => state.isFetching);
    const currentDate = new Date().toString();
    const [open, setOpen] = useState(false);
    const [deleteOpen, setDeleteOpen] = useState(false);
@@ -31,18 +29,20 @@ const UserProfile = props => {
       first_name: '',
       last_name: '',
       username: '',
-      email: ''
+      email: '',
+      id: ''
    });
 
    const getAndSetUserHook = async () => {
       (await axiosWithAuth())
-         .get(`/users/${props.match.params.id}`)
+         .get(`/users/${user.id}`)
          .then(res => {
             setProfileInfo({
                first_name: res.data.first_name,
                last_name: res.data.last_name,
                username: res.data.username,
-               email: res.data.email
+               email: res.data.email,
+               id: res.data.id
             });
          })
          .catch(err => {
@@ -51,9 +51,9 @@ const UserProfile = props => {
    };
 
    useEffect(() => {
-      dispatch(getUser(props.match.params.id));
+      dispatch(getUser(user.id));
       getAndSetUserHook();
-   }, [props.match.params.id]);
+   }, [user.id]);
 
    const handleClickOpen = () => {
       setOpen(true);
@@ -88,10 +88,11 @@ const UserProfile = props => {
                first_name: `${res.data.first_name}`,
                last_name: `${res.data.last_name}`,
                username: `${res.data.username}`,
-               email: `${res.data.email}`
+               email: `${res.data.email}`,
+               id: `${res.data.id}`
             });
             handleClose();
-            dispatch(getUser(props.match.params.id));
+            dispatch(getUser(profileInfo.id));
          })
          .catch(error => {
             console.log('Profile Update', error);
@@ -119,144 +120,145 @@ const UserProfile = props => {
 
    return (
       <div>
-         <>
+         <div>
             <h1>
                {userProfile.first_name} {userProfile.last_name}
             </h1>
             <h2>{userProfile.username}</h2>
+         </div>
+         <div>
             {user.id === userProfile.id ? (
                <>
                   <button onClick={handleClickOpen}>Edit Profile</button>
                   <button onClick={handleDeleteClick}>Delete Profile</button>
                </>
             ) : null}
+         </div>
+         <div>
+            <h1>Hackathons</h1>
             <div>
-               <h1>Hackathons</h1>
-               <h1>Present:</h1>
-               <div>
-                  <ol>
-                     {presentHackathons.map(hackathon => (
-                        <li key={hackathon.hackathon_id}>
-                           {hackathon.hackathon_name}
-                           <Link to={`/hackathon/${hackathon.hackathon_id}`}>
-                              See more
-                           </Link>
-                           <ul>
-                              {hackathon.team_name ? (
-                                 <li>Team: {hackathon.team_name}</li>
-                              ) : null}
-                              <li>Role: {hackathon.user_hackathon_role}</li>
-                           </ul>
-                        </li>
-                     ))}
-                  </ol>
-               </div>
+               <ol>
+                  {presentHackathons.map(hackathon => (
+                     <li key={hackathon.hackathon_id}>
+                        {hackathon.hackathon_name}
+                        <Link to={`/hackathon/${hackathon.hackathon_id}`}>
+                           See more
+                        </Link>
+                        <ul>
+                           {hackathon.team_name ? (
+                              <li>Team: {hackathon.team_name}</li>
+                           ) : null}
+                           <li>Role: {hackathon.user_hackathon_role}</li>
+                        </ul>
+                     </li>
+                  ))}
+               </ol>
             </div>
+         </div>
+         <div>
+            <h1>Past:</h1>
             <div>
-               <h1>Past:</h1>
-               <div>
-                  <ol>
-                     {pastHackathons.map(hackathon => (
-                        <li>
-                           {hackathon.hackathon_name}
-                           <Link to={`/hackathon/${hackathon.hackathon_id}`}>
-                              See more
-                           </Link>
-                           <ul>
-                              {hackathon.team_name ? (
-                                 <li>Team: {hackathon.team_name}</li>
-                              ) : null}
-                              <li>Role: {hackathon.user_hackathon_role}</li>
-                           </ul>
-                        </li>
-                     ))}
-                  </ol>
-               </div>
+               <ol>
+                  {pastHackathons.map(hackathon => (
+                     <li key={hackathon.hackathon_id}>
+                        {hackathon.hackathon_name}
+                        <Link to={`/hackathon/${hackathon.hackathon_id}`}>
+                           See more
+                        </Link>
+                        <ul>
+                           {hackathon.team_name ? (
+                              <li>Team: {hackathon.team_name}</li>
+                           ) : null}
+                           <li>Role: {hackathon.user_hackathon_role}</li>
+                        </ul>
+                     </li>
+                  ))}
+               </ol>
             </div>
-            <Dialog
-               open={open}
-               onClose={handleClose}
-               aria-labelledby="form-dialog-title"
-            >
-               <DialogTitle id="form-dialog-title">
-                  Update user information
-               </DialogTitle>
-               <DialogContent>
-                  <TextField
-                     autoFocus
-                     margin="dense"
-                     name="first_name"
-                     value={profileInfo.first_name}
-                     label="First name"
-                     type="text"
-                     fullWidth
-                     onChange={handleChange}
-                  />
-                  <TextField
-                     autoFocus
-                     margin="dense"
-                     name="last_name"
-                     value={profileInfo.last_name}
-                     label="Last name"
-                     type="text"
-                     fullWidth
-                     onChange={handleChange}
-                  />
-                  <TextField
-                     autoFocus
-                     margin="dense"
-                     name="username"
-                     value={profileInfo.username}
-                     label="Username"
-                     type="text"
-                     fullWidth
-                     onChange={handleChange}
-                  />
-                  <TextField
-                     autoFocus
-                     margin="dense"
-                     name="email"
-                     value={profileInfo.email}
-                     label="Email"
-                     type="email"
-                     fullWidth
-                     onChange={handleChange}
-                  />
-               </DialogContent>
-               <DialogActions>
-                  <Button onClick={handleClose} color="primary">
-                     Cancel
-                  </Button>
-                  <Button onClick={handleSubmit} color="primary">
-                     Confirm
-                  </Button>
-               </DialogActions>
-            </Dialog>
-            <Dialog
-               open={deleteOpen}
-               onClose={handleDeleteClose}
-               aria-labelledby="alert-dialog-title"
-               aria-describedby="alert-dialog-description"
-            >
-               <DialogTitle id="alert-dialog-title">
-                  {'Are you sure you want to delete your account?'}
-               </DialogTitle>
-               <DialogActions>
-                  <Button onClick={handleDeleteClose} color="primary">
-                     Cancel
-                  </Button>
-                  <Button
-                     onClick={() =>
-                        dispatch(deleteUser(`${user.id}`)).then(() => logout())
-                     }
-                     color="primary"
-                     autoFocus
-                  >
-                     Delete
-                  </Button>
-               </DialogActions>
-            </Dialog>
-         </>
+         </div>
+         <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="form-dialog-title"
+         >
+            <DialogTitle id="form-dialog-title">
+               Update user information
+            </DialogTitle>
+            <DialogContent>
+               <TextField
+                  autoFocus
+                  margin="dense"
+                  name="first_name"
+                  value={profileInfo.first_name}
+                  label="First name"
+                  type="text"
+                  fullWidth
+                  onChange={handleChange}
+               />
+               <TextField
+                  autoFocus
+                  margin="dense"
+                  name="last_name"
+                  value={profileInfo.last_name}
+                  label="Last name"
+                  type="text"
+                  fullWidth
+                  onChange={handleChange}
+               />
+               <TextField
+                  autoFocus
+                  margin="dense"
+                  name="username"
+                  value={profileInfo.username}
+                  label="Username"
+                  type="text"
+                  fullWidth
+                  onChange={handleChange}
+               />
+               <TextField
+                  autoFocus
+                  margin="dense"
+                  name="email"
+                  value={profileInfo.email}
+                  label="Email"
+                  type="email"
+                  fullWidth
+                  onChange={handleChange}
+               />
+            </DialogContent>
+            <DialogActions>
+               <Button onClick={handleClose} color="primary">
+                  Cancel
+               </Button>
+               <Button onClick={handleSubmit} color="primary">
+                  Confirm
+               </Button>
+            </DialogActions>
+         </Dialog>
+         <Dialog
+            open={deleteOpen}
+            onClose={handleDeleteClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+         >
+            <DialogTitle id="alert-dialog-title">
+               {'Are you sure you want to delete your account?'}
+            </DialogTitle>
+            <DialogActions>
+               <Button onClick={handleDeleteClose} color="primary">
+                  Cancel
+               </Button>
+               <Button
+                  onClick={() =>
+                     dispatch(deleteUser(`${user.id}`)).then(() => logout())
+                  }
+                  color="primary"
+                  autoFocus
+               >
+                  Delete
+               </Button>
+            </DialogActions>
+         </Dialog>
       </div>
    );
 };
