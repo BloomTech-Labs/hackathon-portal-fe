@@ -95,7 +95,7 @@ function Carousel() {
         id='imageimage'
       >
         {tutorialSteps.map((step, index) => (
-          <div key={step.label}>
+          <div key={step.label} className='imageContainer'>
             {Math.abs(activeStep - index) <= 2 ? (
               <img className='carouselImage' src={step.imgPath} alt={step.label} />
             ) : null}

@@ -53,14 +53,14 @@ const EditHackathon = props => {
       dispatch(getSpecificHackathon(props.match.params.id));
    }, []);
    useEffect(() => {
-      if (hackathon) {
-         setStart_date(`${hackathon.start_date}`);
-         setEnd_date(`${hackathon.end_date}`);
-         setState({ is_open: hackathon.is_open });
-      }
-   }, [hackathon]);
+    if(hackathon) {
+      setStart_date(`${hackathon.start_date}`)
+      setEnd_date(`${hackathon.end_date}`)
+      setState({ is_open: hackathon.is_open })
+    }
+   }, [hackathon])
 
-   console.log(state.is_open);
+   console.log(state.is_open)
 
    const handlePage1Change = e => {
       setHackathonInfo({ ...hackathonInfo, [e.target.name]: e.target.value });
@@ -107,6 +107,9 @@ const EditHackathon = props => {
          )
       );
    };
+   
+
+   console.log(hackathonInfo)
 
    console.log(hackathonInfo);
 
