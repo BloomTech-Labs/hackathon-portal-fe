@@ -34,21 +34,21 @@ const useStyles = makeStyles(theme => ({
       display: 'flex',
       flexDirection: 'column',
       margin: '0% 5%'
-   }
+   },
 
-//    card: {
+   card: {
       
-//       maxWidth: '30%',
-//       margin: '10%',
+      maxWidth: '30%',
+      margin: '10%',
 
-//       background: '#1c1c1f',
-//       border: '1px solid #D0DDFF',
-//       boxSizing: 'border-box',
-//       borderRadius: '13.5px',
-//       color: '#D0DDFF',
+      background: '#1c1c1f',
+      border: '1px solid #D0DDFF',
+      boxSizing: 'border-box',
+      borderRadius: '13.5px',
+      color: '#D0DDFF',
 
 
-//    },
+   },
 //    cardparent: {
 //     display: 'flex',
 //     flexWrap: 'wrap',
@@ -86,46 +86,46 @@ const Homepage = () => {
            dispatch(getHackathons());
         }, []);
      
-        if (isFetching) {
+        if (isFetching || !hackathons[0]) {
            return <h2>Loading Events...</h2>;
         }
 
-      console.log('this is hackathons', hackathons[0]);
-
     return(
         <div className='Homepage'>
-            <section className={classes.section}>
                 <Carousel></Carousel>
-            </section>
-            <section className={classes.section}>
-                <h2>Open Hackathons</h2>
-                <div className='openHackathonsHolder'>
-                    <div className='openHackathonCard'>
-                        <img src='#' alt='Hackthon picture'></img>
-                        <h4>Big Hackthon</h4>
-                        <p>Location: Based in Vancouver</p>
-                    </div>
-                </div>
-            </section>
-            <section className={classes.section}>
-               <paragraph className={classes.paragraph}>
+                <div className='leftArrow'>></div>
+                <div className='rightArrow'>></div>
+                <div className='blurb2'>Start Date: February 15, 2020  Location: Silicon Valley  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At urna condimentum mattis pellentesque. Facilisis gravida neque convallis a cras semper.</div>
+
+                <div id='openhackathon'>Open Hackathons</div>
+                
+                <div className='rectangle'></div>
+                <div className='hackathonTitle'>Big Hackathon</div>
+                <div className='location'>Based in Vancouver</div>
+            
+                <div className='rectangle2'></div>
+                <div className='hackathonTitle2'>Another one</div>
+                <div className='location2'>Based in California</div>
+          
+                <div className='rectangle3'></div>
+                <div className='hackathonTitle3'>And Another</div>
+                <div className='location3'>Based in Canada</div>     
+
+               <div className='blurb'>
                   Hackthon Portal is the hub for everything hackathon. Whether you are coordination a hackathon, judging a project, or particpating, Hackathon Portal is the best way to stay up to date on the event's activity.
-               </paragraph>
-               <div className={classes.liveInformation}>
-                  <span className={classes.information}>
-                     <h1>35</h1>
-                     <h2>Hackathons</h2>
-                  </span>
-                  <span className={classes.information}>
-                     <h1>3500</h1>
-                     <h2>Users</h2>
-                  </span>
-                  <span className={classes.information}>
-                     <h1>750</h1>
-                     <h2>Projects Judged</h2>
-                  </span>
                </div>
-            </section>
+
+                <div className='number'>35</div>
+                <div className='hackathonsText'>Hackathons</div>
+
+                <div className='number2'>3500</div>
+                <div className='usersText'>Users</div>
+
+                <div className='number3'>750</div>
+                <div className='projectsText'>Projects Judged</div>
+
+                <div className='divsion'></div>
+               
         </div>
     )
 }
