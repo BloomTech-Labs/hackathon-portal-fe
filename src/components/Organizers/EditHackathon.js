@@ -35,10 +35,10 @@ import {
 } from '@material-ui/pickers';
 
 const EditHackathon = props => {
-  const dispatch = useDispatch();
-  let { register, handleSubmit, errors, clearError } = useForm();
-  const isFetching = useSelector(state => state.isFetching)
-  const hackathon = useSelector(state => state.singleHackathon)
+   const dispatch = useDispatch();
+   let { register, handleSubmit, errors, clearError } = useForm();
+   const isFetching = useSelector(state => state.isFetching);
+   const hackathon = useSelector(state => state.singleHackathon);
    const [page1, setPage1] = useState(true);
    const [page2, setPage2] = useState(false);
    const [start_date, setStart_date] = useState(`${new Date()}`);
@@ -47,23 +47,23 @@ const EditHackathon = props => {
    const [state, setState] = useState({ is_open: true });
    const { loading, user } = useAuth0();
 
-   console.log(hackathon, props.match.params.id)
+   console.log(hackathon, props.match.params.id);
 
    useEffect(() => {
-      dispatch(getSpecificHackathon(props.match.params.id))
-   }, [])
+      dispatch(getSpecificHackathon(props.match.params.id));
+   }, []);
    useEffect(() => {
-    if(hackathon) {
-      setStart_date(`${hackathon.start_date}`)
-      setEnd_date(`${hackathon.end_date}`)
-      setState({ is_open: hackathon.is_open })
-    }
-   }, [hackathon])
+      if (hackathon) {
+         setStart_date(`${hackathon.start_date}`);
+         setEnd_date(`${hackathon.end_date}`);
+         setState({ is_open: hackathon.is_open });
+      }
+   }, [hackathon]);
 
-   console.log(state.is_open)
+   console.log(state.is_open);
 
    const handlePage1Change = e => {
-    setHackathonInfo({ ...hackathonInfo, [e.target.name]: e.target.value });
+      setHackathonInfo({ ...hackathonInfo, [e.target.name]: e.target.value });
    };
 
    const handleStartDateChange = date => {
@@ -98,16 +98,20 @@ const EditHackathon = props => {
       }
       const id = user.sub.replace('auth0|', '');
       e.preventDefault();
-      dispatch(editHackathon(Number(props.match.params.id), Number(id), props.history, hackathonInfo));
+      dispatch(
+         editHackathon(
+            Number(props.match.params.id),
+            Number(id),
+            props.history,
+            hackathonInfo
+         )
+      );
    };
-   
 
-   console.log(hackathonInfo)
+   console.log(hackathonInfo);
 
-   if(isFetching || !hackathon) {
-     return (
-      <div>Loading...</div>
-     )
+   if (isFetching || !hackathon) {
+      return <div>Loading...</div>;
    }
 
    return (
@@ -119,11 +123,10 @@ const EditHackathon = props => {
             {page1 && (
                <>
                   <FormLabel>Hackathon info</FormLabel>
-                  <br />
+
                   <label className="name">
-                     <br />
                      <FormLabel>Hackathon name</FormLabel>
-                     <br />
+
                      <TextField
                         type="text"
                         fullWidth
@@ -143,9 +146,8 @@ const EditHackathon = props => {
                      />
                   </label>
                   <label className="description">
-                     <br />
                      <FormLabel>Hackathon description</FormLabel>
-                     <br />
+
                      <TextField
                         type="text"
                         fullWidth
@@ -167,9 +169,8 @@ const EditHackathon = props => {
                      />
                   </label>
                   <label className="location">
-                     <br />
                      <FormLabel>Hackathon Location</FormLabel>
-                     <br />
+
                      <TextField
                         type="text"
                         fullWidth
@@ -188,11 +189,10 @@ const EditHackathon = props => {
                         }}
                      />
                   </label>
-                  <br />
+
                   <label className="url">
-                     <br />
                      <FormLabel>Event URL</FormLabel>
-                     <br />
+
                      <TextField
                         type="text"
                         fullWidth
@@ -211,7 +211,7 @@ const EditHackathon = props => {
                         }}
                      />
                   </label>
-                  <br />
+
                   <div
                      style={{
                         width: '16%',
@@ -238,10 +238,9 @@ const EditHackathon = props => {
                <>
                   <FormLabel>Hackathon info</FormLabel>
                   <div>
-                     <br />
                      <label className="startDate">
                         <FormLabel>Event start date</FormLabel>
-                        <br />
+
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardDatePicker
                               autoOk
@@ -262,9 +261,8 @@ const EditHackathon = props => {
                         </MuiPickersUtilsProvider>
                      </label>
                      <label className="startTime">
-                        <br />
                         <FormLabel>Event start time</FormLabel>
-                        <br />
+
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardTimePicker
                               fullWidth
@@ -286,9 +284,8 @@ const EditHackathon = props => {
                   </div>
                   <div>
                      <label className="endDate">
-                        <br />
                         <FormLabel>Event end date</FormLabel>
-                        <br />
+
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardDatePicker
                               fullWidth
@@ -308,9 +305,8 @@ const EditHackathon = props => {
                         </MuiPickersUtilsProvider>
                      </label>
                      <label className="endTime">
-                        <br />
                         <FormLabel>Event end time</FormLabel>
-                        <br />
+
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardTimePicker
                               fullWidth
@@ -341,7 +337,7 @@ const EditHackathon = props => {
                         />
                      </label>
                   </div>
-                  <br />
+
                   <Button type="submit">Submit</Button>
                   <div
                      style={{
