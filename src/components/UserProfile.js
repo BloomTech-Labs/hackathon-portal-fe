@@ -119,24 +119,31 @@ const UserProfile = props => {
    });
 
    return (
-      <div>
-         <div>
-            <h1>
-               {userProfile.first_name} {userProfile.last_name}
-            </h1>
-            <h2>{userProfile.username}</h2>
+      <div className='profile-wrapper'>
+         <div className='profile-container'>
+            <div className='profile-left'>
+               <img id='profile-img' src='https://i.imgflip.com/1slnr0.jpg'></img>
+               <div className='profile-headers'>
+               <h1 id='profile-name'>
+                  {userProfile.first_name} {userProfile.last_name}
+               </h1>
+               <h1 id='profile-username'>{userProfile.username}</h1>
+               </div>
+            </div>
+               <div className='profile-buttons'>
+               {user.id === userProfile.id ? (
+                  <>
+                     <button onClick={handleClickOpen}>Edit Profile</button>
+                     <button onClick={handleDeleteClick}>Delete Profile</button>
+                  </>
+               ) : null}
+            </div>
+
          </div>
-         <div>
-            {user.id === userProfile.id ? (
-               <>
-                  <button onClick={handleClickOpen}>Edit Profile</button>
-                  <button onClick={handleDeleteClick}>Delete Profile</button>
-               </>
-            ) : null}
-         </div>
-         <div>
+         
+         <div className='profile-hackathons'>
             <h1>Hackathons</h1>
-            <div>
+            <div className='profile-hackathon-list'>
                <ol>
                   {presentHackathons.map(hackathon => (
                      <li key={hackathon.hackathon_id}>
@@ -155,9 +162,9 @@ const UserProfile = props => {
                </ol>
             </div>
          </div>
-         <div>
+         <div className='profile-hackathons'>
             <h1>Past:</h1>
-            <div>
+            <div className='profile-hackathon-list'>
                <ol>
                   {pastHackathons.map(hackathon => (
                      <li key={hackathon.hackathon_id}>
