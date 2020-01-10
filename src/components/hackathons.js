@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHackathons } from '../actions/actions';
 import { Link } from 'react-router-dom';
- 
 
 //material UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -14,7 +13,6 @@ import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles(theme => ({
    card: {
-      
       maxWidth: '30%',
       margin: '10%',
 
@@ -22,15 +20,12 @@ const useStyles = makeStyles(theme => ({
       border: '1px solid #D0DDFF',
       boxSizing: 'border-box',
       borderRadius: '13.5px',
-      color: '#D0DDFF',
-
-
+      color: '#D0DDFF'
    },
    cardparent: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    
-  },
+      display: 'flex',
+      flexWrap: 'wrap'
+   },
 
    media: {
       height: 0,
@@ -51,39 +46,26 @@ const useStyles = makeStyles(theme => ({
    }
 }));
 
-const searchHackathon = () => {
-   //The line below recieves input and labels it as a variable called 'input'
-   let input = document.getElementById("searchHackathon");
-   let filter = input.value.toUpperCase();
-   //eventList is the parent for all the cards 
-   let eventList = document.getElementsByClassName("MuiPaper-root MuiPaper-elevation1 MuiCard-root makeStyles-card-2 MuiPaper-rounded");
-   console.log('this is eventList', eventList);
-   // let span = eventList.getElementsByTagName("div");
-   //this loop will go through each event name and compare them to the search input
-   for (let i = 0; i < eventList.length; i++) {
-       console.log('this is span', eventList);
-       let a = eventList[i].getElementsByTagName("span")[0];
-       console.log('this is a', a);
-       let txtValue = a.textContent || a.innerText;
-       if (txtValue.toUpperCase().indexOf(filter) > -1) {
-         eventList[i].style.display = "";
-       } else {
-         eventList[i].style.display = "none";
-       }
-   };
-};
-
 function Hackathons(props) {
    const classes = useStyles();
    const isFetching = useSelector(state => state.isFetching);
    const dispatch = useDispatch();
    const hackathons = useSelector(state => state.hackathons);
+   const [searchTerm, setSearchTerm] = React.useState('');
 
-   console.log(hackathons, isFetching);
+   const handleChange = event => {
+      setSearchTerm(event.target.value);
+   };
 
    useEffect(() => {
       dispatch(getHackathons());
    }, []);
+
+   const results = !searchTerm.length
+      ? hackathons
+      : hackathons.filter(hackathon =>
+           hackathon.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
 
    if (isFetching || !hackathons) {
       return <h2>Loading Events...</h2>;
@@ -91,35 +73,34 @@ function Hackathons(props) {
 
    return (
       <div>
-         <input id='searchHackathon' 
-            type='text' 
-            onKeyUp={searchHackathon} 
-            placeholder='Search Hackathons'>
-         </input>
+         <input
+            name="searchHackathon"
+            type="text"
+            value={searchTerm}
+            onChange={handleChange}
+            placeholder="Search Hackathons"
+         ></input>
          <div className={classes.cardparent}>
-            {hackathons.map(hackathon => {
+            {results.map(hackathon => {
                return (
                   <Card className={classes.card}>
-                    <Link to={`/hackathon/${hackathon.id}`}>
-                     <CardHeader
-                        title={hackathon.name}
-                        subheader={hackathon.start_date}
-                     />
+                     <Link to={`/hackathon/${hackathon.id}`}>
+                        <CardHeader
+                           title={hackathon.name}
+                           subheader={hackathon.start_date}
+                        />
 
-                     <CardContent>
-                        <Typography
-                           variant="body2"
-                           color="textSecondary"
-                           component="p"
-                        >
-                           {hackathon.description}
-                           <br></br>
-                           {/* is_open join button will be added to 1.1 when we build out a modal for a user to join hackathons */}
-                           {/* {hackathon.is_open ? <button>JOIN</button> : <div className="closedHackathon">closed</div> }  */}
-
-                           
-                        </Typography>
-                     </CardContent>
+                        <CardContent>
+                           <Typography
+                              variant="body2"
+                              color="textSecondary"
+                              component="p"
+                           >
+                              {hackathon.description}
+                              {/* is_open join button will be added to 1.1 when we build out a modal for a user to join hackathons */}
+                              {/* {hackathon.is_open ? <button>JOIN</button> : <div className="closedHackathon">closed</div> }  */}
+                           </Typography>
+                        </CardContent>
                      </Link>
                   </Card>
                );
