@@ -83,9 +83,9 @@ function Carousel() {
 
   return (
     <div className='root'>
-      <Paper square elevation={0} className={classes.header}>
+      <div square elevation={0} className='header'>
         <Typography>{tutorialSteps[activeStep].label}</Typography>
-      </Paper>
+      </div>
       <AutoPlaySwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={activeStep}
@@ -95,7 +95,7 @@ function Carousel() {
         {tutorialSteps.map((step, index) => (
           <div key={step.label}>
             {Math.abs(activeStep - index) <= 2 ? (
-              <img className={classes.img} src={step.imgPath} alt={step.label} />
+              <img className='carouselImage' src={step.imgPath} alt={step.label} />
             ) : null}
           </div>
         ))}

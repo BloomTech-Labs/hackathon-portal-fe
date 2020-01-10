@@ -72,9 +72,9 @@ const Homepage = () => {
                 <Carousel className='carousel'></Carousel>
                 <div className='leftArrow'>></div>
                 <div className='rightArrow'>></div>
-                <div className='blurb2'>Start Date: February 15, 2020
+                {/* <div className='blurb2'>Start Date: February 15, 2020
                   Location: Silicon Valley 
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At urna condimentum mattis pellentesque. Facilisis gravida neque convallis a cras semper.</div>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At urna condimentum mattis pellentesque. Facilisis gravida neque convallis a cras semper.</div> */}
 
                 <div id='openhackathon'>Open Hackathons</div>
                 

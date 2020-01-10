@@ -551,3 +551,34 @@ color: #D0DDFF;
   top: 0%;
   bottom: 0%;
 }
+
+.root {
+
+  border: 3px solid red;
+}
+
+.header {
+  position: absolute;
+  width: 670px;
+  height: 115px;
+  left: 350px;
+  top: 558px;
+  
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 18px;
+  
+  color: #D0DDFF;
+  /* border: 3px solid orange; */
+}
+
+.carouselImage {
+  /* position: absolute; */
+  /* left: 30%;
+  right: 30%;
+  top: 30%;
+  bottom: 30%; */
+  border: 3px solid purple;
+}
