@@ -23,14 +23,6 @@ const Homepage = () => {
            return <h2>Loading Events...</h2>;
         }
 
-               // console.log(hackathons[3].is_open);
-            //   function pickthreeopenhackathons () {
-            //    for(let i = 0 ; i <= hackathons.length ; i++){
-            //       openHackathonsArray.push(hackathons[i].is_open);
-            //    }
-            // }
-            // pickthreeopenhackathons();
-            // console.log('open hackacthons array', openHackathonsArray);
 
     return(
         <div className='Homepage'>
