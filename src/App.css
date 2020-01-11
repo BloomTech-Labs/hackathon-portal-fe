@@ -1,6 +1,7 @@
 /* NOTE: css code for Dashabord */
 .App {
   text-align: center;
+  font-family: 'Roboto', sans-serif;
 }
 
 a {
@@ -81,11 +82,22 @@ a {
 
 header {
   margin-bottom: 5%;
+  box-shadow: -2px 2px 30px rgba(240, 240, 240, 0.1)
 }
 
 .navBar {
   display: flex;
   justify-content: space-between;
+}
+
+.navBar img {
+  margin-left: 20%;
+}
+
+.navBar-span {
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
 }
 
 
@@ -177,5 +189,11 @@ color: #4885E1;
 .profile-hackathon-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* create hackathon form  */
+.createHackathonContainer1 {
+  display: flex;
   justify-content: center;
 }

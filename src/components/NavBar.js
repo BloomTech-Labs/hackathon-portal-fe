@@ -33,7 +33,7 @@ const NavBar = props => {
          )}
 
          {isAuthenticated && (
-            <span className="navBar">
+            <span className="navBar-span">
                <Link className="navBarLink" to="/">
                   Home
                
