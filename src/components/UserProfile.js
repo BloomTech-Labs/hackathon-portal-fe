@@ -5,18 +5,22 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
 import {
    Dialog,
    DialogActions,
    DialogContent,
    DialogTitle,
-   Button,
+   // Button,
    TextField
 } from '@material-ui/core';
 
 // ACTIONS
 import { getUser } from '../actions/actions';
 import { deleteUser } from '../actions/actions';
+import ProfileCard from './ProfileCard';
 
 const UserProfile = props => {
    const dispatch = useDispatch();
@@ -119,61 +123,54 @@ const UserProfile = props => {
    });
 
    return (
-      <div>
-         <div>
-            <h1>
-               {userProfile.first_name} {userProfile.last_name}
-            </h1>
-            <h2>{userProfile.username}</h2>
+      <div className='profile-wrapper'>
+         <div className='profile-container'>
+            <div className='profile-left'>
+               <img id='profile-img' src='https://i.imgflip.com/1slnr0.jpg'></img>
+               <div className='profile-headers'>
+               <h1 id='profile-name'>
+                  {userProfile.first_name} {userProfile.last_name}
+               </h1>
+               <h1 id='profile-username'>{userProfile.username}</h1>
+               </div>
+            </div>
+               <div className='profile-buttons'>
+               {user.id === userProfile.id ? (
+                  <>
+                     <Button  id='profile-edit-btn' variant='outlined' color='#fff' onClick={handleClickOpen}>Edit Profile</Button>
+                     <Button id='profile-delete-btn' variant="outlined" onClick={handleDeleteClick}>Delete Profile</Button>
+                  </>
+               ) : null}
+            </div>
+
          </div>
-         <div>
-            {user.id === userProfile.id ? (
-               <>
-                  <button onClick={handleClickOpen}>Edit Profile</button>
-                  <button onClick={handleDeleteClick}>Delete Profile</button>
-               </>
-            ) : null}
-         </div>
-         <div>
+         
+         <div className='profile-hackathons'>
             <h1>Hackathons</h1>
-            <div>
-               <ol>
+            <div className='profile-hackathon-list'>
                   {presentHackathons.map(hackathon => (
-                     <li key={hackathon.hackathon_id}>
-                        {hackathon.hackathon_name}
-                        <Link to={`/hackathon/${hackathon.hackathon_id}`}>
-                           See more
-                        </Link>
-                        <ul>
-                           {hackathon.team_name ? (
-                              <li>Team: {hackathon.team_name}</li>
-                           ) : null}
-                           <li>Role: {hackathon.user_hackathon_role}</li>
-                        </ul>
-                     </li>
+                     <ProfileCard 
+                     key={hackathon.hackathon_id} 
+                     id={hackathon.hackathon_id}
+                     name={hackathon.hackathon_name}
+                     team_name={hackathon.team_name}
+                     user_role={hackathon.user_hackathon_role}
+                     />
                   ))}
-               </ol>
             </div>
          </div>
-         <div>
+         <div className='profile-hackathons'>
             <h1>Past:</h1>
-            <div>
-               <ol>
+            <div className='profile-hackathon-list'>
                   {pastHackathons.map(hackathon => (
-                     <li key={hackathon.hackathon_id}>
-                        {hackathon.hackathon_name}
-                        <Link to={`/hackathon/${hackathon.hackathon_id}`}>
-                           See more
-                        </Link>
-                        <ul>
-                           {hackathon.team_name ? (
-                              <li>Team: {hackathon.team_name}</li>
-                           ) : null}
-                           <li>Role: {hackathon.user_hackathon_role}</li>
-                        </ul>
-                     </li>
+                     <ProfileCard 
+                     key={hackathon.hackathon_id} 
+                     id={hackathon.hackathon_id}
+                     name={hackathon.hackathon_name}
+                     team_name={hackathon.team_name}
+                     user_role={hackathon.user_hackathon_role}
+                     />
                   ))}
-               </ol>
             </div>
          </div>
          <Dialog
@@ -182,7 +179,7 @@ const UserProfile = props => {
             aria-labelledby="form-dialog-title"
          >
             <DialogTitle id="form-dialog-title">
-               Update user information
+               Update your profile 
             </DialogTitle>
             <DialogContent>
                <TextField
