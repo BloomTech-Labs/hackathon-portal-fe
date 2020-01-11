@@ -64,22 +64,23 @@ export const createHackathon = (
 };
 
 export const editHackathon = (
-    id,
-    org_id,
-    history,
-    hackathonInfo
- ) => async dispatch => {
-    console.log(id, org_id, history, hackathonInfo)
-    dispatch({ type: FETCH_START });
-    (await axiosWithAuth())
-       .put(`/hackathons/${id}/u/${org_id}`, hackathonInfo)
-       .then(response => {
-          dispatch({ type: EDITHACKATHON_SUCCESS });
-          history.push(`/success`, response.data.id);
-       })
-       .catch(error => {
-          dispatch({ type: FETCH_FAILURE, payload: error.response });
-       });
+   id,
+   org_id,
+   history,
+   hackathonInfo
+   ) => async dispatch => {
+   console.log(id, org_id, history, hackathonInfo)
+   dispatch({ type: FETCH_START });
+   (await axiosWithAuth())
+      .put(`/hackathons/${id}/u/${org_id}`, hackathonInfo)
+      .then(response => {
+         console.log(hackathonInfo)
+         dispatch({ type: EDITHACKATHON_SUCCESS });
+         history.push(`/success`, response.data.id);
+      })
+      .catch(error => {
+         dispatch({ type: FETCH_FAILURE, payload: error.response });
+      });
 }
 
 export const deleteHackathon = (id, org_id, history) => async dispatch => {
