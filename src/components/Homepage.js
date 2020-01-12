@@ -6,51 +6,7 @@ import standIn from './images/standIn.jpg';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Carousel from './carousel';
-// import Card from '@material-ui/core/Card';
-// import CardHeader from '@material-ui/core/CardHeader';
-// import CardContent from '@material-ui/core/CardContent';
-// import Typography from '@material-ui/core/Typography';
-// import { red } from '@material-ui/core/colors';
 
-// const useStyles = makeStyles(theme => ({
-//    section: {
-//       display: 'flex',
-//       flexWrap: 'wrap',
-//       justifyContent: 'center'
-//    },
-
-//    paragraph: {
-//       display: 'flex',
-//       justifyContent: 'center',
-//       width: '70%',
-//       textAlign: 'center',
-//       color: 'royalblue'
-//    },
-
-//    liveInformation: {
-//       display: 'flex',
-//    },
-
-//    information: {
-//       display: 'flex',
-//       flexDirection: 'column',
-//       margin: '0% 5%'
-//    },
-
-//    card: {
-      
-//       maxWidth: '30%',
-//       margin: '10%',
-
-//       background: '#1c1c1f',
-//       border: '1px solid #D0DDFF',
-//       boxSizing: 'border-box',
-//       borderRadius: '13.5px',
-//       color: '#D0DDFF',
-
-
-//    },
-// }));
 let openHackathonsArray = []
 
 const Homepage = () => {
@@ -67,14 +23,6 @@ const Homepage = () => {
            return <h2>Loading Events...</h2>;
         }
 
-               // console.log(hackathons[3].is_open);
-            //   function pickthreeopenhackathons () {
-            //    for(let i = 0 ; i <= hackathons.length ; i++){
-            //       openHackathonsArray.push(hackathons[i].is_open);
-            //    }
-            // }
-            // pickthreeopenhackathons();
-            // console.log('open hackacthons array', openHackathonsArray);
 
     return(
         <div className='Homepage'>

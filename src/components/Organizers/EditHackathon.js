@@ -47,20 +47,17 @@ const EditHackathon = props => {
    const [state, setState] = useState({ is_open: true });
    const { loading, user } = useAuth0();
 
-   console.log(hackathon, props.match.params.id);
 
    useEffect(() => {
       dispatch(getSpecificHackathon(props.match.params.id));
    }, []);
    useEffect(() => {
-      if (hackathon) {
-         setStart_date(`${hackathon.start_date}`);
-         setEnd_date(`${hackathon.end_date}`);
-         setState({ is_open: hackathon.is_open });
-      }
-   }, [hackathon]);
-
-   console.log(state.is_open);
+    if(hackathon) {
+      setStart_date(`${hackathon.start_date}`)
+      setEnd_date(`${hackathon.end_date}`)
+      setState({ is_open: hackathon.is_open })
+    }
+   }, [hackathon])
 
    const handlePage1Change = e => {
       setHackathonInfo({ ...hackathonInfo, [e.target.name]: e.target.value });
@@ -107,8 +104,7 @@ const EditHackathon = props => {
          )
       );
    };
-
-   console.log(hackathonInfo);
+   
 
    if (isFetching || !hackathon) {
       return <div>Loading...</div>;

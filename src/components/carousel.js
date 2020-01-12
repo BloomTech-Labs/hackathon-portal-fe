@@ -26,48 +26,15 @@ const tutorialSteps = [
     label: 'Description: Bali, Indonesia',
     imgPath:
       'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80',
-  },
-  // {
-  //   label: 'NeONBRAND Digital Marketing, Las Vegas, United States',
-  //   imgPath:
-  //     'https://images.unsplash.com/photo-1518732714860-b62714ce0c59?auto=format&fit=crop&w=400&h=250&q=60',
-  // },
-  // {
-  //   label: 'Goč, Serbia',
-  //   imgPath:
-  //     'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
-  // },
+  }
 ];
 
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     display: 'flex',
-//     flexDirection: 'column',
-//     justifyContent: 'center',
-//     maxWidth: '70%',
-//     flexGrow: 1,
-//   },
-//   header: {
-//     display: 'flex',
-//     alignItems: 'center',
-//     height: 50,
-//     paddingLeft: theme.spacing(4),
-//     // backgroundColor: theme.palette.background.default,
-//   },
-//   img: {
-//     position: 'absolute',
-//     left: '0%',
-//     right: '0%',
-//     top: '0%',
-//     bottom: '0%',
-//   },
-// }));
 
 function Carousel() {
-  // const classes = useStyles();
+ 
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
-  // const maxSteps = tutorialSteps.length;
+  
 
   const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
@@ -95,7 +62,7 @@ function Carousel() {
         id='imageimage'
       >
         {tutorialSteps.map((step, index) => (
-          <div key={step.label}>
+          <div key={step.label} className='imageContainer'>
             {Math.abs(activeStep - index) <= 2 ? (
               <img className='carouselImage' src={step.imgPath} alt={step.label} />
             ) : null}

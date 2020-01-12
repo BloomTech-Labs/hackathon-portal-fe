@@ -1,53 +1,45 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getHackathons } from '../actions/actions';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getHackathons } from "../actions/actions";
+import { Link } from "react-router-dom";
+import billNye from './images/Frame (1).png';
+import { style } from '../styles/hackathonListStyles'
 
 
 //material UI
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import {
+   makeStyles,
+   Card,
+   CardHeader,
+   CardContent,
+   CardMedia,
+   Typography,
+   TextField
+} from "@material-ui/core";
 
-const useStyles = makeStyles(theme => ({
-   card: {
-      maxWidth: '30%',
-      margin: '10%',
+const useStyles = makeStyles(theme => (style));
 
-      background: '#1c1c1f',
-      border: '1px solid #D0DDFF',
-      boxSizing: 'border-box',
-      borderRadius: '13.5px',
-      color: '#D0DDFF'
-   },
-   cardparent: {
-      display: 'flex',
-      flexWrap: 'wrap'
-   },
-
-   media: {
-      height: 0,
-      paddingTop: '56.25%' // 16:9
-   },
-   expand: {
-      transform: 'rotate(0deg)',
-      marginLeft: 'auto',
-      transition: theme.transitions.create('transform', {
-         duration: theme.transitions.duration.shortest
-      })
-   },
-   expandOpen: {
-      transform: 'rotate(180deg)'
-   },
-   avatar: {
-      backgroundColor: red[500]
-   }
-}));
+const formatDate = date => {
+   const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+   ];
+   const newDate = new Date(date);
+   const y = newDate.getFullYear();
+   const d = newDate.getDate();
+   const m = months[newDate.getMonth()];
+   return `${m} ${d}, ${y}`;
+};
 
 function Hackathons(props) {
    const classes = useStyles();
@@ -67,43 +59,77 @@ function Hackathons(props) {
    const results = !searchTerm.length
       ? hackathons
       : hackathons.filter(hackathon =>
-           hackathon.name.toLowerCase().includes(searchTerm.toLowerCase())
-        );
+         hackathon.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
 
    if (isFetching || !hackathons) {
       return <h2>Loading Events...</h2>;
    }
 
    return (
-      <div>
-         <input
+      <div className={classes.fullList}>
+         <TextField
             name="searchHackathon"
+            fullWidth
+            className={classes.searchBar}
             type="text"
-            value={searchTerm}
-            onChange={handleChange}
             placeholder="Search Hackathons"
-         ></input>
-         <div className={classes.cardparent}>
+            variant="outlined"
+            onChange={handleChange}
+            value={searchTerm}
+            InputProps={{
+               classes: {
+               root: classes.inputOutline,
+               focused: classes.focusedOutline,
+               notchedOutline: classes.notchedOutline
+               }
+            }}
+         ></TextField>
+         <div className={classes.cardParent}>
             {results.map(hackathon => {
                return (
                   <Card className={classes.card}>
-                     <Link to={`/hackathon/${hackathon.id}`}>
-                        <CardHeader
-                           title={hackathon.name}
-                           subheader={hackathon.start_date}
+                     <Link to={`/hackathon/${hackathon.id}`} className={classes.link}>
+                        <CardMedia
+                        className={classes.media}
+                        image={billNye}
                         />
-
-                        <CardContent>
-                           <Typography
-                              variant="body2"
-                              color="textSecondary"
-                              component="p"
-                           >
-                              {hackathon.description}
+                        <div className={classes.content}>
+                           <CardHeader
+                           title={hackathon.name}
+                           className={classes.hackathonName}
+                           titleTypographyProps={{
+                              classes: {
+                                 root: classes.hackathonName
+                              }
+                           }}
+                           />
+                           <CardContent>
+                              <Typography
+                                 variant="body2"
+                                 component="p"
+                                 className={classes.hackathonDescription}
+                              >
+                                 {hackathon.description}
+                              </Typography>
+                              <div className={classes.hackathonInfo}>
+                                 <Typography
+                                    variant="body2"
+                                    component="p"
+                                 >
+                                    {hackathon.location}
+                                 </Typography>
+                                 <Typography
+                                    variant="body2"
+                                    component="p"
+                                 >
+                                    Start Date: {formatDate(hackathon.start_date)}
+                                 </Typography>
+                              </div>
                               {/* is_open join button will be added to 1.1 when we build out a modal for a user to join hackathons */}
                               {/* {hackathon.is_open ? <button>JOIN</button> : <div className="closedHackathon">closed</div> }  */}
-                           </Typography>
-                        </CardContent>
+                           </CardContent>
+                        </div>
                      </Link>
                   </Card>
                );
