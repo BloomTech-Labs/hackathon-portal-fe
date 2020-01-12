@@ -545,9 +545,16 @@ color: #D0DDFF;
   border: 1.35px solid #D0DDFF;
 }
 
+#imageimage {
+  width: 500%;
+  height: 1000px;
+}
+
 .carouselImage {
   display: flex;
   justify-content: center;
+  width: 50%;
+  margin: 0 auto;
   /* border: 3px solid yellow; */
 }
 
@@ -555,11 +562,11 @@ color: #D0DDFF;
   /* display: flex; */
   /* justify-content: center; */
   /* margin-right: 4px; */
-  position: absolute;
-  left: 30%;
-  right: 30%;
-  top: 30%;
-  bottom: 30%;
+  width: 70vw;
+  height: 50vh;
+  border: 3px solid pink;
+  margin-top: 2%;
+  margin-left: 3%;
   /* border: 3px solid purple; */
 }
 
