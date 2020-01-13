@@ -76,10 +76,6 @@ const Homepage = () => {
                <img src="http://lorempixel.com/output/cats-q-c-640-480-13.jpg" />
                <p className="legend">Legend 13</p>
             </div>
-            <div>
-               <img src="http://lorempixel.com/output/cats-q-c-640-480-14.jpg" />
-               <p className="legend">Legend 14</p>
-            </div>
            </Carousel>
            </section>
            <section className='openHackathons'>
