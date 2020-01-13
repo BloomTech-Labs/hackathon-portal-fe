@@ -34,6 +34,27 @@ import {
    KeyboardDatePicker
 } from '@material-ui/pickers';
 
+const useStyles = makeStyles(theme => ({
+   label: {
+      background: '#D0DDFF',
+      borderRadius: '5px',
+      marginBottom: '20px',
+   },
+   root: {
+      padding: '3%',
+      borderRadius: '5px',
+         width: '50%',
+         '& > *': {
+   
+           width: '100%',
+         },
+   },
+   button: {
+      width: '150px',
+      marginTop: '50px'
+   }
+}));
+
 const EditHackathon = props => {
    const dispatch = useDispatch();
    let { register, handleSubmit, errors, clearError } = useForm();
@@ -46,6 +67,7 @@ const EditHackathon = props => {
    const [hackathonInfo, setHackathonInfo] = useState();
    const [state, setState] = useState({ is_open: true });
    const { loading, user } = useAuth0();
+   const classes = useStyles();
 
 
    useEffect(() => {
@@ -114,21 +136,25 @@ const EditHackathon = props => {
       <div className="createHackathonContainer1">
          <form
             onSubmit={handleSubmit(handleFormSubmit)}
+            className={classes.root}
             style={{ width: '50%', margin: '0 auto' }}
          >
             {page1 && (
                <>
-                  <FormLabel>Hackathon info</FormLabel>
+              
 
                   <label className="name">
-                     <FormLabel>Hackathon name</FormLabel>
+                    
 
                      <TextField
+                     color="#FFFFFF"
                         type="text"
                         fullWidth
+                        label="Hackathon Name"
                         name="name"
-                        variant="outlined"
+                        variant="filled"
                         margin="dense"
+                        className={classes.label}
                         defaultValue={hackathon.name}
                         onChange={handlePage1Change}
                         inputRef={register}
@@ -142,16 +168,18 @@ const EditHackathon = props => {
                      />
                   </label>
                   <label className="description">
-                     <FormLabel>Hackathon description</FormLabel>
+                    
 
                      <TextField
+                     className={classes.label}
                         type="text"
                         fullWidth
                         multiline
                         rows="4"
                         name="description"
-                        variant="outlined"
+                        variant="filled"
                         margin="dense"
+                        label='Hackathon Description'
                         defaultValue={hackathon.description}
                         onChange={handlePage1Change}
                         inputRef={register}
@@ -164,15 +192,17 @@ const EditHackathon = props => {
                         }}
                      />
                   </label>
-                  <label className="location">
-                     <FormLabel>Hackathon Location</FormLabel>
+                  <label className="location-input">
+                
 
                      <TextField
+                     className={classes.label}
                         type="text"
                         fullWidth
                         name="location"
-                        variant="outlined"
+                        variant="filled"
                         margin="dense"
+                        label='Hackathon Location'
                         defaultValue={hackathon.location}
                         onChange={handlePage1Change}
                         inputRef={register}
@@ -187,13 +217,15 @@ const EditHackathon = props => {
                   </label>
 
                   <label className="url">
-                     <FormLabel>Event URL</FormLabel>
+                   
 
                      <TextField
+                     className={classes.label}
                         type="text"
                         fullWidth
                         name="url"
-                        variant="outlined"
+                        variant="filled"
+                        label='Hackathon URL'
                         margin="dense"
                         defaultValue={hackathon.url}
                         onChange={handlePage1Change}
@@ -232,18 +264,19 @@ const EditHackathon = props => {
             )}
             {page2 && (
                <>
-                  <FormLabel>Hackathon info</FormLabel>
                   <div>
                      <label className="startDate">
-                        <FormLabel>Event start date</FormLabel>
+                      
 
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardDatePicker
+                           className={classes.label}
                               autoOk
                               fullWidth
                               name="startDate"
                               margin="dense"
-                              inputVariant="outlined"
+                              label='Start date'
+                              inputVariant="filled"
                               format="MM/dd/yyyy"
                               keyboardIcon={
                                  <TodayIcon style={{ color: 'black' }} />
@@ -257,15 +290,17 @@ const EditHackathon = props => {
                         </MuiPickersUtilsProvider>
                      </label>
                      <label className="startTime">
-                        <FormLabel>Event start time</FormLabel>
+                     
 
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardTimePicker
+                            className={classes.label}
                               fullWidth
                               ampm={true}
                               name="startTime"
                               margin="dense"
-                              inputVariant="outlined"
+                              label='Start time'
+                              inputVariant="filled"
                               defaultValue={hackathon.start_date}
                               value={start_date}
                               onChange={handleStartDateChange}
@@ -280,15 +315,17 @@ const EditHackathon = props => {
                   </div>
                   <div>
                      <label className="endDate">
-                        <FormLabel>Event end date</FormLabel>
+                        
 
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardDatePicker
+                           className={classes.label}
                               fullWidth
                               autoOk
                               name="endDate"
                               margin="dense"
-                              inputVariant="outlined"
+                              label='End date'
+                              inputVariant="filled"
                               format="MM/dd/yyyy"
                               keyboardIcon={
                                  <EventIcon style={{ color: 'black' }} />
@@ -301,15 +338,17 @@ const EditHackathon = props => {
                         </MuiPickersUtilsProvider>
                      </label>
                      <label className="endTime">
-                        <FormLabel>Event end time</FormLabel>
+                        
 
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardTimePicker
+                           className={classes.label}
                               fullWidth
                               ampm={true}
                               name="endTime"
                               margin="dense"
-                              inputVariant="outlined"
+                              label='End Time'
+                              inputVariant="filled"
                               value={end_date}
                               onChange={handleEndDateChange}
                               inputRef={register}
@@ -334,7 +373,6 @@ const EditHackathon = props => {
                      </label>
                   </div>
 
-                  <Button type="submit">Submit</Button>
                   <div
                      style={{
                         width: '16%',
@@ -355,6 +393,8 @@ const EditHackathon = props => {
                         style={{ fontSize: '1.5rem', color: 'lightGrey' }}
                      />
                   </div>
+
+                  <Button className={classes.button} color='primary' variant='contained' type="submit">Submit</Button>
                </>
             )}
          </form>
