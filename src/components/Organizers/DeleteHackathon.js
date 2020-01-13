@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { useDispatch } from 'react-redux';
-import Button from '@material-ui/core/Button';
+
 
 // ACTIONS
 import { deleteHackathon } from '../../actions/actions'
