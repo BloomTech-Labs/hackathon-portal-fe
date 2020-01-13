@@ -163,6 +163,10 @@ header {
   padding: 0% 2%;
 }
 
+.control-dots {
+  display: none;
+}
+
 /* user profile  */
 
 .profile-container {

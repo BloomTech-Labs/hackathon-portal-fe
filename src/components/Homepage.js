@@ -2,7 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHackathons } from '../actions/actions';
 import { Link } from 'react-router-dom';
+
 import standIn from './images/standIn.jpg';
+import standIn2 from './images/standIn2.jpg';
 
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
@@ -25,56 +27,28 @@ const Homepage = () => {
            <section>
            <Carousel autoPlay>
             <div>
-               <img src="http://lorempixel.com/output/cats-q-c-640-480-1.jpg" />
-               <p className="legend">Legend 1</p>
+               <img src={standIn2} />
+               <p className="legend">
+                  <div>Start Date: {hackathons[15].start_date}</div>
+                  <div>Location: {hackathons[15].location}</div>
+                  <div>Description: {hackathons[15].description}</div>
+               </p>
             </div>
             <div>
-               <img src="http://lorempixel.com/output/cats-q-c-640-480-2.jpg" />
-               <p className="legend">Legend 2</p>
+               <img src={standIn2} />
+               <p className="legend">
+                  <div>Start Date: {hackathons[5].start_date}</div>
+                  <div>Location: {hackathons[5].location}</div>
+                  <div>Description: {hackathons[5].description}</div>
+               </p>
             </div>
             <div>
-               <img src="http://lorempixel.com/output/cats-q-c-640-480-3.jpg" />
-               <p className="legend">Legend 3</p>
-            </div>
-            <div>
-               <img src="http://lorempixel.com/output/cats-q-c-640-480-4.jpg" />
-               <p className="legend">Legend 4</p>
-            </div>
-            <div>
-               <img src="http://lorempixel.com/output/cats-q-c-640-480-5.jpg" />
-               <p className="legend">Legend 5</p>
-            </div>
-            <div>
-               <img src="http://lorempixel.com/output/cats-q-c-640-480-6.jpg" />
-               <p className="legend">Legend 6</p>
-            </div>
-            <div>
-               <img src="http://lorempixel.com/output/cats-q-c-640-480-7.jpg" />
-               <p className="legend">Legend 7</p>
-            </div>
-            <div>
-               <img src="http://lorempixel.com/output/cats-q-c-640-480-8.jpg" />
-               <p className="legend">Legend 8</p>
-            </div>
-            <div>
-               <img src="http://lorempixel.com/output/cats-q-c-640-480-9.jpg" />
-               <p className="legend">Legend 9</p>
-            </div>
-            <div>
-               <img src="http://lorempixel.com/output/cats-q-c-640-480-10.jpg" />
-               <p className="legend">Legend 10</p>
-            </div>
-            <div>
-               <img src="http://lorempixel.com/output/cats-q-c-640-480-11.jpg" />
-               <p className="legend">Legend 11</p>
-            </div>
-            <div>
-               <img src="http://lorempixel.com/output/cats-q-c-640-480-12.jpg" />
-               <p className="legend">Legend 12</p>
-            </div>
-            <div>
-               <img src="http://lorempixel.com/output/cats-q-c-640-480-13.jpg" />
-               <p className="legend">Legend 13</p>
+               <img src={standIn2} />
+               <p className="legend">
+                  <div>Start Date: {hackathons[10].start_date}</div>
+                  <div>Location: {hackathons[10].location}</div>
+                  <div>Description: {hackathons[10].description}</div>
+               </p>
             </div>
            </Carousel>
            </section>
