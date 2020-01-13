@@ -64,7 +64,12 @@ const Homepage = () => {
               </div>
            </section>
            <section className='footer'>
-            <div></div>
+            <div className='homepageLinks'>
+               <span className='homepageLink'>home</span>
+               <span className='homepageLink'>hackathons</span>
+               <span className='homepageLink'>log in</span>
+               <span className='homepageLink'>register</span>
+            </div>
            </section>
         </div>
     )
