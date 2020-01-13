@@ -20,15 +20,18 @@ const NavBar = props => {
 
    return (
       <div className="navBar">
-         <Link to='/'>
+         <Link to="/">
             <img id="logo" src={HackathonLogo} alt="logo"></img>
          </Link>
-        
+
          {!isAuthenticated && (
             <>
-               <Link to="/">Home</Link>
-
-               <button onClick={() => loginWithRedirect({})}>Log in</button>
+               <Link
+                  className="navBarLink"
+                  onClick={() => loginWithRedirect({})}
+               >
+                  Log in
+               </Link>
             </>
          )}
 
@@ -36,7 +39,6 @@ const NavBar = props => {
             <span className="navBar-span">
                <Link className="navBarLink" to="/">
                   Home
-               
                </Link>
 
                <Link className="navBarLink" to="/hackathons">
