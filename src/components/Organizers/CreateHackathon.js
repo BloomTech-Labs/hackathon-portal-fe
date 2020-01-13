@@ -183,7 +183,7 @@ const CreateHackathon = props => {
                         }}
                      />
                   </label>
-                  <label className="location">
+                  <label className="location-input">
                      {/* <FormLabel className={classes.label}>Hackathon Location</FormLabel> */}
 
                      <TextField
