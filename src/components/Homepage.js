@@ -37,12 +37,9 @@ const Homepage = () => {
            return <h2>Loading Events...</h2>;
         }
 
-
     return(
         <div className='Homepage'>
                 <Carousel className='carousel'></Carousel>
-                {/* <div className='leftArrow' onClick={handleBack, console.log('yeah this was clicked')} disabled={activeStep === 2}>></div>
-                <div className='rightArrow' onClick={handleNext} disabled={activeStep === 0}>></div> */}
 
                 <div id='openhackathon'>Open Hackathons</div>
                 
