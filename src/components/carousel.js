@@ -30,7 +30,6 @@ const tutorialSteps = [
 ];
 
 
-
 function Carousel() {
  
   const theme = useTheme();
@@ -78,15 +77,15 @@ function Carousel() {
       activeStep={activeStep}
       id='tripledots'
       nextButton={
-        <Button className='rightArrow' onClick={handleNext} disabled={activeStep === 2}>
-          >
-          {/* {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />} */}
+        <Button id="button1" size="small" onClick={handleNext} disabled={activeStep === 2}>
+          Next
+          {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
         </Button>
       }
       backButton={
-        <Button className="leftArrow" onClick={handleBack} disabled={activeStep === 0}>
-          {/* {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />} */}
-          >
+        <Button id="button2" size="small" onClick={handleBack} disabled={activeStep === 0}>
+          {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+          Back
         </Button>
       }
     />
