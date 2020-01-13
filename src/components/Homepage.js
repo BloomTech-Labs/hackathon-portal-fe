@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getHackathons } from '../actions/actions';
+import { getHackathons, getHackers } from '../actions/actions';
 import { Link } from 'react-router-dom';
 
 import standIn from './images/standIn.jpg';
@@ -13,14 +13,26 @@ const Homepage = () => {
         const isFetching = useSelector(state => state.isFetching);
         const dispatch = useDispatch();
         const hackathons = useSelector(state => state.hackathons);
+        const hackers = useSelector(state => state.hackers);
+
+        
      
         useEffect(() => {
            dispatch(getHackathons());
+
+        }, []);
+
+
+        useEffect(() => {
+         dispatch(getHackers());
+         
         }, []);
      
-        if (isFetching || !hackathons[0]) {
+        if (isFetching || !hackathons[0] || !hackers) {
            return <h2>Loading Events...</h2>;
         }
+       
+      //   console.log(hackers)
 
     return(
         <div className='Homepage'>
@@ -29,31 +41,34 @@ const Homepage = () => {
             <div>
                <img src={standIn2} />
                <p className="legend">
-                  <div>Start Date: {hackathons[15].start_date}</div>
-                  <div>Location: {hackathons[15].location}</div>
-                  <div>Description: {hackathons[15].description}</div>
+               <div>Name: {hackathons[0].name}</div>
+                  <div>Start Date: {hackathons[0].start_date}</div>
+                  <div>Location: {hackathons[0].location}</div>
+                  <div>Description: {hackathons[0].description}</div>
                </p>
             </div>
             <div>
                <img src={standIn2} />
                <p className="legend">
-                  <div>Start Date: {hackathons[5].start_date}</div>
-                  <div>Location: {hackathons[5].location}</div>
-                  <div>Description: {hackathons[5].description}</div>
+               <div>Name: {hackathons[1].name}</div>
+                  <div>Start Date: {hackathons[1].start_date}</div>
+                  <div>Location: {hackathons[1].location}</div>
+                  <div>Description: {hackathons[1].description}</div>
                </p>
             </div>
             <div>
                <img src={standIn2} />
                <p className="legend">
-                  <div>Start Date: {hackathons[10].start_date}</div>
-                  <div>Location: {hackathons[10].location}</div>
-                  <div>Description: {hackathons[10].description}</div>
+               <div>Name: {hackathons[2].name}</div>
+                  <div>Start Date: {hackathons[2].start_date}</div>
+                  <div>Location: {hackathons[2].location}</div>
+                  <div>Description: {hackathons[2].description}</div>
                </p>
             </div>
            </Carousel>
            </section>
-           <section className='openHackathons'>
-              <h2>Open Hackathons</h2>
+           {/* <section className='openHackathons'>
+              <h2>Featured Hackathons</h2>
               <div className='hackathonCards'>
                   <div className='hackathonCard'>
                      <img className='hackathonImage'src={standIn} alt='hackathon image'></img>
@@ -71,7 +86,7 @@ const Homepage = () => {
                      <p>{hackathons[2].location}</p>
                   </div>
               </div>
-           </section>
+           </section> */}
            <section className='blurb'>
                <p className='test'>Hackathon Portal is the hub for everything hackathon. Whether you are coordinating a hackathon, judging a project, or participating, Hackathon Portal is the best way to stay up to date on the event's activity.</p>
            </section>
@@ -82,23 +97,23 @@ const Homepage = () => {
                   <p>Hackathons</p> 
                  </div>
                  <div className='displayInfo'>
-                  <h1>3500</h1>
+                  <h1>{hackers.length}</h1>
                   <p>Users</p> 
                  </div>
-                 <div className='displayInfo'>
+                 {/* <div className='displayInfo'>
                   <h1>750</h1>
                   <p>Projects judged</p> 
-                 </div>
+                 </div> */}
               </div>
            </section>
-           <section className='footer'>
+           {/* <section className='footer'>
             <div className='homepageLinks'>
                <span className='homepageLink'>home</span>
                <span className='homepageLink'>hackathons</span>
                <span className='homepageLink'>log in</span>
                <span className='homepageLink'>register</span>
             </div>
-           </section>
+           </section> */}
         </div>
     )
 }
