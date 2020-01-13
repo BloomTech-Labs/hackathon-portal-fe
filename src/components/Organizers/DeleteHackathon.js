@@ -30,9 +30,9 @@ export default function DeleteHackathonModal(props) {
 
   return (
     <div>
-      <button type="button" onClick={handleDeleteClick}>
+      <Button id ='single-hackathon-delete-btn' type="button" variant='outlined' onClick={handleDeleteClick}>
         DELETE
-      </button>
+      </Button>
 
       <Dialog
             open={deleteOpen}
