@@ -78,7 +78,7 @@ const Homepage = () => {
            <section className='homePageDataDisplay'>
               <div className='display'>
                  <div className='displayInfo'>
-                  <h1>35</h1>
+                  <h1>{hackathons.length}</h1>
                   <p>Hackathons</p> 
                  </div>
                  <div className='displayInfo'>
