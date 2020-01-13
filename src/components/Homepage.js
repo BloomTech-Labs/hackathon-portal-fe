@@ -10,20 +10,6 @@ import Carousel from './carousel';
 let openHackathonsArray = []
 
 const Homepage = () => {
-   const [activeStep, setActiveStep] = React.useState(0);
-   // const maxSteps = tutorialSteps.length;
- 
-   const handleNext = () => {
-     setActiveStep(prevActiveStep => prevActiveStep + 1);
-   };
- 
-   const handleBack = () => {
-     setActiveStep(prevActiveStep => prevActiveStep - 1);
-   };
- 
-   const handleStepChange = step => {
-     setActiveStep(step);
-   };
       //   const classes = useStyles();
         const isFetching = useSelector(state => state.isFetching);
         const dispatch = useDispatch();
@@ -37,9 +23,12 @@ const Homepage = () => {
            return <h2>Loading Events...</h2>;
         }
 
+
     return(
         <div className='Homepage'>
                 <Carousel className='carousel'></Carousel>
+                <div className='leftArrow'>></div>
+                <div className='rightArrow'>></div>
 
                 <div id='openhackathon'>Open Hackathons</div>
                 
