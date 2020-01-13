@@ -31,7 +31,6 @@ function App(props) {
                <NavBar />
             </header>
             <Switch>
-               <Route exact path="/" component={Homepage} />
                <Route exact path="/hackathons" component={Hackathons} />
                <PrivateRoute path="/profile" component={UserProfile} />
                <PrivateRoute

@@ -20,7 +20,10 @@ const NavBar = props => {
 
    return (
       <div className="navBar">
-         <img id="logo" src={HackathonLogo} alt="logo" />
+         <Link to='/'>
+            <img id="logo" src={HackathonLogo} alt="logo"></img>
+         </Link>
+        
          {!isAuthenticated && (
             <>
                <Link to="/">Home</Link>
@@ -30,37 +33,22 @@ const NavBar = props => {
          )}
 
          {isAuthenticated && (
-            <span className="navBar">
+            <span className="navBar-span">
                <Link className="navBarLink" to="/">
                   Home
-                  <FiberManualRecordIcon
-                     className="dot"
-                     style={{ fontSize: 10 }}
-                  />
+               
                </Link>
 
                <Link className="navBarLink" to="/hackathons">
                   Hackathons
-                  <FiberManualRecordIcon
-                     className="dot"
-                     style={{ fontSize: 10 }}
-                  />
                </Link>
 
                <Link className="navBarLink" to={`/profile`}>
                   Profile
-                  <FiberManualRecordIcon
-                     className="dot"
-                     style={{ fontSize: 10 }}
-                  />
                </Link>
 
                <Link className="navBarLink" to="/hackathon/create">
                   Create A Hackathon
-                  <FiberManualRecordIcon
-                     className="dot"
-                     style={{ fontSize: 10 }}
-                  />
                </Link>
                <Link className="navBarLink" onClick={() => logout()}>
                   Log out

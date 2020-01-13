@@ -1,9 +1,12 @@
+html {
+  box-sizing: border-box;
+}
 body {
-  margin: 2%;
   background-image: url("./components/images/background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   color: #d0ddff;
+  margin: 0 auto;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;

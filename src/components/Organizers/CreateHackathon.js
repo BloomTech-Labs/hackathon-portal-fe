@@ -8,10 +8,10 @@ import { createHackathon } from '../../actions/actions';
 
 // STYLE
 import 'date-fns';
+import TextField from '@material-ui/core/TextField';
 import {
    Button,
    FormLabel,
-   TextField,
    Typography,
    InputAdornment,
    makeStyles,
@@ -34,7 +34,26 @@ import {
    KeyboardDatePicker
 } from '@material-ui/pickers';
 
-// const useStyles = makeStyles(theme => ({}));
+const useStyles = makeStyles(theme => ({
+   label: {
+      background: '#D0DDFF',
+      borderRadius: '5px',
+      marginBottom: '20px',
+   },
+   root: {
+      padding: '3%',
+      borderRadius: '5px',
+         width: '50%',
+         '& > *': {
+         //   margin: theme.spacing(1),
+           width: '100%',
+         },
+   },
+   button: {
+      width: '150px',
+      marginTop: '50px'
+   }
+}));
 
 const CreateHackathon = props => {
    const [page1, setPage1] = useState(true);
@@ -54,6 +73,7 @@ const CreateHackathon = props => {
    const [state, setState] = useState({ is_open: true });
    const { loading, user } = useAuth0();
    const dispatch = useDispatch();
+   const classes = useStyles();
 
    let { register, handleSubmit, errors, clearError } = useForm();
 
@@ -107,44 +127,49 @@ const CreateHackathon = props => {
    return (
       <div className="createHackathonContainer1">
          <form
+            noValidate autoComplete="off"
+            className={classes.root}
             onSubmit={handleSubmit(handleFormSubmit)}
-            style={{ width: '50%', margin: '0 auto' }}
          >
             {page1 && (
                <>
-                  <FormLabel>Hackathon info</FormLabel>
+                  {/* <FormLabel>Hackathon info</FormLabel> */}
 
                   <label className="name">
-                     <FormLabel>Hackathon name</FormLabel>
-
+                     {/* <FormLabel className={classes.label}>Hackathon name</FormLabel> */}
                      <TextField
+                        color="#FFFFFF"
                         type="text"
                         fullWidth
+                        label="Hackathon Name"
                         name="name"
-                        variant="outlined"
+                        variant="filled"
                         margin="dense"
+                        className={classes.label}
                         defaultValue={page1Info.name}
                         onChange={handlePage1Change}
                         inputRef={register}
                         InputProps={{
                            startAdornment: (
                               <InputAdornment position="start">
-                                 <PersonIcon />
+                                 {/* <PersonIcon /> */}
                               </InputAdornment>
                            )
                         }}
                      />
-                  </label>
-                  <label className="description">
-                     <FormLabel>Hackathon description</FormLabel>
+              
+               
+                     {/* <FormLabel className={classes.label}>Hackathon description</FormLabel> */}
 
                      <TextField
+                       className={classes.label}
                         type="text"
                         fullWidth
                         multiline
                         rows="4"
                         name="description"
-                        variant="outlined"
+                        variant="filled"
+                        label='Hackathon Description'
                         margin="dense"
                         defaultValue={page1Info.description}
                         onChange={handlePage1Change}
@@ -158,15 +183,17 @@ const CreateHackathon = props => {
                         }}
                      />
                   </label>
-                  <label className="location">
-                     <FormLabel>Hackathon Location</FormLabel>
+                  <label className="location-input">
+                     {/* <FormLabel className={classes.label}>Hackathon Location</FormLabel> */}
 
                      <TextField
+                       className={classes.label}
                         type="text"
                         fullWidth
                         name="location"
-                        variant="outlined"
+                        variant="filled"
                         margin="dense"
+                        label='Hackathon Location'
                         defaultValue={page1Info.location}
                         onChange={handlePage1Change}
                         inputRef={register}
@@ -180,13 +207,15 @@ const CreateHackathon = props => {
                      />
                   </label>
                   <label className="url">
-                     <FormLabel>Event URL</FormLabel>
+                     {/* <FormLabel className={classes.label}>Event URL</FormLabel> */}
 
                      <TextField
+                       className={classes.label}
                         type="text"
                         fullWidth
                         name="url"
-                        variant="outlined"
+                        variant="filled"
+                        label='Hackathon URL'
                         margin="dense"
                         defaultValue={page1Info.url}
                         onChange={handlePage1Change}
@@ -206,6 +235,7 @@ const CreateHackathon = props => {
                         width: '16%',
                         display: 'flex',
                         margin: '0 auto',
+                        marginTop: '3%',
                         justifyContent: 'space-between'
                      }}
                   >
@@ -225,18 +255,19 @@ const CreateHackathon = props => {
             )}
             {page2 && (
                <>
-                  <FormLabel>Hackathon info</FormLabel>
                   <div>
                      <label className="startDate">
-                        <FormLabel>Event start date</FormLabel>
+                        {/* <FormLabel >Event start date</FormLabel> */}
 
-                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <MuiPickersUtilsProvider  utils={DateFnsUtils}>
                            <KeyboardDatePicker
+                           className={classes.label}
                               autoOk
                               fullWidth
                               name="startDate"
                               margin="dense"
-                              inputVariant="outlined"
+                              label='Start date'
+                              inputVariant="filled"
                               format="MM/dd/yyyy"
                               keyboardIcon={
                                  <TodayIcon style={{ color: 'black' }} />
@@ -249,15 +280,17 @@ const CreateHackathon = props => {
                         </MuiPickersUtilsProvider>
                      </label>
                      <label className="startTime">
-                        <FormLabel>Event start time</FormLabel>
+                        {/* <FormLabel className={classes.label} >Event start time</FormLabel> */}
 
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardTimePicker
+                           className={classes.label}
                               fullWidth
                               ampm={true}
                               name="startTime"
                               margin="dense"
-                              inputVariant="outlined"
+                              label='Start time'
+                              inputVariant="filled"
                               value={start_date}
                               onChange={handleStartDateChange}
                               inputRef={register}
@@ -271,15 +304,17 @@ const CreateHackathon = props => {
                   </div>
                   <div>
                      <label className="endDate">
-                        <FormLabel>Event end date</FormLabel>
+                        {/* <FormLabel className={classes.label} >Event end date</FormLabel> */}
 
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardDatePicker
+                           className={classes.label}
                               fullWidth
                               autoOk
                               name="endDate"
+                              label='End date'
                               margin="dense"
-                              inputVariant="outlined"
+                              inputVariant="filled"
                               format="MM/dd/yyyy"
                               keyboardIcon={
                                  <EventIcon style={{ color: 'black' }} />
@@ -292,15 +327,17 @@ const CreateHackathon = props => {
                         </MuiPickersUtilsProvider>
                      </label>
                      <label className="endTime">
-                        <FormLabel>Event end time</FormLabel>
+                        {/* <FormLabel className={classes.label} >Event end time</FormLabel> */}
 
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardTimePicker
+                              className={classes.label}
                               fullWidth
                               ampm={true}
                               name="endTime"
                               margin="dense"
-                              inputVariant="outlined"
+                              label='End Time'
+                              inputVariant="filled"
                               value={end_date}
                               onChange={handleEndDateChange}
                               inputRef={register}
@@ -326,7 +363,7 @@ const CreateHackathon = props => {
                      </label>
                   </div>
 
-                  <Button type="submit">Submit</Button>
+                  
                   <div
                      style={{
                         width: '16%',
@@ -347,6 +384,9 @@ const CreateHackathon = props => {
                         style={{ fontSize: '1.5rem', color: 'lightGrey' }}
                      />
                   </div>
+
+                  <Button className={classes.button} color='primary' variant='contained' type="submit">Submit</Button>
+
                </>
             )}
          </form>
