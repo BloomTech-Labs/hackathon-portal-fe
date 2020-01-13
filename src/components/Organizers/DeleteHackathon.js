@@ -4,6 +4,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import { useDispatch } from 'react-redux';
+import Button from '@material-ui/core/Button';
 
 // ACTIONS
 import { deleteHackathon } from '../../actions/actions'
@@ -37,9 +38,9 @@ export default function DeleteHackathonModal(props) {
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
+      <Button id='single-hackathon-delete-btn' type="button" variant='outlined' color='#fff' onClick={handleOpen}>
         DELETE
-      </button>
+      </Button>
       <Modal
         aria-labelledby="delete-hackathon"
         className={classes.modal}

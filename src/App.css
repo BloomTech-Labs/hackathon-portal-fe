@@ -78,7 +78,7 @@ a {
   margin-bottom: 3%;
 }
 
-/*navBar styling*/
+           /*navBar */
 
 header {
   margin-bottom: 5%;
@@ -115,7 +115,7 @@ header {
   padding: 10%;
 }
 
-/* homepage css */
+           /* homepage css */
 
 #openhackathon {
   position: absolute;
@@ -654,7 +654,9 @@ color: #D0DDFF;
 .hackathonImage {
   height: 271px;
   width: 363px;
-/* user profile  */
+
+
+           /* user profile  */
 }
 
 .profile-container {
@@ -737,3 +739,108 @@ color: #4885E1;
   display: flex;
   justify-content: center;
 }
+
+
+            /* single hackathon styling*/
+
+.single-hackathon-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin-left: 12%;
+}
+
+.single-hackathon-title {
+display: flex;
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 45px;
+color: #D0DDFF;
+}
+
+.single-hackathon-close-btn-container {
+display: flex;
+margin-left: 83%;
+
+}
+#single-hackathon-close-btn {
+color: #d0ddff;;
+border: 1px solid #d0ddff;
+
+}
+
+.single-hackathon-description {
+display: flex;
+width: 35%;
+flex-wrap: wrap;
+flex-direction: column;
+text-align: left;
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 33px;
+color: #D0DDFF;
+
+
+}
+
+
+
+.single-hackathon-dates {
+display: flex;
+text-align: left;
+justify-content: flex-start;
+flex-direction: column;
+width: 80%;
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 30px;
+line-height: 29px;
+color: #4885E1;
+margin-top: 6%;
+}
+
+.single-hackathon-crud-btns-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 80%;
+ 
+
+}
+#single-hackathon-delete-btn {
+  color: rgb(255, 134, 134);
+  border: 1px solid;
+  margin-top: 4%;
+}
+#single-hackathon-crud-btn {
+  color: #d0ddff;;
+  border: 1px solid #d0ddff;
+  margin-top: 4%;
+}
+
+.single-hackathon-participants {
+display: flex;
+flex-direction: column;
+text-align: left;
+justify-content: flex-start;
+width: 50%;
+color: #4885E1;
+}
+
+.admins-parent {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  text-align: left;
+}
+.single-hackathon-admins {
+
+  text-align: left;
+  width: 40%;
+  margin-bottom: 3%;
+  border-radius: 3%;
+  margin-right: 0.8%;
+}
+
