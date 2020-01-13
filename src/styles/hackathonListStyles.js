@@ -59,6 +59,7 @@ export const style = {
     textDecoration: 'none'
   },
   content: {
-    padding: '0 5%'
+    padding: '0 5%',
+    textAlign: 'left'
   }
 }

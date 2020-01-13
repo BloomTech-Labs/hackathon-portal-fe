@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
+import Button from '@material-ui/core/Button';
 
 
 // COMPONENTS
@@ -74,72 +75,79 @@ const SinglePage = props => {
       return <div>Loading...</div>;
    }
    return (
-      <div>
-         <h2>{hackathon.name}</h2>
+      <div className='single-hackathon-container'>
+         <div className='single-hackathon-title'>
+               <h2>{hackathon.name}</h2>
+         </div>
 
-         {user.id === hackathon.organizer_id && (
-            <>
-               {!hackathon.is_open ? (
-                  <button type="button" onClick={()=>handleIsOpen()}>OPEN</button>
-               ) : (
-                  
-                  <button type="button" onClick={()=>handleIsOpen()}>CLOSE</button>
+         <div className='single-hackathon-close-btn-container'>
+               {user.id === hackathon.organizer_id && (
+                  <>
+                     {!hackathon.is_open ? (
+                        <Button id='single-hackathon-close-btn' 
+                        type="button" variant='outlined' color='#fff' onClick={()=>handleIsOpen()}>OPEN HACKATHON</Button>
+                     ) : (
+                        
+                        <Button id='single-hackathon-close-btn'
+                        type="button" variant='outlined' color='#fff' onClick={()=>handleIsOpen()}>CLOSE HACKATHON</Button>
+                     )}
+                  </>
+
                )}
-            </>
+         </div>
+         
+            <div className='single-hackathon-description'>
+                  <Typography variant='h4'>Description:</Typography>
+                  <Typography variant='h5'>{hackathon.description}
+                  </Typography>
+            </div>
+         
 
-         )}
+        
+            <div className='single-hackathon-dates'>
+                  <Typography variant='h5'>Start date: {formatDate(hackathon.start_date)}</Typography>
+      
+                  <Typography variant='h5'>End Date: {formatDate(hackathon.end_date)}</Typography>
+            </div>
+         
 
-         <h4>Description:</h4>
-         <p>{hackathon.description}</p>
-         <h4>Start date:</h4>
-         <p>{formatDate(hackathon.start_date)}</p>
-         <h4>End date:</h4>
-         <p>{formatDate(hackathon.end_date)}</p>
-         {user.id === hackathon.organizer_id && (
-            <>
-               <Link to={`/hackathon/edit/${hackathon.id}`}><button>EDIT</button></Link>
-               <DeleteHackathon id={hackathon.id} org_id={hackathon.organizer_id} history={props.history} />
-            </>
-         )}
-         <h4>Participants:</h4>
-         {hackathon.teams[0] ? (
-            <p>
-               {hackathon.teams
-                  .map(team => {
-                     return team.devs.length;
-                  })
-                  .reduce((acc, curr) => acc + curr) +
-                  hackathon.individual_devs.length}
-            </p>
-         ) : (
-            <p>{0 + hackathon.individual_devs.length}</p>
-         )}
-         <h4>Admins</h4>
-         {hackathon.admins.map((admin, index) => {
-            return (
-               <div key={index}>
-                  <p>{admin.username}</p>
-                  <p>{admin.user_hackathon_role}</p>
-               </div>
-            );
-         })}
-         <h4>Teams</h4>
-         {hackathon.teams[0] ? (
-            hackathon.teams.map((team, index) => {
-               console.log(team);
-               return (
-                  <div key={index}>
-                     <p>{team.team_name}</p>
-                     <p>members: {team.devs.length}</p>
+         <div className='single-hackathon-crud-btns-container'>
+               {user.id === hackathon.organizer_id && (
+                  <div className='single-hackathon-crud-btns'>
+                     <Link to={`/hackathon/edit/${hackathon.id}`}><Button id='single-hackathon-crud-btn'>EDIT</Button></Link>
+                     <DeleteHackathon id={hackathon.id} org_id={hackathon.organizer_id} history={props.history} />
                   </div>
-               );
-            })
-         ) : (
-            <p>No teams</p>
-         )}
-         <h4>
-            Individual participants ({hackathon.individual_devs.length})
-         </h4>
+               )}
+         </div>
+
+         <div className='single-hackathon-participants'>
+               <Typography variant='h4'>Participants:</Typography>
+               {hackathon.teams[0] ? (
+                  <Typography variant='body1'>
+                     {hackathon.teams
+                        .map(team => {
+                           return team.devs.length;
+                        })
+                        .reduce((acc, curr) => acc + curr) +
+                        hackathon.individual_devs.length}
+                  </Typography>
+               ) : (
+                  <p>{0 + hackathon.individual_devs.length}</p>
+               )}
+         </div>
+         
+         <div className='admins-parent'>
+               <Typography variant='h4'>Admins:</Typography>
+                     {hackathon.admins.map((admin, index) => {
+                        return (
+                           <div className='single-hackathon-admins'
+                              key={index}>
+                              <p>{admin.username}</p>
+                              <p>{admin.user_hackathon_role}</p>
+                           </div>
+                        );
+                     })}
+         </div>
       </div>
    );
 };
