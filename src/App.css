@@ -730,10 +730,17 @@ color: #4885E1;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  width: 75%;
 }
 
 /* create hackathon form  */
 .createHackathonContainer1 {
   display: flex;
   justify-content: center;
+}
+
+.profile-hackathons {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
