@@ -577,10 +577,11 @@ color: #D0DDFF;
   right: 30%;
   top: 30%;
   bottom: 30%; */
-  width: 100vw;
-  height: 75vh;
+  width: 70vw;
+  height: 50vh;
   border: 3px solid pink;
-  margin-top: 2%
+  margin-top: 2%;
+  margin-left: 3%;
 }
 
 .header {
