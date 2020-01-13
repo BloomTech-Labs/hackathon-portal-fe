@@ -10,6 +10,7 @@ import {
 import Button from '@material-ui/core/Button';
 import { useDispatch } from 'react-redux';
 
+
 // ACTIONS
 import { deleteHackathon } from '../../actions/actions'
 
@@ -29,9 +30,9 @@ export default function DeleteHackathonModal(props) {
 
   return (
     <div>
-      <button type="button" onClick={handleDeleteClick}>
+      <Button id ='single-hackathon-delete-btn' type="button" variant='outlined' onClick={handleDeleteClick}>
         DELETE
-      </button>
+      </Button>
 
       <Dialog
             open={deleteOpen}

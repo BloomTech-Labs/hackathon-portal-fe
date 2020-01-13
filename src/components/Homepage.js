@@ -19,20 +19,18 @@ const Homepage = () => {
      
         useEffect(() => {
            dispatch(getHackathons());
-
         }, []);
 
 
         useEffect(() => {
          dispatch(getHackers());
-         
         }, []);
      
-        if (isFetching || !hackathons[0] || !hackers) {
+        if (isFetching || !hackathons || !hackers) {
            return <h2>Loading Events...</h2>;
         }
        
-      //   console.log(hackers)
+     
 
     return(
         <div className='Homepage'>
@@ -41,10 +39,10 @@ const Homepage = () => {
             <div>
                <img src={standIn2} />
                <p className="legend">
-               <div>Name: {hackathons[0].name}</div>
-                  <div>Start Date: {hackathons[0].start_date}</div>
-                  <div>Location: {hackathons[0].location}</div>
-                  <div>Description: {hackathons[0].description}</div>
+               <div>Name: {hackathons[3].name}</div>
+                  <div>Start Date: {hackathons[3].start_date}</div>
+                  <div>Location: {hackathons[3].location}</div>
+                  <div>Description: {hackathons[3].description}</div>
                </p>
             </div>
             <div>
