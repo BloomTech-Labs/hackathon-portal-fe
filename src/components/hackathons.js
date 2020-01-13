@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getHackathons } from "../actions/actions";
-import { Link } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getHackathons } from '../actions/actions';
+import { Link } from 'react-router-dom';
 import billNye from './images/Frame (1).png';
-import { style } from '../styles/hackathonListStyles'
-
+import { style } from '../styles/hackathonListStyles';
 
 //material UI
 import {
@@ -15,24 +14,24 @@ import {
    CardMedia,
    Typography,
    TextField
-} from "@material-ui/core";
+} from '@material-ui/core';
 
-const useStyles = makeStyles(theme => (style));
+const useStyles = makeStyles(theme => style);
 
 const formatDate = date => {
    const months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
    ];
    const newDate = new Date(date);
    const y = newDate.getFullYear();
@@ -59,8 +58,8 @@ function Hackathons(props) {
    const results = !searchTerm.length
       ? hackathons
       : hackathons.filter(hackathon =>
-         hackathon.name.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+           hackathon.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
 
    if (isFetching || !hackathons) {
       return <h2>Loading Events...</h2>;
@@ -79,9 +78,9 @@ function Hackathons(props) {
             value={searchTerm}
             InputProps={{
                classes: {
-               root: classes.inputOutline,
-               focused: classes.focusedOutline,
-               notchedOutline: classes.notchedOutline
+                  root: classes.inputOutline,
+                  focused: classes.focusedOutline,
+                  notchedOutline: classes.notchedOutline
                }
             }}
          ></TextField>
@@ -89,20 +88,20 @@ function Hackathons(props) {
             {results.map(hackathon => {
                return (
                   <Card className={classes.card}>
-                     <Link to={`/hackathon/${hackathon.id}`} className={classes.link}>
-                        <CardMedia
-                        className={classes.media}
-                        image={billNye}
-                        />
+                     <Link
+                        to={`/hackathon/${hackathon.id}`}
+                        className={classes.link}
+                     >
+                        <CardMedia className={classes.media} image={billNye} />
                         <div className={classes.content}>
                            <CardHeader
-                           title={hackathon.name}
-                           className={classes.hackathonName}
-                           titleTypographyProps={{
-                              classes: {
-                                 root: classes.hackathonName
-                              }
-                           }}
+                              title={hackathon.name}
+                              className={classes.hackathonName}
+                              titleTypographyProps={{
+                                 classes: {
+                                    root: classes.hackathonName
+                                 }
+                              }}
                            />
                            <CardContent>
                               <Typography
@@ -113,17 +112,12 @@ function Hackathons(props) {
                                  {hackathon.description}
                               </Typography>
                               <div className={classes.hackathonInfo}>
-                                 <Typography
-                                    variant="body2"
-                                    component="p"
-                                 >
+                                 <Typography variant="body2" component="p">
                                     {hackathon.location}
                                  </Typography>
-                                 <Typography
-                                    variant="body2"
-                                    component="p"
-                                 >
-                                    Start Date: {formatDate(hackathon.start_date)}
+                                 <Typography variant="body2" component="p">
+                                    Start Date:{' '}
+                                    {formatDate(hackathon.start_date)}
                                  </Typography>
                               </div>
                               {/* is_open join button will be added to 1.1 when we build out a modal for a user to join hackathons */}
