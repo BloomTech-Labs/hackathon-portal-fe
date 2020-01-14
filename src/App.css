@@ -280,6 +280,7 @@ font-style: normal;
 font-weight: normal;
 font-size: 45px;
 color: #D0DDFF;
+margin-bottom: 4%
 }
 
 .single-hackathon-close-btn-container {
@@ -304,7 +305,7 @@ font-style: normal;
 font-weight: normal;
 font-size: 33px;
 color: #D0DDFF;
-
+margin-bottom: 2%;
 
 }
 
@@ -322,7 +323,8 @@ font-weight: normal;
 font-size: 30px;
 line-height: 29px;
 color: #4885E1;
-margin-top: 6%;
+/* margin-top: 6%; */
+margin: 1% 1% 1% 0;
 }
 
 .single-hackathon-crud-btns-container {
@@ -335,12 +337,14 @@ margin-top: 6%;
 #single-hackathon-delete-btn {
   color: rgb(255, 134, 134);
   border: 1px solid;
-  margin-top: 4%;
+  margin-top: 5%;
+  width: 160px;
 }
 #single-hackathon-crud-btn {
   color: #d0ddff;;
   border: 1px solid #d0ddff;
   margin-top: 4%;
+  width: 160px;
 }
 
 .single-hackathon-participants {
@@ -350,7 +354,8 @@ text-align: left;
 justify-content: flex-start;
 width: 50%;
 color: #4885E1;
-margin-top: 7%;
+/* margin-top: 7%; */
+margin: 1% 1% 1% 0;
 }
 
 .admins-parent {
@@ -358,18 +363,37 @@ margin-top: 7%;
   flex-direction: column;
   width: 40%;
   text-align: left;
+  margin-top: 4%;
 }
 .single-hackathon-admins {
 
   text-align: left;
   width: 40%;
   margin-bottom: 3%;
-  border-radius: 3%;
   margin-right: 0.8%;
+}
+
+.single-hackathon-admins h2 {
+padding: 0;
+}
+
+.single-hackathon-admins p {
+margin-top: -1%;
+}
+
+
+#admins-title {
+  margin-bottom: 3%;
 }
 
 .profile-hackathons {
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  margin: 2%;
 }
