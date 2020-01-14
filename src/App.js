@@ -15,6 +15,7 @@ import EditHackathon from './components/Organizers/EditHackathon';
 import SinglePage from './components/Organizers/SinglePageHackathon';
 import SuccessPage from './components/SuccessPage';
 import UserProfile from './components/UserProfile';
+import Footer from './components/Footer';
 
 // ACTIONS
 import { getHackathons } from './actions/actions';
@@ -48,6 +49,11 @@ function App(props) {
                <Route path="/success" component={SuccessPage} />
                <Route path="/hackerlist" component={HackerList} />
             </Switch>
+
+            <footer>
+               <Footer />
+            </footer>
+
          </Router>
       </div>
    );
