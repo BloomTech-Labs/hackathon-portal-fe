@@ -33,7 +33,7 @@ const HackerList = props => {
 
    useEffect(() => {
       dispatch(getHackers());
-   }, []);
+   }, [dispatch]);
 
    console.log('HACKERLIST HACKERS', hackers);
 

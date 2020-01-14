@@ -53,7 +53,7 @@ function Hackathons(props) {
 
    useEffect(() => {
       dispatch(getHackathons());
-   }, []);
+   }, [dispatch]);
 
    const results = !searchTerm.length
       ? hackathons
@@ -87,7 +87,7 @@ function Hackathons(props) {
          <div className={classes.cardParent}>
             {results.map(hackathon => {
                return (
-                  <Card className={classes.card}>
+                  <Card className={classes.card} key={hackathon.id}>
                      <Link
                         to={`/hackathon/${hackathon.id}`}
                         className={classes.link}

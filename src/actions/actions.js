@@ -23,9 +23,7 @@ export const getHackathons = () => async dispatch => {
    (await axiosWithAuth())
       .get(`/hackathons`)
       .then(response => {
-         console.log(response);
          dispatch({ type: FETCH_HACKATHONS, payload: response.data });
-         // .catch(err => dispatch({ type: FETCH_FAILURE, payload: err.response }));
       })
       .catch(error => {
          dispatch({ type: FETCH_FAILURE, payload: error.response });
@@ -37,7 +35,6 @@ export const getSpecificHackathon = id => async dispatch => {
    (await axiosWithAuth())
       .get(`/hackathons/${id}`)
       .then(response => {
-         console.log(response)
          dispatch({ type: FETCH_HACKATHON, payload: response.data });
       })
       .catch(error => {
@@ -54,7 +51,6 @@ export const createHackathon = (
    (await axiosWithAuth())
       .post(`/hackathons/u/${user_id}`, hackathonInfo)
       .then(response => {
-         console.log('CREATE HACKATHON ACTIONS', response)
          dispatch({ type: POSTHACKATHON_SUCCESS });
          history.push(`/success`, response.data.id);
       })
@@ -69,12 +65,10 @@ export const editHackathon = (
    history,
    hackathonInfo
    ) => async dispatch => {
-   console.log(id, org_id, history, hackathonInfo)
    dispatch({ type: FETCH_START });
    (await axiosWithAuth())
       .put(`/hackathons/${id}/u/${org_id}`, hackathonInfo)
       .then(response => {
-         console.log(hackathonInfo)
          dispatch({ type: EDITHACKATHON_SUCCESS });
          history.push(`/success`, response.data.id);
       })
@@ -88,7 +82,6 @@ export const deleteHackathon = (id, org_id, history) => async dispatch => {
    (await axiosWithAuth())
       .delete(`/hackathons/${id}/u/${org_id}`)
       .then(response => {
-         console.log(response)
          dispatch({ type: DELETEHACKATHON_SUCCESS });
          history.push(`/`)
       })
@@ -103,7 +96,6 @@ export const getTeams = () => async dispatch => {
    (await axiosWithAuth())
       .get(`/teams`)
       .then(response => {
-         console.log(response);
       })
       .catch(error => {
          console.log(error);
@@ -129,10 +121,8 @@ export const getHackers = () => async dispatch => {
       .get(`/users`)
       .then(response => {
          dispatch({ type: FETCH_HACKERS, payload: response.data });
-         console.log('GET HACKERS', response.data);
       })
       .catch(error => {
-         console.log(error);
          dispatch({ type: FETCH_FAILURE, payload: error.response });
       });
 };
