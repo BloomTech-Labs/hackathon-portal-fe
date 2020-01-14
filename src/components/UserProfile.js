@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAuth0 } from '../auth0-hooks/react-auth0-spa';
-import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
-import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 import {
@@ -13,7 +11,6 @@ import {
    DialogActions,
    DialogContent,
    DialogTitle,
-   // Button,
    TextField
 } from '@material-ui/core';
 
@@ -126,7 +123,7 @@ const UserProfile = props => {
       <div className='profile-wrapper'>
          <div className='profile-container'>
             <div className='profile-left'>
-               <img id='profile-img' src='https://i.imgflip.com/1slnr0.jpg'></img>
+               <img id='profile-img' src='https://i.imgflip.com/1slnr0.jpg' alt="profile"></img>
                <div className='profile-headers'>
                <h1 id='profile-name'>
                   {userProfile.first_name} {userProfile.last_name}
@@ -137,7 +134,7 @@ const UserProfile = props => {
                <div className='profile-buttons'>
                {user.id === userProfile.id ? (
                   <>
-                     <Button  id='profile-edit-btn' variant='outlined' color='#fff' onClick={handleClickOpen}>Edit Profile</Button>
+                     <Button  id='profile-edit-btn' variant='outlined'  onClick={handleClickOpen}>Edit Profile</Button>
                      <Button id='profile-delete-btn' variant="outlined" onClick={handleDeleteClick}>Delete Profile</Button>
                   </>
                ) : null}

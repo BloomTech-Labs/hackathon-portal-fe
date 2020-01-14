@@ -18,12 +18,11 @@ const SinglePage = props => {
    const hackathon = useSelector(state => state.singleHackathon);
    const isFetching = useSelector(state => state.isFetching);
    const [isOpen, setIsOpen] = useState({ is_open: true });
-   const [user_id, setUser_id] = useState(0)
-   const { loading, user } = useAuth0();
+   const { user } = useAuth0();
   
    useEffect(() => {
       dispatch(getSpecificHackathon((props.match.params.id)));
-   }, []);
+   }, [dispatch, props.match.params.id]);
    
    useEffect(() => {
       if(hackathon){
@@ -80,21 +79,21 @@ const SinglePage = props => {
                <h3>{hackathon.name}</h3>
          </div>
 
-         <div className='single-hackathon-close-btn-container'>
+         {/* <div className='single-hackathon-close-btn-container'>
                {user.id === hackathon.organizer_id && (
                   <>
                      {!hackathon.is_open ? (
                         <Button id='single-hackathon-close-btn' 
-                        type="button" variant='outlined' color='#fff' onClick={()=>handleIsOpen()}>OPEN HACKATHON</Button>
+                        type="button" variant='outlined'  onClick={()=>handleIsOpen()}>OPEN HACKATHON</Button>
                      ) : (
                         
                         <Button id='single-hackathon-close-btn'
-                        type="button" variant='outlined' color='#fff' onClick={()=>handleIsOpen()}>CLOSE HACKATHON</Button>
+                        type="button" variant='outlined'  onClick={()=>handleIsOpen()}>CLOSE HACKATHON</Button>
                      )}
                   </>
 
                )}
-         </div>
+         </div> */}
          
          
             <div className='single-hackathon-description'>

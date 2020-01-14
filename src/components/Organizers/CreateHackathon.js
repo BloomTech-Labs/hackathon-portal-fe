@@ -11,14 +11,12 @@ import 'date-fns';
 import TextField from '@material-ui/core/TextField';
 import {
    Button,
-   FormLabel,
    Typography,
    InputAdornment,
    makeStyles,
    Checkbox,
    FormControlLabel
 } from '@material-ui/core';
-import PersonIcon from '@material-ui/icons/Person';
 import DescriptionIcon from '@material-ui/icons/Description';
 import LanguageIcon from '@material-ui/icons/Language';
 import TodayIcon from '@material-ui/icons/Today';
@@ -75,7 +73,7 @@ const CreateHackathon = props => {
    const dispatch = useDispatch();
    const classes = useStyles();
 
-   let { register, handleSubmit, errors, clearError } = useForm();
+   let { register, handleSubmit } = useForm();
 
    useEffect(() => {
       setHackathonInfo({
@@ -138,7 +136,6 @@ const CreateHackathon = props => {
                   <label className="name">
      
                      <TextField
-                        color="#FFFFFF"
                         type="text"
                         fullWidth
                         label="Hackathon Name"
