@@ -34,30 +34,30 @@ const Homepage = () => {
            <Carousel autoPlay>
             <div>
                <img src={standIn2} />
-               <p className="legend">
-                 <div>Name: {hackathons[3].name}</div>
-                  <div>Start Date: {hackathons[3].start_date}</div>
-                  <div>Location: {hackathons[3].location}</div>
-                  <div>Description: {hackathons[3].description}</div>
-               </p>
+               <div className="legend">
+                 <p>Name: {hackathons[3].name}</p>
+                  <p>Start Date: {hackathons[3].start_date}</p>
+                  <p>Location: {hackathons[3].location}</p>
+                  <p>Description: {hackathons[3].description}</p>
+               </div>
             </div>
             <div>
                <img src={standIn2} />
-               <p className="legend">
-               <div>Name: {hackathons[1].name}</div>
-                  <div>Start Date: {hackathons[1].start_date}</div>
-                  <div>Location: {hackathons[1].location}</div>
-                  <div>Description: {hackathons[1].description}</div>
-               </p>
+               <div className="legend">
+               <p>Name: {hackathons[1].name}</p>
+                  <p>Start Date: {hackathons[1].start_date}</p>
+                  <p>Location: {hackathons[1].location}</p>
+                  <p>Description: {hackathons[1].description}</p>
+               </div>
             </div>
             <div>
                <img src={standIn2} />
-               <p className="legend">
+               <div className="legend">
                <div>Name: {hackathons[2].name}</div>
-                  <div>Start Date: {hackathons[2].start_date}</div>
-                  <div>Location: {hackathons[2].location}</div>
-                  <div>Description: {hackathons[2].description}</div>
-               </p>
+                  <p>Start Date: {hackathons[2].start_date}</p>
+                  <p>Location: {hackathons[2].location}</p>
+                  <p>Description: {hackathons[2].description}</p>
+               </div>
             </div>
            </Carousel>
            </section>
