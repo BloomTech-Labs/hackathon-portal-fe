@@ -1,74 +1,117 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getHackathons } from '../actions/actions';
+import { getHackathons, getHackers } from '../actions/actions';
 import { Link } from 'react-router-dom';
+
 import standIn from './images/standIn.jpg';
+import standIn2 from './images/standIn2.jpg';
 
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Carousel from './carousel';
-
-let openHackathonsArray = []
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const Homepage = () => {
-      //   const classes = useStyles();
         const isFetching = useSelector(state => state.isFetching);
         const dispatch = useDispatch();
         const hackathons = useSelector(state => state.hackathons);
+        const hackers = useSelector(state => state.hackers);
+
+        
      
         useEffect(() => {
            dispatch(getHackathons());
         }, []);
+
+
+        useEffect(() => {
+         dispatch(getHackers());
+        }, []);
      
-        if (isFetching || !hackathons[0]) {
+        if (isFetching || !hackathons || !hackers) {
            return <h2>Loading Events...</h2>;
         }
-
+       
+     
 
     return(
         <div className='Homepage'>
-                <Carousel className='carousel'></Carousel>
-                <div className='leftArrow'>></div>
-                <div className='rightArrow'>></div>
-
-                <div id='openhackathon'>Open Hackathons</div>
-                
-                <div className='rectangle'>
-                   <img class='hackathonImage' src={standIn}></img>
-                </div>
-                <div className='hackathonTitle'>{hackathons[2].name}</div>
-                <div className='location'>{hackathons[2].location}</div>
-            
-                <div className='rectangle2'>
-                  <img class='hackathonImage' src={standIn}></img>
-                </div>
-                <div className='hackathonTitle2'>{hackathons[7].name}</div>
-                <div className='location2'>{hackathons[7].location}</div>
-          
-                <div className='rectangle3'>
-                  <img class='hackathonImage' src={standIn}></img>
-                </div>
-                <div className='hackathonTitle3'>{hackathons[1].name}</div>
-                <div className='location3'>{hackathons[1].location}</div>    
-                <div className='division4'></div> 
-
-               <div className='blurb'>
-                  Hackthon Portal is the hub for everything hackathon. Whether you are coordination a hackathon, judging a project, or particpating, Hackathon Portal is the best way to stay up to date on the event's activity.
-               </div>
-
-                <div className='number'>35</div>
-                <div className='hackathonsText'>Hackathons</div>
-
-                <div className='number2'>3500</div>
-                <div className='usersText'>Users</div>
-
-                <div className='number3'>750</div>
-                <div className='projectsText'>Projects Judged</div>
-
-                <div className='divsion6'></div>
-               <div className='group1'>home</div>
-               <div className='group2'>hackathons</div>
-               <div className='group3'>log in</div>
-               <div className='group4'>register</div>
+           <section>
+           <Carousel autoPlay>
+            <div>
+               <img src={standIn2} />
+               <p className="legend">
+               <div>Name: {hackathons[3].name}</div>
+                  <div>Start Date: {hackathons[3].start_date}</div>
+                  <div>Location: {hackathons[3].location}</div>
+                  <div>Description: {hackathons[3].description}</div>
+               </p>
+            </div>
+            <div>
+               <img src={standIn2} />
+               <p className="legend">
+               <div>Name: {hackathons[1].name}</div>
+                  <div>Start Date: {hackathons[1].start_date}</div>
+                  <div>Location: {hackathons[1].location}</div>
+                  <div>Description: {hackathons[1].description}</div>
+               </p>
+            </div>
+            <div>
+               <img src={standIn2} />
+               <p className="legend">
+               <div>Name: {hackathons[2].name}</div>
+                  <div>Start Date: {hackathons[2].start_date}</div>
+                  <div>Location: {hackathons[2].location}</div>
+                  <div>Description: {hackathons[2].description}</div>
+               </p>
+            </div>
+           </Carousel>
+           </section>
+           {/* <section className='openHackathons'>
+              <h2>Featured Hackathons</h2>
+              <div className='hackathonCards'>
+                  <div className='hackathonCard'>
+                     <img className='hackathonImage'src={standIn} alt='hackathon image'></img>
+                     <p>{hackathons[0].name}</p>
+                     <p>{hackathons[0].location}</p>
+                  </div>
+                  <div className='hackathonCard'>
+                     <img className='hackathonImage'src={standIn} alt='hackathon image'></img>
+                     <p>{hackathons[1].name}</p>
+                     <p>{hackathons[1].location}</p>
+                  </div>
+                  <div className='hackathonCard'>
+                     <img className='hackathonImage'src={standIn} alt='hackathon image'></img>
+                     <p>{hackathons[2].name}</p>
+                     <p>{hackathons[2].location}</p>
+                  </div>
+              </div>
+           </section> */}
+           <section className='blurb'>
+               <p className='test'>Hackathon Portal is the hub for everything hackathon. Whether you are coordinating a hackathon, judging a project, or participating, Hackathon Portal is the best way to stay up to date on the event's activity.</p>
+           </section>
+           <section className='homePageDataDisplay'>
+              <div className='display'>
+                 <div className='displayInfo'>
+                  <h1>{hackathons.length}</h1>
+                  <p>Hackathons</p> 
+                 </div>
+                 <div className='displayInfo'>
+                  <h1>{hackers.length}</h1>
+                  <p>Users</p> 
+                 </div>
+                 {/* <div className='displayInfo'>
+                  <h1>750</h1>
+                  <p>Projects judged</p> 
+                 </div> */}
+              </div>
+           </section>
+           {/* <section className='footer'>
+            <div className='homepageLinks'>
+               <span className='homepageLink'>home</span>
+               <span className='homepageLink'>hackathons</span>
+               <span className='homepageLink'>log in</span>
+               <span className='homepageLink'>register</span>
+            </div>
+           </section> */}
         </div>
     )
 }
