@@ -157,7 +157,7 @@ const UserProfile = props => {
             </div>
          </div>
          <div className='profile-hackathons'>
-            <h1>Past:</h1>
+            <h1>Past Hackathons</h1>
             <div className='profile-hackathon-list'>
                   {pastHackathons.map(hackathon => (
                      <ProfileCard 
