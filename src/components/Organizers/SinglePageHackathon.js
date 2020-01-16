@@ -107,7 +107,7 @@ const SinglePage = props => {
             <div className='single-hackathon-dates'>
                   <Typography variant='h5'>Start date: {formatDate(hackathon.start_date)}</Typography>
       
-                  <Typography variant='h5'>End Date: {formatDate(hackathon.end_date)}</Typography>
+                  <Typography variant='h5'>End date: {formatDate(hackathon.end_date)}</Typography>
             </div>
          
 
