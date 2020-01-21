@@ -2,6 +2,7 @@ import React, { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHackathons, getHackers } from '../actions/actions';
 import standIn2 from './images/standIn2.jpg';
+import ServerModal from './Organizers/modal';
 
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
@@ -28,6 +29,7 @@ const Homepage = () => {
        
     return(
         <div className='Homepage'>
+           <ServerModal></ServerModal>
            <section>
            <Carousel autoPlay>
             <div>
