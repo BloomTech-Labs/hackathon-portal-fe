@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import clsx from 'clsx';
 import useForm from 'react-hook-form';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import { useDispatch } from 'react-redux';
@@ -14,6 +15,7 @@ import {
    Typography,
    InputAdornment,
    makeStyles,
+   withStyles,
    Checkbox,
    FormControlLabel
 } from '@material-ui/core';
@@ -31,6 +33,46 @@ import {
    KeyboardTimePicker,
    KeyboardDatePicker
 } from '@material-ui/pickers';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import InputBase from '@material-ui/core/InputBase';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+
+
+
+const BootstrapInput = withStyles(theme => ({
+   root: {
+     'label + &': {
+       marginTop: theme.spacing(3),
+     },
+   },
+   input: {
+     borderRadius: 3,
+     position: 'relative',
+     backgroundColor: theme.palette.background.paper,
+     border: '1px solid #ced4da',
+     fontSize: 16,
+     transition: theme.transitions.create(['border-color', 'box-shadow']),
+     fontFamily: [
+       '-apple-system',
+       'BlinkMacSystemFont',
+       '"Segoe UI"',
+       'Roboto',
+       '"Helvetica Neue"',
+       'Arial',
+       'sans-serif',
+       '"Apple Color Emoji"',
+       '"Segoe UI Emoji"',
+       '"Segoe UI Symbol"',
+     ].join(','),
+     '&:focus': {
+       borderRadius: 4,
+       borderColor: '#80bdff',
+       boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+     },
+   },
+ }))(InputBase);
 
 const useStyles = makeStyles(theme => ({
    label: {
@@ -50,8 +92,63 @@ const useStyles = makeStyles(theme => ({
    button: {
       width: '150px',
       marginTop: '50px'
-   }
+   },
+   formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(2),
+    },
+    icon: {
+      borderRadius: '50%',
+      width: 16,
+      height: 16,
+      boxShadow: 'inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)',
+      backgroundColor: '#f5f8fa',
+      backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))',
+      '$root.Mui-focusVisible &': {
+        outline: '2px auto rgba(19,124,189,.6)',
+        outlineOffset: 2,
+      },
+      'input:hover ~ &': {
+        backgroundColor: '#ebf1f5',
+      },
+      'input:disabled ~ &': {
+        boxShadow: 'none',
+        background: 'rgba(206,217,224,.5)',
+      },
+    },
+    checkedIcon: {
+      backgroundColor: '#137cbd',
+      backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
+      '&:before': {
+        display: 'block',
+        width: 16,
+        height: 16,
+        backgroundImage: 'radial-gradient(#fff,#fff 28%,transparent 32%)',
+        content: '""',
+      },
+      'input:hover ~ &': {
+        backgroundColor: '#106ba3',
+      },
+    },
 }));
+
+function StyledRadio(props) {
+   const classes = useStyles();
+ 
+   return (
+     <Radio
+       className={classes.root}
+       disableRipple
+       color="default"
+       checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
+       icon={<span className={classes.icon} />}
+       {...props}
+     />
+   );
+ }
 
 const CreateHackathon = props => {
    const [page1, setPage1] = useState(true);
@@ -69,6 +166,7 @@ const CreateHackathon = props => {
       is_open: ''
    });
    const [state, setState] = useState({ is_open: true });
+   const [max, setMax] = useState('');
    const { loading, user } = useAuth0();
    const dispatch = useDispatch();
    const classes = useStyles();
@@ -112,6 +210,10 @@ const CreateHackathon = props => {
       setPage1(false);
       setPage2(true);
    };
+
+   const handleChange = event => {
+      setMax(event.target.value);
+    };
 
    const handleFormSubmit = (data, e) => {
       if (loading) {
@@ -357,6 +459,21 @@ const CreateHackathon = props => {
                            }
                            label="Open hackathon (this lets participants sign up)"
                         />
+                     </label>
+                  </div>
+                  
+                  <div>
+                     <label className="max-members">
+                     <Typography className={classes.text} gutterBottom variant="h5" component="h5">
+                            What is the max number of members you want to allow per project?
+                     </Typography>
+                        <FormControl className={classes.margin}>
+                           <InputLabel htmlFor="demo-customized-textbox"></InputLabel>
+                           <BootstrapInput
+                            id="demo-customized-textbox" 
+                            placeholder="Max: 30" 
+                            onChange={handleChange}/>
+                        </FormControl>
                      </label>
                   </div>
 
