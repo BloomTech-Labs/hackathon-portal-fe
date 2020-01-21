@@ -3,6 +3,9 @@ import useForm from 'react-hook-form';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import { useDispatch } from 'react-redux';
 
+// COMPONENTS
+import Stepper from './Stepper'
+
 // ACTIONS
 import { createHackathon } from '../../actions/actions';
 
@@ -16,7 +19,8 @@ import {
    InputAdornment,
    makeStyles,
    Checkbox,
-   FormControlLabel
+   FormControlLabel,
+   FormHelperText
 } from '@material-ui/core';
 import PersonIcon from '@material-ui/icons/Person';
 import DescriptionIcon from '@material-ui/icons/Description';
@@ -46,7 +50,7 @@ const useStyles = makeStyles(theme => ({
          width: '50%',
          '& > *': {
    
-           width: '100%',
+            width: '100%',
          },
    },
    button: {
@@ -106,13 +110,23 @@ const CreateHackathon = props => {
    };
 
    const toPage1 = () => {
-      setPage1(true);
-      setPage2(false);
+      if(errors){
+         console.log('no')
+      }else{
+         clearError();
+         setPage1(true);
+         setPage2(false);
+      }
    };
 
    const toPage2 = () => {
-      setPage1(false);
-      setPage2(true);
+      if(errors){
+         console.log(errors)
+      }else{
+         clearError();
+         setPage1(false);
+         setPage2(true);
+      }
    };
 
    const handleFormSubmit = (data, e) => {
@@ -126,6 +140,7 @@ const CreateHackathon = props => {
 
    return (
       <div className="createHackathonContainer1">
+         <Stepper />
          <form
             noValidate autoComplete="off"
             className={classes.root}
@@ -133,10 +148,9 @@ const CreateHackathon = props => {
          >
             {page1 && (
                <>
-          
-
                   <label className="name">
-     
+                     {errors.name && errors.name.type === 'required' && <FormHelperText error>TEST</FormHelperText>}
+                     {/* <FormHelperText error>TEST</FormHelperText> */}
                      <TextField
                         color="#FFFFFF"
                         type="text"
@@ -148,21 +162,16 @@ const CreateHackathon = props => {
                         className={classes.label}
                         defaultValue={page1Info.name}
                         onChange={handlePage1Change}
-                        inputRef={register}
+                        inputRef={register({ required: true })}
                         InputProps={{
                            startAdornment: (
-                              <InputAdornment position="start">
-                      
-                              </InputAdornment>
+                              <InputAdornment position="start"></InputAdornment>
                            )
                         }}
                      />
-              
                
-               
-
                      <TextField
-                       className={classes.label}
+                        className={classes.label}
                         type="text"
                         fullWidth
                         multiline
@@ -184,10 +193,9 @@ const CreateHackathon = props => {
                      />
                   </label>
                   <label className="location-input">
-                   
 
                      <TextField
-                       className={classes.label}
+                        className={classes.label}
                         type="text"
                         fullWidth
                         name="location"
@@ -207,10 +215,9 @@ const CreateHackathon = props => {
                      />
                   </label>
                   <label className="url">
-                   
 
                      <TextField
-                       className={classes.label}
+                        className={classes.label}
                         type="text"
                         fullWidth
                         name="url"
@@ -280,8 +287,6 @@ const CreateHackathon = props => {
                         </MuiPickersUtilsProvider>
                      </label>
                      <label className="startTime">
-                      
-
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardTimePicker
                            className={classes.label}
@@ -304,8 +309,6 @@ const CreateHackathon = props => {
                   </div>
                   <div>
                      <label className="endDate">
-                       
-
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardDatePicker
                            className={classes.label}
@@ -327,8 +330,6 @@ const CreateHackathon = props => {
                         </MuiPickersUtilsProvider>
                      </label>
                      <label className="endTime">
-                  
-
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardTimePicker
                               className={classes.label}

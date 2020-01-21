@@ -24,8 +24,10 @@ const Homepage = () => {
         }, []);
 
 
-        if (isFetching || !hackathons[0] || !hackers) {
+        if (isFetching || !hackathons || !hackers) {
            return <h2>Loading Events...</h2>;
+        }else if(!hackathons[0]){
+           return <h2>Loading Events...</h2>
         }
        
     return(
