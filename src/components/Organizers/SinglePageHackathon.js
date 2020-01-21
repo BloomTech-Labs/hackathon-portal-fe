@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import Button from '@material-ui/core/Button';
-import ServerModal from './modal';
+import ServerModal from './editButton/modal';
 
 
 // COMPONENTS

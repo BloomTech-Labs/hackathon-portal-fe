@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
-import { useSpring, animated } from 'react-spring/web.cjs'; // web.cjs is required for IE 11 support
+import { useSpring, animated } from 'react-spring/web.cjs';
+import CustomizedTabs from './tabs';
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -65,7 +66,7 @@ export default function SpringModal() {
   return (
     <div>
       <button type="button" onClick={handleOpen}>
-        react-spring
+        Settings
       </button>
       <Modal
         aria-labelledby="spring-modal-title"
@@ -81,7 +82,8 @@ export default function SpringModal() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="spring-modal-title">Spring modal</h2>
+            <h2 id="spring-modal-title">Hackathon Settings</h2>
+            <CustomizedTabs/>
             <p id="spring-modal-description">react-spring animates me.</p>
           </div>
         </Fade>
