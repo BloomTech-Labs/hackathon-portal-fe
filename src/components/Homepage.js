@@ -29,7 +29,6 @@ const Homepage = () => {
        
     return(
         <div className='Homepage'>
-           <ServerModal></ServerModal>
            <section>
            <Carousel autoPlay>
             <div>
