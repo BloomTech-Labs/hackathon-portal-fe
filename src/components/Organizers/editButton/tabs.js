@@ -1,93 +1,50 @@
 import React from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
-const AntTabs = withStyles({
-  root: {
-    borderBottom: '1px solid #e8e8e8',
-  },
-  indicator: {
-    backgroundColor: '#1890ff',
-  },
-})(Tabs);
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
 
-const AntTab = withStyles(theme => ({
-  root: {
-    textTransform: 'none',
-    minWidth: 72,
-    fontWeight: theme.typography.fontWeightRegular,
-    marginRight: theme.spacing(4),
-    fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
-    '&:hover': {
-      color: '#40a9ff',
-      opacity: 1,
-    },
-    '&$selected': {
-      color: '#1890ff',
-      fontWeight: theme.typography.fontWeightMedium,
-    },
-    '&:focus': {
-      color: '#40a9ff',
-    },
-  },
-  selected: {},
-}))(props => <Tab disableRipple {...props} />);
+  return (
+    <Typography
+      component="div"
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && <Box p={3}>{children}</Box>}
+    </Typography>
+  );
+}
 
-const StyledTabs = withStyles({
-  indicator: {
-    display: 'flex',
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
-    '& > div': {
-      maxWidth: 40,
-      width: '100%',
-      backgroundColor: '#635ee7',
-    },
-  },
-})(props => <Tabs {...props} TabIndicatorProps={{ children: <div /> }} />);
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
 
-const StyledTab = withStyles(theme => ({
-  root: {
-    textTransform: 'none',
-    color: '#fff',
-    fontWeight: theme.typography.fontWeightRegular,
-    fontSize: theme.typography.pxToRem(15),
-    marginRight: theme.spacing(1),
-    '&:focus': {
-      opacity: 1,
-    },
-  },
-}))(props => <Tab disableRipple {...props} />);
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-  },
-  padding: {
-    padding: theme.spacing(3),
-  },
-  demo1: {
     backgroundColor: theme.palette.background.paper,
-  },
-  demo2: {
-    backgroundColor: '#2e1534',
   },
 }));
 
-export default function CustomizedTabs() {
+export default function SimpleTabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -97,14 +54,29 @@ export default function CustomizedTabs() {
 
   return (
     <div className={classes.root}>
-      <div className={classes.demo1}>
-        <AntTabs value={value} onChange={handleChange} aria-label="ant example">
-          <AntTab label="Tab 1" />
-          <AntTab label="Tab 2" />
-          <AntTab label="Tab 3" />
-        </AntTabs>
-        <Typography className={classes.padding} />
-      </div>
+      <AppBar position="static">
+        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+          <Tab label="info" {...a11yProps(0)} />
+          <Tab label="dates" {...a11yProps(1)} />
+          <Tab label="actions" {...a11yProps(2)} />
+        </Tabs>
+      </AppBar>
+      <TabPanel value={value} index={0}>
+        <div>
+            <h3>set hackathon</h3>
+            <p>this will allow users to enter the hackathon</p>
+        </div>
+        <div>
+            <h3>allow project idea submission</h3>
+            <p>this will allow users to begin submitting ideas</p>
+        </div>
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        Item Two
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        Item Three
+      </TabPanel>
     </div>
   );
 }

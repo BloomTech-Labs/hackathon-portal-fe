@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import { useSpring, animated } from 'react-spring/web.cjs';
-import CustomizedTabs from './tabs';
+import SimpleTabs from './tabs';
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -83,8 +83,7 @@ export default function SpringModal() {
         <Fade in={open}>
           <div className={classes.paper}>
             <h2 id="spring-modal-title">Hackathon Settings</h2>
-            <CustomizedTabs/>
-            <p id="spring-modal-description">react-spring animates me.</p>
+            <SimpleTabs/>
           </div>
         </Fade>
       </Modal>
