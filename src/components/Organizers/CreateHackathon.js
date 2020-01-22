@@ -93,9 +93,6 @@ const CreateHackathon = props => {
    const dispatch = useDispatch();
    const classes = useStyles();
    const [activeStep, setActiveStep] = React.useState(0);
-   const [skipped, setSkipped] = React.useState(new Set());
-
-   console.log(props)
 
    let { register, handleSubmit } = useForm();
 
@@ -127,14 +124,6 @@ const CreateHackathon = props => {
       setState({ [name]: e.target.checked });
    };
 
-   const isStepOptional = step => {
-      return step === 1;
-   };
-
-   const isStepSkipped = step => {
-      return skipped.has(step);
-   };
-
    function getStepContent(step) {
       switch (step) {
          case 0:
@@ -148,27 +137,9 @@ const CreateHackathon = props => {
       }
    }
 
-   const handleSkip = () => {
-      if (!isStepOptional(activeStep)) {
-      throw new Error("You can't skip a step that isn't optional.");
-      }
-
-      setActiveStep(prevActiveStep => prevActiveStep + 1);
-      setSkipped(prevSkipped => {
-         const newSkipped = new Set(prevSkipped.values());
-         newSkipped.add(activeStep);
-         return newSkipped;
-      });
-   };
 
    const handleNext = () => {
-      let newSkipped = skipped;
-      if (isStepSkipped(activeStep)) {
-         newSkipped = new Set(newSkipped.values());
-         newSkipped.delete(activeStep);
-      }
       setActiveStep(prevActiveStep => prevActiveStep + 1);
-      setSkipped(newSkipped);
    };
 
    const handleBack = () => {
@@ -180,7 +151,6 @@ const CreateHackathon = props => {
          return;
       }
       const id = user.sub.replace('auth0|', '');
-      e.preventDefault();
       dispatch(createHackathon(id, hackathonInfo, props.history));
    };
 
@@ -189,9 +159,6 @@ const CreateHackathon = props => {
          <Stepper 
          activeStep={activeStep}
          setActiveStep={setActiveStep}
-         isStepOptional={isStepOptional}
-         isStepSkipped={isStepSkipped}
-         skipped={skipped}
          />
          <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
          <form
@@ -403,24 +370,25 @@ const CreateHackathon = props => {
                Back
                </Button>)}
                <div className={classes.buttonsSubContainer}>
-                  {isStepOptional(activeStep) && (
+                  {activeStep === 2 ? 
                      <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={handleSkip}
-                        className={classes.activeButton}
+                     variant="contained"
+                     color="primary"
+                     className={classes.activeButton}
+                     onClick={()=>handleFormSubmit()}
                      >
-                        Skip
+                        Finish
                      </Button>
-                  )}
-                  <Button
+                     :
+                     <Button
                      variant="contained"
                      color="primary"
                      onClick={handleNext}
                      className={classes.activeButton}
-                  >
-                     {activeStep === 2 ? 'Finish' : 'Next'}
-                  </Button>
+                     >
+                        Next
+                     </Button>
+                  }
                </div>
             </div>
          </form>

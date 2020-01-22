@@ -116,9 +116,6 @@ export default function CustomizedSteppers({ activeStep, skipped, isStepOptional
       <Stepper alternativeLabel activeStep={activeStep} connector={<QontoConnector />} className={classes.stepper}>
         {steps.map((label, index) => {
           const stepProps = {};
-          if (isStepSkipped(index)) {
-            stepProps.completed = false;
-          }
           return(
             <Step key={label}>
               <StepLabel className={classes.labels}
