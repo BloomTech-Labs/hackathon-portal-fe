@@ -6,6 +6,11 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import SwitchLabels from './switch';
+
+import { editHackathon, getSpecificHackathon } from '../../../actions/actions';
+
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -65,10 +70,12 @@ export default function SimpleTabs() {
         <div>
             <h3>set hackathon</h3>
             <p>this will allow users to enter the hackathon</p>
+            <span>CLOSED</span><SwitchLabels/><span>OPEN</span>
         </div>
         <div>
             <h3>allow project idea submission</h3>
             <p>this will allow users to begin submitting ideas</p>
+            <span>OFF</span><SwitchLabels/><span>ON</span>
         </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
