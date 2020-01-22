@@ -19,6 +19,7 @@ const Homepage = () => {
            })
         }, [dispatch]);
 
+
         
         if (isFetching || !hackathons || !hackers) {
          return <h2>Loading Events...</h2>;
