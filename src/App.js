@@ -16,6 +16,7 @@ import SuccessPage from './components/SuccessPage';
 import UserProfile from './components/UserProfile';
 // import Footer from './components/Footer';
 import CreateProject from './components/Projects/CreateProject';
+import ProjectList from './components/Projects/ProjectList';
 import ErrorPage from './components/ErrorPage';
 
 // ACTIONS
@@ -46,10 +47,11 @@ function App(props) {
                   path="/hackathon/edit/:id"
                   component={EditHackathon}
                />
-               <PrivateRoute path={`/hackathon/:id`} component={SinglePage} />
+               <PrivateRoute exact path={`/hackathon/:id`} component={SinglePage} />
                <Route path="/success" component={SuccessPage} />
-               <Route component={ErrorPage} />
                <PrivateRoute exact path='/hackathon/create/project' component={CreateProject} />
+               <PrivateRoute exact path='/hackathon/:id/projects' component={ProjectList} />
+               <Route component={ErrorPage} />
             </Switch>
          </Router>
       </div>
