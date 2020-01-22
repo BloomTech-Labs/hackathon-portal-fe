@@ -2,10 +2,6 @@ html {
   box-sizing: border-box;
 }
 body {
-  /* background-image: url("./components/images/background.jpg"); 
-  background-repeat: no-repeat;
-  background-size: cover; */
-  
   background: rgb(22,22,23);
   color: #d0ddff;
   margin: 0 auto;

@@ -185,7 +185,6 @@ const CreateHackathon = props => {
       e.preventDefault();
       dispatch(createHackathon(id, hackathonInfo, props.history));
    };
-   console.log(activeStep)
 
    return (
       <div className="createHackathonContainer1" className={classes.container}>

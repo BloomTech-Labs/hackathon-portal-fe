@@ -51,14 +51,7 @@ function App(props) {
                <Route path="/success" component={SuccessPage} />
                <Route component={ErrorPage} />
                <PrivateRoute exact path='/hackathon/create/project' component={CreateProject} />
-               {/* <Route path="/hackerlist" component={HackerList} /> */}
-
             </Switch>
-
-            {/* <footer>
-               <Footer />
-            </footer> */}
-
          </Router>
       </div>
    );
