@@ -6,12 +6,10 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Check from '@material-ui/icons/Check';
-import SettingsIcon from '@material-ui/icons/Settings';
-import GroupAddIcon from '@material-ui/icons/GroupAdd';
-import VideoLabelIcon from '@material-ui/icons/VideoLabel';
 import StepConnector from '@material-ui/core/StepConnector';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 const QontoConnector = withStyles({
   alternativeLabel: {
@@ -21,16 +19,16 @@ const QontoConnector = withStyles({
   },
   active: {
     '& $line': {
-      borderColor: '#784af4',
+      borderColor: '#3f51b5',
     },
   },
   completed: {
     '& $line': {
-      borderColor: '#784af4',
+      borderColor: '#3f51b5',
     },
   },
   line: {
-    borderColor: '#eaeaf0',
+    borderColor: '#D0DDFF',
     borderTopWidth: 3,
     borderRadius: 1,
   },
@@ -38,13 +36,16 @@ const QontoConnector = withStyles({
 
 const useQontoStepIconStyles = makeStyles({
   root: {
-    color: '#eaeaf0',
+    color: '#D0DDFF',
     display: 'flex',
     height: 22,
     alignItems: 'center',
+    MuiStepLabelLabel: {
+      color: "rgb(242, 101, 34)"
+    }
   },
   active: {
-    color: '#784af4',
+    color: '#4885E1',
   },
   circle: {
     width: 8,
@@ -53,7 +54,7 @@ const useQontoStepIconStyles = makeStyles({
     backgroundColor: 'currentColor',
   },
   completed: {
-    color: '#784af4',
+    color: '#4885E1',
     zIndex: 1,
     fontSize: 18,
   },
@@ -89,124 +90,45 @@ const useStyles = makeStyles(theme => ({
   },
   instructions: {
     marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
+    marginBottom: theme.spacing(1)
   },
+  stepper: {
+    background: 'rgb(22,22,23)'
+  },
+  labels: {
+    fontColor: '#fff',
+    
+  }
 }));
 
 function getSteps() {
-  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
+  return ['Hackathon basic details', 'Hackathon date and time', 'Create projects'];
 }
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return 'Select campaign settings...';
-    case 1:
-      return 'What is an ad group anyways?';
-    case 2:
-      return 'This is the bit I really care about!';
-    default:
-      return 'Unknown step';
-  }
-}
 
-export default function CustomizedSteppers() {
+
+export default function CustomizedSteppers({ activeStep, skipped, isStepOptional, isStepSkipped }) {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(1);
-  const [skipped, setSkipped] = React.useState(new Set());
   const steps = getSteps();
-
-  const isStepOptional = step => {
-    return step === 1;
-  };
-
-  const isStepSkipped = step => {
-    return skipped.has(step);
-  };
-
-  const handleNext = () => {
-    let newSkipped = skipped;
-    if (isStepSkipped(activeStep)) {
-      newSkipped = new Set(newSkipped.values());
-      newSkipped.delete(activeStep);
-    }
-
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
-    setSkipped(newSkipped);
-    // setActiveStep(prevActiveStep => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1);
-  };
-
-  const handleSkip = () => {
-    if (!isStepOptional(activeStep)) {
-      // You probably want to guard against something like this,
-      // it should never occur unless someone's actively trying to break something.
-      throw new Error("You can't skip a step that isn't optional.");
-    }
-
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
-    setSkipped(prevSkipped => {
-      const newSkipped = new Set(prevSkipped.values());
-      newSkipped.add(activeStep);
-      return newSkipped;
-    });
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-  };
 
   return (
     <div className={classes.root}>
-      <Stepper alternativeLabel activeStep={activeStep} connector={<QontoConnector />}>
+      <Stepper alternativeLabel activeStep={activeStep} connector={<QontoConnector />} className={classes.stepper}>
         {steps.map((label, index) => {
           const stepProps = {};
-          const labelProps = {};
-          if (isStepOptional(index)) {
-            labelProps.optional = <Typography variant="caption">Optional</Typography>;
-          }
           if (isStepSkipped(index)) {
             stepProps.completed = false;
           }
           return(
             <Step key={label}>
-              <StepLabel StepIconComponent={QontoStepIcon}>{label}</StepLabel>
+              <StepLabel className={classes.labels}
+              style={{color: '#fff'}}
+              StepIcon='default'
+              StepIconProps={QontoStepIcon}></StepLabel>
             </Step>
           )
         })}
       </Stepper>
-      <div>
-        {activeStep === steps.length ? (
-          <div>
-            <Typography className={classes.instructions}>
-              All steps completed - you&apos;re finished
-            </Typography>
-            <Button onClick={handleReset} className={classes.button}>
-              Reset
-            </Button>
-          </div>
-        ) : (
-          <div>
-            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
-            <div>
-              <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
-                Back
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleNext}
-                className={classes.button}
-              >
-                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-              </Button>
-            </div>
-          </div>
-        )}
-      </div>
     </div>
   );
 }
