@@ -4,7 +4,8 @@ import useForm from 'react-hook-form';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import { useDispatch } from 'react-redux';
 
-
+// COMPONENTS
+import Stepper from './Stepper';
 
 // ACTIONS
 import { createHackathon } from '../../actions/actions';
@@ -508,30 +509,6 @@ const CreateHackathon = props => {
                         </FormControl>
                      </label>
                   </div>
-
-                  
-                  <div
-                     style={{
-                        width: '16%',
-                        display: 'flex',
-                        margin: '0 auto',
-                        justifyContent: 'space-between'
-                     }}
-                  >
-                     <ArrowBackIosIcon
-                        onClick={() => toPage1()}
-                        style={{ fontSize: '1.5rem' }}
-                     />
-                     <Typography>Step</Typography>
-                     <Typography style={{ color: 'lightGrey' }}>1</Typography>
-                     <Typography>2</Typography>
-                     <ArrowForwardIosIcon
-                        onClick={() => toPage2()}
-                        style={{ fontSize: '1.5rem', color: 'lightGrey' }}
-                     />
-                  </div>
-
-                  <Button className={classes.button} color='primary' variant='contained' type="submit">Submit</Button>
 
                </>
             )}

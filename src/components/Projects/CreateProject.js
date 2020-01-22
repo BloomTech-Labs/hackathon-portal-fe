@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import useForm from 'react-hook-form';
+import { blue } from '@material-ui/core/colors';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import { useDispatch } from 'react-redux';
 
@@ -54,6 +55,15 @@ const useStyles = makeStyles(theme => ({
   }));
 
 
+  const GreenCheckbox = withStyles({
+    root: {
+      color: blue[400],
+      '&$checked': {
+        color: blue[600],
+      },
+    },
+    checked: {},
+  })(props => <Checkbox color="default" {...props} />);
 
   function StyledRadio(props) {
     const classes = useStyles();
@@ -79,6 +89,9 @@ const CreateProject = props => {
     title: '',
     description: ''
   });
+  const [checked, setChecked] = React.useState({
+    checked: true,
+  });
   const { loading, user } = useAuth0();
   const dispatch = useDispatch();
   const classes = useStyles();
@@ -98,13 +111,16 @@ const CreateProject = props => {
   const handleFormChange = e => {
     setFormInfo({ ...formInfo, [e.target.name]: e.target.value });
   }
+  const handleButtonChange = name => event => {
+    setChecked({ ...checked, [name]: event.target.checked });
+  };
   const handleFormSubmit = (data,e) => {
     if (loading) {
       return;
     }
     const id = user.sub.replace('auth0|', '');
     e.preventDefault();
-    dispatch(createProject(id, projectInfo, props.history));
+    dispatch(createProject(id, formInfo, props.history));
   }
 
   return(
@@ -169,7 +185,72 @@ const CreateProject = props => {
                      <Typography className={classes.text} gutterBottom variant="h5" component="h5">
                             Will there be specific roles for this project? 
                      </Typography>
-                      
+
+                    <FormControlLabel
+                        control={
+                          <GreenCheckbox
+                            checked={checked.checked}
+                            onChange={handleButtonChange('checked')}
+                            value="checked"
+                          />
+                        }
+                        label="Front End"
+                    />
+
+                     <FormControlLabel
+                        control={
+                          <GreenCheckbox
+                            checked={checked.checked}
+                            onChange={handleButtonChange('checked')}
+                            value="checked"
+                          />
+                        }
+                        label="Back End"
+                    />
+
+                      <FormControlLabel
+                        control={
+                          <GreenCheckbox
+                            checked={checked.checked}
+                            onChange={handleButtonChange('checked')}
+                            value="checked"
+                          />
+                        }
+                        label="UX"
+                    />
+
+                      <FormControlLabel
+                        control={
+                          <GreenCheckbox
+                            checked={checked.checked}
+                            onChange={handleButtonChange('checked')}
+                            value="checked"
+                          />
+                        }
+                        label="Data Science"
+                    />
+
+                      <FormControlLabel
+                        control={
+                          <GreenCheckbox
+                            checked={checked.checked}
+                            onChange={handleButtonChange('checked')}
+                            value="checked"
+                          />
+                        }
+                        label="IOS"
+                    />
+
+                      <FormControlLabel
+                        control={
+                          <GreenCheckbox
+                            checked={checked.checked}
+                            onChange={handleButtonChange('checked')}
+                            value="checked"
+                          />
+                        }
+                        label="Android"
+                    />
                 </label>
                  
 
@@ -178,5 +259,6 @@ const CreateProject = props => {
     </div>
   )
 };
+
 
 export default CreateProject;  
