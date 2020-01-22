@@ -91,6 +91,7 @@ const useStyles = makeStyles(theme => ({
    
             width: '100%',
          },
+      margin: '0 auto',
    },
    button: {
       width: '150px',
@@ -136,6 +137,23 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: '#106ba3',
       },
     },
+   activeButton: {
+      backgroundColor: '#4885E1',
+      color: '#0A0A0B',
+      marginLeft: '3%',
+   },
+   backButton: {
+      border: '1px solid #4885E1',
+      color: '#4885E1'
+   },
+   buttonsContainer: {
+      display: 'flex',
+      justifyContent: 'space-between'
+   },
+   buttonsSubContainer: {
+      display: 'flex',
+      justifyContent: 'space-between'
+   }
 }));
 
 function StyledRadio(props) {
@@ -154,9 +172,7 @@ function StyledRadio(props) {
  }
 
 const CreateHackathon = props => {
-   const [page1, setPage1] = useState(true);
    const [page1Info, setPage1Info] = useState({});
-   const [page2, setPage2] = useState(false);
    const [start_date, setStart_date] = useState(`${new Date()}`);
    const [end_date, setEnd_date] = useState(`${new Date()}`);
    const [hackathonInfo, setHackathonInfo] = useState({
@@ -173,6 +189,10 @@ const CreateHackathon = props => {
    const { loading, user } = useAuth0();
    const dispatch = useDispatch();
    const classes = useStyles();
+   const [activeStep, setActiveStep] = React.useState(0);
+   const [skipped, setSkipped] = React.useState(new Set());
+
+   console.log(props)
 
    
    let { register, handleSubmit, errors, clearError } = useForm();
@@ -205,16 +225,52 @@ const CreateHackathon = props => {
       setState({ [name]: e.target.checked });
    };
 
-   const toPage1 = () => {
-         setPage1(true);
-         setPage2(false);
-      
+   const isStepOptional = step => {
+      return step === 1;
    };
 
-   const toPage2 = () => {
-         setPage1(false);
-         setPage2(true);
-      
+   const isStepSkipped = step => {
+      return skipped.has(step);
+   };
+
+   function getStepContent(step) {
+      switch (step) {
+         case 0:
+            return 'Basic hackathon details';
+         case 1:
+            return 'Hackathon date and time';
+         case 2:
+            return 'Create projects';
+         default:
+            return 'Unknown step';
+      }
+   }
+
+   const handleSkip = () => {
+      if (!isStepOptional(activeStep)) {
+      throw new Error("You can't skip a step that isn't optional.");
+      }
+
+      setActiveStep(prevActiveStep => prevActiveStep + 1);
+      setSkipped(prevSkipped => {
+         const newSkipped = new Set(prevSkipped.values());
+         newSkipped.add(activeStep);
+         return newSkipped;
+      });
+   };
+
+   const handleNext = () => {
+      let newSkipped = skipped;
+      if (isStepSkipped(activeStep)) {
+         newSkipped = new Set(newSkipped.values());
+         newSkipped.delete(activeStep);
+      }
+      setActiveStep(prevActiveStep => prevActiveStep + 1);
+      setSkipped(newSkipped);
+   };
+
+   const handleBack = () => {
+      setActiveStep(prevActiveStep => prevActiveStep - 1);
    };
 
    const handleChange = event => {
@@ -231,14 +287,21 @@ const CreateHackathon = props => {
    };
 
    return (
-      <div className="createHackathonContainer1">
-       
+      <div className="createHackathonContainer1" className={classes.container}>
+         <Stepper 
+         activeStep={activeStep}
+         setActiveStep={setActiveStep}
+         isStepOptional={isStepOptional}
+         isStepSkipped={isStepSkipped}
+         skipped={skipped}
+         />
+         <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
          <form
             noValidate autoComplete="off"
             className={classes.root}
             onSubmit={handleSubmit(handleFormSubmit)}
          >
-            {page1 && (
+            {activeStep === 0 && (
                <>
                   <label className="name">
                      <TextField
@@ -325,31 +388,9 @@ const CreateHackathon = props => {
                         }}
                      />
                   </label>
-
-                  <div
-                     style={{
-                        width: '16%',
-                        display: 'flex',
-                        margin: '0 auto',
-                        marginTop: '3%',
-                        justifyContent: 'space-between'
-                     }}
-                  >
-                     <ArrowBackIosIcon
-                        onClick={() => toPage1()}
-                        style={{ fontSize: '1.5rem', color: 'lightGrey' }}
-                     />
-                     <Typography>Step</Typography>
-                     <Typography>1</Typography>
-                     <Typography style={{ color: 'lightGrey' }}>2</Typography>
-                     <ArrowForwardIosIcon
-                        onClick={() => toPage2()}
-                        style={{ fontSize: '1.5rem' }}
-                     />
-                  </div>
                </>
             )}
-            {page2 && (
+            {activeStep === 1 && (
                <>
                   <div>
                      <label className="startDate">
@@ -494,6 +535,36 @@ const CreateHackathon = props => {
 
                </>
             )}
+            <div className={classes.buttonsContainer}>
+               {activeStep === 0 && (
+                  <Button disabled style={{color:'#5F6471'}} onClick={handleBack} className={classes.disabledButton}>
+               Back
+               </Button>)}
+               {activeStep > 0 && (
+                  <Button onClick={handleBack} className={classes.backButton}>
+               Back
+               </Button>)}
+               <div className={classes.buttonsSubContainer}>
+                  {isStepOptional(activeStep) && (
+                     <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={handleSkip}
+                        className={classes.activeButton}
+                     >
+                        Skip
+                     </Button>
+                  )}
+                  <Button
+                     variant="contained"
+                     color="primary"
+                     onClick={handleNext}
+                     className={classes.activeButton}
+                  >
+                     {activeStep === 2 ? 'Finish' : 'Next'}
+                  </Button>
+               </div>
+            </div>
          </form>
       </div>
    );
