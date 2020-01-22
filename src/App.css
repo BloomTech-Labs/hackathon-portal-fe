@@ -108,6 +108,7 @@ header {
   color: #d0ddff;
   text-decoration: none;
   margin: 0 30px;
+  cursor: pointer;
 }
 
 .dot {

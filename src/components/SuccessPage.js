@@ -10,7 +10,7 @@ const SuccessPage = (props) => {
   
   useEffect(() => {
     dispatch(getSpecificHackathon(props.location.state))
-  }, [])
+  }, [props.location.state, dispatch])
 
   return(
     <div>

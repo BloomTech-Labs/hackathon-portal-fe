@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import axios from 'axios';
 import './App.css';
 import { connect } from 'react-redux';
 
@@ -25,7 +24,7 @@ import { getHackathons } from './actions/actions';
 function App(props) {
    useEffect(() => {
       props.getHackathons();
-   }, []);
+   }, [props]);
 
    return (
       <div className="App">

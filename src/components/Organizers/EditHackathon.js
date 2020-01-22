@@ -10,7 +10,6 @@ import { editHackathon, getSpecificHackathon } from '../../actions/actions';
 import 'date-fns';
 import {
    Button,
-   FormLabel,
    TextField,
    Typography,
    InputAdornment,
@@ -57,7 +56,7 @@ const useStyles = makeStyles(theme => ({
 
 const EditHackathon = props => {
    const dispatch = useDispatch();
-   let { register, handleSubmit, errors, clearError } = useForm();
+   let { register, handleSubmit } = useForm();
    const isFetching = useSelector(state => state.isFetching);
    const hackathon = useSelector(state => state.singleHackathon);
    const [page1, setPage1] = useState(true);
@@ -72,7 +71,8 @@ const EditHackathon = props => {
 
    useEffect(() => {
       dispatch(getSpecificHackathon(props.match.params.id));
-   }, []);
+   }, [dispatch, props.match.params.id]);
+   
    useEffect(() => {
     if(hackathon) {
       setStart_date(`${hackathon.start_date}`)
@@ -147,7 +147,7 @@ const EditHackathon = props => {
                     
 
                      <TextField
-                     color="#FFFFFF"
+                    
                         type="text"
                         fullWidth
                         label="Hackathon Name"
