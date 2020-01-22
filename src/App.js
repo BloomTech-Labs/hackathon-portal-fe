@@ -41,6 +41,7 @@ function App(props) {
                   path="/hackathon/create"
                   component={CreateHackathon}
                />
+
                <PrivateRoute
                   exact
                   path="/hackathon/edit/:id"

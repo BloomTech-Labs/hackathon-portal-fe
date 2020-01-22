@@ -14,8 +14,29 @@ export const FETCH_HACKATHONS = 'FETCH_HACKATHONS';
 export const DELETE_USER = 'DELETE_USER';
 export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
 export const DELETE_USER_FAIL = 'DELETE_USER_FAIL';
+export const POSTPROJECT_SUCCESS = 'POSTPROJECT_SUCCESS';
 
 // ACTIONS
+
+
+
+//PROJECTS
+
+export const createProject = (
+   projectInfo,
+   history
+) => async dispatch => {
+   dispatch({ type: FETCH_START });
+   (await axiosWithAuth())
+      .post(`/projects/`, projectInfo)
+      .then(response => {
+         dispatch({ type: POSTPROJECT_SUCCESS });
+         history.push(`/success`, response.data.id);
+      })
+      .catch(error => {
+         dispatch({ type: FETCH_FAILURE, payload: error.response });
+      });
+};
 
 // HACKATHONS
 export const getHackathons = () => async dispatch => {

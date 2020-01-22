@@ -4,8 +4,7 @@ import useForm from 'react-hook-form';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import { useDispatch } from 'react-redux';
 
-// COMPONENTS
-import Stepper from './Stepper'
+
 
 // ACTIONS
 import { createHackathon } from '../../actions/actions';
@@ -175,7 +174,8 @@ const CreateHackathon = props => {
    const dispatch = useDispatch();
    const classes = useStyles();
 
-   let { register, handleSubmit } = useForm();
+   
+   let { register, handleSubmit, errors, clearError } = useForm();
 
    useEffect(() => {
       setHackathonInfo({
@@ -206,23 +206,15 @@ const CreateHackathon = props => {
    };
 
    const toPage1 = () => {
-      if(errors){
-         console.log('no')
-      }else{
-         clearError();
          setPage1(true);
          setPage2(false);
-      }
+      
    };
 
    const toPage2 = () => {
-      if(errors){
-         console.log(errors)
-      }else{
-         clearError();
          setPage1(false);
          setPage2(true);
-      }
+      
    };
 
    const handleChange = event => {
@@ -240,7 +232,7 @@ const CreateHackathon = props => {
 
    return (
       <div className="createHackathonContainer1">
-         <Stepper />
+       
          <form
             noValidate autoComplete="off"
             className={classes.root}
@@ -249,8 +241,6 @@ const CreateHackathon = props => {
             {page1 && (
                <>
                   <label className="name">
-                     {errors.name && errors.name.type === 'required' && <FormHelperText error>TEST</FormHelperText>}
-                     {/* <FormHelperText error>TEST</FormHelperText> */}
                      <TextField
                         type="text"
                         fullWidth

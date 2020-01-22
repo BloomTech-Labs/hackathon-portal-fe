@@ -120,7 +120,7 @@ const SinglePage = props => {
                )}
          </div>
 
-         <div className='single-hackathon-participants'>
+         {/* <div className='single-hackathon-participants'>
 <Typography variant='h4'>Participants: {hackathon.teams[0] ? (
                      hackathon.teams
                         .map(team => {
@@ -133,7 +133,7 @@ const SinglePage = props => {
                )}
                </Typography>
          </div>
-         
+          */}
          <div className='admins-parent'>
                <Typography variant='h4' id="admins-title">Admins</Typography>
                      {hackathon.admins.map((admin, index) => {
