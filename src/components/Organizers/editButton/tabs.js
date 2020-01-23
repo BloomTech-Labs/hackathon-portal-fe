@@ -169,10 +169,216 @@ console.log(props, 'this is props');
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        {/* <EditHackathon/> */}
+      <div className="createHackathonContainer1">
+         <form
+            onSubmit={handleSubmit(handleFormSubmit)}
+            className={classes.root}
+            style={{ width: '50%', margin: '0 auto' }}
+         >
+            {page1 && (
+               <>
+              
+
+                  <label className="name">
+                    
+
+                     <TextField
+                    
+                        type="text"
+                        fullWidth
+                        label="Hackathon Name"
+                        name="name"
+                        variant="filled"
+                        margin="dense"
+                        className={classes.label}
+                        defaultValue={hackathon.name}
+                        onChange={handlePage1Change}
+                        inputRef={register}
+                        InputProps={{
+                           startAdornment: (
+                              <InputAdornment position="start">
+                                 <PersonIcon />
+                              </InputAdornment>
+                           )
+                        }}
+                     />
+                  </label>
+                  <label className="description">
+                    
+
+                     <TextField
+                     className={classes.label}
+                        type="text"
+                        fullWidth
+                        multiline
+                        rows="4"
+                        name="description"
+                        variant="filled"
+                        margin="dense"
+                        label='Hackathon Description'
+                        defaultValue={hackathon.description}
+                        onChange={handlePage1Change}
+                        inputRef={register}
+                        InputProps={{
+                           startAdornment: (
+                              <InputAdornment position="start">
+                                 <DescriptionIcon />
+                              </InputAdornment>
+                           )
+                        }}
+                     />
+                  </label>
+                  <label className="location-input">
+                
+
+                     <TextField
+                     className={classes.label}
+                        type="text"
+                        fullWidth
+                        name="location"
+                        variant="filled"
+                        margin="dense"
+                        label='Hackathon Location'
+                        defaultValue={hackathon.location}
+                        onChange={handlePage1Change}
+                        inputRef={register}
+                        InputProps={{
+                           startAdornment: (
+                              <InputAdornment position="start">
+                                 <LocationOnIcon />
+                              </InputAdornment>
+                           )
+                        }}
+                     />
+                  </label>
+
+                  <label className="url">
+                   
+
+                     <TextField
+                     className={classes.label}
+                        type="text"
+                        fullWidth
+                        name="url"
+                        variant="filled"
+                        label='Hackathon URL'
+                        margin="dense"
+                        defaultValue={hackathon.url}
+                        onChange={handlePage1Change}
+                        inputRef={register}
+                        InputProps={{
+                           startAdornment: (
+                              <InputAdornment position="start">
+                                 <LanguageIcon />
+                              </InputAdornment>
+                           )
+                        }}
+                     />
+                  </label>
+               </>
+            )}
+         </form>
+      </div>
+      <Button className={classes.button} color='primary' variant='contained' type="submit">Save</Button>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+                  <div>
+                     <label className="startDate">
+                      
+
+                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                           <KeyboardDatePicker
+                           className={classes.label}
+                              autoOk
+                              fullWidth
+                              name="startDate"
+                              margin="dense"
+                              label='Start date'
+                              inputVariant="filled"
+                              format="MM/dd/yyyy"
+                              keyboardIcon={
+                                 <TodayIcon style={{ color: 'black' }} />
+                              }
+                              inputRef={register}
+                              defaultValue={hackathon.start_date}
+                              value={start_date}
+                              InputAdornmentProps={{ position: 'start' }}
+                              onChange={handleStartDateChange}
+                           />
+                        </MuiPickersUtilsProvider>
+                     </label>
+                     <label className="startTime">
+                     
+
+                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                           <KeyboardTimePicker
+                            className={classes.label}
+                              fullWidth
+                              ampm={true}
+                              name="startTime"
+                              margin="dense"
+                              label='Start time'
+                              inputVariant="filled"
+                              defaultValue={hackathon.start_date}
+                              value={start_date}
+                              onChange={handleStartDateChange}
+                              inputRef={register}
+                              keyboardIcon={
+                                 <ScheduleIcon style={{ color: 'black' }} />
+                              }
+                              InputAdornmentProps={{ position: 'start' }}
+                           />
+                        </MuiPickersUtilsProvider>
+                     </label>
+                  </div>
+                  <div>
+                     <label className="endDate">
+                        
+
+                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                           <KeyboardDatePicker
+                           className={classes.label}
+                              fullWidth
+                              autoOk
+                              name="endDate"
+                              margin="dense"
+                              label='End date'
+                              inputVariant="filled"
+                              format="MM/dd/yyyy"
+                              keyboardIcon={
+                                 <EventIcon style={{ color: 'black' }} />
+                              }
+                              inputRef={register}
+                              value={end_date}
+                              InputAdornmentProps={{ position: 'start' }}
+                              onChange={handleEndDateChange}
+                           />
+                        </MuiPickersUtilsProvider>
+                     </label>
+                     <label className="endTime">
+                        
+
+                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                           <KeyboardTimePicker
+                           className={classes.label}
+                              fullWidth
+                              ampm={true}
+                              name="endTime"
+                              margin="dense"
+                              label='End Time'
+                              inputVariant="filled"
+                              value={end_date}
+                              onChange={handleEndDateChange}
+                              inputRef={register}
+                              keyboardIcon={
+                                 <ScheduleIcon style={{ color: 'black' }} />
+                              }
+                              InputAdornmentProps={{ position: 'start' }}
+                           />
+                        </MuiPickersUtilsProvider>
+                     </label>
+                  </div>
+                  <Button className={classes.button} color='primary' variant='contained' type="submit">Save</Button>
       </TabPanel>
       <TabPanel value={value} index={2}>
         <div>
