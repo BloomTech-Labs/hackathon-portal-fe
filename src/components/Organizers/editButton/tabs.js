@@ -100,9 +100,10 @@ export const SimpleTabs = props => {
     setValue(newValue);
   };
 console.log(hackathon);
-  useEffect(() => {
-    dispatch(getSpecificHackathon(props.match.params.id));
- }, [dispatch, props.match.params.id]);
+console.log(props, 'this is props');
+//   useEffect(() => {
+//     dispatch(getSpecificHackathon(hackathon.id));
+//  }, [dispatch, hackathon.id]);
  
  useEffect(() => {
   if(hackathon) {
