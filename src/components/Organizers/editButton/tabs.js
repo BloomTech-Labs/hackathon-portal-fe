@@ -112,7 +112,7 @@ export const SimpleTabs = props => {
     setState({ is_open: hackathon.is_open })
   }
  }, [hackathon])
-// console.log('this is hackathon', hackathon)
+console.log('this is hackathon', hackathon)
  const handlePage1Change = e => {
     setHackathonInfo({ ...hackathonInfo, [e.target.name]: e.target.value });
  };
@@ -128,20 +128,10 @@ export const SimpleTabs = props => {
  };
 
  const handleOpenChange = name => e => {
+     console.log(e, 'this is e yo');
     setState({ [name]: e.target.checked });
     setHackathonInfo({ ...hackathonInfo, [name]: e.target.checked });
  };
-
-//  const toPage1 = () => {
-//     setPage1(true);
-//     setPage2(false);
-//     setHackathonInfo(hackathonInfo);
-//  };
-
-//  const toPage2 = () => {
-//     setPage1(false);
-//     setPage2(true);
-//  };
 
  const handleFormSubmit = (data, e) => {
     console.log(data, 'this is data');
@@ -375,16 +365,36 @@ export const SimpleTabs = props => {
         </form>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <div>
+        <form
+            onSubmit={handleSubmit(handleFormSubmit)}
+            onClick={console.log('button clicked')}
+            className={classes.root}
+            style={{ width: '50%', margin: '0 auto' }}
+        >
+        <label>
+            <FormControlLabel
+                control={
+                    <Checkbox
+                        checked={state.is_open}
+                        onChange={handleOpenChange('is_open')}
+                        color="primary"
+                    />
+                        }
+                label="Open hackathon (this lets participants sign up)"
+            />
+        </label>
+        {/* <div>
             <h3>set hackathon</h3>
             <p>this will allow users to enter the hackathon</p>
-            <span>CLOSED</span><SwitchLabels/><span>OPEN</span>
+            <span>CLOSED</span><SwitchLabels onClick={'this is clicked'}/><span>OPEN</span>
         </div>
         <div>
             <h3>allow project idea submission</h3>
             <p>this will allow users to begin submitting ideas</p>
             <span>OFF</span><SwitchLabels/><span>ON</span>
-        </div>
+        </div> */}
+        <Button className={classes.button} color='primary' variant='contained' type="submit">Save</Button>
+      </form>
       </TabPanel>
     </div>
   );
