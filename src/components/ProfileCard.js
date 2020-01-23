@@ -13,17 +13,21 @@ const useStyles = makeStyles({
     maxWidth: 345,
     minWidth: 345,
     margin: '1%',
-    background: '#1c1c1f',
+    background:
+'rgb(22,22,23)',
+borderBottom: '1px solid #606060'
+    // background: '#1c1c1f',
   },
   media: {
     height: 140,
   },
   text: {
       color: '#d0ddff',
+      textAlign: 'left',
   },
   button: {
     display: 'flex',
-    justifyContent: 'center'
+    fontWeight: 'bold'
   }
   
 });

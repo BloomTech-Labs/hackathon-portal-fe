@@ -188,6 +188,17 @@ header {
   align-items: center;
 }
 
+#profile-info-container {
+  display: flex;
+  justify-content: center;
+}
+
+#profile-info {
+  padding-bottom: 50px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.32);
+  width: 85%;
+}
+
 .profile-left {
   display: flex;
   align-items: center;
@@ -198,23 +209,24 @@ header {
 .profile-left h1, h2 {
 min-width: 100px;
 margin: 0;
-padding: 10px;
 font-family: Roboto;
 font-style: normal;
 font-weight: normal;
 line-height: 53px;
-color: #4885E1;
+color: rgb(255, 255, 255);
 }
 
 #profile-name {
-  border-bottom: 1px solid;
   width: 650px;
+  font-weight: bolder;
+  font-size: 2.5rem;
   text-align: left;
 }
 
 #profile-username {
   text-align: left;
-  margin-left: 10%;
+  font-weight: lighter;
+  font-size: 1.3rem;
 }
 
 .profile-headers {
@@ -230,8 +242,10 @@ color: #4885E1;
 }
 
 #profile-edit-btn {
-  color: #d0ddff;;
-  border: 1px solid #d0ddff;
+  color: #4885E1;;
+  border: 1px solid;
+  border-radius: 13.5px;
+  padding: 10px;
   margin-bottom: 10%;
 }
 
@@ -241,20 +255,20 @@ color: #4885E1;
 }
 
 #profile-img {
-  height: 300px;
-  margin-right: 2%;
+  height: 200px;
+  margin-right: 3%;
   border-radius: 100%;
   border: 2px solid #D0DDFF;
 }
 
 .MuiCardActions-root {
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .profile-hackathon-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
   width: 75%;
 }
 
@@ -262,6 +276,11 @@ color: #4885E1;
 .createHackathonContainer1 {
   display: flex;
   justify-content: center;
+}
+
+#hackathons-header {
+  font-weight: 1000;
+  font-size: 3rem;
 }
 
 
@@ -389,8 +408,9 @@ margin-top: -1%;
 
 .profile-hackathons {
   display: flex;
-  align-items: center;
   flex-direction: column;
+  text-align: left;
+  align-items: center;
 }
 
 .footer {

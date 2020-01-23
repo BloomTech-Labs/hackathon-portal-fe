@@ -121,7 +121,8 @@ const UserProfile = props => {
 
    return (
       <div className='profile-wrapper'>
-         <div className='profile-container'>
+         <div id='profile-info-container'>
+         <div className='profile-container' id='profile-info'>
             <div className='profile-left'>
                <img id='profile-img' src='https://i.imgflip.com/1slnr0.jpg' alt="profile"></img>
                <div className='profile-headers'>
@@ -139,12 +140,13 @@ const UserProfile = props => {
                   </>
                ) : null}
             </div>
-
          </div>
-         
+         </div>
          <div className='profile-hackathons'>
-            <h1>Hackathons</h1>
+            
             <div className='profile-hackathon-list'>
+               <p id='hackathons-header'>Hackathons</p>
+            <h1>Present</h1>
                   {presentHackathons.map(hackathon => (
                      <ProfileCard 
                      key={hackathon.hackathon_id} 
@@ -157,8 +159,9 @@ const UserProfile = props => {
             </div>
          </div>
          <div className='profile-hackathons'>
-            <h1>Past Hackathons</h1>
+            
             <div className='profile-hackathon-list'>
+            <h1>Past</h1>
                   {pastHackathons.map(hackathon => (
                      <ProfileCard 
                      key={hackathon.hackathon_id} 
