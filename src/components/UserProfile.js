@@ -150,7 +150,7 @@ const UserProfile = props => {
                      key={hackathon.hackathon_id} 
                      id={hackathon.hackathon_id}
                      name={hackathon.hackathon_name}
-                     team_name={hackathon.team_name}
+//                      team_name={hackathon.team_name}
                      user_role={hackathon.user_hackathon_role}
                      />
                   ))}
@@ -164,7 +164,7 @@ const UserProfile = props => {
                      key={hackathon.hackathon_id} 
                      id={hackathon.hackathon_id}
                      name={hackathon.hackathon_name}
-                     team_name={hackathon.team_name}
+//                      team_name={hackathon.team_name}
                      user_role={hackathon.user_hackathon_role}
                      />
                   ))}
