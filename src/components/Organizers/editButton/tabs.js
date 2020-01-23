@@ -100,10 +100,10 @@ export const SimpleTabs = props => {
     setValue(newValue);
   };
 // console.log(hackathon);
-console.log(props, 'this is props');
+// console.log(props, 'this is props');
 //   useEffect(() => {
 //     dispatch(getSpecificHackathon(hackathon.id));
-//  }, [dispatch, hackathon.id]);
+//  }, [hackathon]);
  
  useEffect(() => {
   if(hackathon) {
@@ -112,7 +112,7 @@ console.log(props, 'this is props');
     setState({ is_open: hackathon.is_open })
   }
  }, [hackathon])
-console.log('this is hackathon', hackathon)
+// console.log('this is hackathon', hackathon)
  const handlePage1Change = e => {
     setHackathonInfo({ ...hackathonInfo, [e.target.name]: e.target.value });
  };
@@ -269,6 +269,12 @@ console.log('this is hackathon', hackathon)
       </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
+      <form
+            onSubmit={handleSubmit(handleFormSubmit)}
+            onClick={console.log('button clicked')}
+            className={classes.root}
+            style={{ width: '50%', margin: '0 auto' }}
+        >
                   <div>
                      <label className="startDate">
                       
@@ -366,6 +372,7 @@ console.log('this is hackathon', hackathon)
                      </label>
                   </div>
                   <Button className={classes.button} color='primary' variant='contained' type="submit">Save</Button>
+        </form>
       </TabPanel>
       <TabPanel value={value} index={2}>
         <div>

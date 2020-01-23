@@ -70,6 +70,7 @@ export const editHackathon = (
       .put(`/hackathons/${id}/u/${org_id}`, hackathonInfo)
       .then(response => {
          dispatch({ type: EDITHACKATHON_SUCCESS });
+         dispatch(getSpecificHackathon(id));
          history.push(`/success`, response.data.id);
       })
       .catch(error => {
