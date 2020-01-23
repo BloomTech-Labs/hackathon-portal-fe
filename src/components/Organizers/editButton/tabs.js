@@ -99,7 +99,7 @@ export const SimpleTabs = props => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-console.log(hackathon);
+// console.log(hackathon);
 console.log(props, 'this is props');
 //   useEffect(() => {
 //     dispatch(getSpecificHackathon(hackathon.id));
@@ -112,7 +112,7 @@ console.log(props, 'this is props');
     setState({ is_open: hackathon.is_open })
   }
  }, [hackathon])
-
+console.log('this is hackathon', hackathon)
  const handlePage1Change = e => {
     setHackathonInfo({ ...hackathonInfo, [e.target.name]: e.target.value });
  };
@@ -132,18 +132,19 @@ console.log(props, 'this is props');
     setHackathonInfo({ ...hackathonInfo, [name]: e.target.checked });
  };
 
- const toPage1 = () => {
-    setPage1(true);
-    setPage2(false);
-    setHackathonInfo(hackathonInfo);
- };
+//  const toPage1 = () => {
+//     setPage1(true);
+//     setPage2(false);
+//     setHackathonInfo(hackathonInfo);
+//  };
 
- const toPage2 = () => {
-    setPage1(false);
-    setPage2(true);
- };
+//  const toPage2 = () => {
+//     setPage1(false);
+//     setPage2(true);
+//  };
 
  const handleFormSubmit = (data, e) => {
+    console.log(data, 'this is data');
     if (loading) {
        return;
     }
@@ -151,8 +152,8 @@ console.log(props, 'this is props');
     e.preventDefault();
     dispatch(
        editHackathon(
-          Number(props.match.params.id),
-          Number(id),
+          Number(hackathon.id),
+          Number(hackathon.organizer_id),
           props.history,
           hackathonInfo
        )
@@ -170,20 +171,14 @@ console.log(props, 'this is props');
       </AppBar>
       <TabPanel value={value} index={0}>
       <div className="createHackathonContainer1">
-         <form
+        <form
             onSubmit={handleSubmit(handleFormSubmit)}
+            onClick={console.log('button clicked')}
             className={classes.root}
             style={{ width: '50%', margin: '0 auto' }}
-         >
-            {page1 && (
-               <>
-              
-
+        >
                   <label className="name">
-                    
-
                      <TextField
-                    
                         type="text"
                         fullWidth
                         label="Hackathon Name"
@@ -204,10 +199,8 @@ console.log(props, 'this is props');
                      />
                   </label>
                   <label className="description">
-                    
-
                      <TextField
-                     className={classes.label}
+                        className={classes.label}
                         type="text"
                         fullWidth
                         multiline
@@ -229,10 +222,8 @@ console.log(props, 'this is props');
                      />
                   </label>
                   <label className="location-input">
-                
-
                      <TextField
-                     className={classes.label}
+                        className={classes.label}
                         type="text"
                         fullWidth
                         name="location"
@@ -253,10 +244,8 @@ console.log(props, 'this is props');
                   </label>
 
                   <label className="url">
-                   
-
                      <TextField
-                     className={classes.label}
+                        className={classes.label}
                         type="text"
                         fullWidth
                         name="url"
@@ -275,11 +264,9 @@ console.log(props, 'this is props');
                         }}
                      />
                   </label>
-               </>
-            )}
-         </form>
+                  <Button className={classes.button} color='primary' variant='contained' type="submit" onClick={console.log('click')}>Save</Button>
+        </form>
       </div>
-      <Button className={classes.button} color='primary' variant='contained' type="submit">Save</Button>
       </TabPanel>
       <TabPanel value={value} index={1}>
                   <div>
