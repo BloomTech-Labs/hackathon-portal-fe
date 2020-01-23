@@ -182,21 +182,26 @@ header {
 }
 /* user profile  */
 
-.profile-container {
+.profile-wrapper {
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  flex-direction: column;
+  color: white;
+  
+  margin-left: 15%;
+  margin-right: 15%;
 }
 
-#profile-info-container {
-  display: flex;
-  justify-content: center;
-}
 
 #profile-info {
-  padding-bottom: 50px;
+  display: flex;
+  justify-content: space-between;
   border-bottom: 1px solid rgba(255, 255, 255, 0.32);
-  width: 85%;
+  padding-bottom: 50px;
+  max-width: 100%;
+}
+
+.profile-container {
+  display: flex;
 }
 
 .profile-left {
@@ -204,6 +209,7 @@ header {
   align-items: center;
   justify-content: space-evenly;
   min-width: 30%;
+  margin-right: -30px;
 }
 
 .profile-left h1, h2 {
@@ -213,11 +219,9 @@ font-family: Roboto;
 font-style: normal;
 font-weight: normal;
 line-height: 53px;
-color: rgb(255, 255, 255);
 }
 
 #profile-name {
-  width: 650px;
   font-weight: bolder;
   font-size: 2.5rem;
   text-align: left;
@@ -237,39 +241,57 @@ color: rgb(255, 255, 255);
 .profile-buttons {
   display: flex;
   flex-direction: column;
-  margin-top: -10%;
   align-items: space-between;
+  justify-content: center;
 }
 
 #profile-edit-btn {
-  color: #4885E1;;
+  color: #4885E1;
   border: 1px solid;
   border-radius: 13.5px;
   padding: 10px;
   margin-bottom: 10%;
+  width: 150px;
+  transition: 0.5s;
+}
+
+
+#profile-edit-btn:hover {
+  color: white;
+  background: none;
 }
 
 #profile-delete-btn {
-  color: rgb(255, 134, 134);
-  border: 1px solid;
+  color: #4885E1;
+  border-radius: 13.5px;
+  padding: 10px;
+  margin-bottom: 10%;
+  width: 150px;
+  border: none;
+  transition: 0.5s;
+}
+
+#profile-delete-btn:hover {
+  color: rgb(255, 109, 109);
+  background: none;
 }
 
 #profile-img {
   height: 200px;
-  margin-right: 3%;
   border-radius: 100%;
   border: 2px solid #D0DDFF;
+  margin-right: 35px;
 }
 
 .MuiCardActions-root {
   justify-content: flex-end;
 }
 
+
 .profile-hackathon-list {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  width: 75%;
 }
 
 /* create hackathon form  */
@@ -280,7 +302,12 @@ color: rgb(255, 255, 255);
 
 #hackathons-header {
   font-weight: 1000;
-  font-size: 3rem;
+  font-size: 2.5rem;
+  text-align: left;
+}
+
+.hackathons-section {
+  margin-bottom: 50px;
 }
 
 
@@ -411,6 +438,7 @@ margin-top: -1%;
   flex-direction: column;
   text-align: left;
   align-items: center;
+  margin-right: 20px;
 }
 
 .footer {

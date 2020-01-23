@@ -121,7 +121,7 @@ const UserProfile = props => {
 
    return (
       <div className='profile-wrapper'>
-         <div id='profile-info-container'>
+   
          <div className='profile-container' id='profile-info'>
             <div className='profile-left'>
                <img id='profile-img' src='https://i.imgflip.com/1slnr0.jpg' alt="profile"></img>
@@ -136,17 +136,19 @@ const UserProfile = props => {
                {user.id === userProfile.id ? (
                   <>
                      <Button  id='profile-edit-btn' variant='outlined'  onClick={handleClickOpen}>Edit Profile</Button>
-                     <Button id='profile-delete-btn' variant="outlined" onClick={handleDeleteClick}>Delete Profile</Button>
+                    
                   </>
                ) : null}
             </div>
          </div>
-         </div>
+         <p id='hackathons-header'>Hackathons</p>
+         <section className='hackathons-section'>
+         <div className='profile-container'>
+         {presentHackathons.length ? (
          <div className='profile-hackathons'>
             
             <div className='profile-hackathon-list'>
-               <p id='hackathons-header'>Hackathons</p>
-            <h1>Present</h1>
+               <h1>Present</h1>
                   {presentHackathons.map(hackathon => (
                      <ProfileCard 
                      key={hackathon.hackathon_id} 
@@ -156,8 +158,14 @@ const UserProfile = props => {
                      user_role={hackathon.user_hackathon_role}
                      />
                   ))}
+                  
             </div>
          </div>
+         ) : null
+                  }
+
+
+         {pastHackathons.length? (
          <div className='profile-hackathons'>
             
             <div className='profile-hackathon-list'>
@@ -173,6 +181,17 @@ const UserProfile = props => {
                   ))}
             </div>
          </div>
+         ) : null
+         }
+         </div>
+         </section>
+         {user.id === userProfile.id ? (
+                  <>
+                      <Button id='profile-delete-btn' variant="outlined" onClick={handleDeleteClick}>Delete Profile</Button>
+                    
+                  </>
+               ) : null}
+         
          <Dialog
             open={open}
             onClose={handleClose}
