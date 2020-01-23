@@ -107,6 +107,9 @@ const CreateProject = props => {
     });
   }, [formInfo]);
 
+  // whenever application is accepted, -1 in back end for each role selected
+  // 
+  // add conditional to change form if user is a organizer or not
 
   const handleFormChange = e => {
     setFormInfo({ ...formInfo, [e.target.name]: e.target.value });
