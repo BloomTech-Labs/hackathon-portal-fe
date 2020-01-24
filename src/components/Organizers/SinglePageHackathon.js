@@ -123,32 +123,18 @@ const SinglePage = props => {
             <Link to={`/hackathon/${hackathon.id}/projects`}><Button id='single-hackathon-crud-btn'>JOIN EVENT</Button></Link>
          )}
       </div>
-
-      {/* <div className='single-hackathon-participants'>
-<Typography variant='h4'>Participants: {hackathon.teams[0] ? (
-                  hackathon.teams
-                     .map(team => {
-                        return team.devs.length;
-                     })
-                     .reduce((acc, curr) => acc + curr) +
-                     hackathon.individual_devs.length
-            ) : (
-               0 + hackathon.individual_devs.length
-            )}
-            </Typography>
-      </div> */}
       
       <div className='admins-parent'>
-            <Typography variant='h4' id="admins-title">Admins</Typography>
-                  {hackathon.admins.map((admin, index) => {
-                     return (
-                        <div className='single-hackathon-admins'
-                           key={index}>
-                           <h2>{admin.username}</h2>
-                           <p>{admin.user_hackathon_role}</p>
-                        </div>
-                     );
-                  })}
+         <Typography variant='h4' id="admins-title">Admins</Typography>
+            {hackathon.admins.map((admin, index) => {
+               return (
+                  <div className='single-hackathon-admins'
+                     key={index}>
+                     <h2>{admin.username}</h2>
+                     <p>{admin.user_hackathon_role}</p>
+                  </div>
+               );
+            })}
       </div>
    </div>
    );

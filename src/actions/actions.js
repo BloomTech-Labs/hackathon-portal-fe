@@ -90,29 +90,8 @@ export const deleteHackathon = (id, org_id, history) => async dispatch => {
       });
 };
 
-// TEAMS
-export const getTeams = () => async dispatch => {
-   dispatch({ type: FETCH_START });
-   (await axiosWithAuth())
-      .get(`/teams`)
-      .then(response => {
-      })
-      .catch(error => {
-         console.log(error);
-      });
-};
+// PROJECTS
 
-export const getSpecificTeam = id => async dispatch => {
-   dispatch({ type: FETCH_START });
-   (await axiosWithAuth())
-      .get(`/teams/${id}`)
-      .then(response => {
-         console.log(response);
-      })
-      .catch(error => {
-         console.log(error);
-      });
-};
 
 // HACKERS
 export const getHackers = () => async dispatch => {
