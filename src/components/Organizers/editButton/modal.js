@@ -84,6 +84,7 @@ export default function SpringModal() {
           <div className={classes.paper}>
             <h2 id="spring-modal-title">Hackathon Settings</h2>
             <SimpleTabs/>
+            <button className={classes.button} onClick={handleClose}>Exit</button>
           </div>
         </Fade>
       </Modal>

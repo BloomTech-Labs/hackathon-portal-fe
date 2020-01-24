@@ -118,6 +118,7 @@ export const SimpleTabs = props => {
  };
 
  const handleFormSubmit = (data, e) => {
+    console.log(data, e, 'this is data');
     if (loading) {
        return;
     }
@@ -142,13 +143,13 @@ export const SimpleTabs = props => {
           <Tab label="actions" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
-      <div className="createHackathonContainer1">
-        <form
+      <form
             onSubmit={handleSubmit(handleFormSubmit)}
             className={classes.root}
             style={{ width: '50%', margin: '0 auto' }}
         >
+      <TabPanel value={value} index={0}> 
+      <div className="createHackathonContainer1">
                   <label className="name">
                      <TextField
                         type="text"
@@ -237,15 +238,9 @@ export const SimpleTabs = props => {
                      />
                   </label>
                   <Button className={classes.button} color='primary' variant='contained' type="submit">Save</Button>
-        </form>
       </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
-      <form
-            onSubmit={handleSubmit(handleFormSubmit)}
-            className={classes.root}
-            style={{ width: '50%', margin: '0 auto' }}
-        >
                   <div>
                      <label className="startDate">
                       
@@ -343,14 +338,8 @@ export const SimpleTabs = props => {
                      </label>
                   </div>
                   <Button className={classes.button} color='primary' variant='contained' type="submit">Save</Button>
-        </form>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <form
-            onSubmit={handleSubmit(handleFormSubmit)}
-            className={classes.root}
-            style={{ width: '50%', margin: '0 auto' }}
-        >
         <label>
             <FormControlLabel
                 control={
@@ -364,8 +353,8 @@ export const SimpleTabs = props => {
             />
         </label>
         <Button className={classes.button} color='primary' variant='contained' type="submit">Save</Button>
-      </form>
       </TabPanel>
+      </form>
     </div>
   );
 }
