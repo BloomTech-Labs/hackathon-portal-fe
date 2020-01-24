@@ -86,6 +86,17 @@ export const SimpleTabs = props => {
   const [hackathonInfo, setHackathonInfo] = useState();
   const [state, setState] = useState({ is_open: true });
   const { loading, user } = useAuth0();
+  const [saveButton, setSaveButton] = React.useState(false);
+  console.log(saveButton);
+
+  const enableSave = () => {
+      console.log('enablesave')
+      setSaveButton(true);
+  }
+
+  const disableSave = () => {
+      setSaveButton(false);
+  }
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -98,9 +109,9 @@ export const SimpleTabs = props => {
     setState({ is_open: hackathon.is_open })
   }
  }, [hackathon])
- const handlePage1Change = e => {
-    setHackathonInfo({ ...hackathonInfo, [e.target.name]: e.target.value });
- };
+//  const handlePage1Change = e => {
+//     setHackathonInfo({ ...hackathonInfo, [e.target.name]: e.target.value });
+//  };
 
  const handleStartDateChange = date => {
     setStart_date(date.toString());
@@ -153,6 +164,7 @@ export const SimpleTabs = props => {
                   <label className="name">
                      <TextField
                         type="text"
+                        onChange={enableSave}
                         fullWidth
                         label="Hackathon Name"
                         name="name"
@@ -160,7 +172,6 @@ export const SimpleTabs = props => {
                         margin="dense"
                         className={classes.label}
                         defaultValue={hackathon.name}
-                        onChange={handlePage1Change}
                         inputRef={register}
                         InputProps={{
                            startAdornment: (
@@ -171,6 +182,7 @@ export const SimpleTabs = props => {
                         }}
                      />
                   </label>
+                  {/* <button onClick={enableSave}></button> */}
                   <label className="description">
                      <TextField
                         className={classes.label}
@@ -183,7 +195,6 @@ export const SimpleTabs = props => {
                         margin="dense"
                         label='Hackathon Description'
                         defaultValue={hackathon.description}
-                        onChange={handlePage1Change}
                         inputRef={register}
                         InputProps={{
                            startAdornment: (
@@ -204,7 +215,6 @@ export const SimpleTabs = props => {
                         margin="dense"
                         label='Hackathon Location'
                         defaultValue={hackathon.location}
-                        onChange={handlePage1Change}
                         inputRef={register}
                         InputProps={{
                            startAdornment: (
@@ -226,7 +236,6 @@ export const SimpleTabs = props => {
                         label='Hackathon URL'
                         margin="dense"
                         defaultValue={hackathon.url}
-                        onChange={handlePage1Change}
                         inputRef={register}
                         InputProps={{
                            startAdornment: (
