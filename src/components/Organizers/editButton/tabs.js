@@ -5,16 +5,12 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
-import SwitchLabels from './switch';
-
-import EditHackathon from '../EditHackathon';
-
 import useForm from 'react-hook-form';
 import { useAuth0 } from '../../../auth0-hooks/react-auth0-spa';
 import { useDispatch, useSelector } from 'react-redux';
 
 // ACTIONS
-import { editHackathon, getSpecificHackathon } from '../../../actions/actions';
+import { editHackathon } from '../../../actions/actions';
 
 // STYLE
 import 'date-fns';
@@ -33,8 +29,6 @@ import LanguageIcon from '@material-ui/icons/Language';
 import TodayIcon from '@material-ui/icons/Today';
 import EventIcon from '@material-ui/icons/Event';
 import ScheduleIcon from '@material-ui/icons/Schedule';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import DateFnsUtils from '@date-io/date-fns';
 import {
@@ -86,10 +80,7 @@ export const SimpleTabs = props => {
   const [value, setValue] = React.useState(0);
   const dispatch = useDispatch();
   let { register, handleSubmit } = useForm();
-  const isFetching = useSelector(state => state.isFetching);
   const hackathon = useSelector(state => state.singleHackathon);
-  const [page1, setPage1] = useState(true);
-  const [page2, setPage2] = useState(false);
   const [start_date, setStart_date] = useState(`${new Date()}`);
   const [end_date, setEnd_date] = useState(`${new Date()}`);
   const [hackathonInfo, setHackathonInfo] = useState();
@@ -99,12 +90,7 @@ export const SimpleTabs = props => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-// console.log(hackathon);
-// console.log(props, 'this is props');
-//   useEffect(() => {
-//     dispatch(getSpecificHackathon(hackathon.id));
-//  }, [hackathon]);
- 
+
  useEffect(() => {
   if(hackathon) {
     setStart_date(`${hackathon.start_date}`)
@@ -112,7 +98,6 @@ export const SimpleTabs = props => {
     setState({ is_open: hackathon.is_open })
   }
  }, [hackathon])
-console.log('this is hackathon', hackathon)
  const handlePage1Change = e => {
     setHackathonInfo({ ...hackathonInfo, [e.target.name]: e.target.value });
  };
@@ -128,13 +113,11 @@ console.log('this is hackathon', hackathon)
  };
 
  const handleOpenChange = name => e => {
-     console.log(e, 'this is e yo');
     setState({ [name]: e.target.checked });
     setHackathonInfo({ ...hackathonInfo, [name]: e.target.checked });
  };
 
  const handleFormSubmit = (data, e) => {
-    console.log(data, 'this is data');
     if (loading) {
        return;
     }
@@ -163,7 +146,6 @@ console.log('this is hackathon', hackathon)
       <div className="createHackathonContainer1">
         <form
             onSubmit={handleSubmit(handleFormSubmit)}
-            onClick={console.log('button clicked')}
             className={classes.root}
             style={{ width: '50%', margin: '0 auto' }}
         >
@@ -254,14 +236,13 @@ console.log('this is hackathon', hackathon)
                         }}
                      />
                   </label>
-                  <Button className={classes.button} color='primary' variant='contained' type="submit" onClick={console.log('click')}>Save</Button>
+                  <Button className={classes.button} color='primary' variant='contained' type="submit">Save</Button>
         </form>
       </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
       <form
             onSubmit={handleSubmit(handleFormSubmit)}
-            onClick={console.log('button clicked')}
             className={classes.root}
             style={{ width: '50%', margin: '0 auto' }}
         >
@@ -367,7 +348,6 @@ console.log('this is hackathon', hackathon)
       <TabPanel value={value} index={2}>
         <form
             onSubmit={handleSubmit(handleFormSubmit)}
-            onClick={console.log('button clicked')}
             className={classes.root}
             style={{ width: '50%', margin: '0 auto' }}
         >
@@ -383,16 +363,6 @@ console.log('this is hackathon', hackathon)
                 label="Open hackathon (this lets participants sign up)"
             />
         </label>
-        {/* <div>
-            <h3>set hackathon</h3>
-            <p>this will allow users to enter the hackathon</p>
-            <span>CLOSED</span><SwitchLabels onClick={'this is clicked'}/><span>OPEN</span>
-        </div>
-        <div>
-            <h3>allow project idea submission</h3>
-            <p>this will allow users to begin submitting ideas</p>
-            <span>OFF</span><SwitchLabels/><span>ON</span>
-        </div> */}
         <Button className={classes.button} color='primary' variant='contained' type="submit">Save</Button>
       </form>
       </TabPanel>
