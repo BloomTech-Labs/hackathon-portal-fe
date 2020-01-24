@@ -7,19 +7,18 @@ import { useDispatch, useSelector } from 'react-redux';
 //ACTIONS
 import { createProject, getSpecificHackathon } from '../../actions/actions';
 
-
 // STYLE
 import 'date-fns';
 import TextField from '@material-ui/core/TextField';
 import {
   Button,
-   Typography,
-   InputAdornment,
-   makeStyles,
-   withStyles,
-   Checkbox,
-   FormControlLabel,
-   FormHelperText
+  Typography,
+  InputAdornment,
+  makeStyles,
+  withStyles,
+  Checkbox,
+  FormControlLabel,
+  FormHelperText
 } from '@material-ui/core';
 import DescriptionIcon from '@material-ui/icons/Description';
 
@@ -33,28 +32,28 @@ import Select from '@material-ui/core/Select';
 
 const useStyles = makeStyles(theme => ({
   label: {
-     background: '#D0DDFF',
-     borderRadius: '5px',
-     marginBottom: '20px',
+    background: '#D0DDFF',
+    borderRadius: '5px',
+    marginBottom: '20px',
   },
   root: {
-     padding: '3%',
-     borderRadius: '5px',
+    padding: '3%',
+    borderRadius: '5px',
         width: '50%',
         '& > *': {
   
-           width: '100%',
+          width: '100%',
         },
   },
   button: {
-     width: '150px',
-     marginTop: '50px'
+    width: '150px',
+    marginTop: '50px'
   },
   formControl: {
-     margin: theme.spacing(1),
-     minWidth: 120,
-   },
-  }));
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+}));
 
 
   const GreenCheckbox = withStyles({
@@ -90,8 +89,7 @@ const CreateProject = props => {
     ios_spots: 0,
     android_spots: 0,
     ux_spots: 0,
-    data_science_spots: 0,
-    developer_role: ''
+    data_science_spots: 0
   });
   const [spots, setSpots] = React.useState({
     frontend: 0,
@@ -113,22 +111,28 @@ const CreateProject = props => {
   const { loading, user } = useAuth0();
   const dispatch = useDispatch();
   const classes = useStyles();
+  let spotsArray = Object.values(spots);
 
   useEffect(() => {
     dispatch(getSpecificHackathon((props.match.params.id)));
- }, [dispatch, props.match.params.id]);
+  }, [dispatch, props.match.params.id]);
 
   useEffect(() => {
-    setProjectInfo({
-      title: `${formInfo.title}`,
-      description: `${formInfo.description}`,
-      front_end_spots: `${spots.frontend}`,
-      back_end_spots: `${spots.backend}`,
-      ios_spots: `${spots.ios}`,
-      android_spots: `${spots.and}`,
-      ux_spots: `${spots.ux}`,
-      data_science_spots: `${spots.ds}`
-    });
+    if(hackathon) {
+      setProjectInfo({
+        title: `${formInfo.title}`,
+        description: `${formInfo.description}`,
+        front_end_spots: spots.frontend,
+        back_end_spots: spots.backend,
+        ios_spots: spots.ios,
+        android_spots: spots.and,
+        ux_spots: spots.ux,
+        data_science_spots: spots.ds,
+        creator_id: currentUser.id,
+        hackathon_id: hackathon.id,
+        creator_id: currentUser.id
+      });
+    }
   }, [formInfo, spots]);
 
   useEffect(() => {
@@ -136,9 +140,6 @@ const CreateProject = props => {
       setCurrentUser({...currentUser, user_hackathon_role: 'participant', hackathon_id: `${hackathon.id}`, developer_role: `${role}`})
     }
   }, [role])
-
-  // whenever application is accepted, -1 in back end for each role selected
-  // add conditional to change form if user is a organizer or not
 
   const handleFormChange = e => {
     setFormInfo({ ...formInfo, [e.target.name]: e.target.value });
@@ -171,30 +172,30 @@ const CreateProject = props => {
     if (loading) {
       return;
     }
-    e.preventDefault();
-    console.log(projectInfo, currentUser)
-    // dispatch(createProject( userId, projectInfo, props.history ))
+    if(spotsArray.reduce((acc, curr) => acc + curr) > hackathon.max_team_participants){
+      e.preventDefault();
+      console.log('ERROR: the total number of participants is more than the maximum number allowed per team')
+    }else{
+      e.preventDefault();
+      console.log(projectInfo, currentUser)
+      dispatch(createProject(hackathon.id, projectInfo, props.history))
+    }
   }
-
-  if(user) {
-    console.log(user)
-  }
+  
   if(loading || !hackathon){
     return(
       <div>Loading...</div>
-    )
+      )
   }else if(!hackathon.organizer_id){
     return(
       <div>Loading...</div>
-    )
-  }
-
-  let selectOptions = [];
-  for(let i=0; i <= hackathon.max_team_participants; i++){
-    selectOptions.push(i)
-  }
-
-  let spotsArray = Object.values(spots)
+      )
+    }
+    
+    let selectOptions = [];
+    for(let i=0; i <= hackathon.max_team_participants; i++){
+      selectOptions.push(i)
+    }
 
   return(
     <div>
@@ -257,7 +258,6 @@ const CreateProject = props => {
           </RadioGroup>
       </FormControl>
       </label>
-
         
         {project === "Team Project" && (
         <>
@@ -471,7 +471,6 @@ const CreateProject = props => {
       variant="contained"
       color="primary"
       className={classes.activeButton}
-      // onClick={()=>handleFormSubmit()}
       type='submit'
       >
       Finish

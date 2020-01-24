@@ -47,10 +47,10 @@ function App(props) {
                   path="/hackathon/edit/:id"
                   component={EditHackathon}
                />
-               <PrivateRoute path={`/hackathon/:id`} component={SinglePage} />
+               <PrivateRoute exact path={`/hackathon/:id`} component={SinglePage} />
+               <PrivateRoute exact path='/hackathon/:id/create/project' component={CreateProject} />
                <Route path="/success" component={SuccessPage} />
                <Route component={ErrorPage} />
-               <PrivateRoute exact path='/hackathon/create/project' component={CreateProject} />
             </Switch>
          </Router>
       </div>
