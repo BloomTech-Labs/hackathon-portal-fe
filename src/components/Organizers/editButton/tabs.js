@@ -75,11 +75,17 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.paper,
     border: '3px solid green'
   },
-  info: {
-      display: 'flex',
-      flexDirection: 'column',
-      width: '100%',
-      border: '4px solid red',
+  editinfo: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '50%',
+    border: '4px solid red',
+  },
+  editdate: {
+    margin: 'auto',
+    width: '50%',
+    height: '50%',
+    border: '4px solid purple'
   }
 }));
 
@@ -161,9 +167,9 @@ export const SimpleTabs = props => {
       <form
             onSubmit={handleSubmit(handleFormSubmit)}
             // className={classes.info}
-            style={{ width: '50%', margin: '0 auto' }}
+            // style={{ width: '50%', margin: '0 auto' }}
         >
-      <TabPanel value={value} index={0} className={classes.info}> 
+      <TabPanel value={value} index={0} className={classes.editinfo}> 
       <div>
                   <label className="name">
                      <TextField
@@ -187,7 +193,6 @@ export const SimpleTabs = props => {
                         }}
                      />
                   </label>
-                  {/* <button onClick={enableSave}></button> */}
                   <label className="description">
                      <TextField
                         className={classes.label}
@@ -260,14 +265,14 @@ export const SimpleTabs = props => {
                   <Button className={classes.button} color='primary' variant='contained' type="submit" disabled={saveButton}>Save</Button>
       </div>
       </TabPanel>
-      <TabPanel value={value} index={1} className={classes.info}>
+      <TabPanel value={value} index={1} className={classes.editdate}>
                   <div >
                      <label className="startDate">
                       
 
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardDatePicker
-                           className={classes.label}
+                              className={classes.label}
                               autoOk
                               fullWidth
                               name="startDate"
@@ -363,7 +368,7 @@ export const SimpleTabs = props => {
                   </div>
                   <Button className={classes.button} color='primary' variant='contained' type="submit" disabled={saveButton}>Save</Button>
       </TabPanel>
-      <TabPanel value={value} index={2}>
+      <TabPanel value={value} index={2} className={classes.info}>
         <label>
             <FormControlLabel
                 control={
