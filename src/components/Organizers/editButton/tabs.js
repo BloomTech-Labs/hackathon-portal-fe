@@ -70,9 +70,17 @@ function a11yProps(index) {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
+    // flexGrow: 1,
+    // margin: 'auto',
     backgroundColor: theme.palette.background.paper,
+    border: '3px solid green'
   },
+  info: {
+      display: 'flex',
+      flexDirection: 'column',
+      width: '100%',
+      border: '4px solid red',
+  }
 }));
 
 export const SimpleTabs = props => {
@@ -86,15 +94,11 @@ export const SimpleTabs = props => {
   const [hackathonInfo, setHackathonInfo] = useState();
   const [state, setState] = useState({ is_open: true });
   const { loading, user } = useAuth0();
-  const [saveButton, setSaveButton] = React.useState(false);
+  const [saveButton, setSaveButton] = React.useState(true);
   console.log(saveButton);
 
   const enableSave = () => {
       console.log('enablesave')
-      setSaveButton(true);
-  }
-
-  const disableSave = () => {
       setSaveButton(false);
   }
 
@@ -109,9 +113,9 @@ export const SimpleTabs = props => {
     setState({ is_open: hackathon.is_open })
   }
  }, [hackathon])
-//  const handlePage1Change = e => {
-//     setHackathonInfo({ ...hackathonInfo, [e.target.name]: e.target.value });
-//  };
+ const handlePage1Change = e => {
+    setHackathonInfo({ ...hackathonInfo, [e.target.name]: e.target.value });
+ };
 
  const handleStartDateChange = date => {
     setStart_date(date.toString());
@@ -156,15 +160,16 @@ export const SimpleTabs = props => {
       </AppBar>
       <form
             onSubmit={handleSubmit(handleFormSubmit)}
-            className={classes.root}
+            // className={classes.info}
             style={{ width: '50%', margin: '0 auto' }}
         >
-      <TabPanel value={value} index={0}> 
-      <div className="createHackathonContainer1">
+      <TabPanel value={value} index={0} className={classes.info}> 
+      <div>
                   <label className="name">
                      <TextField
                         type="text"
-                        onChange={enableSave}
+                        onInput={enableSave}
+                        onChange={handlePage1Change}
                         fullWidth
                         label="Hackathon Name"
                         name="name"
@@ -187,6 +192,8 @@ export const SimpleTabs = props => {
                      <TextField
                         className={classes.label}
                         type="text"
+                        onInput={enableSave}
+                        onChange={handlePage1Change}
                         fullWidth
                         multiline
                         rows="4"
@@ -209,6 +216,8 @@ export const SimpleTabs = props => {
                      <TextField
                         className={classes.label}
                         type="text"
+                        onInput={enableSave}
+                        onChange={handlePage1Change}
                         fullWidth
                         name="location"
                         variant="filled"
@@ -230,6 +239,8 @@ export const SimpleTabs = props => {
                      <TextField
                         className={classes.label}
                         type="text"
+                        onInput={enableSave}
+                        onChange={handlePage1Change}
                         fullWidth
                         name="url"
                         variant="filled"
@@ -246,11 +257,11 @@ export const SimpleTabs = props => {
                         }}
                      />
                   </label>
-                  <Button className={classes.button} color='primary' variant='contained' type="submit">Save</Button>
+                  <Button className={classes.button} color='primary' variant='contained' type="submit" disabled={saveButton}>Save</Button>
       </div>
       </TabPanel>
-      <TabPanel value={value} index={1}>
-                  <div>
+      <TabPanel value={value} index={1} className={classes.info}>
+                  <div >
                      <label className="startDate">
                       
 
@@ -271,6 +282,7 @@ export const SimpleTabs = props => {
                               defaultValue={hackathon.start_date}
                               value={start_date}
                               InputAdornmentProps={{ position: 'start' }}
+                              onInput={enableSave}
                               onChange={handleStartDateChange}
                            />
                         </MuiPickersUtilsProvider>
@@ -289,6 +301,7 @@ export const SimpleTabs = props => {
                               inputVariant="filled"
                               defaultValue={hackathon.start_date}
                               value={start_date}
+                              onInput={enableSave}
                               onChange={handleStartDateChange}
                               inputRef={register}
                               keyboardIcon={
@@ -319,6 +332,7 @@ export const SimpleTabs = props => {
                               inputRef={register}
                               value={end_date}
                               InputAdornmentProps={{ position: 'start' }}
+                              onInput={enableSave}
                               onChange={handleEndDateChange}
                            />
                         </MuiPickersUtilsProvider>
@@ -336,6 +350,7 @@ export const SimpleTabs = props => {
                               label='End Time'
                               inputVariant="filled"
                               value={end_date}
+                              onInput={enableSave}
                               onChange={handleEndDateChange}
                               inputRef={register}
                               keyboardIcon={
@@ -346,7 +361,7 @@ export const SimpleTabs = props => {
                         </MuiPickersUtilsProvider>
                      </label>
                   </div>
-                  <Button className={classes.button} color='primary' variant='contained' type="submit">Save</Button>
+                  <Button className={classes.button} color='primary' variant='contained' type="submit" disabled={saveButton}>Save</Button>
       </TabPanel>
       <TabPanel value={value} index={2}>
         <label>
@@ -354,6 +369,7 @@ export const SimpleTabs = props => {
                 control={
                     <Checkbox
                         checked={state.is_open}
+                        onInput={enableSave}
                         onChange={handleOpenChange('is_open')}
                         color="primary"
                     />
@@ -361,7 +377,7 @@ export const SimpleTabs = props => {
                 label="Open hackathon (this lets participants sign up)"
             />
         </label>
-        <Button className={classes.button} color='primary' variant='contained' type="submit">Save</Button>
+        <Button className={classes.button} color='primary' variant='contained' type="submit" disabled={saveButton}>Save</Button>
       </TabPanel>
       </form>
     </div>

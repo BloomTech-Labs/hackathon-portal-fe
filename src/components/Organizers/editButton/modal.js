@@ -8,13 +8,16 @@ import { SimpleTabs } from './tabs';
 
 const useStyles = makeStyles(theme => ({
   modal: {
+    margin: 'auto',
+    width: '48%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    border: 'solid red 4px'
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
+    border: '2px solid blue',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
