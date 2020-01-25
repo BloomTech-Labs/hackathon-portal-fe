@@ -17,6 +17,7 @@ const NavBar = props => {
             <>
                <p
                   className="navBarLink"
+                  id='login-btn'
                   onClick={() => loginWithRedirect({})}
                >
                   Log in
@@ -27,22 +28,23 @@ const NavBar = props => {
          {isAuthenticated && (
             <span className="navBar-span">
                <Link className="navBarLink" to="/">
-                  Home
+                  home
                </Link>
-
+               <div className='dot'></div>
                <Link className="navBarLink" to="/hackathons">
-                  Hackathons
+                  hackathons
                </Link>
-
+               <div className='dot'></div>
                <Link className="navBarLink" to={`/profile`}>
-                  Profile
+                  profile
                </Link>
-
+               <div className='dot'></div>
                <Link className="navBarLink" to="/hackathon/create">
-                  Create A Hackathon
+                  create a hackathon
                </Link>
+               <div className='dot'></div>
                <p className="navBarLink" onClick={() => logout()}>
-                  Log out
+                  log out
                </p>
             </span>
          )}

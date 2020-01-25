@@ -19,7 +19,7 @@ const SinglePage = props => {
    const isFetching = useSelector(state => state.isFetching);
    const [isOpen, setIsOpen] = useState({ is_open: true });
    const { user } = useAuth0();
-  
+
    useEffect(() => {
       dispatch(getSpecificHackathon((props.match.params.id)));
    }, [dispatch, props.match.params.id]);
@@ -30,11 +30,13 @@ const SinglePage = props => {
       }
    }, [hackathon]);
 
+   console.log(hackathon)
+
    const handleIsOpen = () => {
       setIsOpen({ is_open: !isOpen.is_open })
       dispatch(editHackathon(props.match.params.id, hackathon.organizer_id, props.history, { is_open: !isOpen.is_open }))
    }
- 
+
    const formatDate = date => {
       const days = [
          'Sunday',
