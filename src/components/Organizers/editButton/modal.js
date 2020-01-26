@@ -9,13 +9,13 @@ import { SimpleTabs } from './tabs';
 const useStyles = makeStyles(theme => ({
   modal: {
     margin: 'auto',
-    width: '48%',
+    width: '40%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    border: 'solid red 4px'
   },
   paper: {
+    margin: 'auto',
     backgroundColor: theme.palette.background.paper,
     border: '2px solid blue',
     boxShadow: theme.shadows[5],
