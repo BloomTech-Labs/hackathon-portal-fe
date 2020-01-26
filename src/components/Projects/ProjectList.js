@@ -3,14 +3,14 @@ import { useSelector, useDispatch } from "react-redux";
 
 // ACTIONS
 import { getSpecificHackathon } from "../../actions/actions";
-import { Typography, Avatar, Checkbox } from "@material-ui/core";
+import { Typography, Avatar, Checkbox, FormControlLabel } from "@material-ui/core";
 
 const ProjectList = props => {
   const dispatch = useDispatch();
   const hackathon = useSelector(state => state.singleHackathon);
   const isFetching = useSelector(state => state.isFetching);
   const [projects, setProjects] = useState([]);
-  const [filterpProjects, setFilterProjects] = useState([]);
+  const [filterProjects, setFilterProjects] = useState([]);
   const [filter, setFilter] = useState({
     front_end_spots: false,
     back_end_spots: false,
@@ -18,7 +18,8 @@ const ProjectList = props => {
     data_science_spots: false,
     ios_spots: false,
     android_spots: false
-  })
+  });
+  const { front_end_spots, back_end_spots, ux_spots, data_science_spots, ios_spots, android_spots } = filter;
 
   useEffect(() => {
     dispatch(getSpecificHackathon(props.match.params.id));
@@ -42,54 +43,40 @@ const ProjectList = props => {
   ux_spots: 1
   */
 
-  useEffect(() => {
-    setFilterProjects()
-  }, [filter])
-
-  const filterANY = ((array, role) => {
-    setProjects(array.filter(element => {
-      return element.role > 0 && element.is_approved
-    }))
-  })
-  const filterUX = ((array, role) => {
-    setProjects(array.filter(element => {
-      return element.ux_spots > 0 && element.is_approved
-    }))
-  })
-  const filterIOS = ((array, role) => {
-    setProjects(array.filter(element => {
-      return element.ios_spots > 0 && element.is_approved
-    }))
-  })
-  const filterFE = ((array, role) => {
-    setProjects(array.filter(element => {
-      return element.front_end_spots > 0 && element.is_approved
-    }))
-  })
-  const filterBE = ((array, role) => {
-    setProjects(array.filter(element => {
-      return element.back_end_spots > 0 && element.is_approved
-    }))
-  })
-  const filterAND = ((array, role) => {
-    setProjects(array.filter(element => {
-      return element.android_spots > 0 && element.is_approved
-    }))
-  })
-  const filterDS = ((array, role) => {
-    setProjects(array.filter(element => {
-      return element.data_science_spots > 0 && element.is_approved
-    }))
-  })
-  const reset = ((array, role) => {
-    setProjects(array.filter(element => {
-      return element
-    }))
-  })
-
-  const handleCheckboxChange = name => e => {
-    setFilter({...filter, [name]:e.target.checked})
+  const handleCheckboxChange = e => {
+    if(e.target.checked === true){
+      setFilter({...filter, [e.target.name]:e.target.checked});
+      setFilterProjects([...filterProjects, e.target.name])
+    }else if(e.target.checked === false){
+      setFilter({...filter, [e.target.name]:e.target.checked})
+      setFilterProjects(filterProjects.filter(element => {
+        return element !== e.target.name
+      }))
+    }
   }
+
+  useEffect(() => {
+    filterProjects.map(item => {
+      setProjects(hackathon.projects.filter(element => {
+        return element[item] > 0 && element.is_approved
+      }))
+    })
+  }, [filterProjects])
+
+  console.log(projects)
+
+  const reset = () => {
+    setProjects(hackathon.projects)
+  }
+  
+
+  // const handlesChanges = e => {
+  //   e.target.checked ? setFilterProjects([...filter, e.target.name]) : setFilterProjects(filters.filter(item => {
+  //     return item !== e.target.name
+  //   }))
+  // }
+
+  console.log(filterProjects)
 
   if (!hackathon) {
     return <div>Loading...</div>;
@@ -99,19 +86,31 @@ const ProjectList = props => {
 
   return (
     <div>
-      <button onClick={()=>filterUX(hackathon.projects)}>UX</button>
-      <button onClick={()=>filterIOS(hackathon.projects)}>IOS</button>
-      <button onClick={()=>filterFE(hackathon.projects)}>FE</button>
-      <button onClick={()=>filterBE(hackathon.projects)}>BE</button>
-      <button onClick={()=>filterDS(hackathon.projects)}>DS</button>
-      <button onClick={()=>filterAND(hackathon.projects)}>AND</button>
-      <button onClick={()=>reset(hackathon.projects)}>RESET</button>
-      <Checkbox label='UX' name='ux_spots' checked={filter.ux_spots} onChange={handleCheckboxChange('ux_spots')}>UX</Checkbox>
-      <Checkbox onClick={()=>filterIOS(hackathon.projects)}>IOS</Checkbox>
-      <Checkbox onClick={()=>filterFE(hackathon.projects)}>FE</Checkbox>
-      <Checkbox onClick={()=>filterBE(hackathon.projects)}>BE</Checkbox>
-      <Checkbox onClick={()=>filterDS(hackathon.projects)}>DS</Checkbox>
-      <Checkbox onClick={()=>filterAND(hackathon.projects)}>AND</Checkbox>
+      <button onClick={()=>reset()}>RESET</button>
+      <FormControlLabel
+        control={<Checkbox name='ux_spots' checked={filter.ux_spots} onChange={handleCheckboxChange}/>}
+        label="ux"
+      />
+      <FormControlLabel
+        control={<Checkbox name='ios_spots' checked={filter.ios_spots} onChange={handleCheckboxChange}/>}
+        label="ios"
+      />
+      <FormControlLabel
+        control={<Checkbox name='front_end_spots' checked={filter.front_end_spots} onChange={handleCheckboxChange}/>}
+        label="front_end"
+      />
+      <FormControlLabel
+        control={<Checkbox name='back_end_spots' checked={filter.back_end_spots} onChange={handleCheckboxChange}/>}
+        label="back_end"
+      />
+      <FormControlLabel
+        control={<Checkbox name='data_science_spots' checked={filter.data_science_spots} onChange={handleCheckboxChange}/>}
+        label="data_science"
+      />
+      <FormControlLabel
+        control={<Checkbox name='android_spots' checked={filter.android_spots} onChange={handleCheckboxChange}/>}
+        label="android"
+      />
       <Typography variant='h4'>Project List</Typography>
       {!projects ? 
         <Typography variant='h6'>There are no projects posted at this time.</Typography>
