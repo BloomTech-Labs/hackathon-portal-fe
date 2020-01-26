@@ -120,20 +120,7 @@ const SinglePage = props => {
                   </div>
                )}
          </div>
-
-         <div className='single-hackathon-participants'>
-{/* <Typography variant='h4'>Participants: {hackathon.project[0] ? (
-                     hackathon.teams
-                        .map(team => {
-                           return team.devs.length;
-                        })
-                        .reduce((acc, curr) => acc + curr) +
-                        hackathon.individual_devs.length
-               ) : (
-                  0 + hackathon.individual_devs.length
-               )}
-               </Typography> */}
-         </div>
+        
          <div className='admins-parent'>
                <Typography variant='h4' id="admins-title">Admins</Typography>
                      {hackathon.admins.map((admin, index) => {

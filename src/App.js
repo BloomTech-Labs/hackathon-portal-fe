@@ -14,7 +14,9 @@ import EditHackathon from './components/Organizers/EditHackathon';
 import SinglePage from './components/Organizers/SinglePageHackathon';
 import SuccessPage from './components/SuccessPage';
 import UserProfile from './components/UserProfile';
-import Footer from './components/Footer';
+// import Footer from './components/Footer';
+import CreateProject from './components/Projects/CreateProject';
+import ErrorPage from './components/ErrorPage';
 
 // ACTIONS
 import { getHackathons } from './actions/actions';
@@ -39,20 +41,17 @@ function App(props) {
                   path="/hackathon/create"
                   component={CreateHackathon}
                />
+
                <PrivateRoute
                   exact
                   path="/hackathon/edit/:id"
                   component={EditHackathon}
                />
-               <PrivateRoute path={`/hackathon/:id`} component={SinglePage} />
+               <PrivateRoute exact path={`/hackathon/:id`} component={SinglePage} />
+               <PrivateRoute exact path='/hackathon/:id/create/project' component={CreateProject} />
                <Route path="/success" component={SuccessPage} />
-               <Route path="/hackerlist" component={HackerList} />
+               <Route component={ErrorPage} />
             </Switch>
-
-            <footer>
-               <Footer />
-            </footer>
-
          </Router>
       </div>
    );

@@ -121,7 +121,8 @@ const UserProfile = props => {
 
    return (
       <div className='profile-wrapper'>
-         <div className='profile-container'>
+   
+         <div className='profile-container' id='profile-info'>
             <div className='profile-left'>
                <img id='profile-img' src='https://i.imgflip.com/1slnr0.jpg' alt="profile"></img>
                <div className='profile-headers'>
@@ -135,41 +136,62 @@ const UserProfile = props => {
                {user.id === userProfile.id ? (
                   <>
                      <Button  id='profile-edit-btn' variant='outlined'  onClick={handleClickOpen}>Edit Profile</Button>
-                     <Button id='profile-delete-btn' variant="outlined" onClick={handleDeleteClick}>Delete Profile</Button>
+                    
                   </>
                ) : null}
             </div>
-
          </div>
-         
+         <p id='hackathons-header'>Hackathons</p>
+         <section className='hackathons-section'>
+         <div className='profile-container'>
+         {presentHackathons.length ? (
          <div className='profile-hackathons'>
-            <h1>Hackathons</h1>
+            
             <div className='profile-hackathon-list'>
+               <h1>Present</h1>
                   {presentHackathons.map(hackathon => (
                      <ProfileCard 
                      key={hackathon.hackathon_id} 
                      id={hackathon.hackathon_id}
                      name={hackathon.hackathon_name}
-                     team_name={hackathon.team_name}
+//                      team_name={hackathon.team_name}
                      user_role={hackathon.user_hackathon_role}
                      />
                   ))}
+                  
             </div>
          </div>
+         ) : null
+                  }
+
+
+         {pastHackathons.length? (
          <div className='profile-hackathons'>
-            <h1>Past Hackathons</h1>
+            
             <div className='profile-hackathon-list'>
+            <h1>Past</h1>
                   {pastHackathons.map(hackathon => (
                      <ProfileCard 
                      key={hackathon.hackathon_id} 
                      id={hackathon.hackathon_id}
                      name={hackathon.hackathon_name}
-                     team_name={hackathon.team_name}
+//                      team_name={hackathon.team_name}
                      user_role={hackathon.user_hackathon_role}
                      />
                   ))}
             </div>
          </div>
+         ) : null
+         }
+         </div>
+         </section>
+         {user.id === userProfile.id ? (
+                  <>
+                      <Button id='profile-delete-btn' variant="outlined" onClick={handleDeleteClick}>Delete Profile</Button>
+                    
+                  </>
+               ) : null}
+         
          <Dialog
             open={open}
             onClose={handleClose}
