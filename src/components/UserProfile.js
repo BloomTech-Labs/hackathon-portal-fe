@@ -5,6 +5,7 @@ import moment from 'moment';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 import Button from '@material-ui/core/Button';
+import pendingButton from './Projects/pendingProjects.js/pendingButton';
 
 import {
    Dialog,
