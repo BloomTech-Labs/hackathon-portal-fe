@@ -120,7 +120,7 @@ const PastHackathons = (props) => {
          <div className={classes.cardParent}>
             {results.map(hackathon => {
                return (
-                  <Card className={classes.card} key={hackathon.id}>
+                  <Card className={classes.pastCard} key={hackathon.id}>
                      <Link
                         to={`/hackathon/${hackathon.id}`}
                         className={classes.link}
@@ -151,6 +151,9 @@ const PastHackathons = (props) => {
                                  <Typography variant="body2" component="p">
                                     Start Date:{' '}
                                     {formatDate(hackathon.start_date)}
+                                 </Typography>
+                                 <Typography variant='body2'>
+                                     CLOSED
                                  </Typography>
                               </div>
                               {/* is_open join button will be added to 1.1 when we build out a modal for a user to join hackathons */}

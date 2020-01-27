@@ -7,6 +7,14 @@ export const style = {
     borderRadius: "3%",
     marginRight: '0.8%'
   },
+  pastCard: {
+    background: "#1c1c1f",
+    border: "1px solid #D0DDFF",
+    width: "24%",
+    marginBottom: "3%",
+    borderRadius: "3%",
+    marginRight: '0.8%',
+  },
   cardParent: {
     display: "flex",
     flexWrap: "wrap",
@@ -42,7 +50,8 @@ export const style = {
   },
   hackathonName: {
     color: "#d0ddff",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    minHeight: '70px',
   },
   hackathonDescription: {
     color: '#d0ddff',
@@ -53,7 +62,7 @@ export const style = {
   hackathonInfo: {
      // RGB FOR #d0ddff with opacity 64%
     color: 'rgba(208, 221, 255, 0.64)',
-    marginTop: '7%'
+    marginTop: '7%',
   },
   link: {
     textDecoration: 'none'
