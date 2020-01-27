@@ -15,6 +15,17 @@ export const style = {
     borderRadius: "3%",
     marginRight: '0.8%',
   },
+  cardButton: {
+    color: '#D0DDFF',
+    background: '#1c1c1f',
+    border: '1px solid',
+    fontSize: '1.3rem',
+    borderRadius: '10px',
+    marginTop: '20px',
+    width: '98%',
+    height: '50px',
+    padding: '0px 10px'
+  },
   cardParent: {
     display: "flex",
     flexWrap: "wrap",

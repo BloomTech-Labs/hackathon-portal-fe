@@ -165,7 +165,7 @@ function Hackathons(props) {
                               </div>
                               {!hackathon.is_open ? (
                                     <Typography variant='body2'>CLOSED</Typography>
-                                 ) : <button>Join</button>}
+                                 ) : <button className={classes.cardButton}>JOIN</button>}
                               {/* is_open join button will be added to 1.1 when we build out a modal for a user to join hackathons */}
                               {/* {hackathon.is_open ? <button>JOIN</button> : <div className="closedHackathon">closed</div> }  */}
                            </CardContent>
