@@ -16,7 +16,7 @@ export const style = {
     marginRight: '0.8%',
   },
   cardButton: {
-    color: '#D0DDFF',
+    color: '#4885E1',
     background: '#1c1c1f',
     border: '1px solid',
     fontSize: '1.3rem',
