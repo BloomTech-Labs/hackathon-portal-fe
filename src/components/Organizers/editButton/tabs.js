@@ -70,22 +70,16 @@ function a11yProps(index) {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    // flexGrow: 1,
-    // margin: 'auto',
+    height: '490px',
     backgroundColor: theme.palette.background.paper,
-    border: '3px solid green'
   },
   editinfo: {
     display: 'flex',
     flexDirection: 'column',
-    height: '50%',
-    border: '4px solid red',
   },
   editdate: {
     margin: 'auto',
     width: '50%',
-    height: '50%',
-    border: '4px solid purple'
   }
 }));
 
