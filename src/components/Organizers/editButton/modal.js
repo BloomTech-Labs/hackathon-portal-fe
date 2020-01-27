@@ -5,6 +5,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import { useSpring, animated } from 'react-spring/web.cjs';
 import { SimpleTabs } from './tabs';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -21,6 +22,16 @@ const useStyles = makeStyles(theme => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
+  label: {
+    background: '#D0DDFF',
+    borderRadius: '5px',
+    marginBottom: '20px',
+ },
+ button: {
+  color: '#d0ddff',
+  border: '1px solid #d0ddff',
+  width: '160px',
+ }
 }));
 
 const Fade = React.forwardRef(function Fade(props, ref) {
@@ -68,9 +79,9 @@ export default function SpringModal() {
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
-        Settings
-      </button>
+      <Button className={classes.button} type="button" onClick={handleOpen}>
+        EDIT EVENT
+      </Button>
       <Modal
         aria-labelledby="spring-modal-title"
         aria-describedby="spring-modal-description"
@@ -87,7 +98,7 @@ export default function SpringModal() {
           <div className={classes.paper}>
             <h2 id="spring-modal-title">Hackathon Settings</h2>
             <SimpleTabs/>
-            <button className={classes.button} onClick={handleClose}>Exit</button>
+            <button className='exitbutton' onClick={handleClose}>Exit</button>
           </div>
         </Fade>
       </Modal>
