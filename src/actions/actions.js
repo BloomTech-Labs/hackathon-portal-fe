@@ -33,7 +33,7 @@ export const createProject = (
       .then(response => {
          console.log('ACTION RESPONSE', response)
          dispatch({ type: POSTPROJECT_SUCCESS });
-         // history.push(`/hackathon/${hackathon_id}`);
+         history.push(`/hackathon/${hackathon_id}`);
       })
       .catch(error => {
          dispatch({ type: FETCH_FAILURE, payload: error.response });
@@ -73,9 +73,10 @@ export const createHackathon = (
    dispatch({ type: FETCH_START });
    (await axiosWithAuth())
       .post(`/hackathons/u/${user_id}`, hackathonInfo)
-      .then(response => {
-         dispatch({ type: POSTHACKATHON_SUCCESS });
-         history.push(`/success`, response.data.id);
+      .then(response => {  
+         dispatch({ type: POSTHACKATHON_SUCCESS, payload: response.data });
+         console.log(response.data)
+         // history.push(`/success`, response.data.id);
       })
       .catch(error => {
          dispatch({ type: FETCH_FAILURE, payload: error.response });

@@ -37,6 +37,7 @@ const reducer = (state = initialState, action) => {
             error: action.payload
          };
       case FETCH_HACKATHON:
+      case POSTHACKATHON_SUCCESS:
          return {
             ...state,
             singleHackathon: action.payload,
@@ -59,7 +60,6 @@ const reducer = (state = initialState, action) => {
          };
       case DELETEHACKATHON_SUCCESS:
       case EDITHACKATHON_SUCCESS:
-      case POSTHACKATHON_SUCCESS:
          return {
             ...state,
             isFetching: false,

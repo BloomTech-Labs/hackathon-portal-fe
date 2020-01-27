@@ -102,14 +102,11 @@ const SinglePage = props => {
                   </Typography>
             </div>
          
-
-        
             <div className='single-hackathon-dates'>
                   <Typography variant='h5'>Start date: {formatDate(hackathon.start_date)}</Typography>
       
                   <Typography variant='h5'>End date: {formatDate(hackathon.end_date)}</Typography>
             </div>
-         
 
          <div className='single-hackathon-crud-btns-container'>
                {user.id === hackathon.organizer_id && (
@@ -119,6 +116,7 @@ const SinglePage = props => {
                   </div>
                )}
          </div>
+         <Link>Submit Project Idea</Link>
         
          <div className='admins-parent'>
                <Typography variant='h4' id="admins-title">Admins</Typography>

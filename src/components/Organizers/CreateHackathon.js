@@ -6,6 +6,8 @@ import { useDispatch } from 'react-redux';
 
 // COMPONENTS
 import Stepper from './Stepper';
+import OrganizerProjectList from '../Organizers/OrganizerProjectList';
+import CreateProject from '../Projects/CreateProject';
 
 // ACTIONS
 import { createHackathon } from '../../actions/actions';
@@ -238,6 +240,12 @@ const CreateHackathon = props => {
 
 
    const handleNext = () => {
+
+      if (activeStep === 1) {
+         const id = user.sub.replace('auth0|', '');
+         dispatch(createHackathon(id, hackathonInfo, props.history));
+      }
+
       setActiveStep(prevActiveStep => prevActiveStep + 1);
    };
 
@@ -479,6 +487,11 @@ const CreateHackathon = props => {
 
                </>
             )}
+
+            {activeStep === 2 && (
+               <OrganizerProjectList />
+            )}
+
             <div className={classes.buttonsContainer}>
                {activeStep === 0 && (
                   <Button disabled style={{color:'#5F6471'}} onClick={handleBack} className={classes.disabledButton}>
@@ -489,6 +502,8 @@ const CreateHackathon = props => {
                Back
                </Button>)}
                <div className={classes.buttonsSubContainer}>
+                  
+                  
                   {activeStep === 2 ? 
                      <Button
                      variant="contained"
@@ -507,7 +522,8 @@ const CreateHackathon = props => {
                      >
                         Next
                      </Button>
-                  }
+              
+                  }            
                </div>
             </div>
          </form>
