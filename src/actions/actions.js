@@ -40,6 +40,20 @@ export const createProject = (
       });
 };
 
+export const joinProject = (
+   hackathon_id,
+   user_id,
+   project
+) => async dispatch => {
+   dispatch({ type: FETCH_START });
+   (await axiosWithAuth())
+      .post(`/hackathons/${hackathon_id}/join/${user_id}`, project)
+      .then(response => {
+         console.log('ACTION RESPONSE', response)
+         // dispatch({ type: })
+      })
+}
+
 // HACKATHONS
 export const getHackathons = () => async dispatch => {
    dispatch({ type: FETCH_START });

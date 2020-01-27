@@ -3,36 +3,25 @@ import { useSelector, useDispatch } from "react-redux";
 
 // ACTIONS
 import { getSpecificHackathon } from "../../actions/actions";
-import { Typography, Avatar, Checkbox, FormControlLabel } from "@material-ui/core";
+import { Typography, Avatar, Checkbox, FormControlLabel, Radio, RadioGroup, FormLabel } from "@material-ui/core";
+import JoinProjectModal from "./JoinProject";
 
 const ProjectList = props => {
   const dispatch = useDispatch();
   const hackathon = useSelector(state => state.singleHackathon);
   const isFetching = useSelector(state => state.isFetching);
   const [projects, setProjects] = useState([]);
-  const [filterProjects, setFilterProjects] = useState([]);
-  const [filter, setFilter] = useState({
-    front_end_spots: false,
-    back_end_spots: false,
-    ux_spots: false,
-    data_science_spots: false,
-    ios_spots: false,
-    android_spots: false
-  });
-  const { front_end_spots, back_end_spots, ux_spots, data_science_spots, ios_spots, android_spots } = filter;
+  const [filterBy, setFilterBy] = useState('');
 
   useEffect(() => {
     dispatch(getSpecificHackathon(props.match.params.id));
   }, [dispatch, props.match.params.id]);
-  console.log(hackathon)
 
   useEffect(() => {
     if(hackathon){
       setProjects(hackathon.projects)
     }
   }, [hackathon])
-
-  console.log(projects)
   /*
   front_end_spots: 3
   back_end_spots: 1
@@ -44,73 +33,63 @@ const ProjectList = props => {
   */
 
   const handleCheckboxChange = e => {
-    if(e.target.checked === true){
-      setFilter({...filter, [e.target.name]:e.target.checked});
-      setFilterProjects([...filterProjects, e.target.name])
-    }else if(e.target.checked === false){
-      setFilter({...filter, [e.target.name]:e.target.checked})
-      setFilterProjects(filterProjects.filter(element => {
-        return element !== e.target.name
-      }))
-    }
+      setFilterBy(e.target.value)
   }
 
   useEffect(() => {
-    filterProjects.map(item => {
+    if(hackathon && !filterBy){
+      setProjects(hackathon.projects)
+    }else if(hackathon){
+      console.log(filterBy)
       setProjects(hackathon.projects.filter(element => {
-        return element[item] > 0 && element.is_approved
+        return element[filterBy] > 0
       }))
-    })
-  }, [filterProjects])
-
-  console.log(projects)
-
-  const reset = () => {
-    setProjects(hackathon.projects)
-  }
-  
-
-  // const handlesChanges = e => {
-  //   e.target.checked ? setFilterProjects([...filter, e.target.name]) : setFilterProjects(filters.filter(item => {
-  //     return item !== e.target.name
-  //   }))
-  // }
-
-  console.log(filterProjects)
+    }
+  }, [filterBy])
 
   if (!hackathon) {
     return <div>Loading...</div>;
   }
 
-  console.log(filter)
-
   return (
     <div>
-      <button onClick={()=>reset()}>RESET</button>
-      <FormControlLabel
-        control={<Checkbox name='ux_spots' checked={filter.ux_spots} onChange={handleCheckboxChange}/>}
-        label="ux"
-      />
-      <FormControlLabel
-        control={<Checkbox name='ios_spots' checked={filter.ios_spots} onChange={handleCheckboxChange}/>}
-        label="ios"
-      />
-      <FormControlLabel
-        control={<Checkbox name='front_end_spots' checked={filter.front_end_spots} onChange={handleCheckboxChange}/>}
-        label="front_end"
-      />
-      <FormControlLabel
-        control={<Checkbox name='back_end_spots' checked={filter.back_end_spots} onChange={handleCheckboxChange}/>}
-        label="back_end"
-      />
-      <FormControlLabel
-        control={<Checkbox name='data_science_spots' checked={filter.data_science_spots} onChange={handleCheckboxChange}/>}
-        label="data_science"
-      />
-      <FormControlLabel
-        control={<Checkbox name='android_spots' checked={filter.android_spots} onChange={handleCheckboxChange}/>}
-        label="android"
-      />
+      <RadioGroup value={filterBy} onChange={handleCheckboxChange}>
+        <FormControlLabel
+          control={<Radio />}
+          value=''
+          label="show all"
+        />
+        <FormControlLabel
+          control={<Radio />}
+          value='front_end_spots'
+          label="front end"
+        />
+        <FormControlLabel
+          control={<Radio />}
+          value='back_end_spots'
+          label="back end"
+        />
+        <FormControlLabel
+          control={<Radio />}
+          value='ux_spots'
+          label="ux"
+        />
+        <FormControlLabel
+          control={<Radio />}
+          value='data_science_spots'
+          label="data science"
+        />
+        <FormControlLabel
+          control={<Radio />}
+          value='ios_spots'
+          label="ios"
+        />
+        <FormControlLabel
+          control={<Radio />}
+          value='android_spots'
+          label="android"
+        />
+      </RadioGroup>
       <Typography variant='h4'>Project List</Typography>
       {!projects ? 
         <Typography variant='h6'>There are no projects posted at this time.</Typography>
@@ -143,6 +122,7 @@ const ProjectList = props => {
                     <Avatar style={{background:'none', border:'1px solid red', color:'red'}}>AND</Avatar>
                   )}
                 </div>
+                <JoinProjectModal project={project} />
               </div>
           ))
         })
