@@ -167,6 +167,10 @@ header {
   height: 60%;
 }
 
+.legend p {
+  font-size: 1.1rem;
+}
+
 .hackathonCards {
   display: flex;
   justify-content: center;
