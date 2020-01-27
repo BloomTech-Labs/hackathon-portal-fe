@@ -1,12 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 
-const pendingButton = () => {
+const useStyles = makeStyles(theme => ({
+    projectcard: {
+        border: '3px solid red',
+    }
+  }));
+
+const PendingProjects = () => {
+    const classes = useStyles();
+    const hackathon = useSelector(state => state.singleHackathon);
+
+     console.log(hackathon, 'this is hackathon');
+
     return (
         <div>
             hello this is the pending projects list
-            {/* <link to='#'><button>Pending Projects</button></link> */}
+            <div className='pendingList'>
+                {hackathon.projects.map(e => (
+                    <div className={classes.projectcard}>
+                        <h3>{e.project_title}</h3>
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }
 
-export default pendingButton;
+export default PendingProjects;

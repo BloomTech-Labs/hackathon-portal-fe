@@ -115,6 +115,7 @@ const SinglePage = props => {
          <div className='single-hackathon-crud-btns-container'>
                {user.id === hackathon.organizer_id && (
                   <div className='single-hackathon-crud-btns'>
+                     <Link to='/pendingprojects' id={props}>Pending Projects</Link>
                      <ServerModal id='single-hackathon-crud-btn' props={`/hackathon/edit/${hackathon.id}`}/>
                      <DeleteHackathon id={hackathon.id} org_id={hackathon.organizer_id} history={props.history} />
                   </div>
