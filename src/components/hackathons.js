@@ -4,6 +4,7 @@ import { getHackathons } from '../actions/actions';
 import { Link } from 'react-router-dom';
 import billNye from './images/Frame (1).png';
 import { style } from '../styles/hackathonListStyles';
+import moment from 'moment';
 
 //material UI
 import {
@@ -46,24 +47,51 @@ function Hackathons(props) {
    const dispatch = useDispatch();
    const hackathons = useSelector(state => state.hackathons);
    const [searchTerm, setSearchTerm] = React.useState('');
+   const currentDate = new Date().toString();
 
    const handleChange = event => {
       setSearchTerm(event.target.value);
    };
 
    useEffect(() => {
-      dispatch(getHackathons());
+      dispatch(getHackathons()); 
    }, [dispatch]);
 
+
+   let presentHackathons = hackathons ? (hackathons.filter(hackathon => {
+      if (
+         moment(hackathon.end_date).isSame(currentDate) ||
+         moment(hackathon.end_date).isAfter(currentDate)
+      ) {
+         return hackathon;
+      }
+   })) : [];
+
+
+   let pastHackathons = hackathons ? (hackathons.filter(hackathon => {
+      if (moment(hackathon.end_date).isBefore(currentDate)) {
+         return hackathon;
+      }
+   })) : [];
+
+    console.log(presentHackathons)
+    console.log(pastHackathons)
+
+  
+
    const results = !searchTerm.length
-      ? hackathons
-      : hackathons.filter(hackathon =>
+      ? presentHackathons
+      : presentHackathons.filter(hackathon =>
            hackathon.name.toLowerCase().includes(searchTerm.toLowerCase())
         );
 
    if (isFetching || !hackathons) {
       return <h2>Loading Events...</h2>;
    }
+   console.log(results)
+
+
+ 
 
    return (
       <div className={classes.fullList}>
@@ -84,6 +112,7 @@ function Hackathons(props) {
                }
             }}
          ></TextField>
+        
          <div className={classes.cardParent}>
             {results.map(hackathon => {
                return (
