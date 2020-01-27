@@ -115,25 +115,13 @@ const SinglePage = props => {
          <div className='single-hackathon-crud-btns-container'>
                {user.id === hackathon.organizer_id && (
                   <div className='single-hackathon-crud-btns'>
+                     <Link to='/pendingprojects' id={props}>Pending Projects</Link>
                      <ServerModal id='single-hackathon-crud-btn' props={`/hackathon/edit/${hackathon.id}`}/>
                      <DeleteHackathon id={hackathon.id} org_id={hackathon.organizer_id} history={props.history} />
                   </div>
                )}
          </div>
-
-         <div className='single-hackathon-participants'>
-{/* <Typography variant='h4'>Participants: {hackathon.project[0] ? (
-                     hackathon.teams
-                        .map(team => {
-                           return team.devs.length;
-                        })
-                        .reduce((acc, curr) => acc + curr) +
-                        hackathon.individual_devs.length
-               ) : (
-                  0 + hackathon.individual_devs.length
-               )}
-               </Typography> */}
-         </div>
+        
          <div className='admins-parent'>
                <Typography variant='h4' id="admins-title">Admins</Typography>
                      {hackathon.admins.map((admin, index) => {

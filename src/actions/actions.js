@@ -14,8 +14,46 @@ export const FETCH_HACKATHONS = 'FETCH_HACKATHONS';
 export const DELETE_USER = 'DELETE_USER';
 export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
 export const DELETE_USER_FAIL = 'DELETE_USER_FAIL';
+export const POSTPROJECT_SUCCESS = 'POSTPROJECT_SUCCESS';
 
 // ACTIONS
+
+
+
+//PROJECTS
+export const editProject = (
+   project_id,
+   history
+   ) => async dispatch => {
+   dispatch({ type: FETCH_START });
+   (await axiosWithAuth())
+      .put(`/projects/${project_id}`)
+      .then(response => {
+         dispatch({ type: POSTPROJECT_SUCCESS });
+         history.push(`/success`, response.data.id);
+      })
+      .catch(error => {
+         dispatch({ type: FETCH_FAILURE, payload: error.response });
+      });
+}
+
+export const createProject = (
+   hackathon_id,
+   projectInfo,
+   history
+) => async dispatch => {
+   dispatch({ type: FETCH_START });
+   (await axiosWithAuth())
+      .post(`/projects`, projectInfo)
+      .then(response => {
+         console.log('ACTION RESPONSE', response)
+         dispatch({ type: POSTPROJECT_SUCCESS });
+         // history.push(`/hackathon/${hackathon_id}`);
+      })
+      .catch(error => {
+         dispatch({ type: FETCH_FAILURE, payload: error.response });
+      });
+};
 
 // HACKATHONS
 export const getHackathons = () => async dispatch => {

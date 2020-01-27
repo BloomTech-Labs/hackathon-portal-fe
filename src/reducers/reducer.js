@@ -6,6 +6,7 @@ import {
    FETCH_HACKATHONS,
    FETCH_USER,
    POSTHACKATHON_SUCCESS,
+   POSTPROJECT_SUCCESS,
    EDITHACKATHON_SUCCESS,
    DELETEHACKATHON_SUCCESS,
    DELETE_USER,
@@ -17,6 +18,7 @@ const initialState = {
    singleHackathon: {},
    hackers: [],
    hackathons: [],
+   projects: [],
    userInfo: [],
    isFetching: false,
    error: ''
@@ -63,6 +65,12 @@ const reducer = (state = initialState, action) => {
             isFetching: false,
             error: ''
          };
+         case POSTPROJECT_SUCCESS:
+            return {
+               ...state,
+               isFetching: false,
+               error: ''
+            };
       case FETCH_HACKATHONS:
          return {
             ...state,

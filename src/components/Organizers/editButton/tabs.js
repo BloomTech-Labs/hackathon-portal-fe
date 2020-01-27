@@ -94,7 +94,6 @@ export const SimpleTabs = props => {
   const [state, setState] = useState({ is_open: true });
   const { loading, user } = useAuth0();
   const [saveButton, setSaveButton] = React.useState(true);
-  console.log(saveButton);
 
   const enableSave = () => {
       console.log('enablesave')
