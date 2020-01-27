@@ -19,7 +19,6 @@ import {
    TextField,
    Typography,
    InputAdornment,
-//    makeStyles,
    Checkbox,
    FormControlLabel
 } from '@material-ui/core';
@@ -160,8 +159,6 @@ export const SimpleTabs = props => {
       </AppBar>
       <form
             onSubmit={handleSubmit(handleFormSubmit)}
-            // className={classes.info}
-            // style={{ width: '50%', margin: '0 auto' }}
         >
       <TabPanel value={value} index={0} className={classes.editinfo}> 
       <div>
