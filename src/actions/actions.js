@@ -21,6 +21,21 @@ export const POSTPROJECT_SUCCESS = 'POSTPROJECT_SUCCESS';
 
 
 //PROJECTS
+export const editProject = (
+   project_id,
+   history
+   ) => async dispatch => {
+   dispatch({ type: FETCH_START });
+   (await axiosWithAuth())
+      .put(`/projects/${project_id}`)
+      .then(response => {
+         dispatch({ type: POSTPROJECT_SUCCESS });
+         history.push(`/success`, response.data.id);
+      })
+      .catch(error => {
+         dispatch({ type: FETCH_FAILURE, payload: error.response });
+      });
+}
 
 export const createProject = (
    hackathon_id,
