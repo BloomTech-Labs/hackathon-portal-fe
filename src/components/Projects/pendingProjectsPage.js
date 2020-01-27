@@ -3,7 +3,8 @@ import React from 'react';
 const pendingButton = () => {
     return (
         <div>
-            <link to='#'><button>Pending Projects</button></link>
+            hello this is the pending projects list
+            {/* <link to='#'><button>Pending Projects</button></link> */}
         </div>
     )
 }
