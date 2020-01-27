@@ -60,6 +60,6 @@ export const style = {
   },
   content: {
     padding: '0 5%',
-    textAlign: 'left'
+    textAlign: 'left',
   }
 }
