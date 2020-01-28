@@ -39,29 +39,35 @@ import { getSpecificHackathon } from '../../actions/actions';
     console.log(hackathon)
     console.log(project)
 
-
+    const totals = [project.ios_spots, project.android_spots, project.back_end_spots, project.front_end_spots, project.ux_spots, project.data_science_spots]
+    console.log(totals)
+    const spotsOpen = totals.reduce((a, c) => a+c) !== 0
+    console.log(spotsOpen)
 
      return (
 
         <Dialog
         open={open}
-      //  onClose={handleClose}
+        onClose={handleClose}
         aria-labelledby="form-dialog-title"
      >
         <DialogTitle id="form-dialog-title">
-           <h2>{project.project_title}</h2>
+           <h2>{project.project_title} {!spotsOpen ? `(Full)`: null}</h2>
            <p>{project.project_description}</p>
         </DialogTitle>
         <DialogContent>
 
         <section className='modal-avail-spots'>
-              <h2>Available Spots</h2>
+             {spotsOpen ?(
+             <>
+             <h2>Available Spots</h2>
               <p>Front-end: {project.front_end_spots}</p> 
               <p>Back-end: {project.back_end_spots}</p> 
               <p>iOS: {project.ios_spots}</p> 
               <p>Android: {project.android_spots}</p> 
               <p>Data Science: {project.data_science_spots}</p> 
-              <p>UX: {project.ux_spots}</p> 
+             <p>UX: {project.ux_spots}</p>
+             </> ) : null}
             
           </section>
            
@@ -81,10 +87,11 @@ import { getSpecificHackathon } from '../../actions/actions';
          
         </DialogContent>
         <DialogActions>
-             <Button color="primary" variant='contained'>
+             {spotsOpen ? <Button color="primary" variant='contained'>
               Join Project
-           </Button>
-           <Button  onClick={handleClose} color="primary">
+           </Button> : null 
+           }
+           <Button onClick={handleClose} color="primary">
               Close
            </Button>
         </DialogActions>
