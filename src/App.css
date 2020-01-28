@@ -185,6 +185,15 @@ header {
 .carousel .slide{
   background: #121212 !important;
 }
+
+.thumb {
+  border:none !important;
+  opacity: 0.5 !important;
+}
+.thumb:focus, .thumb.selected {
+  border: 1px solid gray !important;
+  opacity: 1 !important;
+}
 .hackathonCards {
   display: flex;
   justify-content: center;
