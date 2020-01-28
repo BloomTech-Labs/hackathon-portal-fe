@@ -38,6 +38,32 @@ a {
   align-self: auto;
 }
 
+.hackathon-list-header{
+  display: flex;
+  justify-content: space-between;
+}
+.hackathon-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#hackathons-head {
+  font-weight: 1000;
+  font-size: 2.5rem;
+  color: white;
+}
+#view-archive-btn {
+  color: #4885E1;
+  border: 1px solid;
+  border-radius: 13.5px;
+  padding: 10px;
+  width: 200px;
+  min-height: 50px;
+  transition: 0.5s;
+}
+
+
 #addIcon {
   width: 50%;
   margin-top: -12%;
@@ -141,6 +167,37 @@ header {
   height: 60%;
 }
 
+.legend {
+  cursor: pointer;
+  background: #121212 !important;
+}
+.legend p {
+  font-size: 1.1rem;
+}
+
+.featured-card img {
+  max-width: 600px;
+}
+
+.legend h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+.carousel .slide .legend {
+  position: relative !important;
+}
+.carousel .slide{
+  background: #121212 !important;
+}
+
+.thumb {
+  border:none !important;
+  opacity: 0.5 !important;
+}
+.thumb:focus, .thumb.selected {
+  border: 1px solid gray !important;
+  opacity: 1 !important;
+}
 .hackathonCards {
   display: flex;
   justify-content: center;
@@ -155,6 +212,7 @@ header {
   display: flex;
   justify-content: center;
   padding: 4%;
+  font-size: 2rem;
   color: #4885E1;
   border-top: 2px solid white;
 }
@@ -165,8 +223,20 @@ header {
   border-bottom: 2px solid white;
 }
 
+#display-bottom {
+  border:none;
+}
+
 .displayInfo {
-  margin: 4%;
+  margin:  2% 8%;
+}
+
+.displayInfo h1 {
+  font-size: 5rem;
+}
+
+.displayInfo h3 {
+  font-size: 2rem;
 }
 
 .test {
@@ -321,6 +391,10 @@ line-height: 53px;
 
 .hackathons-section {
   margin-bottom: 50px;
+}
+
+#hackathon-card {
+  background-size: contain;
 }
 
 

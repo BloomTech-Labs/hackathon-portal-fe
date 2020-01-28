@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHackathons } from '../actions/actions';
 import { Link } from 'react-router-dom';
-import logo3 from './images/logo3.png'
+import billNye from './images/Frame (1).png';
 import { style } from '../styles/hackathonListStyles';
 import moment from 'moment';
 
@@ -14,9 +14,11 @@ import {
    CardContent,
    CardMedia,
    Typography,
-   TextField
+   TextField,
+   withStyles
 } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
+
 
 const useStyles = makeStyles(theme => style);
 
@@ -42,7 +44,8 @@ const formatDate = date => {
    return `${m} ${d}, ${y}`;
 };
 
-function Hackathons(props) {
+const PastHackathons = (props) => {
+
    const classes = useStyles();
    const isFetching = useSelector(state => state.isFetching);
    const dispatch = useDispatch();
@@ -59,36 +62,24 @@ function Hackathons(props) {
    }, [dispatch]);
 
 
-   let presentHackathons = hackathons ? (hackathons.filter(hackathon => {
-      if (
-         moment(hackathon.start_date).isSame(currentDate) ||
-         moment(hackathon.start_date).isAfter(currentDate)
-      ) {
-         return hackathon;
-      }
-   })) : [];
-
-
    let pastHackathons = hackathons ? (hackathons.filter(hackathon => {
-      if (moment(hackathon.start_date).isBefore(currentDate)) {
+      if (moment(hackathon.end_date).isBefore(currentDate)) {
          return hackathon;
       }
    })) : [];
 
-    console.log(presentHackathons)
-    console.log(pastHackathons)
+
 
   
 
    const results = !searchTerm.length
-      ? presentHackathons
-      : presentHackathons.filter(hackathon =>
+      ? pastHackathons
+      : pastHackathons.filter(hackathon =>
          hackathon.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
          hackathon.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
          hackathon.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
          formatDate(hackathon.start_date).toLowerCase().includes(searchTerm.toLowerCase())
         );
-
    if (isFetching || !hackathons) {
       return <h2>Loading Events...</h2>;
    }
@@ -116,25 +107,25 @@ function Hackathons(props) {
                }
             }}
          ></TextField>
-      <container class='hackathon-list-header'>
-      <p id='hackathons-head'>Hackathons</p>
+
+<container class='hackathon-list-header'>
+      <p id='hackathons-head'>Past Hackathons</p>
         
         <div className='hackathon-buttons'>
-           <Button id='view-archive-btn' onClick={() => props.history.push('hackathons/archive')}>View Past Hackathons</Button>
+           <Button id='view-archive-btn' onClick={() => props.history.push('/hackathons')}>View Upcoming Hackathons</Button>
         </div>
 
       </container>
-         
-         
+        
          <div className={classes.cardParent}>
             {results.map(hackathon => {
                return (
-                  <Card className={classes.card} key={hackathon.id}>
+                  <Card className={classes.pastCard} key={hackathon.id}>
                      <Link
                         to={`/hackathon/${hackathon.id}`}
                         className={classes.link}
                      >
-                        <CardMedia className={classes.media} image={logo3} id='hackathon-card'/>
+                        <CardMedia className={classes.media} image={billNye} />
                         <div className={classes.content}>
                            <CardHeader
                               title={hackathon.name}
@@ -161,8 +152,12 @@ function Hackathons(props) {
                                     Start Date:{' '}
                                     {formatDate(hackathon.start_date)}
                                  </Typography>
-                                 {hackathon.is_open === false ? <div>CLOSED</div> : null}
+                                 <Typography variant='body2'>
+                                     CLOSED
+                                 </Typography>
                               </div>
+                              {/* is_open join button will be added to 1.1 when we build out a modal for a user to join hackathons */}
+                              {/* {hackathon.is_open ? <button>JOIN</button> : <div className="closedHackathon">closed</div> }  */}
                            </CardContent>
                         </div>
                      </Link>
@@ -175,4 +170,4 @@ function Hackathons(props) {
    );
 }
 
-export default Hackathons;
+export default PastHackathons;

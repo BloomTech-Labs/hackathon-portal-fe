@@ -50,7 +50,7 @@ export const createProject = (
       .then(response => {
          console.log('ACTION RESPONSE', response)
          dispatch({ type: POSTPROJECT_SUCCESS });
-         // history.push(`/hackathon/${hackathon_id}`);
+         history.push(`/hackathon/${hackathon_id}`);
       })
       .catch(error => {
          dispatch({ type: FETCH_FAILURE, payload: error.response });
