@@ -8,10 +8,11 @@ import {
    POSTHACKATHON_SUCCESS,
    POSTPROJECT_SUCCESS,
    EDITHACKATHON_SUCCESS,
+   EDITPROJECT_SUCCESS,
    DELETEHACKATHON_SUCCESS,
    DELETE_USER,
    DELETE_USER_SUCCESS,
-   DELETE_USER_FAIL
+   DELETE_USER_FAIL,
 } from '../actions/actions';
 
 const initialState = {
@@ -66,6 +67,12 @@ const reducer = (state = initialState, action) => {
             error: ''
          };
          case POSTPROJECT_SUCCESS:
+            return {
+               ...state,
+               isFetching: false,
+               error: ''
+            };
+         case EDITPROJECT_SUCCESS:
             return {
                ...state,
                isFetching: false,

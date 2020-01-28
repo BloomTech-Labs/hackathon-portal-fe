@@ -15,6 +15,7 @@ export const DELETE_USER = 'DELETE_USER';
 export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
 export const DELETE_USER_FAIL = 'DELETE_USER_FAIL';
 export const POSTPROJECT_SUCCESS = 'POSTPROJECT_SUCCESS';
+export const EDITPROJECT_SUCCESS = 'EDITPROJECT_SUCCESS';
 
 // ACTIONS
 
@@ -23,11 +24,12 @@ export const POSTPROJECT_SUCCESS = 'POSTPROJECT_SUCCESS';
 //PROJECTS
 export const editProject = (
    project_id,
-   history
+   history,
+   projectInfo
    ) => async dispatch => {
-   dispatch({ type: FETCH_START });
+   dispatch({ type: EDITPROJECT_SUCCESS });
    (await axiosWithAuth())
-      .put(`/projects/${project_id}`)
+      .put(`/projects/${project_id}`, projectInfo)
       .then(response => {
          dispatch({ type: POSTPROJECT_SUCCESS });
          history.push(`/success`, response.data.id);

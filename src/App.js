@@ -37,7 +37,7 @@ function App(props) {
       <Route exact path="/" component={Homepage} />
                <Route exact path="/hackathons" component={Hackathons} />
                <PrivateRoute path="/profile" component={UserProfile} />
-               <PrivateRoute path={`/pendingprojects`} id={`:id`} component={PendingProjects}/>
+               <PrivateRoute path='/pendingprojects' id={`:id`} component={PendingProjects}/>
                <PrivateRoute
                   exact
                   path="/hackathon/create"

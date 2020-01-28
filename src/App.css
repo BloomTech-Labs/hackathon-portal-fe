@@ -407,6 +407,13 @@ margin: 1% 1% 1% 0;
   width: 160px;
 }
 
+#single-hackathon-btn {
+  color: #d0ddff;;
+  border: 1px solid #d0ddff;
+  margin-top: 4%;
+  width: 160px;
+}
+
 .single-hackathon-participants {
 display: flex;
 flex-direction: column;
