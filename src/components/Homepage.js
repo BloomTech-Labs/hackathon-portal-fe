@@ -55,72 +55,65 @@ const Homepage = (props) => {
       }
 
         const randomize = arr => {
-            let filtered =  arr.filter(h => h.is_open === true && (
+            let filtered =  arr.filter(h => !h.is_open === false && (
                   moment(h.end_date).isSame(currentDate) ||
                   moment(h.end_date).isAfter(currentDate)
             ) && (
                h.name.length && h.description.length
             ))
+            console.log(filtered)
            return [filtered[Math.floor(Math.random() * Math.floor(filtered.length))],
             filtered[Math.floor(Math.random() * Math.floor(filtered.length))],
             filtered[Math.floor(Math.random() * Math.floor(filtered.length))]
          ]
       };
      
-      const randomHackathons = randomize(hackathons)
+      const hacks = randomize(hackathons)
+      const randomHackathons = [...new Set(hacks)];
       console.log(randomHackathons)
-      console.log(hackathons)
-       
-    return(
+
+    return (
+       <>
+       { !randomHackathons.length ? (
+          <h2>Loading...</h2>
+       ) : (
       <div className='Homepage'>
            <section>
            <Carousel autoplay>
-            <div>
-               <img src={logo1} alt="computer monitors" />
-               <div className="legend" onClick={() => props.history.push(`/hackathon/${randomHackathons[0].id}`)}>
-                 <p>{randomHackathons[0].name}</p>
-                  <p>Start Date: {formatDate(randomHackathons[0].start_date)}</p>
-                  <p>Location: {randomHackathons[0].location}</p>
-                  <p>Description: {randomHackathons[0].description}</p>
+            {randomHackathons.map(r => (
+                <div>
+                <img src={logo1} alt="computer monitors" />
+                  <div className="legend" onClick={() => props.history.push(`/hackathon/${randomHackathons[0].id}`)}>
+                     <h2>{r.name}</h2>
+                     <p>Begins {formatDate(r.start_date)}</p>
+                     <p>{r.location}</p>
+                     <p>{r.description}</p>
+                  </div>
                </div>
-            </div>
-            <div>
-               <img src={standIn2} alt="computer monitors" />
-               <div className="legend" onClick={() => props.history.push(`/hackathon/${randomHackathons[1].id}`)}>
-               <p>{randomHackathons[1].name}</p>
-                  <p>Start Date: {randomHackathons[1].start_date}</p>
-                  <p>Location: {formatDate(randomHackathons[1].location)}</p>
-                  <p>Description: {randomHackathons[1].description}</p>
-               </div>
-            </div>
-            <div>
-               <img src={standIn2} alt="computer monitors" />
-               <div className="legend" onClick={() => props.history.push(`/hackathon/${randomHackathons[2].id}`)}>
-               <div>{randomHackathons[2].name}</div>
-                  <p>Start Date: {formatDate(randomHackathons[2].start_date)}</p>
-                  <p>Location: {randomHackathons[2].location}</p>
-                  <p>Description: {randomHackathons[2].description}</p>
-               </div>
-            </div>
+            ))
+         }
+ 
            </Carousel>
            </section>
            <section className='blurb'>
                <p className='test'>Hackathon Portal is the hub for everything hackathon. Whether you are coordinating a hackathon, judging a project, or participating, Hackathon Portal is the best way to stay up to date on the event's activity.</p>
            </section>
            <section className='homePageDataDisplay'>
-              <div className='display'>
+              <div className='display' id='display-bottom'>
                  <div className='displayInfo'>
                   <h1>{hackathons.length}</h1>
-                  <p>Hackathons</p> 
+                  <h3>Hackathons</h3> 
                  </div>
                  <div className='displayInfo'>
                   <h1>{hackers.length}</h1>
-                  <p>Users</p> 
+                  <h3>Users</h3> 
                  </div>
               </div>
            </section>
         </div>
-      )
+       )}
+       </>
+   )
 }
 
 export default Homepage;
