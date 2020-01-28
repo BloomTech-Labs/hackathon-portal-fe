@@ -20,24 +20,28 @@ const PendingProjects = props => {
     let { register, handleSubmit } = useForm();
     const hackathon = useSelector(state => state.singleHackathon);
     const projects = useSelector(state => state.projects);
-    const [projectInfo, setprojectInfo] = useState({ is_open: true });
-
-    //  useEffect(() => {
-    //     if(hackathon.projects[0].is_approved == true){
-    //         console.log(hackathon.projects[0].is_approved);
-    //     }
-    //  }, [hackathon]);
+    const [project, setproject] = useState(NaN);
+    const hackathonId = (props.location.state.hackathonId)
 
     console.log('this is hackathon', hackathon);
 
-    const handleApprove = projectid => {
+    
 
-         console.log(projectid, 'this is date');
+     useEffect(() => {
+        if(hackathon){
+            dispatch(getSpecificHackathon(hackathonId))
+        }
+     }, []);
+
+    const handleApprove = data => (e) => {
+
+         console.log(data, 'this is date');
          const id = user.sub.replace('auth0|', '');
-        //  data.preventDefault();
+         e.preventDefault();
          dispatch(
             editProject(
-               Number(projectid),
+                hackathon.id,
+               data,
                {is_approved: true}
             )
          );
@@ -46,7 +50,7 @@ const PendingProjects = props => {
      if (isFetching || !hackathon) {
         return <div>Loading...</div>;
      }
-
+{console.log(props.location.state.hackathonId)}
     return (
         <div>
             <div className='pendingList'>
@@ -55,14 +59,17 @@ const PendingProjects = props => {
                 // className={classes.root}
                 // style={{ width: '50%', margin: '0 auto' }}
                 > */}
-                    {hackathon.projects.map(e => (
-                        <div key={e.project_id} className={classes.projectcard}>
-                            <h3>{e.project_title}</h3>
-                            <h3>{e.project_id}</h3>
-                            <p>{e.project_description}</p>
-                            <button onClick={handleApprove(e.project_id)}>Approve Project</button>
-                        </div>
-                    ))}
+                    {hackathon.projects.map(e => {
+                        return (
+                        !e.is_approved && (              <form key={e.project_id} className={classes.projectcard}
+                            onSubmit={handleApprove(e.project_id)} >
+                                <h3>{e.project_title}</h3>
+                                <h3>{e.project_id}</h3>
+                                <p>{e.project_description}</p>
+                                <button type='submit' >Approve Project</button>
+                            </form>))
+
+                        })}
                 {/* </form> */}
             </div>
         </div>

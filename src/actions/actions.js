@@ -23,6 +23,7 @@ export const EDITPROJECT_SUCCESS = 'EDITPROJECT_SUCCESS';
 
 //PROJECTS
 export const editProject = (
+   hackathonId,
    project_id,
    // history,
    projectInfo
@@ -33,7 +34,10 @@ export const editProject = (
       .put(`/projects/${project_id}`, projectInfo)
       .then(response => {
          console.log(response);
-         dispatch({ type: POSTPROJECT_SUCCESS });
+         dispatch({ type: POSTPROJECT_SUCCESS })
+         if(projectInfo.is_approved){
+            dispatch(getSpecificHackathon(hackathonId))
+         };
          // history.push(`/success`, response.data.id);
       })
       .catch(error => {

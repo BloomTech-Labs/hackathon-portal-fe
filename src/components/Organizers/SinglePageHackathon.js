@@ -110,11 +110,12 @@ const SinglePage = props => {
       
                   <Typography variant='h5'>End date: {formatDate(hackathon.end_date)}</Typography>
             </div>
-         
+         {console.log(props, 'this is props')}
          <div className='single-hackathon-crud-btns-container'>
                {user.id === hackathon.organizer_id && (
                   <div className='single-hackathon-crud-btns'>
-                     <Link to='/pendingprojects' id='single-hackathon-btn' hackathonid={props}>Pending Projects</Link>
+                     {/* <Link to='/pendingprojects' id='single-hackathon-btn' state: { hackathonId: props.match.params.id }>Pending Projects</Link> */}
+                     <Link to={{ pathname:'/pendingprojects', state: { hackathonId: Number(props.match.params.id) }}}>Pending Projects</Link>
                      <ServerModal id='single-hackathon-crud-btn' props={`/hackathon/edit/${hackathon.id}`}/>
                      <DeleteHackathon id={hackathon.id} org_id={hackathon.organizer_id} history={props.history} />
                   </div>
