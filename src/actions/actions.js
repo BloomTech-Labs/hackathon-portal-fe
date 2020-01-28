@@ -118,6 +118,8 @@ export const createHackathon = (
       })
       .catch(error => {
          dispatch({ type: FETCH_FAILURE, payload: error.response });
+         console.log(error)
+         window.alert("Error: Please make sure you've included all required fields, or try again later.")
       });
 };
 
@@ -145,7 +147,7 @@ export const deleteHackathon = (id, org_id, history) => async dispatch => {
       .delete(`/hackathons/${id}/u/${org_id}`)
       .then(response => {
          dispatch({ type: DELETEHACKATHON_SUCCESS });
-         history.push(`/`)
+         history.push(`/profile`)
       })
       .catch(error => {
          dispatch({ type: FETCH_FAILURE, payload: error.response });
