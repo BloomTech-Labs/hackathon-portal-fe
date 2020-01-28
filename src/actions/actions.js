@@ -15,6 +15,7 @@ export const DELETE_USER = 'DELETE_USER';
 export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
 export const DELETE_USER_FAIL = 'DELETE_USER_FAIL';
 export const POSTPROJECT_SUCCESS = 'POSTPROJECT_SUCCESS';
+export const UPDATEPROJECT_SUCCESS = 'UPDATEPROJECT_SUCCESS';
 
 // ACTIONS
 
@@ -40,10 +41,27 @@ export const createProject = (
       });
 };
 
+export const updateProject = (
+   project_id,
+   projectInfo
+) => async dispatch => {
+   dispatch({ type: FETCH_START });
+   (await axiosWithAuth())
+      .put(`/projects/${project_id}`, projectInfo)
+      .then(response => {
+         console.log('ACTION RESPONSE', response)
+         // dispatch({ type: UPDATEPROJECT_SUCCESS });
+      })
+      .catch(error => {
+         dispatch({ type: FETCH_FAILURE, payload: error.response });
+      });
+};
+
 export const joinProject = (
    hackathon_id,
    user_id,
-   project
+   project,
+   role
 ) => async dispatch => {
    dispatch({ type: FETCH_START });
    (await axiosWithAuth())
@@ -51,6 +69,7 @@ export const joinProject = (
       .then(response => {
          console.log('ACTION RESPONSE', response)
          // dispatch({ type: })
+         dispatch(updateProject(project.project_id, role))
       })
 }
 

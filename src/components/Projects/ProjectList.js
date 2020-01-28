@@ -22,15 +22,6 @@ const ProjectList = props => {
       setProjects(hackathon.projects)
     }
   }, [hackathon])
-  /*
-  front_end_spots: 3
-  back_end_spots: 1
-
-  ios_spots: 1
-  android_spots: 1
-  data_science_spots: 1
-  ux_spots: 1
-  */
 
   const handleCheckboxChange = e => {
       setFilterBy(e.target.value)
@@ -49,6 +40,8 @@ const ProjectList = props => {
   if (!hackathon) {
     return <div>Loading...</div>;
   }
+  
+  console.log(hackathon.projects)
 
   return (
     <div>
@@ -62,31 +55,37 @@ const ProjectList = props => {
           control={<Radio />}
           value='front_end_spots'
           label="front end"
+          style={{color:'green'}}
         />
         <FormControlLabel
           control={<Radio />}
           value='back_end_spots'
           label="back end"
+          style={{color:'blue'}}
         />
         <FormControlLabel
           control={<Radio />}
           value='ux_spots'
           label="ux"
+          style={{color:'orange'}}
         />
         <FormControlLabel
           control={<Radio />}
           value='data_science_spots'
           label="data science"
+          style={{color:'purple'}}
         />
         <FormControlLabel
           control={<Radio />}
           value='ios_spots'
           label="ios"
+          style={{color:'white'}}
         />
         <FormControlLabel
           control={<Radio />}
           value='android_spots'
           label="android"
+          style={{color:'red'}}
         />
       </RadioGroup>
       <Typography variant='h4'>Project List</Typography>
@@ -121,7 +120,7 @@ const ProjectList = props => {
                     <Avatar style={{background:'none', border:'1px solid red', color:'red'}}>AND</Avatar>
                   )}
                 </div>
-                <JoinProjectModal project={project} />
+                <JoinProjectModal project={project} hackathon_id={hackathon.id} />
               </div>
           ))
         })

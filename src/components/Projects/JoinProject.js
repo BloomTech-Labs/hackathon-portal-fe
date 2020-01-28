@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import { Button, TextField, Select, MenuItem, FormLabel, InputLabel } from '@material-ui/core';
+
+// ACTIONS
+import { joinProject } from '../../actions/actions';
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -19,12 +24,15 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function JoinProjectModal({ project }) {
+function JoinProjectModal({ project, hackathon_id }) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [openRoles, setOpenRoles] = useState([])
+  const [formattedRole, setFormattedRole] = useState('')
   const [role, setRole] = useState('')
-  let spots = {'front_end_spots':'front end', 'back_end_spots':'back end', 'ux_spots':'ux', 'data_science_spots':'data science', 'android_spots':'android', 'ios_spots':'ios'}
+  let spots = {'front_end_spots':'front end', 'back_end_spots':'back end', 'ux_spots':'ux', 'data_science_spots':'data science', 'android_spots':'android', 'ios_spots':'ios'};
+  const { loading, user } = useAuth0();
+  const dispatch = useDispatch();
 
   const handleOpen = () => {
     setOpen(true);
@@ -43,11 +51,17 @@ function JoinProjectModal({ project }) {
   const handleChange = e => {
     setRole(Object.keys(spots)[Object.values(spots).indexOf(Object.values(spots).find((element, index) => {
       return element === e.target.value
-  }))])
+    }))]);
+    setFormattedRole(e.target.value)
   };
 
-  const handleSubmit = () => {
-
+  const handleSubmit = e => {
+    if (loading) {
+      return;
+    }
+    const id = user.sub.replace('auth0|', '');
+    e.preventDefault();
+    dispatch(joinProject(hackathon_id, id, {project_id: project.project_id, user_hackathon_role: 'participant', developer_role: formattedRole}, {[role]:project[role]-1}));
   };
 
   return (
@@ -69,13 +83,16 @@ function JoinProjectModal({ project }) {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="projectTitle">{project.project_title}</h2>
-            <p id="transition-modal-description">react-transition-group animates me.</p>
-            <Select onChange={handleChange}>
-              {openRoles.map(element => {
-                return (<MenuItem value={element}>{element}</MenuItem>)
-              })}
-            </Select>
+            <form onSubmit={handleSubmit}>
+              <h2 id="projectTitle">{project.project_title}</h2>
+              <p>Choose your role:</p>
+              <Select onChange={handleChange}>
+                {openRoles.map(element => {
+                  return (<MenuItem value={element}>{element}</MenuItem>)
+                })}
+              </Select>
+              <Button type='submit'>Submit</Button>
+            </form>
           </div>
         </Fade>
       </Modal>
