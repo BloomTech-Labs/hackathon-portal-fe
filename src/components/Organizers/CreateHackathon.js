@@ -194,16 +194,17 @@ const CreateHackathon = props => {
    const dispatch = useDispatch();
    const classes = useStyles();
    const [activeStep, setActiveStep] = React.useState(0);
+   const [nameLength, setNameLength] = React.useState(true)
+   const [descLength, setDescLength] = React.useState(true)
+   const [locationLength, setLocationLength] = React.useState(true)
+
 
    
    let { register, handleSubmit, errors, clearError } = useForm();
 
    useEffect(() => {
       setHackathonInfo({
-         name: `${page1Info.name}`,
-         description: `${page1Info.description}`,
-         location: `${page1Info.location}`,
-         url: `${page1Info.url}`,
+         ...page1Info,
          start_date: `${start_date}`,
          end_date: `${end_date}`,
          is_open: state.is_open,
@@ -212,6 +213,9 @@ const CreateHackathon = props => {
    }, [page1Info, start_date, end_date, state, max]);
 
    const handlePage1Change = e => {
+      if (page1Info.hasOwnProperty('name') && page1Info.name.trim().length) setNameLength(true)
+      if (page1Info.hasOwnProperty('description') && page1Info.description.trim().length) setDescLength(true)
+      if (page1Info.hasOwnProperty('location') && page1Info.location.trim().length) setLocationLength(true)
       setPage1Info({ ...page1Info, [e.target.name]: e.target.value });
    };
 
@@ -240,7 +244,7 @@ const CreateHackathon = props => {
       }
    }
 
-
+console.log(page1Info)
    const handleNext = () => {
 
       if (activeStep === 1) {
@@ -249,6 +253,16 @@ const CreateHackathon = props => {
       }
 
       setActiveStep(prevActiveStep => prevActiveStep + 1);
+       if (!page1Info.hasOwnProperty('name') || !page1Info.name.trim().length) {
+         setNameLength(false)
+       } if (!page1Info.hasOwnProperty('description') || !page1Info.description.trim().length) {
+         setDescLength(false)
+       } if (!page1Info.hasOwnProperty('location') || !page1Info.location.trim().length) {
+         setLocationLength(false)
+       } 
+       else setActiveStep(prevActiveStep => prevActiveStep + 1)
+       console.log(nameLength, descLength, locationLength)
+       console.log(page1Info)
    };
 
    const handleBack = () => {
@@ -288,7 +302,7 @@ const CreateHackathon = props => {
                      <TextField
                         type="text"
                         fullWidth
-                        label="Hackathon Name"
+                        label="Hackathon Name (required)"
                         name="name"
                         variant="filled"
                         margin="dense"
@@ -302,7 +316,7 @@ const CreateHackathon = props => {
                            )
                         }}
                      />
-               
+                     {!nameLength ? <p className='create-error'>Please include a name</p> : null}
                      <TextField
                         className={classes.label}
                         type="text"
@@ -311,7 +325,7 @@ const CreateHackathon = props => {
                         rows="4"
                         name="description"
                         variant="filled"
-                        label='Hackathon Description'
+                        label='Hackathon Description (required)'
                         margin="dense"
                         defaultValue={page1Info.description}
                         onChange={handlePage1Change}
@@ -324,7 +338,9 @@ const CreateHackathon = props => {
                            )
                         }}
                      />
+                      
                   </label>
+                  {!descLength ? <p className='create-error'>Please include a description</p> : null}
                   <label className="location-input">
 
                      <TextField
@@ -334,7 +350,7 @@ const CreateHackathon = props => {
                         name="location"
                         variant="filled"
                         margin="dense"
-                        label='Hackathon Location'
+                        label='Hackathon Location (required)'
                         defaultValue={page1Info.location}
                         onChange={handlePage1Change}
                         inputRef={register}
@@ -346,6 +362,7 @@ const CreateHackathon = props => {
                            )
                         }}
                      />
+                       {!locationLength ? <p className='create-error'>Please include a location (ex. San Francisco, Online, etc)</p> : null}
                   </label>
                   <label className="url">
 
