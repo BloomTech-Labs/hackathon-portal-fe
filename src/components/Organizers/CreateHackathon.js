@@ -159,18 +159,18 @@ const useStyles = makeStyles(theme => ({
 
 function StyledRadio(props) {
    const classes = useStyles();
- 
+
    return (
-     <Radio
-       className={classes.root}
-       disableRipple
-       color="default"
-       checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
-       icon={<span className={classes.icon} />}
-       {...props}
-     />
+      <Radio
+         className={classes.root}
+         disableRipple
+         color="default"
+         checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
+         icon={<span className={classes.icon} />}
+         {...props}
+      />
    );
- }
+}
 
 const CreateHackathon = props => {
    const [page1Info, setPage1Info] = useState({});
@@ -247,7 +247,7 @@ const CreateHackathon = props => {
 
    const handleChange = event => {
       setMax(event.target.value);
-    };
+   };
 
    const handleFormSubmit = (data, e) => {
       if (loading) {
@@ -465,14 +465,14 @@ const CreateHackathon = props => {
                   <div>
                      <label className="max-members">
                      <Typography className={classes.text} gutterBottom variant="h5" component="h5">
-                            What is the max number of members you want to allow per project?
+                        What is the max number of members you want to allow per project?
                      </Typography>
                         <FormControl className={classes.margin}>
                            <InputLabel htmlFor="demo-customized-textbox"></InputLabel>
                            <BootstrapInput
-                            id="demo-customized-textbox" 
-                            placeholder="Max: 30" 
-                            onChange={handleChange}/>
+                           id="demo-customized-textbox" 
+                           placeholder="Max: 30" 
+                           onChange={handleChange}/>
                         </FormControl>
                      </label>
                   </div>

@@ -16,6 +16,7 @@ export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
 export const DELETE_USER_FAIL = 'DELETE_USER_FAIL';
 export const POSTPROJECT_SUCCESS = 'POSTPROJECT_SUCCESS';
 export const UPDATEPROJECT_SUCCESS = 'UPDATEPROJECT_SUCCESS';
+export const JOINPROJECT_SUCCESS = 'JOINPROJECT_SUCCESS';
 
 // ACTIONS
 
@@ -43,14 +44,14 @@ export const createProject = (
 
 export const updateProject = (
    project_id,
-   projectInfo
+   info
 ) => async dispatch => {
    dispatch({ type: FETCH_START });
    (await axiosWithAuth())
-      .put(`/projects/${project_id}`, projectInfo)
+      .put(`/projects/${project_id}`, info)
       .then(response => {
          console.log('ACTION RESPONSE', response)
-         // dispatch({ type: UPDATEPROJECT_SUCCESS });
+         dispatch({ type: UPDATEPROJECT_SUCCESS });
       })
       .catch(error => {
          dispatch({ type: FETCH_FAILURE, payload: error.response });
@@ -61,16 +62,24 @@ export const joinProject = (
    hackathon_id,
    user_id,
    project,
-   role
+   role,
+   history
 ) => async dispatch => {
    dispatch({ type: FETCH_START });
    (await axiosWithAuth())
       .post(`/hackathons/${hackathon_id}/join/${user_id}`, project)
       .then(response => {
          console.log('ACTION RESPONSE', response)
-         // dispatch({ type: })
+         dispatch({ type: JOINPROJECT_SUCCESS })
          dispatch(updateProject(project.project_id, role))
+         history.push(`/profile`)
       })
+      .catch(error => {
+         if(error.response.type === 401){
+            dispatch({ type: FETCH_FAILURE, payload: 'You have already registered for a project in this hackathon.' });
+         }
+         dispatch({ type: FETCH_FAILURE, payload: error.response });
+      });
 }
 
 // HACKATHONS

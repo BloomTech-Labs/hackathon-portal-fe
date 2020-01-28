@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function JoinProjectModal({ project, hackathon_id }) {
+function JoinProjectModal({ project, hackathon_id, history }) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [openRoles, setOpenRoles] = useState([])
@@ -42,6 +42,8 @@ function JoinProjectModal({ project, hackathon_id }) {
       }
     })
   };
+
+  console.log(history)
 
   const handleClose = () => {
     setOpen(false);
@@ -61,7 +63,7 @@ function JoinProjectModal({ project, hackathon_id }) {
     }
     const id = user.sub.replace('auth0|', '');
     e.preventDefault();
-    dispatch(joinProject(hackathon_id, id, {project_id: project.project_id, user_hackathon_role: 'participant', developer_role: formattedRole}, {[role]:project[role]-1}));
+    dispatch(joinProject(hackathon_id, id, {project_id: project.project_id, user_hackathon_role: 'participant', developer_role: formattedRole}, {[role]:project[role]-1}, history));
   };
 
   return (

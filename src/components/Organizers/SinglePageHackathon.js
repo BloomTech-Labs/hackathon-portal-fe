@@ -120,11 +120,13 @@ const SinglePage = props => {
             )}
       </div>
 
-      <div className='single-hackathon-crud-btns-container'>
-         {user.id !== hackathon.organizer_id && (
-            <Link to={`/hackathon/${hackathon.id}/projects`}><Button id='single-hackathon-crud-btn'>JOIN EVENT</Button></Link>
-         )}
-      </div>
+      {hackathon.is_open && (
+         <div className='single-hackathon-crud-btns-container'>
+            {user.id !== hackathon.organizer_id && (
+               <Link to={`/hackathon/${hackathon.id}/projects`}><Button id='single-hackathon-crud-btn'>JOIN EVENT</Button></Link>
+            )}
+         </div>
+      )}
       
       <div className='admins-parent'>
          <Typography variant='h4' id="admins-title">Admins</Typography>
