@@ -14,12 +14,14 @@ import EditHackathon from './components/Organizers/EditHackathon';
 import SinglePage from './components/Organizers/SinglePageHackathon';
 import SuccessPage from './components/SuccessPage';
 import UserProfile from './components/UserProfile';
+import PastHackathons from './components/pastHackathons';
 // import Footer from './components/Footer';
 import CreateProject from './components/Projects/CreateProject';
 import ErrorPage from './components/ErrorPage';
 
 // ACTIONS
 import { getHackathons } from './actions/actions';
+
 
 function App(props) {
    useEffect(() => {
@@ -35,6 +37,7 @@ function App(props) {
             <Switch>
       <Route exact path="/" component={Homepage} />
                <Route exact path="/hackathons" component={Hackathons} />
+               <Route exact path='/hackathons/archive' component={PastHackathons} />
                <PrivateRoute path="/profile" component={UserProfile} />
                <PrivateRoute
                   exact

@@ -7,6 +7,25 @@ export const style = {
     borderRadius: "3%",
     marginRight: '0.8%'
   },
+  pastCard: {
+    background: "#1c1c1f",
+    border: "1px solid #D0DDFF",
+    width: "24%",
+    marginBottom: "3%",
+    borderRadius: "3%",
+    marginRight: '0.8%',
+  },
+  cardButton: {
+    color: '#4885E1',
+    background: '#1c1c1f',
+    border: '1px solid',
+    fontSize: '1.3rem',
+    borderRadius: '10px',
+    marginTop: '20px',
+    width: '98%',
+    height: '50px',
+    padding: '0px 10px'
+  },
   cardParent: {
     display: "flex",
     flexWrap: "wrap",
@@ -42,7 +61,8 @@ export const style = {
   },
   hackathonName: {
     color: "#d0ddff",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    minHeight: '70px',
   },
   hackathonDescription: {
     color: '#d0ddff',
@@ -53,13 +73,13 @@ export const style = {
   hackathonInfo: {
      // RGB FOR #d0ddff with opacity 64%
     color: 'rgba(208, 221, 255, 0.64)',
-    marginTop: '7%'
+    marginTop: '7%',
   },
   link: {
     textDecoration: 'none'
   },
   content: {
     padding: '0 5%',
-    textAlign: 'left'
+    textAlign: 'left',
   }
 }
