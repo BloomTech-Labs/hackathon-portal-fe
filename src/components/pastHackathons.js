@@ -112,7 +112,7 @@ const PastHackathons = (props) => {
       <p id='hackathons-head'>Past Hackathons</p>
         
         <div className='hackathon-buttons'>
-           <Button id='view-archive-btn' onClick={() => props.history.push('/hackathons')}>View Current/Future Hackathons</Button>
+           <Button id='view-archive-btn' onClick={() => props.history.push('/hackathons')}>View Upcoming Hackathons</Button>
         </div>
 
       </container>
