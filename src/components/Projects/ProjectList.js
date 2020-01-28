@@ -5,16 +5,17 @@ import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 
 // ACTIONS
 import { getSpecificHackathon } from "../../actions/actions";
-import { Typography, Avatar, Checkbox, FormControlLabel, Radio, RadioGroup, FormLabel, FormHelperText } from "@material-ui/core";
+import { Typography, Avatar, FormControlLabel, Radio, RadioGroup, FormHelperText } from "@material-ui/core";
 import JoinProjectModal from "./JoinProject";
 
 const ProjectList = props => {
   const dispatch = useDispatch();
   const hackathon = useSelector(state => state.singleHackathon);
   const isFetching = useSelector(state => state.isFetching);
-  const error = useSelector(state => state.error);
   const [projects, setProjects] = useState([]);
   const [filterBy, setFilterBy] = useState('');
+  const [registered, setRegistered] = useState({ registered:false, project_id:0 })
+  const { user } = useAuth0();
 
   useEffect(() => {
     dispatch(getSpecificHackathon(props.match.params.id));
@@ -31,6 +32,18 @@ const ProjectList = props => {
   }
 
   useEffect(() => {
+    if(hackathon && hackathon.projects){
+      hackathon.projects.map(item => {
+        item.participants.map(element => {
+        if(element.user_id === user.id){
+          setRegistered({ registered:true, project_id:item.project_id })
+        }
+      })})
+    }
+    
+  }, [hackathon])
+
+  useEffect(() => {
     if(hackathon && !filterBy){
       setProjects(hackathon.projects)
     }else if(hackathon){
@@ -43,15 +56,15 @@ const ProjectList = props => {
   if (isFetching || !hackathon) {
     return <div>Loading...</div>;
   }
+
+  
+
   // TO DO: SHOW MESSAGE IF ALREADY IN THE HACKATHON
   // TO DO: MODAL FOR DETAILED PROJECT?
-
-  console.log(error)
 
   return (
     <div>
       <Typography variant='h4'>Project List</Typography>
-      {error && (<FormHelperText>{error}</FormHelperText>)}
       <button><Link to={`/hackathon/${hackathon.id}/create/project`}>Submit a project idea</Link></button>
       {!projects[0] ? 
         <Typography variant='h6'>There are no projects posted at this time.</Typography>
@@ -104,10 +117,14 @@ const ProjectList = props => {
             projects.map((project, index) => {
               return(
                 project.is_approved && (
+
                   <div key={index} style={{border:'2px solid red', width:'300px'}}>
                     <div>
                       <Typography variant='h5' style={{fontWeight:'bold'}}>{project.project_title}</Typography>
                       <Typography variant='body1'>{project.project_description}</Typography>
+                      {registered.project_id === project.project_id ? (
+                    <FormHelperText style={{color:'lime'}}>You are successfully registered for {project.project_title}!</FormHelperText>
+                    ):false}
                     </div>
                     <div style={{display:'flex', margin:'0 auto'}}>
                       {project.front_end_spots > 0 && (
@@ -129,7 +146,7 @@ const ProjectList = props => {
                         <Avatar style={{background:'none', border:'1px solid red', color:'red'}}>AND</Avatar>
                       )}
                     </div>
-                    <JoinProjectModal project={project} hackathon_id={hackathon.id} history={props.history} />
+                    <JoinProjectModal project={project} hackathon_id={hackathon.id} history={props.history} registered={registered.registered} />
                   </div>
               ))
     

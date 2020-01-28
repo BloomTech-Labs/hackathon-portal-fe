@@ -75,9 +75,6 @@ export const joinProject = (
          history.push(`/profile`)
       })
       .catch(error => {
-         if(error.response.type === 401){
-            dispatch({ type: FETCH_FAILURE, payload: 'You have already registered for a project in this hackathon.' });
-         }
          dispatch({ type: FETCH_FAILURE, payload: error.response });
       });
 }

@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import { Button, TextField, Select, MenuItem, FormLabel, InputLabel } from '@material-ui/core';
+import { Button, TextField, Select, MenuItem, FormLabel, InputLabel, FormHelperText } from '@material-ui/core';
 
 // ACTIONS
 import { joinProject } from '../../actions/actions';
@@ -24,12 +24,13 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function JoinProjectModal({ project, hackathon_id, history }) {
+function JoinProjectModal({ project, hackathon_id, registered, history }) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [openRoles, setOpenRoles] = useState([])
   const [formattedRole, setFormattedRole] = useState('')
   const [role, setRole] = useState('')
+  const [error, setError] = useState('')
   let spots = {'front_end_spots':'front end', 'back_end_spots':'back end', 'ux_spots':'ux', 'data_science_spots':'data science', 'android_spots':'android', 'ios_spots':'ios'};
   const { loading, user } = useAuth0();
   const dispatch = useDispatch();
@@ -43,11 +44,12 @@ function JoinProjectModal({ project, hackathon_id, history }) {
     })
   };
 
-  console.log(history)
+  console.log(history, registered)
 
   const handleClose = () => {
     setOpen(false);
     setOpenRoles([]);
+    setError(false)
   };
 
   const handleChange = e => {
@@ -63,7 +65,12 @@ function JoinProjectModal({ project, hackathon_id, history }) {
     }
     const id = user.sub.replace('auth0|', '');
     e.preventDefault();
-    dispatch(joinProject(hackathon_id, id, {project_id: project.project_id, user_hackathon_role: 'participant', developer_role: formattedRole}, {[role]:project[role]-1}, history));
+    if(registered){
+      setError(true)
+    }else{
+      dispatch(joinProject(hackathon_id, id, {project_id: project.project_id, user_hackathon_role: 'participant', developer_role: formattedRole}, {[role]:project[role]-1}, history));
+
+    }
   };
 
   return (
@@ -94,6 +101,7 @@ function JoinProjectModal({ project, hackathon_id, history }) {
                 })}
               </Select>
               <Button type='submit'>Submit</Button>
+              {error && (<FormHelperText error>You are already registered for this hackathon</FormHelperText>)}
             </form>
           </div>
         </Fade>
