@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import { Button, TextField, Select, MenuItem, FormLabel, InputLabel, FormHelperText } from '@material-ui/core';
+import { Button, Select, MenuItem, FormHelperText } from '@material-ui/core';
 
 // ACTIONS
 import { joinProject } from '../../actions/actions';
@@ -43,8 +43,6 @@ function JoinProjectModal({ project, hackathon_id, registered, history }) {
       }
     })
   };
-
-  console.log(history, registered)
 
   const handleClose = () => {
     setOpen(false);

@@ -130,7 +130,7 @@ const CreateProject = props => {
         data_science_spots: spots.ds,
         creator_id: currentUser.id,
         hackathon_id: hackathon.id,
-        is_approved: true
+        is_approved: false
       });
     }
   }, [formInfo, spots]);
