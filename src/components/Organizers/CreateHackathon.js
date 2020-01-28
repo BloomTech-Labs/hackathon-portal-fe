@@ -185,10 +185,11 @@ const CreateHackathon = props => {
       url: '',
       start_date: '',
       end_date: '',
-      is_open: ''
+      is_open: '',
+      max_team_participants: 0,
    });
    const [state, setState] = useState({ is_open: true });
-   const [max, setMax] = useState('');
+   const [max, setMax] = useState( 0 );
    const { loading, user } = useAuth0();
    const dispatch = useDispatch();
    const classes = useStyles();
@@ -205,9 +206,10 @@ const CreateHackathon = props => {
          url: `${page1Info.url}`,
          start_date: `${start_date}`,
          end_date: `${end_date}`,
-         is_open: state.is_open
+         is_open: state.is_open,
+         max_team_participants: max,
       });
-   }, [page1Info, start_date, end_date, state]);
+   }, [page1Info, start_date, end_date, state, max]);
 
    const handlePage1Change = e => {
       setPage1Info({ ...page1Info, [e.target.name]: e.target.value });
@@ -253,9 +255,12 @@ const CreateHackathon = props => {
       setActiveStep(prevActiveStep => prevActiveStep - 1);
    };
 
-   const handleChange = event => {
-      setMax(event.target.value);
+   const handleChange = e => {
+      setMax(Number(e.target.value));
+      console.log(Number(e.target.value));
     };
+    
+    console.log(max)
 
    const handleFormSubmit = (data, e) => {
       if (loading) {
@@ -480,7 +485,9 @@ const CreateHackathon = props => {
                            <BootstrapInput
                             id="demo-customized-textbox" 
                             placeholder="Max: 30" 
+                            value={max}
                             onChange={handleChange}/>
+                            
                         </FormControl>
                      </label>
                   </div>

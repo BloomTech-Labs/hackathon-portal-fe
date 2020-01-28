@@ -474,7 +474,7 @@ const CreateProject = props => {
       className={classes.activeButton}
       type='submit'
       >
-      Finish
+      ADD PROJECT 
       </Button>
 
       </form> 
