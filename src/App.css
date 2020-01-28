@@ -393,6 +393,10 @@ line-height: 53px;
   margin-bottom: 50px;
 }
 
+#hackathon-card {
+  background-size: contain;
+}
+
 
             /* single hackathon styling*/
 

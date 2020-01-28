@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHackathons } from '../actions/actions';
 import { Link } from 'react-router-dom';
-import billNye from './images/Frame (1).png';
+import logo3 from './images/logo3.png'
 import { style } from '../styles/hackathonListStyles';
 import moment from 'moment';
 
@@ -134,7 +134,7 @@ function Hackathons(props) {
                         to={`/hackathon/${hackathon.id}`}
                         className={classes.link}
                      >
-                        <CardMedia className={classes.media} image={billNye} />
+                        <CardMedia className={classes.media} image={logo3} id='hackathon-card'/>
                         <div className={classes.content}>
                            <CardHeader
                               title={hackathon.name}
