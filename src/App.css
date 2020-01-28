@@ -175,6 +175,10 @@ header {
   font-size: 1.1rem;
 }
 
+.featured-card img {
+  max-width: 600px;
+}
+
 .legend h2 {
   font-size: 2rem;
   font-weight: bold;

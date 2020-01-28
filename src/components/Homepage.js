@@ -81,7 +81,7 @@ const Homepage = (props) => {
            <section>
            <Carousel autoplay>
             {randomHackathons.map(r => (
-                <div>
+                <div className='featured-card'>
                 <img src={logo1} alt="computer monitors" />
                   <div className="legend" onClick={() => props.history.push(`/hackathon/${randomHackathons[0].id}`)}>
                      <h2>{r.name}</h2>
@@ -96,7 +96,7 @@ const Homepage = (props) => {
            </Carousel>
            </section>
            <section className='blurb'>
-               <p className='test'>Hackathon Portal is the hub for everything hackathon. Whether you are coordinating a hackathon, judging a project, or participating, Hackathon Portal is the best way to stay up to date on the event's activity.</p>
+               <p className='test'>Hackathon Portal is the hub for everything hackathon. Whether you're coordinating a hackathon, judging a project, or participating, Hackathon Portal is the best way to stay up to date on the event's activity.</p>
            </section>
            <section className='homePageDataDisplay'>
               <div className='display' id='display-bottom'>
