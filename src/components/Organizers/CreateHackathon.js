@@ -516,7 +516,7 @@ const CreateHackathon = props => {
                      variant="contained"
                      color="primary"
                      className={classes.activeButton}
-                     onClick={()=>handleFormSubmit()}
+                     // onClick={()=>handleFormSubmit()}
                      >
                         Finish
                      </Button>

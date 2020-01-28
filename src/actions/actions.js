@@ -74,8 +74,9 @@ export const createHackathon = (
    (await axiosWithAuth())
       .post(`/hackathons/u/${user_id}`, hackathonInfo)
       .then(response => {  
-         dispatch({ type: POSTHACKATHON_SUCCESS, payload: response.data });
-         console.log(response.data)
+         dispatch({ type: POSTHACKATHON_SUCCESS });
+         dispatch(getSpecificHackathon(response.data.id))
+         // console.log(response.data)
          // history.push(`/success`, response.data.id);
       })
       .catch(error => {

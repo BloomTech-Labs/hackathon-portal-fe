@@ -37,7 +37,6 @@ const reducer = (state = initialState, action) => {
             error: action.payload
          };
       case FETCH_HACKATHON:
-      case POSTHACKATHON_SUCCESS:
          return {
             ...state,
             singleHackathon: action.payload,
@@ -60,28 +59,20 @@ const reducer = (state = initialState, action) => {
          };
       case DELETEHACKATHON_SUCCESS:
       case EDITHACKATHON_SUCCESS:
-         return {
-            ...state,
-            isFetching: false,
-            error: ''
-         };
-         case POSTPROJECT_SUCCESS:
-            return {
-               ...state,
-               isFetching: false,
-               error: ''
-            };
-      case FETCH_HACKATHONS:
-         return {
-            ...state,
-            hackathons: action.payload,
-            isFetching: false,
-            error: ''
-         };
+      case POSTPROJECT_SUCCESS:
+      case POSTHACKATHON_SUCCESS:
       case DELETE_USER:
       case DELETE_USER_SUCCESS:
          return {
             ...state,
+            isFetching: false,
+            error: ''
+         };
+         
+      case FETCH_HACKATHONS:
+         return {
+            ...state,
+            hackathons: action.payload,
             isFetching: false,
             error: ''
          };
