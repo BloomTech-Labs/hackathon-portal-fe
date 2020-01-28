@@ -24,15 +24,17 @@ export const EDITPROJECT_SUCCESS = 'EDITPROJECT_SUCCESS';
 //PROJECTS
 export const editProject = (
    project_id,
-   history,
+   // history,
    projectInfo
    ) => async dispatch => {
-   dispatch({ type: EDITPROJECT_SUCCESS });
+      console.log('about to dispatch');
+   dispatch({ type: FETCH_START });
    (await axiosWithAuth())
       .put(`/projects/${project_id}`, projectInfo)
       .then(response => {
+         console.log(response);
          dispatch({ type: POSTPROJECT_SUCCESS });
-         history.push(`/success`, response.data.id);
+         // history.push(`/success`, response.data.id);
       })
       .catch(error => {
          dispatch({ type: FETCH_FAILURE, payload: error.response });

@@ -7,6 +7,7 @@ import { editProject, getSpecificHackathon } from '../../actions/actions';
 
 const useStyles = makeStyles(theme => ({
     projectcard: {
+        width: '20%',
         border: '3px solid red',
     }
   }));
@@ -15,41 +16,29 @@ const PendingProjects = props => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const { loading, user } = useAuth0();
+    const isFetching = useSelector(state => state.isFetching);
     let { register, handleSubmit } = useForm();
     const hackathon = useSelector(state => state.singleHackathon);
-    // const projects = useSelector(state => state.projects);
+    const projects = useSelector(state => state.projects);
     const [projectInfo, setprojectInfo] = useState({ is_open: true });
-    const isFetching = useSelector(state => state.isFetching);
 
-    // useEffect(() => {
-    //     dispatch(editProject(hackathonProjects.projects));
-    //  }, [dispatch, hackathonProjects.projects]);
-    console.log(props, 'this is the last props')
+    //  useEffect(() => {
+    //     if(hackathon.projects[0].is_approved == true){
+    //         console.log(hackathon.projects[0].is_approved);
+    //     }
+    //  }, [hackathon]);
 
-    useEffect(() => {
-        dispatch(getSpecificHackathon((props.id)));
-     }, [dispatch, props.id]);
+    console.log('this is hackathon', hackathon);
 
-     useEffect(() => {
-        if(hackathon){
-           setprojectInfo({ projectInfo: hackathon.projectInfo })
-        }
-     }, [hackathon]);
+    const handleApprove = projectid => {
 
-     console.log(props.hackathonid, 'this is props');
-    //  console.log(hackathonProjects, 'this is hackathonprojects');
-    //  console.log(projects, 'this is projects');
-    const handleApprove = (data, e) => {
-        if (loading) {
-            return;
-         }
+         console.log(projectid, 'this is date');
          const id = user.sub.replace('auth0|', '');
-        //  e.preventDefault();
+        //  data.preventDefault();
          dispatch(
             editProject(
-               Number(hackathon.projects.project_id),
-               props.history,
-               projectInfo
+               Number(projectid),
+               {is_approved: true}
             )
          );
      }
@@ -70,7 +59,8 @@ const PendingProjects = props => {
                         <div key={e.project_id} className={classes.projectcard}>
                             <h3>{e.project_title}</h3>
                             <h3>{e.project_id}</h3>
-                            {/* <button onClick={handleApprove}>Approve Project</button> */}
+                            <p>{e.project_description}</p>
+                            <button onClick={handleApprove(e.project_id)}>Approve Project</button>
                         </div>
                     ))}
                 {/* </form> */}

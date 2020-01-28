@@ -111,7 +111,6 @@ const SinglePage = props => {
                   <Typography variant='h5'>End date: {formatDate(hackathon.end_date)}</Typography>
             </div>
          
-            {console.log(props, 'this is props singlehack')}
          <div className='single-hackathon-crud-btns-container'>
                {user.id === hackathon.organizer_id && (
                   <div className='single-hackathon-crud-btns'>
