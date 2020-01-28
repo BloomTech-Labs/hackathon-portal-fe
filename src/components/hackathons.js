@@ -61,8 +61,8 @@ function Hackathons(props) {
 
    let presentHackathons = hackathons ? (hackathons.filter(hackathon => {
       if (
-         moment(hackathon.end_date).isSame(currentDate) ||
-         moment(hackathon.end_date).isAfter(currentDate)
+         moment(hackathon.start_date).isSame(currentDate) ||
+         moment(hackathon.start_date).isAfter(currentDate)
       ) {
          return hackathon;
       }
@@ -70,7 +70,7 @@ function Hackathons(props) {
 
 
    let pastHackathons = hackathons ? (hackathons.filter(hackathon => {
-      if (moment(hackathon.end_date).isBefore(currentDate)) {
+      if (moment(hackathon.start_date).isBefore(currentDate)) {
          return hackathon;
       }
    })) : [];
@@ -161,13 +161,8 @@ function Hackathons(props) {
                                     Start Date:{' '}
                                     {formatDate(hackathon.start_date)}
                                  </Typography>
-                                 
+                                 {hackathon.is_open === false ? <div>CLOSED</div> : null}
                               </div>
-                              {!hackathon.is_open ? (
-                                    <Typography variant='body2'>CLOSED</Typography>
-                                 ) : <button className={classes.cardButton}>JOIN</button>}
-                              {/* is_open join button will be added to 1.1 when we build out a modal for a user to join hackathons */}
-                              {/* {hackathon.is_open ? <button>JOIN</button> : <div className="closedHackathon">closed</div> }  */}
                            </CardContent>
                         </div>
                      </Link>

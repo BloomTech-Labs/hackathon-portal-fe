@@ -56,12 +56,12 @@ const Homepage = (props) => {
 
         const randomize = arr => {
             let filtered =  arr.filter(h => !h.is_open === false && (
-                  moment(h.end_date).isSame(currentDate) ||
-                  moment(h.end_date).isAfter(currentDate)
+                  moment(h.start_date).isSame(currentDate) ||
+                  moment(h.start_date).isAfter(currentDate)
             ) && (
                h.name.length && h.description.length
             ))
-            console.log(filtered)
+          
            return [filtered[Math.floor(Math.random() * Math.floor(filtered.length))],
             filtered[Math.floor(Math.random() * Math.floor(filtered.length))],
             filtered[Math.floor(Math.random() * Math.floor(filtered.length))]
@@ -70,7 +70,7 @@ const Homepage = (props) => {
      
       const hacks = randomize(hackathons)
       const randomHackathons = [...new Set(hacks)];
-      console.log(randomHackathons)
+      
 
     return (
        <>
