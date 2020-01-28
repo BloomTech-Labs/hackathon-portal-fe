@@ -33,7 +33,7 @@ export const editProject = (
    (await axiosWithAuth())
       .put(`/projects/${project_id}`, projectInfo)
       .then(response => {
-         console.log(response);
+         // console.log(response);
          dispatch({ type: POSTPROJECT_SUCCESS })
          if(projectInfo.is_approved){
             dispatch(getSpecificHackathon(hackathonId))
@@ -43,6 +43,25 @@ export const editProject = (
       .catch(error => {
          dispatch({ type: FETCH_FAILURE, payload: error.response });
       });
+}
+
+export const deleteProject = (
+   hackathonId,
+   project_id,
+) => async dispatch => {
+   dispatch({ type: FETCH_START });
+   (await axiosWithAuth())
+   .delete(`/projects/${project_id}`)
+   .then(response => {
+      console.log(response, 'this is the response from deleteProject');
+      dispatch({ type: POSTPROJECT_SUCCESS })
+      if(project_id){
+         dispatch(getSpecificHackathon(hackathonId))
+      };
+   })
+   .catch(error => {
+      dispatch({ type: FETCH_FAILURE})
+   })
 }
 
 export const createProject = (

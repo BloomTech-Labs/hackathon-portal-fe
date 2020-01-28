@@ -3,7 +3,7 @@ import useForm from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
-import { editProject, getSpecificHackathon } from '../../actions/actions';
+import { editProject, getSpecificHackathon, deleteProject } from '../../actions/actions';
 
 const useStyles = makeStyles(theme => ({
     projectcard: {
@@ -33,9 +33,19 @@ const PendingProjects = props => {
         }
      }, []);
 
-    const handleApprove = data => (e) => {
+    const handledisapprove = data => (e) => {
+        console.log(data, 'this is dis data')
+        const id = user.sub.replace('auth0|', '');
+        e.preventDefault();
+        dispatch(
+            deleteProject(
+                hackathon.id,
+                data
+            )
+        );
+    }
 
-         console.log(data, 'this is date');
+    const handleApprove = data => (e) => {
          const id = user.sub.replace('auth0|', '');
          e.preventDefault();
          dispatch(
@@ -67,6 +77,8 @@ const PendingProjects = props => {
                                 <h3>{e.project_id}</h3>
                                 <p>{e.project_description}</p>
                                 <button type='submit' >Approve Project</button>
+                                <button 
+                                onClick={handledisapprove(e.project_id)}type='submit'>Disapprove Project</button>
                             </form>))
 
                         })}
