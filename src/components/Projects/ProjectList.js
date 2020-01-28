@@ -40,7 +40,6 @@ const ProjectList = props => {
     if(hackathon && !filterBy){
       setProjects(hackathon.projects)
     }else if(hackathon){
-      console.log(filterBy)
       setProjects(hackathon.projects.filter(element => {
         return element[filterBy] > 0
       }))

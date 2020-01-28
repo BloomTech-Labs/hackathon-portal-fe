@@ -23,24 +23,27 @@ function JoinProjectModal({ project }) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [openRoles, setOpenRoles] = useState([])
-
-  useEffect(() => {
-    let spots = {'front_end_spots':'front end', 'back_end_spots':'back end', 'ux_spots':'ux', 'data_science_spots':'data science', 'android_spots':'android', 'ios_spots':'ios'}
-    setOpenRoles(Object.keys(spots).filter((role, index)=> {
-      if(project[role] > 0){
-        console.log(Object.values(spots)[index])
-      }
-    }))
-  }, [open])
-
-  console.log(project, openRoles)
+  const [role, setRole] = useState('')
+  let spots = {'front_end_spots':'front end', 'back_end_spots':'back end', 'ux_spots':'ux', 'data_science_spots':'data science', 'android_spots':'android', 'ios_spots':'ios'}
 
   const handleOpen = () => {
     setOpen(true);
+    Object.keys(spots).filter((role, index) => {
+      if(project[role] > 0){
+        openRoles.push(Object.values(spots)[index])
+      }
+    })
   };
 
   const handleClose = () => {
     setOpen(false);
+    setOpenRoles([]);
+  };
+
+  const handleChange = e => {
+    setRole(Object.keys(spots)[Object.values(spots).indexOf(Object.values(spots).find((element, index) => {
+      return element === e.target.value
+  }))])
   };
 
   const handleSubmit = () => {
@@ -68,10 +71,9 @@ function JoinProjectModal({ project }) {
           <div className={classes.paper}>
             <h2 id="projectTitle">{project.project_title}</h2>
             <p id="transition-modal-description">react-transition-group animates me.</p>
-            <Select>
+            <Select onChange={handleChange}>
               {openRoles.map(element => {
                 return (<MenuItem value={element}>{element}</MenuItem>)
-
               })}
             </Select>
           </div>
