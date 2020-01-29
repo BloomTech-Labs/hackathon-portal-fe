@@ -62,11 +62,11 @@ const OrganizerProjectList = props => {
       setOpen(false);
     };
 
-    useEffect(() => {
-        if(hackathon){
-            dispatch(getSpecificHackathon( hackathon.id ));
-        }
-    }, [open]);
+    // useEffect(() => {
+    //     if(hackathon){
+    //         dispatch(getSpecificHackathon( hackathon.id ));
+    //     }
+    // }, [open]);
 
     if (!hackathon) {
         return <h2>Loading...</h2>
@@ -76,8 +76,7 @@ console.log(hackathon)
 
     return(
         <div className="container">
-            <div>
-                    
+            <div>    
                 <Card className={classes.card} onClick={handleOpen}>
                         <CardContent>
                             <AddIcon />
@@ -85,11 +84,7 @@ console.log(hackathon)
                                 Create Project 
                             </Typography>
                         </CardContent>
-
                 </Card>
-
-                            
-            
                     <Modal
                         aria-labelledby="transition-modal-title"
                         aria-describedby="transition-modal-description"
@@ -110,19 +105,18 @@ console.log(hackathon)
                 </div>
 
                 <div className="projects">
-                
-                    {hackathon.map(project => {
+                    {hackathon.projects.map(project => {
                         return (
-                            <Card className={classes.card} key={project.id}>
+                            <Card className={classes.card} key={project.project_id}>
                                 <Link
-                                    to={`/hackathon/${project.id}`}
+                                    to={`/hackathon/${project.project_id}`}
                                 >
                                     <div>
                                     <CardHeader
-                                        title={project.title}
+                                        title={project.project_title}
                                     />
                                         <CardContent>
-                                                {project.description}
+                                                {project.project_description}
                                         </CardContent>
                                     </div>
                                 </Link>

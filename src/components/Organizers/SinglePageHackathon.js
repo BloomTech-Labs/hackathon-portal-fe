@@ -90,13 +90,11 @@ const SinglePage = props => {
                   <Typography variant='h5'>{hackathon.location}</Typography>
             </div>
          
-<<<<<<< HEAD
             <div className='single-hackathon-dates'>
                   <Typography variant='h5'>Start date: {formatDate(hackathon.start_date)}</Typography>
       
                   <Typography variant='h5'>End date: {formatDate(hackathon.end_date)}</Typography>
             </div>
-=======
 
       
       
@@ -121,11 +119,10 @@ const SinglePage = props => {
                </div>
             )}
       </div>
->>>>>>> 94dd8a991551feee36eb1506d925ab385472ac66
 
-      {hackathon.is_open && (
+      {hackathon.is_open && ( 
+         <>
          <div className='single-hackathon-crud-btns-container'>
-<<<<<<< HEAD
                {user.id === hackathon.organizer_id && (
                   <div className='single-hackathon-crud-btns'>
                      <Link to={`/hackathon/edit/${hackathon.id}`}><Button id='single-hackathon-crud-btn'>EDIT EVENT</Button></Link>
@@ -133,6 +130,7 @@ const SinglePage = props => {
                   </div>
                )}
          </div>
+         
          <Link>Submit Project Idea</Link>
         
          <div className='admins-parent'>
@@ -146,12 +144,8 @@ const SinglePage = props => {
                            </div>
                         );
                      })}
-=======
-            {user.id !== hackathon.organizer_id && (
-               <Link to={`/hackathon/${hackathon.id}/projects`}><Button id='single-hackathon-crud-btn'>VIEW PROJECTS</Button></Link>
-            )}
->>>>>>> 94dd8a991551feee36eb1506d925ab385472ac66
          </div>
+         </>
       )}
       
       <div className='admins-parent'>

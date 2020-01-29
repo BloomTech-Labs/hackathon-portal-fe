@@ -189,7 +189,7 @@ const CreateHackathon = props => {
       max_team_participants: 0,
    });
    const [state, setState] = useState({ is_open: true });
-   const [max, setMax] = useState( 0 );
+   const [max, setMax] = useState();
    const { loading, user } = useAuth0();
    const dispatch = useDispatch();
    const classes = useStyles();
@@ -197,6 +197,7 @@ const CreateHackathon = props => {
    const [nameLength, setNameLength] = React.useState(true)
    const [descLength, setDescLength] = React.useState(true)
    const [locationLength, setLocationLength] = React.useState(true)
+   const [id, setId] = useState(0)
 
 
    
@@ -244,15 +245,9 @@ const CreateHackathon = props => {
       }
    }
 
-console.log(page1Info)
+console.log('CREATE HACKATHON ID FROM ACTION', id)
+
    const handleNext = () => {
-
-      if (activeStep === 1) {
-         const id = user.sub.replace('auth0|', '');
-         dispatch(createHackathon(id, hackathonInfo, props.history));
-      }
-
-      setActiveStep(prevActiveStep => prevActiveStep + 1);
        if (!page1Info.hasOwnProperty('name') || !page1Info.name.trim().length) {
          setNameLength(false)
        } if (!page1Info.hasOwnProperty('description') || !page1Info.description.trim().length) {
@@ -260,10 +255,20 @@ console.log(page1Info)
        } if (!page1Info.hasOwnProperty('location') || !page1Info.location.trim().length) {
          setLocationLength(false)
        } 
-       else setActiveStep(prevActiveStep => prevActiveStep + 1)
-       console.log(nameLength, descLength, locationLength)
-       console.log(page1Info)
+       else {
+          setActiveStep(prevActiveStep => prevActiveStep + 1);
+          nextStep();
+       }
+       //  console.log(nameLength, descLength, locationLength)
+      //  console.log(page1Info)
    };
+
+   function nextStep() {
+      if (activeStep === 1) {
+         const id = user.sub.replace('auth0|', '');
+         dispatch(createHackathon(id, hackathonInfo, props.history, setId));
+      }
+   }
 
    const handleBack = () => {
       setActiveStep(prevActiveStep => prevActiveStep - 1);
@@ -277,11 +282,7 @@ console.log(page1Info)
     console.log(max)
 
    const handleFormSubmit = (data, e) => {
-      if (loading) {
-         return;
-      }
-      const id = user.sub.replace('auth0|', '');
-      dispatch(createHackathon(id, hackathonInfo, props.history));
+      props.history.push()
    };
 
    return (
@@ -499,9 +500,10 @@ console.log(page1Info)
                      </Typography>
                         <FormControl className={classes.margin}>
                            <InputLabel htmlFor="demo-customized-textbox"></InputLabel>
-                           <BootstrapInput
+                           <input
+                           type='number'
                             id="demo-customized-textbox" 
-                            placeholder="Max: 30" 
+                            placeholder="Max: 30"
                             value={max}
                             onChange={handleChange}/>
                             
@@ -533,7 +535,7 @@ console.log(page1Info)
                      variant="contained"
                      color="primary"
                      className={classes.activeButton}
-                     // onClick={()=>handleFormSubmit()}
+                     onClick={()=> props.history.push(`/hackathon/${id}`)}
                      >
                         Finish
                      </Button>
