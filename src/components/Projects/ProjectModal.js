@@ -83,7 +83,7 @@ const useStyles = makeStyles(theme => ({
        
      >
         <DialogTitle id="form-dialog-title"  className={classes.modal}>
-           <h2>{project.project_title} {!spotsOpen ? `(Full)`: null}</h2>
+           <h2>{project.project_title} {!spotsOpen && project.participants.length ? `(Full)`: null}</h2>
            <p>{project.project_description}</p>
         </DialogTitle>
         <DialogContent>
@@ -107,18 +107,18 @@ const useStyles = makeStyles(theme => ({
           : 
           <>
           <h2>Participants</h2>
-          {project.participants.map(p => (
+          {project.participants.length ? project.participants.map(p => (
             <card>
                 <p className='modal-username'>{p.username}</p>
                 <p className='modal-role'>{p.developer_role}</p>
             </card>
-          ))}
+          )) : <p>This project currently has no participants</p>}
           </>
           }
          
         </DialogContent>
         <DialogActions>
-             {spotsOpen && !registered.registered ? <Button color="primary" variant='contained'>
+             {(spotsOpen && !registered.registered) || (!spotsOpen &&  !project.participants.length) ? <Button color="primary" variant='contained'>
               <JoinProjectModal project={project} hackathon_id={hackathon.id} 
                     history={props.history} registered={registered.registered} />
            </Button> : null 

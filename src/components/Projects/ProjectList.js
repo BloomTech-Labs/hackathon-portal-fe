@@ -39,7 +39,7 @@ const ProjectList = props => {
         if(item.participants.find(element => {
           return element.user_id === user.id
         })){
-          setRegistered({ registered:true })
+          setRegistered({ registered:true, project_id: item.project_id })
         }
       })
     }
