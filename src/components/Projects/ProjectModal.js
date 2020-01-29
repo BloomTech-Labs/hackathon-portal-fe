@@ -4,11 +4,21 @@ import {
     DialogActions,
     DialogContent,
     DialogTitle,
-    TextField
+    TextField,
+    makeStyles,
  } from '@material-ui/core';
  import Button from '@material-ui/core/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSpecificHackathon } from '../../actions/actions';
+
+
+const useStyles = makeStyles(theme => ({
+    modal: {
+       minWidth: '500px',
+    }
+ }));
+ 
+
 
  const ProjectModal = props => {
      const dispatch = useDispatch();
@@ -16,6 +26,7 @@ import { getSpecificHackathon } from '../../actions/actions';
      const isFetching = useSelector(state => state.isFetching);
      const [open, setOpen] = useState(true);
      const project_id = props.match.params.project_id;
+     const classes = useStyles();
 
 
     useEffect(() => {
@@ -46,8 +57,9 @@ import { getSpecificHackathon } from '../../actions/actions';
         open={open}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
+       
      >
-        <DialogTitle id="form-dialog-title">
+        <DialogTitle id="form-dialog-title"  className={classes.modal}>
            <h2>{project.project_title} {!spotsOpen ? `(Full)`: null}</h2>
            <p>{project.project_description}</p>
         </DialogTitle>
