@@ -20,7 +20,7 @@ import { getSpecificHackathon } from '../../actions/actions';
      
 
     useEffect(() => {
-        dispatch(getSpecificHackathon(()));
+        dispatch(getSpecificHackathon((hackathon_id)))
     }, [dispatch]);
 
     if (isFetching || !hackathon) {
