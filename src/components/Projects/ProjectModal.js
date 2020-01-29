@@ -14,12 +14,13 @@ import { getSpecificHackathon } from '../../actions/actions';
      const dispatch = useDispatch();
      const hackathon = useSelector(state => state.singleHackathon);
      const isFetching = useSelector(state => state.isFetching);
-     const project_id = props.match.params.project_id;
+     const project_id = props.project_id;
+     const hackathon_id = props.hackathon_id;
      const [open, setOpen] = useState(true);
      
 
     useEffect(() => {
-        dispatch(getSpecificHackathon((props.match.params.id)));
+        dispatch(getSpecificHackathon(()));
     }, [dispatch]);
 
     if (isFetching || !hackathon) {
