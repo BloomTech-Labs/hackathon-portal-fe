@@ -92,10 +92,9 @@ function Hackathons(props) {
    if (isFetching || !hackathons) {
       return <h2>Loading Events...</h2>;
    }
+
+   // `/users/${user.id}`
    console.log(results)
-
-
- 
 
    return (
       <div className={classes.fullList}>

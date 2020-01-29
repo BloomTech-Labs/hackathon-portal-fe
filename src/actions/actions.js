@@ -6,24 +6,20 @@ export const FETCH_HACKATHON = 'FETCH_HACKATHON';
 export const FETCH_FAILURE = 'FETCH_FAILURE';
 export const FETCH_HACKERS = 'FETCH_HACKERS';
 export const FETCH_USER = 'FETCH_USER';
-export const POSTHACKATHON_SUCCESS = 'POSTHACKATHON_SUCCESS';
-export const DELETEHACKATHON_SUCCESS = 'DELETEHACKATHON_SUCCESS';
-export const EDITHACKATHON_SUCCESS = 'EDITHACKATHON_SUCCESS';
-export const POSTORGANIZER_SUCCESS = 'POSTORGANIZER_SUCCESS';
+export const POST_HACKATHON_SUCCESS = 'POST_HACKATHON_SUCCESS';
+export const DELETE_HACKATHON_SUCCESS = 'DELETE_HACKATHON_SUCCESS';
+export const EDIT_HACKATHON_SUCCESS = 'EDIT_HACKATHON_SUCCESS';
+export const POST_ORGANIZER_SUCCESS = 'POST_ORGANIZER_SUCCESS';
 export const FETCH_HACKATHONS = 'FETCH_HACKATHONS';
 export const DELETE_USER = 'DELETE_USER';
 export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
 export const DELETE_USER_FAIL = 'DELETE_USER_FAIL';
-export const POSTPROJECT_SUCCESS = 'POSTPROJECT_SUCCESS';
-export const UPDATEPROJECT_SUCCESS = 'UPDATEPROJECT_SUCCESS';
-export const JOINPROJECT_SUCCESS = 'JOINPROJECT_SUCCESS';
-
-// ACTIONS
-
-
+export const POST_PROJECT_SUCCESS = 'POST_PROJECT_SUCCESS';
+export const UPDATE_PROJECT_SUCCESS = 'UPDATE_PROJECT_SUCCESS';
+export const JOIN_PROJECT_SUCCESS = 'JOIN_PROJECT_SUCCESS';
+export const ASSIGN_ROLE_SUCCESS = 'ASSIGN_ROLE_SUCCESS';
 
 //PROJECTS
-
 export const createProject = (
    hackathon_id,
    projectInfo,
@@ -34,7 +30,7 @@ export const createProject = (
       .post(`/projects`, projectInfo)
       .then(response => {
          console.log('ACTION RESPONSE', response)
-         dispatch({ type: POSTPROJECT_SUCCESS });
+         dispatch({ type: POST_PROJECT_SUCCESS });
          history.push(`/hackathon/${hackathon_id}`);
       })
       .catch(error => {
@@ -51,7 +47,7 @@ export const updateProject = (
       .put(`/projects/${project_id}`, info)
       .then(response => {
          console.log('ACTION RESPONSE', response)
-         dispatch({ type: UPDATEPROJECT_SUCCESS });
+         dispatch({ type: UPDATE_PROJECT_SUCCESS });
       })
       .catch(error => {
          dispatch({ type: FETCH_FAILURE, payload: error.response });
@@ -70,7 +66,7 @@ export const joinProject = (
       .post(`/hackathons/${hackathon_id}/join/${user_id}`, project)
       .then(response => {
          console.log('ACTION RESPONSE', response)
-         dispatch({ type: JOINPROJECT_SUCCESS })
+         dispatch({ type: JOIN_PROJECT_SUCCESS })
          dispatch(updateProject(project.project_id, role))
          history.push(`/profile`)
       })
@@ -113,7 +109,7 @@ export const createHackathon = (
    (await axiosWithAuth())
       .post(`/hackathons/u/${user_id}`, hackathonInfo)
       .then(response => {
-         dispatch({ type: POSTHACKATHON_SUCCESS });
+         dispatch({ type: POST_HACKATHON_SUCCESS });
          history.push(`/success`, response.data.id);
       })
       .catch(error => {
@@ -133,7 +129,7 @@ export const editHackathon = (
    (await axiosWithAuth())
       .put(`/hackathons/${id}/u/${org_id}`, hackathonInfo)
       .then(response => {
-         dispatch({ type: EDITHACKATHON_SUCCESS });
+         dispatch({ type: EDIT_HACKATHON_SUCCESS });
          history.push(`/success`, response.data.id);
       })
       .catch(error => {
@@ -146,7 +142,7 @@ export const deleteHackathon = (id, org_id, history) => async dispatch => {
    (await axiosWithAuth())
       .delete(`/hackathons/${id}/u/${org_id}`)
       .then(response => {
-         dispatch({ type: DELETEHACKATHON_SUCCESS });
+         dispatch({ type: DELETE_HACKATHON_SUCCESS });
          history.push(`/profile`)
       })
       .catch(error => {
@@ -154,10 +150,7 @@ export const deleteHackathon = (id, org_id, history) => async dispatch => {
       });
 };
 
-// PROJECTS
-
-
-// HACKERS
+// USERS
 export const getHackers = () => async dispatch => {
    dispatch({ type: FETCH_START });
    (await axiosWithAuth())
@@ -175,6 +168,7 @@ export const getUser = id => async dispatch => {
    (await axiosWithAuth())
       .get(`/users/${id}`)
       .then(response => {
+         console.log('TEST', response.data)
          dispatch({ type: FETCH_USER, payload: response.data });
       })
       .catch(error => {
@@ -193,3 +187,21 @@ export const deleteUser = id => async dispatch => {
          dispatch({ type: DELETE_USER_FAIL });
       });
 };
+
+export const assignRole = (
+   hackathon_id,
+   user_id,
+   role
+) => async dispatch => {
+   dispatch({ type: FETCH_START });
+   (await axiosWithAuth())
+      .post(`/hackathons/${hackathon_id}/join/${user_id}`, role)
+      .then(response => {
+         console.log('ACTION RESPONSE', response)
+         dispatch({ type: ASSIGN_ROLE_SUCCESS })
+
+      })
+      .catch(error => {
+         dispatch({ type: FETCH_FAILURE, payload: error.response });
+      });
+}

@@ -33,6 +33,7 @@ const UserProfile = props => {
       email: '',
       id: ''
    });
+   console.log(user.id)
 
    const getAndSetUserHook = async () => {
       (await axiosWithAuth())

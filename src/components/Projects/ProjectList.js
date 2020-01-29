@@ -41,8 +41,6 @@ const ProjectList = props => {
     }
   }, [hackathon])
 
-  console.log('TRUERS LUL', hackathon?hackathon.projects.filter(element=>{return element.is_approved}):'CATCH ALL')
-
   useEffect(() => {
     if(hackathon && !filterBy){
       setProjects(hackathon.projects)
@@ -53,12 +51,9 @@ const ProjectList = props => {
     }
   }, [filterBy])
 
-  console.log(approvedProjects)
-
   if (isFetching || !hackathon) {
     return <div>Loading...</div>;
   }
-  console.log(hackathon)
 
   return (
     <div>
