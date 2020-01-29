@@ -535,3 +535,16 @@ margin-top: -1%;
   justify-content: center;
   margin: 2%;
 }
+
+/* project modal */
+.MuiPaper-root {
+  min-width: 500px;
+}
+
+.modal-username {
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+.modal-role {
+  margin-top: 5px;
+}

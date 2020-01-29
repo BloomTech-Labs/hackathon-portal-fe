@@ -22,6 +22,7 @@ import ErrorPage from './components/ErrorPage';
 
 // ACTIONS
 import { getHackathons } from './actions/actions';
+import ProjectModal from './components/Projects/ProjectModal';
 
 
 function App(props) {
@@ -39,6 +40,7 @@ function App(props) {
       <Route exact path="/" component={Homepage} />
                <Route exact path="/hackathons" component={Hackathons} />
                <Route exact path='/hackathons/archive' component={PastHackathons} />
+               <Route exact path='/:id/projectmodal/:project_id' component={ProjectModal} />
                <PrivateRoute path="/profile" component={UserProfile} />
                <PrivateRoute
                   exact

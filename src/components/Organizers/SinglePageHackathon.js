@@ -81,21 +81,16 @@ const SinglePage = props => {
             <h3>{hackathon.name}</h3>
       </div>
 
-      {/* <div className='single-hackathon-close-btn-container'>
-            {user.id === hackathon.organizer_id && (
-               <>
-                  {!hackathon.is_open ? (
-                     <Button id='single-hackathon-close-btn' 
-                     type="button" variant='outlined'  onClick={()=>handleIsOpen()}>OPEN HACKATHON</Button>
-                  ) : (
-                     
-                     <Button id='single-hackathon-close-btn'
-                     type="button" variant='outlined'  onClick={()=>handleIsOpen()}>CLOSE HACKATHON</Button>
-                  )}
-               </>
 
-            )}
-      </div> */}
+         
+            <div className='single-hackathon-description'>
+                  <Typography variant='h4'>Description</Typography>
+                  <Typography variant='h5'>{hackathon.description}
+                  </Typography>
+                  <Typography variant='h5'>{hackathon.location}</Typography>
+            </div>
+         
+
       
       
          <div className='single-hackathon-description'>
