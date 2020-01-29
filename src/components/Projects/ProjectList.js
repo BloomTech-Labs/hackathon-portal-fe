@@ -12,8 +12,9 @@ const ProjectList = props => {
   const dispatch = useDispatch();
   const hackathon = useSelector(state => state.singleHackathon);
   const isFetching = useSelector(state => state.isFetching);
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState();
   const [filterBy, setFilterBy] = useState('');
+  const [approvedProjects, setApprovedProjects] = useState(true);
   const [registered, setRegistered] = useState({ registered:false, project_id:0 })
   const { user } = useAuth0();
 
@@ -21,17 +22,15 @@ const ProjectList = props => {
     dispatch(getSpecificHackathon(props.match.params.id));
   }, [dispatch, props.match.params.id]);
 
-  useEffect(() => {
-    if(hackathon){
-      setProjects(hackathon.projects)
-    }
-  }, [hackathon])
-
   const handleCheckboxChange = e => {
       setFilterBy(e.target.value)
   }
 
   useEffect(() => {
+    if(hackathon){
+      setProjects(hackathon.projects)
+      setApprovedProjects(hackathon.projects.filter(element=>{return element.is_approved}))
+    }
     if(hackathon && hackathon.projects){
       hackathon.projects.map(item => {
         item.participants.map(element => {
@@ -40,8 +39,9 @@ const ProjectList = props => {
         }
       })})
     }
-    
   }, [hackathon])
+
+  console.log('TRUERS LUL', hackathon?hackathon.projects.filter(element=>{return element.is_approved}):'CATCH ALL')
 
   useEffect(() => {
     if(hackathon && !filterBy){
@@ -53,9 +53,12 @@ const ProjectList = props => {
     }
   }, [filterBy])
 
+  console.log(approvedProjects)
+
   if (isFetching || !hackathon) {
     return <div>Loading...</div>;
   }
+  console.log(hackathon)
 
   return (
     <div>
@@ -104,55 +107,54 @@ const ProjectList = props => {
             style={{color:'red'}}
           />
         </RadioGroup>
-      {!hackathon.projects[0] ? 
+      {!hackathon.projects ? 
         <Typography variant='h6'>This hackathon currently has no projects</Typography>
         :
-        !projects[0] && filterBy ? 
+        !projects && filterBy ? 
         <Typography variant='h6'>There are no projects with the chosen role available</Typography>
         :
-        false
+        !approvedProjects[0] ? 
+        <Typography variant='h6'>This hackathon currently has no projects</Typography>
+        :
+        projects ? 
+        projects.map((project, index) => {
+          return(
+            project.is_approved && (
+              <div key={index} style={{border:'2px solid red', width:'300px'}}>
+                <div>
+                  <Typography variant='h5' style={{fontWeight:'bold'}}>{project.project_title}</Typography>
+                  <Typography variant='body1'>{project.project_description}</Typography>
+                  {registered.project_id === project.project_id ? (
+                <FormHelperText style={{color:'lime'}}>You are successfully registered for {project.project_title}!</FormHelperText>
+                ):false}
+                </div>
+                <div style={{display:'flex', margin:'0 auto'}}>
+                  {project.front_end_spots > 0 && (
+                    <Avatar style={{background:'none', border:'1px solid green', color:'green'}}>FE</Avatar>
+                  )}
+                  {project.back_end_spots > 0 && (
+                    <Avatar style={{background:'none', border:'1px solid blue', color:'blue'}}>BE</Avatar>
+                  )}
+                  {project.ux_spots > 0 && (
+                    <Avatar style={{background:'none', border:'1px solid orange', color:'orange'}}>UX</Avatar>
+                  )}
+                  {project.data_science_spots > 0 && (
+                    <Avatar style={{background:'none', border:'1px solid purple', color:'purple'}}>DS</Avatar>
+                  )}
+                  {project.ios_spots > 0 && (
+                    <Avatar style={{background:'none', border:'1px solid white', color:'white'}}>IOS</Avatar>
+                  )}
+                  {project.android_spots > 0 && (
+                    <Avatar style={{background:'none', border:'1px solid red', color:'red'}}>AND</Avatar>
+                  )}
+                </div>
+                <JoinProjectModal project={project} hackathon_id={hackathon.id} history={props.history} registered={registered.registered} />
+              </div>
+          ))
+        })
+        :
+        <Typography variant='h6'>This hackathon currently has no projects</Typography>
       }
-        {
-          projects[0] && (
-            projects.map((project, index) => {
-              return(
-                project.is_approved && (
-
-                  <div key={index} style={{border:'2px solid red', width:'300px'}}>
-                    <div>
-                      <Typography variant='h5' style={{fontWeight:'bold'}}>{project.project_title}</Typography>
-                      <Typography variant='body1'>{project.project_description}</Typography>
-                      {registered.project_id === project.project_id ? (
-                    <FormHelperText style={{color:'lime'}}>You are successfully registered for {project.project_title}!</FormHelperText>
-                    ):false}
-                    </div>
-                    <div style={{display:'flex', margin:'0 auto'}}>
-                      {project.front_end_spots > 0 && (
-                        <Avatar style={{background:'none', border:'1px solid green', color:'green'}}>FE</Avatar>
-                      )}
-                      {project.back_end_spots > 0 && (
-                        <Avatar style={{background:'none', border:'1px solid blue', color:'blue'}}>BE</Avatar>
-                      )}
-                      {project.ux_spots > 0 && (
-                        <Avatar style={{background:'none', border:'1px solid orange', color:'orange'}}>UX</Avatar>
-                      )}
-                      {project.data_science_spots > 0 && (
-                        <Avatar style={{background:'none', border:'1px solid purple', color:'purple'}}>DS</Avatar>
-                      )}
-                      {project.ios_spots > 0 && (
-                        <Avatar style={{background:'none', border:'1px solid white', color:'white'}}>IOS</Avatar>
-                      )}
-                      {project.android_spots > 0 && (
-                        <Avatar style={{background:'none', border:'1px solid red', color:'red'}}>AND</Avatar>
-                      )}
-                    </div>
-                    <JoinProjectModal project={project} hackathon_id={hackathon.id} history={props.history} registered={registered.registered} />
-                  </div>
-              ))
-    
-            })
-          )
-        }
     </div>
   );
 };
