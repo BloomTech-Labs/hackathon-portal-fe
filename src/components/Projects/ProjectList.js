@@ -14,7 +14,7 @@ const ProjectList = props => {
   const isFetching = useSelector(state => state.isFetching);
   const [projects, setProjects] = useState([]);
   const [filterBy, setFilterBy] = useState('');
- const [registered, setRegistered] = useState({ registered:false, project_id:0 })
+  const [registered, setRegistered] = useState({ registered:false, project_id:0 })
   const { user } = useAuth0();
 
   useEffect(() => {
@@ -31,14 +31,27 @@ const ProjectList = props => {
       setFilterBy(e.target.value)
   }
 
+  // if (hackathon.participants.find(i => i.user_id === user_id))
+
   useEffect(() => {
     if(hackathon && hackathon.projects){
       hackathon.projects.map(item => {
-        item.participants.map(element => {
-        if(element.user_id === user.id){
-          setRegistered({ registered:true, project_id:item.project_id })
+        if(item.participants.find(element => {
+          return element.user_id === user.id
+        })){
+          setRegistered({ registered:true, project_id: item.project_id })
         }
-      })})
+      })
+    }
+    
+  }, [hackathon])
+  useEffect(() => {
+    if(hackathon && hackathon.projects){
+      if(hackathon.admins.find(element => {
+        return element.user_id === user.id
+      })){
+        setRegistered({ registered:true })
+      }
     }
     
   }, [hackathon])

@@ -6,6 +6,8 @@ import { useDispatch } from 'react-redux';
 
 // COMPONENTS
 import Stepper from './Stepper';
+import OrganizerProjectList from '../Organizers/OrganizerProjectList';
+import CreateProject from '../Projects/CreateProject';
 
 // ACTIONS
 import { createHackathon } from '../../actions/actions';
@@ -176,9 +178,18 @@ const CreateHackathon = props => {
    const [page1Info, setPage1Info] = useState({});
    const [start_date, setStart_date] = useState(`${new Date()}`);
    const [end_date, setEnd_date] = useState(`${new Date()}`);
-   const [hackathonInfo, setHackathonInfo] = useState({});
+   const [hackathonInfo, setHackathonInfo] = useState({
+      name: '',
+      description: '',
+      location: '',
+      url: '',
+      start_date: '',
+      end_date: '',
+      is_open: '',
+      max_team_participants: 0,
+   });
    const [state, setState] = useState({ is_open: true });
-   const [max, setMax] = useState('');
+   const [max, setMax] = useState();
    const { loading, user } = useAuth0();
    const dispatch = useDispatch();
    const classes = useStyles();
@@ -186,6 +197,7 @@ const CreateHackathon = props => {
    const [nameLength, setNameLength] = React.useState(true)
    const [descLength, setDescLength] = React.useState(true)
    const [locationLength, setLocationLength] = React.useState(true)
+   const [id, setId] = useState(0)
 
 
    
@@ -196,9 +208,10 @@ const CreateHackathon = props => {
          ...page1Info,
          start_date: `${start_date}`,
          end_date: `${end_date}`,
-         is_open: state.is_open
+         is_open: state.is_open,
+         max_team_participants: max,
       });
-   }, [page1Info, start_date, end_date, state]);
+   }, [page1Info, start_date, end_date, state, max]);
 
    const handlePage1Change = e => {
       if (page1Info.hasOwnProperty('name') && page1Info.name.trim().length) setNameLength(true)
@@ -232,7 +245,8 @@ const CreateHackathon = props => {
       }
    }
 
-console.log(page1Info)
+console.log('CREATE HACKATHON ID FROM ACTION', id)
+
    const handleNext = () => {
        if (!page1Info.hasOwnProperty('name') || !page1Info.name.trim().length) {
          setNameLength(false)
@@ -241,25 +255,34 @@ console.log(page1Info)
        } if (!page1Info.hasOwnProperty('location') || !page1Info.location.trim().length) {
          setLocationLength(false)
        } 
-       else setActiveStep(prevActiveStep => prevActiveStep + 1)
-       console.log(nameLength, descLength, locationLength)
-       console.log(page1Info)
+       else {
+          setActiveStep(prevActiveStep => prevActiveStep + 1);
+          nextStep();
+       }
+       //  console.log(nameLength, descLength, locationLength)
+      //  console.log(page1Info)
    };
+
+   function nextStep() {
+      if (activeStep === 1) {
+         const id = user.sub.replace('auth0|', '');
+         dispatch(createHackathon(id, hackathonInfo, props.history, setId));
+      }
+   }
 
    const handleBack = () => {
       setActiveStep(prevActiveStep => prevActiveStep - 1);
    };
 
-   const handleChange = event => {
-      setMax(event.target.value);
-   };
+   const handleChange = e => {
+      setMax(Number(e.target.value));
+      console.log(Number(e.target.value));
+    };
+    
+    console.log(max)
 
    const handleFormSubmit = (data, e) => {
-      if (loading) {
-         return;
-      }
-      const id = user.sub.replace('auth0|', '');
-      dispatch(createHackathon(id, hackathonInfo, props.history));
+      props.history.push()
    };
 
    return (
@@ -477,16 +500,24 @@ console.log(page1Info)
                      </Typography>
                         <FormControl className={classes.margin}>
                            <InputLabel htmlFor="demo-customized-textbox"></InputLabel>
-                           <BootstrapInput
-                           id="demo-customized-textbox" 
-                           placeholder="Max: 30" 
-                           onChange={handleChange}/>
+                           <input
+                           type='number'
+                            id="demo-customized-textbox" 
+                            placeholder="Max: 30"
+                            value={max}
+                            onChange={handleChange}/>
+                            
                         </FormControl>
                      </label>
                   </div>
 
                </>
             )}
+
+            {activeStep === 2 && (
+               <OrganizerProjectList />
+            )}
+
             <div className={classes.buttonsContainer}>
                {activeStep === 0 && (
                   <Button disabled style={{color:'#5F6471'}} onClick={handleBack} className={classes.disabledButton}>
@@ -497,12 +528,14 @@ console.log(page1Info)
                Back
                </Button>)}
                <div className={classes.buttonsSubContainer}>
+                  
+                  
                   {activeStep === 2 ? 
                      <Button
                      variant="contained"
                      color="primary"
                      className={classes.activeButton}
-                     onClick={()=>handleFormSubmit()}
+                     onClick={()=> props.history.push(`/hackathon/${id}`)}
                      >
                         Finish
                      </Button>
@@ -515,7 +548,8 @@ console.log(page1Info)
                      >
                         Next
                      </Button>
-                  }
+              
+                  }            
                </div>
             </div>
          </form>
