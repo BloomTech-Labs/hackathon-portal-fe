@@ -14,14 +14,13 @@ import { getSpecificHackathon } from '../../actions/actions';
      const dispatch = useDispatch();
      const hackathon = useSelector(state => state.singleHackathon);
      const isFetching = useSelector(state => state.isFetching);
-     const project_id = props.project_id;
-     const hackathon_id = props.hackathon_id;
      const [open, setOpen] = useState(true);
-     
+     const project_id = props.match.params.project_id;
+
 
     useEffect(() => {
-        dispatch(getSpecificHackathon((hackathon_id)))
-    }, [dispatch]);
+        dispatch(getSpecificHackathon((props.match.params.id)))
+    }, [dispatch, props.match.params.id]);
 
     if (isFetching || !hackathon) {
         return <h2>Loading...</h2>
@@ -32,9 +31,11 @@ import { getSpecificHackathon } from '../../actions/actions';
     }
     const handleClose = e => {
         setOpen(false)
+        props.history.push(`/hackathon/${hackathon.id}/projects`)
     }
-
+    console.log(hackathon)
     const projects = !hackathon ? {} : hackathon.projects;
+
     const project = !projects ? [] : projects.find(p => p.project_id === Number(project_id));
     const totals = [project.ios_spots, project.android_spots, project.back_end_spots, project.front_end_spots, project.ux_spots, project.data_science_spots];
     const spotsOpen = totals.reduce((a, c) => a+c) !== 0

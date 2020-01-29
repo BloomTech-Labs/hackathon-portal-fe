@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
+import ProjectModal from './ProjectModal';
 
 // ACTIONS
 import { getSpecificHackathon } from "../../actions/actions";
@@ -57,7 +58,7 @@ const ProjectList = props => {
     return <div>Loading...</div>;
   }
 
-  
+  console.log(hackathon)
 
   // TO DO: SHOW MESSAGE IF ALREADY IN THE HACKATHON
   // TO DO: MODAL FOR DETAILED PROJECT?
@@ -117,8 +118,9 @@ const ProjectList = props => {
             projects.map((project, index) => {
               return(
                 project.is_approved && (
-
-                  <div key={index} style={{border:'2px solid red', width:'300px'}}>
+                  
+                  <div key={index} style={{border:'2px solid red', width:'300px'}} onClick={() => props.history.push(`/hackathon/${hackathon.id}/projects/${project.project_id}`)}>
+                    {/* <ProjectModal project={project} hackathon={hackathon} /> */}
                     <div>
                       <Typography variant='h5' style={{fontWeight:'bold'}}>{project.project_title}</Typography>
                       <Typography variant='body1'>{project.project_description}</Typography>
