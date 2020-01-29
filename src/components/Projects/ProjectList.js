@@ -57,19 +57,11 @@ const ProjectList = props => {
     return <div>Loading...</div>;
   }
 
-  
-
-  // TO DO: SHOW MESSAGE IF ALREADY IN THE HACKATHON
-  // TO DO: MODAL FOR DETAILED PROJECT?
-
   return (
     <div>
       <Typography variant='h4'>Project List</Typography>
       <button><Link to={`/hackathon/${hackathon.id}/create/project`}>Submit a project idea</Link></button>
-      {!projects[0] ? 
-        <Typography variant='h6'>There are no projects posted at this time.</Typography>
-        :
-        <RadioGroup value={filterBy} onChange={handleCheckboxChange}>
+      <RadioGroup value={filterBy} onChange={handleCheckboxChange}>
           <FormControlLabel
             control={<Radio />}
             value=''
@@ -111,7 +103,15 @@ const ProjectList = props => {
             label="android"
             style={{color:'red'}}
           />
-        </RadioGroup>}
+        </RadioGroup>
+      {!hackathon.projects[0] ? 
+        <Typography variant='h6'>This hackathon currently has no projects</Typography>
+        :
+        !projects[0] && filterBy ? 
+        <Typography variant='h6'>There are no projects with the chosen role available</Typography>
+        :
+        false
+      }
         {
           projects[0] && (
             projects.map((project, index) => {
