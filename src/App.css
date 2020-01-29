@@ -382,7 +382,9 @@ line-height: 53px;
   display: flex;
   justify-content: center;
 }
-
+.create-error {
+  color: rgb(233, 125, 125);
+}
 #hackathons-header {
   font-weight: 1000;
   font-size: 2.5rem;
@@ -539,4 +541,14 @@ margin-top: -1%;
   display: flex;
   justify-content: center;
   margin: 2%;
+}
+
+/* project modal */
+
+.modal-username {
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+.modal-role {
+  margin-top: 5px;
 }

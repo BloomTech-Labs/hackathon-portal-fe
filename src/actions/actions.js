@@ -16,6 +16,8 @@ export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
 export const DELETE_USER_FAIL = 'DELETE_USER_FAIL';
 export const POSTPROJECT_SUCCESS = 'POSTPROJECT_SUCCESS';
 export const EDITPROJECT_SUCCESS = 'EDITPROJECT_SUCCESS';
+export const UPDATEPROJECT_SUCCESS = 'UPDATEPROJECT_SUCCESS';
+export const JOINPROJECT_SUCCESS = 'JOINPROJECT_SUCCESS';
 
 // ACTIONS
 
@@ -82,6 +84,43 @@ export const createProject = (
       });
 };
 
+export const updateProject = (
+   project_id,
+   info
+) => async dispatch => {
+   dispatch({ type: FETCH_START });
+   (await axiosWithAuth())
+      .put(`/projects/${project_id}`, info)
+      .then(response => {
+         console.log('ACTION RESPONSE', response)
+         dispatch({ type: UPDATEPROJECT_SUCCESS });
+      })
+      .catch(error => {
+         dispatch({ type: FETCH_FAILURE, payload: error.response });
+      });
+};
+
+export const joinProject = (
+   hackathon_id,
+   user_id,
+   project,
+   role,
+   history
+) => async dispatch => {
+   dispatch({ type: FETCH_START });
+   (await axiosWithAuth())
+      .post(`/hackathons/${hackathon_id}/join/${user_id}`, project)
+      .then(response => {
+         console.log('ACTION RESPONSE', response)
+         dispatch({ type: JOINPROJECT_SUCCESS })
+         dispatch(updateProject(project.project_id, role))
+         history.push(`/profile`)
+      })
+      .catch(error => {
+         dispatch({ type: FETCH_FAILURE, payload: error.response });
+      });
+}
+
 // HACKATHONS
 export const getHackathons = () => async dispatch => {
    dispatch({ type: FETCH_START });
@@ -122,6 +161,8 @@ export const createHackathon = (
       })
       .catch(error => {
          dispatch({ type: FETCH_FAILURE, payload: error.response });
+         console.log(error)
+         window.alert("Error: Please make sure you've included all required fields, or try again later.")
       });
 };
 
@@ -150,36 +191,15 @@ export const deleteHackathon = (id, org_id, history) => async dispatch => {
       .delete(`/hackathons/${id}/u/${org_id}`)
       .then(response => {
          dispatch({ type: DELETEHACKATHON_SUCCESS });
-         history.push(`/`)
+         history.push(`/profile`)
       })
       .catch(error => {
          dispatch({ type: FETCH_FAILURE, payload: error.response });
       });
 };
 
-// TEAMS
-export const getTeams = () => async dispatch => {
-   dispatch({ type: FETCH_START });
-   (await axiosWithAuth())
-      .get(`/teams`)
-      .then(response => {
-      })
-      .catch(error => {
-         console.log(error);
-      });
-};
+// PROJECTS
 
-export const getSpecificTeam = id => async dispatch => {
-   dispatch({ type: FETCH_START });
-   (await axiosWithAuth())
-      .get(`/teams/${id}`)
-      .then(response => {
-         console.log(response);
-      })
-      .catch(error => {
-         console.log(error);
-      });
-};
 
 // HACKERS
 export const getHackers = () => async dispatch => {

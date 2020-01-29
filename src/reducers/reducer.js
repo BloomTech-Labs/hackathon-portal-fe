@@ -13,6 +13,8 @@ import {
    DELETE_USER,
    DELETE_USER_SUCCESS,
    DELETE_USER_FAIL,
+   JOINPROJECT_SUCCESS,
+   UPDATEPROJECT_SUCCESS
 } from '../actions/actions';
 
 const initialState = {
@@ -58,6 +60,8 @@ const reducer = (state = initialState, action) => {
             isFetch: false,
             error: ''
          };
+      case JOINPROJECT_SUCCESS:
+      case UPDATEPROJECT_SUCCESS:
       case DELETEHACKATHON_SUCCESS:
       case EDITHACKATHON_SUCCESS:
       case POSTHACKATHON_SUCCESS:
