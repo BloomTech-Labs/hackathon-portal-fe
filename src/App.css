@@ -537,9 +537,6 @@ margin-top: -1%;
 }
 
 /* project modal */
-.MuiPaper-root {
-  min-width: 500px;
-}
 
 .modal-username {
   font-weight: bold;

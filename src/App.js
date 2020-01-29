@@ -40,7 +40,7 @@ function App(props) {
       <Route exact path="/" component={Homepage} />
                <Route exact path="/hackathons" component={Hackathons} />
                <Route exact path='/hackathons/archive' component={PastHackathons} />
-               <Route exact path='/:id/projectmodal/:project_id' component={ProjectModal} />
+               <Route exact path='/hackathon/:id/projects/:project_id' component={ProjectModal} />
                <PrivateRoute path="/profile" component={UserProfile} />
                <PrivateRoute
                   exact
