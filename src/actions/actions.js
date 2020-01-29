@@ -191,7 +191,8 @@ export const deleteUser = id => async dispatch => {
 export const assignRole = (
    hackathon_id,
    user_id,
-   role
+   role,
+   setOpen
 ) => async dispatch => {
    dispatch({ type: FETCH_START });
    (await axiosWithAuth())
@@ -199,6 +200,7 @@ export const assignRole = (
       .then(response => {
          console.log('ACTION RESPONSE', response)
          dispatch({ type: ASSIGN_ROLE_SUCCESS })
+         setOpen(false)
 
       })
       .catch(error => {

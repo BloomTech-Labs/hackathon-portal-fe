@@ -12,7 +12,7 @@ const ProjectList = props => {
   const dispatch = useDispatch();
   const hackathon = useSelector(state => state.singleHackathon);
   const isFetching = useSelector(state => state.isFetching);
-  const [projects, setProjects] = useState();
+  const [projects, setProjects] = useState([]);
   const [filterBy, setFilterBy] = useState('');
   const [approvedProjects, setApprovedProjects] = useState(true);
   const [registered, setRegistered] = useState({ registered:false, project_id:0 })
@@ -59,6 +59,7 @@ const ProjectList = props => {
     <div>
       <Typography variant='h4'>Project List</Typography>
       <button><Link to={`/hackathon/${hackathon.id}/create/project`}>Submit a project idea</Link></button>
+      {console.log(projects, filterBy)}
       <RadioGroup value={filterBy} onChange={handleCheckboxChange}>
           <FormControlLabel
             control={<Radio />}
@@ -105,13 +106,13 @@ const ProjectList = props => {
       {!hackathon.projects ? 
         <Typography variant='h6'>This hackathon currently has no projects</Typography>
         :
-        !projects && filterBy ? 
+        !projects[0] && filterBy !== '' ? 
         <Typography variant='h6'>There are no projects with the chosen role available</Typography>
         :
         !approvedProjects[0] ? 
         <Typography variant='h6'>This hackathon currently has no projects</Typography>
         :
-        projects ? 
+        projects[0] ? 
         projects.map((project, index) => {
           return(
             project.is_approved && (

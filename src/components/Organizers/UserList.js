@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "../../auth0-hooks/react-auth0-spa";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { style } from "../../styles/hackathonListStyles";
 
-// COMPONENTS
-import UserModal from '../UserModal';
-
 // ACTION
-import { getSpecificHackathon, getHackers, getUser } from "../../actions/actions";
+import { getSpecificHackathon, getHackers, getUser, assignRole } from "../../actions/actions";
 
 // STYLES
 import {
@@ -20,19 +17,10 @@ import {
   createMuiTheme,
   FormHelperText,
   ListItemText,
-  Typography
+  Typography,
+  Avatar,
+  Button
 } from "@material-ui/core";
-import purple from "@material-ui/core/colors/purple";
-import UserModel from "../UserModal";
-
-const theme = createMuiTheme({
-  palette: {
-    primary: purple,
-    secondary: {
-      main: "#f44336"
-    }
-  }
-});
 
 const useStyles = makeStyles(theme => style);
 
@@ -90,7 +78,7 @@ const UserList = props => {
     }
     dispatch(getSpecificHackathon(props.match.params.id));
     dispatch(getHackers());
-  }, [user_id]);
+  }, [user_id, open]);
 
   const fn = (id) => {
     let test = hackathon.admins.find(user => {
@@ -100,6 +88,13 @@ const UserList = props => {
       return test.user_hackathon_role
     }
   } 
+
+  const makeOrganizer = () => {
+    dispatch(assignRole(hackathon.id, userInfo.id, { user_hackathon_role: 'organizer' }, setOpen))
+  }
+  const makeJudge = () => {
+      dispatch(assignRole(hackathon.id, userInfo.id, { user_hackathon_role: 'judge' }, setOpen))
+  }
 
   const handleChange = event => {
     setSearchTerm(event.target.value);
@@ -131,6 +126,7 @@ const UserList = props => {
   if (hackathon.organizer_id === user.id) {
     return (
       <>
+      <Link to={`/hackathon/${hackathon.id}`}>Go back to hackathon page</Link>
         <div>
           <TextField
             name="searchHackathon"
@@ -164,6 +160,7 @@ const UserList = props => {
               </div>
             );
           })}
+          {userInfo ? (
           <Modal
             aria-labelledby="transition-modal-title"
             aria-describedby="transition-modal-description"
@@ -176,12 +173,33 @@ const UserList = props => {
               timeout: 500
             }}
           >
-            <Fade in={open}>
-              <div className={styles.paper}>
-                <UserModel userInfo={userInfo} hackathon={hackathon} role={role} />
-              </div>
-            </Fade>
+              <Fade in={open}>
+                <div className={styles.paper}>
+                  <Avatar src='./images/profile_img.jpg' />
+                    {userInfo.first_name !== undefined && (
+                      <Typography>{userInfo.first_name}</Typography>
+                    )}
+                    {userInfo.last_name !== undefined && (
+                      <Typography>{userInfo.last_name}</Typography>
+                    )}
+                      <Typography>{userInfo.username}</Typography>
+                    {role && (
+                      <Typography>{role}</Typography>
+                    )}
+                    {hackathon.organizer_id !== userInfo.id && (
+                      <>
+                        {fn(userInfo.id) !== 'organizer' && (
+                        <>
+                          <Button onClick={() => makeOrganizer()}>Set as organizer</Button>
+                          {/* <Button onClick={() => makeJudge()}>Set as judge</Button> */}
+                        </>
+                        )}
+                      </>
+                    )}
+                </div>
+              </Fade>
           </Modal>
+          ):false}
         </div>
       </>
     );

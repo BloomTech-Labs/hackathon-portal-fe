@@ -129,7 +129,9 @@ const SinglePage = props => {
          
          <div className='admins-parent'>
             <Typography variant='h4' id="admins-title">Admins</Typography>
-            <Link to={`/hackathon/${hackathon.id}/users`}>Add New Admin</Link>
+            {user.id === hackathon.organizer_id && (
+               <Link to={`/hackathon/${hackathon.id}/users`}>Add New Admin</Link>
+            )}
                {hackathon.admins.map((admin, index) => {
                   return (
                      <div className='single-hackathon-admins'
