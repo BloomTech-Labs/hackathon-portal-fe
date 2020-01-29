@@ -22,6 +22,9 @@ const useStyles = makeStyles(theme => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
+  button: {
+    color: 'white',
+  }
 }));
 
 function JoinProjectModal({ project, hackathon_id, registered, history }) {
@@ -67,14 +70,13 @@ function JoinProjectModal({ project, hackathon_id, registered, history }) {
       setError(true)
     }else{
       dispatch(joinProject(hackathon_id, id, {project_id: project.project_id, user_hackathon_role: 'participant', developer_role: formattedRole}, {[role]:project[role]-1}, history));
-
     }
   };
 
   return (
     <div>
-      <Button type="button" onClick={handleOpen}>
-        JOIN
+      <Button type="button" onClick={handleOpen} className={classes.button}>
+        Join Project
       </Button>
       <Modal
         aria-labelledby="transition-modal-title"
