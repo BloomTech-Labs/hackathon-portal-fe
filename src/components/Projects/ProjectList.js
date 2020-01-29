@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
-import ProjectModal from './ProjectModal';
 
 // ACTIONS
 import { getSpecificHackathon } from "../../actions/actions";
@@ -15,7 +14,7 @@ const ProjectList = props => {
   const isFetching = useSelector(state => state.isFetching);
   const [projects, setProjects] = useState([]);
   const [filterBy, setFilterBy] = useState('');
-  const [registered, setRegistered] = useState({ registered:false, project_id:0 })
+ const [registered, setRegistered] = useState({ registered:false, project_id:0 })
   const { user } = useAuth0();
 
   useEffect(() => {
@@ -58,7 +57,6 @@ const ProjectList = props => {
     return <div>Loading...</div>;
   }
 
-  console.log(hackathon)
 
   // TO DO: SHOW MESSAGE IF ALREADY IN THE HACKATHON
   // TO DO: MODAL FOR DETAILED PROJECT?
@@ -119,8 +117,8 @@ const ProjectList = props => {
               return(
                 project.is_approved && (
                   
-                  <div key={index} style={{border:'2px solid red', width:'300px'}} onClick={() => props.history.push(`/hackathon/${hackathon.id}/projects/${project.project_id}`)}>
-                    {/* <ProjectModal project={project} hackathon={hackathon} /> */}
+                  <div key={index} style={{border:'2px solid red', width:'300px'}} 
+                  onClick={() => props.history.push(`/hackathon/${hackathon.id}/projects/${project.project_id}`)}>
                     <div>
                       <Typography variant='h5' style={{fontWeight:'bold'}}>{project.project_title}</Typography>
                       <Typography variant='body1'>{project.project_description}</Typography>
@@ -148,7 +146,8 @@ const ProjectList = props => {
                         <Avatar style={{background:'none', border:'1px solid red', color:'red'}}>AND</Avatar>
                       )}
                     </div>
-                    <JoinProjectModal project={project} hackathon_id={hackathon.id} history={props.history} registered={registered.registered} />
+                    {/* <JoinProjectModal project={project} hackathon_id={hackathon.id} 
+                    history={props.history} registered={registered.registered} /> */}
                   </div>
               ))
     
