@@ -35,15 +35,9 @@ import { getSpecificHackathon } from '../../actions/actions';
 
     const projects = !hackathon ? {} : hackathon.projects;
     const project = !projects ? [] : projects.find(p => p.project_id === Number(project_id));
-
-    console.log(hackathon)
-    console.log(project)
-
-    const totals = [project.ios_spots, project.android_spots, project.back_end_spots, project.front_end_spots, project.ux_spots, project.data_science_spots]
-    console.log(totals)
+    const totals = [project.ios_spots, project.android_spots, project.back_end_spots, project.front_end_spots, project.ux_spots, project.data_science_spots];
     const spotsOpen = totals.reduce((a, c) => a+c) !== 0
-    console.log(spotsOpen)
-
+  
      return (
 
         <Dialog

@@ -100,6 +100,7 @@ const SinglePage = props => {
                   <Typography variant='h4'>Description</Typography>
                   <Typography variant='h5'>{hackathon.description}
                   </Typography>
+                  <Typography variant='h5'>{hackathon.location}</Typography>
             </div>
          
 
