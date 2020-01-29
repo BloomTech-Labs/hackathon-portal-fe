@@ -17,13 +17,9 @@ const PendingProjects = props => {
     const dispatch = useDispatch();
     const { loading, user } = useAuth0();
     const isFetching = useSelector(state => state.isFetching);
-    let { register, handleSubmit } = useForm();
     const hackathon = useSelector(state => state.singleHackathon);
     const projects = useSelector(state => state.projects);
-    const [project, setproject] = useState(NaN);
     const hackathonId = (props.location.state.hackathonId)
-
-    console.log('this is hackathon', hackathon);
 
     
 
@@ -34,7 +30,6 @@ const PendingProjects = props => {
      }, []);
 
     const handledisapprove = data => (e) => {
-        console.log(data, 'this is dis data')
         const id = user.sub.replace('auth0|', '');
         e.preventDefault();
         dispatch(
@@ -57,18 +52,19 @@ const PendingProjects = props => {
          );
      }
 
+
      if (isFetching || !hackathon) {
         return <div>Loading...</div>;
      }
-{console.log(props.location.state.hackathonId)}
+
+     if(hackathon.projects.length == 0){
+         return <div>There are no projects</div>
+     }
+     console.log(hackathon.projects.length);
     return (
+        
         <div>
             <div className='pendingList'>
-                {/* <form
-                onSubmit={handleSubmit(handleApprove)}
-                // className={classes.root}
-                // style={{ width: '50%', margin: '0 auto' }}
-                > */}
                     {hackathon.projects.map(e => {
                         return (
                         !e.is_approved && (              <form key={e.project_id} className={classes.projectcard}
@@ -82,7 +78,6 @@ const PendingProjects = props => {
                             </form>))
 
                         })}
-                {/* </form> */}
             </div>
         </div>
     )
