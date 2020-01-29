@@ -40,7 +40,7 @@ function App(props) {
                <Route exact path="/hackathons" component={Hackathons} />
                <Route exact path='/hackathons/archive' component={PastHackathons} />
                <PrivateRoute path="/profile" component={UserProfile} />
-               <PrivateRoute path='/pendingprojects' id={`:id`} component={PendingProjects}/>
+               <PrivateRoute path='/:id/pendingprojects' id={`:id`} component={PendingProjects}/>
                <PrivateRoute
                   exact
                   path="/hackathon/create"

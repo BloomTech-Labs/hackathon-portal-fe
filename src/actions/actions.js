@@ -100,6 +100,7 @@ export const getSpecificHackathon = id => async dispatch => {
    (await axiosWithAuth())
       .get(`/hackathons/${id}`)
       .then(response => {
+         console.log(response);
          dispatch({ type: FETCH_HACKATHON, payload: response.data });
       })
       .catch(error => {

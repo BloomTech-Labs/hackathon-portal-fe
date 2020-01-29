@@ -19,15 +19,12 @@ const PendingProjects = props => {
     const isFetching = useSelector(state => state.isFetching);
     const hackathon = useSelector(state => state.singleHackathon);
     const projects = useSelector(state => state.projects);
-    const hackathonId = (props.location.state.hackathonId)
-
-    
+    const hackathonId = (props.history.location.state.hackathonId)
+    const [count, setCount] = useState(0);
 
      useEffect(() => {
-        if(hackathon){
             dispatch(getSpecificHackathon(hackathonId))
-        }
-     }, []);
+     },[]);
 
     const handledisapprove = data => (e) => {
         const id = user.sub.replace('auth0|', '');
@@ -52,23 +49,20 @@ const PendingProjects = props => {
          );
      }
 
-
      if (isFetching || !hackathon) {
         return <div>Loading...</div>;
      }
 
-     if(hackathon.projects.length == 0){
-         return <div>There are no projects</div>
-     }
-     console.log(hackathon.projects.length);
     return (
         
         <div>
             <div className='pendingList'>
                     {hackathon.projects.map(e => {
                         return (
-                        !e.is_approved && (              <form key={e.project_id} className={classes.projectcard}
-                            onSubmit={handleApprove(e.project_id)} >
+                        !e.is_approved && (<form key={e.project_id} className={classes.projectcard}
+                            onSubmit={handleApprove(e.project_id)} 
+                            // onClick={setCount + 1}
+                            >
                                 <h3>{e.project_title}</h3>
                                 <h3>{e.project_id}</h3>
                                 <p>{e.project_description}</p>
