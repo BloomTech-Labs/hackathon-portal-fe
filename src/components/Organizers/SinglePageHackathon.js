@@ -79,21 +79,6 @@ const SinglePage = props => {
          <div className='single-hackathon-title'>
                <h3>{hackathon.name}</h3>
          </div>
-
-         {/* <div className='single-hackathon-close-btn-container'>
-               {user.id === hackathon.organizer_id && (
-                  <>
-                     {!hackathon.is_open ? (
-                        <Button id='single-hackathon-close-btn' 
-                        type="button" variant='outlined'  onClick={()=>handleIsOpen()}>OPEN HACKATHON</Button>
-                     ) : (
-                        
-                        <Button id='single-hackathon-close-btn'
-                        type="button" variant='outlined'  onClick={()=>handleIsOpen()}>CLOSE HACKATHON</Button>
-                     )}
-                  </>
-               )}
-         </div> */}
          
          {console.log(props, 'this is props')}
             <div className='single-hackathon-description'>
@@ -102,8 +87,6 @@ const SinglePage = props => {
                   </Typography>
             </div>
          
-
-        
             <div className='single-hackathon-dates'>
                   <Typography variant='h5'>Start date: {formatDate(hackathon.start_date)}</Typography>
       
@@ -113,12 +96,20 @@ const SinglePage = props => {
          <div className='single-hackathon-crud-btns-container'>
                {user.id === hackathon.organizer_id && (
                   <div className='single-hackathon-crud-btns'>
+                     <div>
+                     <Link to={`/hackathon/${hackathon.id}/projects`}><Button id='single-hackathon-crud-btn'>VIEW PROJECTS</Button></Link>
+                     </div>
                      <div><Button><Link id='pendingpagebutton' to={{ pathname:`/${props.match.params.id}/pendingprojects`, state: { hackathonId: Number(props.match.params.id) }}}>Pending Projects</Link></Button></div>
                      <ServerModal id='single-hackathon-crud-btn' props={`/hackathon/edit/${hackathon.id}`}/>
+                     <div>
                      <DeleteHackathon id={hackathon.id} org_id={hackathon.organizer_id} history={props.history} />
+                     </div>
                   </div>
                )}
          </div>
+         
+
+         
         
          <div className='admins-parent'>
                <Typography variant='h4' id="admins-title">Admins</Typography>
@@ -132,7 +123,7 @@ const SinglePage = props => {
                         );
                      })}
          </div>
-      </div>
+   </div>
    );
 };
 

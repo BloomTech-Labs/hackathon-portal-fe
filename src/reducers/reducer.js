@@ -64,7 +64,10 @@ const reducer = (state = initialState, action) => {
       case UPDATEPROJECT_SUCCESS:
       case DELETEHACKATHON_SUCCESS:
       case EDITHACKATHON_SUCCESS:
+      case POSTPROJECT_SUCCESS:
       case POSTHACKATHON_SUCCESS:
+      case DELETE_USER:
+      case DELETE_USER_SUCCESS:
          return {
             ...state,
             isFetching: false,
@@ -86,13 +89,6 @@ const reducer = (state = initialState, action) => {
          return {
             ...state,
             hackathons: action.payload,
-            isFetching: false,
-            error: ''
-         };
-      case DELETE_USER:
-      case DELETE_USER_SUCCESS:
-         return {
-            ...state,
             isFetching: false,
             error: ''
          };
