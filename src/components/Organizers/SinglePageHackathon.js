@@ -113,7 +113,6 @@ const SinglePage = props => {
          )}
 
          
-         <Link>Submit Project Idea</Link>
         
          <div className='admins-parent'>
                <Typography variant='h4' id="admins-title">Admins</Typography>
@@ -128,7 +127,6 @@ const SinglePage = props => {
                      })}
          </div>
     
-      )}
       
 
    </div>
