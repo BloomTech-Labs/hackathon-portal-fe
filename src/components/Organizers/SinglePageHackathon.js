@@ -93,12 +93,12 @@ const SinglePage = props => {
                   <Typography variant='h5'>End date: {formatDate(hackathon.end_date)}</Typography>
             </div>
 
+         <div>
+         <Link to={`/hackathon/${hackathon.id}/projects`}><Button id='single-hackathon-crud-btn'>VIEW PROJECTS</Button></Link>
+         </div>
          <div className='single-hackathon-crud-btns-container'>
                {user.id === hackathon.organizer_id && (
                   <div className='single-hackathon-crud-btns'>
-                     <div>
-                     <Link to={`/hackathon/${hackathon.id}/projects`}><Button id='single-hackathon-crud-btn'>VIEW PROJECTS</Button></Link>
-                     </div>
                      <div><Button><Link id='pendingpagebutton' to={{ pathname:`/${props.match.params.id}/pendingprojects`, state: { hackathonId: Number(props.match.params.id) }}}>Pending Projects</Link></Button></div>
                      <ServerModal id='single-hackathon-crud-btn' props={`/hackathon/edit/${hackathon.id}`}/>
                      <div>
@@ -107,24 +107,25 @@ const SinglePage = props => {
                   </div>
                )}
          </div>
-         
+   
 
-         
-        
-         <div className='admins-parent'>
-               <Typography variant='h4' id="admins-title">Admins</Typography>
-                     {hackathon.admins.map((admin, index) => {
-                        return (
-                           <div className='single-hackathon-admins'
-                              key={index}>
-                              <h2>{admin.username}</h2>
-                              <p>{admin.user_hackathon_role}</p>
-                           </div>
-                        );
-                     })}
-         </div>
+
+      <div className='admins-parent'>
+            <Typography variant='h4' id="admins-title">Admins</Typography>
+            {user.id === hackathon.organizer_id && (
+               <Link to={`/hackathon/${hackathon.id}/users`}>Add New Admin</Link>
+            )}
+            {hackathon.admins.map((admin, index) => {
+               return (
+                  <div className='single-hackathon-admins'
+                     key={index}>
+                     <h2>{admin.username}</h2>
+                     <p>{admin.user_hackathon_role}</p>
+                  </div>
+               );
+            })}
+      </div>
    </div>
-   );
-};
+)}
 
 export default SinglePage;

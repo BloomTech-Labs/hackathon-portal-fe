@@ -109,6 +109,7 @@ const CreateProject = props => {
   });
   const [role, setRole] = useState(" ")
   const { loading, user } = useAuth0();
+  const [error, setError] = useState(false)
   const dispatch = useDispatch();
   const classes = useStyles();
   let spotsArray = Object.values(spots);
@@ -184,7 +185,7 @@ const CreateProject = props => {
     }
     if(spotsArray.reduce((acc, curr) => acc + curr) > hackathon.max_team_participants){
       e.preventDefault();
-      console.log('ERROR: the total number of participants is more than the maximum number allowed per team')
+      setError(true)
     }else{
       e.preventDefault();
       console.log(projectInfo, currentUser)
@@ -272,9 +273,10 @@ const CreateProject = props => {
         {project === "Team Project" && (
         <>
           <label className="max-members">
-              <Typography  gutterBottom variant="h5" component="h5">
-                    Will there be specific roles for this project? 
-              </Typography>
+            <Typography  gutterBottom variant="h5" component="h5">
+                  Will there be specific roles for this project? 
+            </Typography>
+            <FormHelperText style={{color:'#1a2fa6'}}>The maximum number of members allowed per team is {hackathon.max_team_participants}</FormHelperText>
   
             <FormControlLabel
                 control={
@@ -487,6 +489,7 @@ const CreateProject = props => {
         >
         ADD PROJECT 
         </Button>
+        {error && (<FormHelperText error>The total number of participants is more than the maximum number allowed per team</FormHelperText>)}
   
 
       </form> 

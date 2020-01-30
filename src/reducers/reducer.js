@@ -5,16 +5,17 @@ import {
    FETCH_HACKATHON,
    FETCH_HACKATHONS,
    FETCH_USER,
-   POSTHACKATHON_SUCCESS,
-   POSTPROJECT_SUCCESS,
-   EDITHACKATHON_SUCCESS,
-   EDITPROJECT_SUCCESS,
-   DELETEHACKATHON_SUCCESS,
+   POST_HACKATHON_SUCCESS,
+   POST_PROJECT_SUCCESS,
+   EDIT_HACKATHON_SUCCESS,
+   DELETE_HACKATHON_SUCCESS,
+   EDIT_PROJECT_SUCCESS,
    DELETE_USER,
    DELETE_USER_SUCCESS,
    DELETE_USER_FAIL,
-   JOINPROJECT_SUCCESS,
-   UPDATEPROJECT_SUCCESS
+   JOIN_PROJECT_SUCCESS,
+   UPDATE_PROJECT_SUCCESS,
+   ASSIGN_ROLE_SUCCESS
 } from '../actions/actions';
 
 const initialState = {
@@ -57,15 +58,16 @@ const reducer = (state = initialState, action) => {
          return {
             ...state,
             userInfo: action.payload,
-            isFetch: false,
+            isFetching: false,
             error: ''
          };
-      case JOINPROJECT_SUCCESS:
-      case UPDATEPROJECT_SUCCESS:
-      case DELETEHACKATHON_SUCCESS:
-      case EDITHACKATHON_SUCCESS:
-      case POSTPROJECT_SUCCESS:
-      case POSTHACKATHON_SUCCESS:
+      case ASSIGN_ROLE_SUCCESS:
+      case JOIN_PROJECT_SUCCESS:
+      case UPDATE_PROJECT_SUCCESS:
+      case DELETE_HACKATHON_SUCCESS:
+      case EDIT_HACKATHON_SUCCESS:
+      case POST_HACKATHON_SUCCESS:
+      case POST_PROJECT_SUCCESS:
       case DELETE_USER:
       case DELETE_USER_SUCCESS:
          return {
@@ -73,18 +75,12 @@ const reducer = (state = initialState, action) => {
             isFetching: false,
             error: ''
          };
-         case POSTPROJECT_SUCCESS:
-            return {
-               ...state,
-               isFetching: false,
-               error: ''
-            };
-         case EDITPROJECT_SUCCESS:
-            return {
-               ...state,
-               isFetching: false,
-               error: ''
-            };
+      case EDIT_PROJECT_SUCCESS:
+         return {
+            ...state,
+            isFetching: false,
+            error: ''
+         };
       case FETCH_HACKATHONS:
          return {
             ...state,
