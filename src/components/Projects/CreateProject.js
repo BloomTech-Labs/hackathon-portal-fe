@@ -112,6 +112,7 @@ const CreateProject = props => {
   const dispatch = useDispatch();
   const classes = useStyles();
   let spotsArray = Object.values(spots);
+  const [match, setMatch] = useState(true)
 
   // useEffect(() => {
   //   dispatch(getSpecificHackathon((props.match.params.id)));
@@ -128,19 +129,27 @@ const CreateProject = props => {
         android_spots: spots.and,
         ux_spots: spots.ux,
         data_science_spots: spots.ds,
-        creator_id: currentUser.id,
         hackathon_id: hackathon.id,
-        creator_id: currentUser.id,
-        is_approved: true
+        creator_id: user.id,
+        is_approved: user.id === hackathon.organizer_id
       });
     }
+
   }, [formInfo, spots]);
+
+
 
   useEffect(() => {
     if(user) {
       setCurrentUser({...currentUser, user_hackathon_role: 'participant', hackathon_id: `${hackathon.id}`, developer_role: `${role}`})
     }
   }, [role])
+
+  useEffect(() => {
+    if (!props.match) {
+      setMatch(false)
+    }
+  }, [])
 
   const handleFormChange = e => {
     setFormInfo({ ...formInfo, [e.target.name]: e.target.value });
@@ -180,6 +189,7 @@ const CreateProject = props => {
       e.preventDefault();
       console.log(projectInfo, currentUser)
       dispatch(createProject(hackathon.id, projectInfo, props.history))
+      if (match) props.history.push(`/hackathon/${hackathon.id}`)
     }
   }
   
@@ -208,7 +218,6 @@ const CreateProject = props => {
         {user.id !== hackathon.organizer_id ? (
           <>
             <Typography variant='h5'>Submit a project idea</Typography>
-            <Typography variant='subheader'>note: only one project idea can be submitted per user; if accepted, you will automatically be placed onto the project as your desired role</Typography>
           </>
         ): <Typography variant='h5'>Submit a project</Typography>}
         <label className="title">
@@ -468,14 +477,17 @@ const CreateProject = props => {
           )}
     </>
       )}
-      <Button
-      variant="contained"
-      color="primary"
-      className={classes.activeButton}
-      type='submit'
-      >
-      ADD PROJECT 
-      </Button>
+    
+        <Button
+        variant="contained"
+        color="primary"
+        className={classes.activeButton}
+        type='submit'
+       
+        >
+        ADD PROJECT 
+        </Button>
+  
 
       </form> 
     </div>
