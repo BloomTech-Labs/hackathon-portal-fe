@@ -129,13 +129,15 @@ const CreateProject = props => {
         android_spots: spots.and,
         ux_spots: spots.ux,
         data_science_spots: spots.ds,
-        creator_id: currentUser.id,
         hackathon_id: hackathon.id,
-        creator_id: currentUser.id,
-        is_approved: true
+        creator_id: user.id,
+        is_approved: user.id === hackathon.organizer_id
       });
     }
+
   }, [formInfo, spots]);
+
+
 
   useEffect(() => {
     if(user) {
@@ -216,7 +218,6 @@ const CreateProject = props => {
         {user.id !== hackathon.organizer_id ? (
           <>
             <Typography variant='h5'>Submit a project idea</Typography>
-            <Typography variant='subheader'>note: only one project idea can be submitted per user; if accepted, you will automatically be placed onto the project as your desired role</Typography>
           </>
         ): <Typography variant='h5'>Submit a project</Typography>}
         <label className="title">

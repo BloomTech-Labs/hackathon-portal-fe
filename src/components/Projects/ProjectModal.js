@@ -84,6 +84,9 @@ const useStyles = makeStyles(theme => ({
      >
         <DialogTitle id="form-dialog-title"  className={classes.modal}>
            <h2>{project.project_title} {!spotsOpen && project.participants.length ? `(Full)`: null}</h2>
+           {!spotsOpen && project.participants.length < 2 ? (
+             <p>Solo Project</p>
+           ): null}
            <p>{project.project_description}</p>
         </DialogTitle>
         <DialogContent>
