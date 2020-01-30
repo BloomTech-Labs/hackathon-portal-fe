@@ -48,7 +48,7 @@ const PendingProjects = props => {
             )
          );
      }
-
+     console.log(hackathon, 'this is hackathon')
      if (isFetching || !hackathon) {
         return <div>Loading...</div>;
      }
