@@ -15,6 +15,7 @@ export const DELETE_USER = 'DELETE_USER';
 export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
 export const DELETE_USER_FAIL = 'DELETE_USER_FAIL';
 export const POSTPROJECT_SUCCESS = 'POSTPROJECT_SUCCESS';
+export const EDITPROJECT_SUCCESS = 'EDITPROJECT_SUCCESS';
 export const UPDATEPROJECT_SUCCESS = 'UPDATEPROJECT_SUCCESS';
 export const JOINPROJECT_SUCCESS = 'JOINPROJECT_SUCCESS';
 
@@ -23,6 +24,42 @@ export const JOINPROJECT_SUCCESS = 'JOINPROJECT_SUCCESS';
 
 
 //PROJECTS
+export const editProject = (
+   hackathonId,
+   project_id,
+   projectInfo
+   ) => async dispatch => {
+   dispatch({ type: FETCH_START });
+   (await axiosWithAuth())
+      .put(`/projects/${project_id}`, projectInfo)
+      .then(response => {
+         dispatch({ type: POSTPROJECT_SUCCESS })
+         if(projectInfo.is_approved){
+            dispatch(getSpecificHackathon(hackathonId))
+         };
+      })
+      .catch(error => {
+         dispatch({ type: FETCH_FAILURE, payload: error.response });
+      });
+}
+
+export const deleteProject = (
+   hackathonId,
+   project_id,
+) => async dispatch => {
+   dispatch({ type: FETCH_START });
+   (await axiosWithAuth())
+   .delete(`/projects/${project_id}`)
+   .then(response => {
+      dispatch({ type: POSTPROJECT_SUCCESS })
+      if(project_id){
+         dispatch(getSpecificHackathon(hackathonId))
+      };
+   })
+   .catch(error => {
+      dispatch({ type: FETCH_FAILURE})
+   })
+}
 
 export const createProject = (
    hackathon_id,
@@ -33,7 +70,6 @@ export const createProject = (
    (await axiosWithAuth())
       .post(`/projects`, projectInfo)
       .then(response => {
-         console.log('ACTION RESPONSE', response)
          dispatch({ type: POSTPROJECT_SUCCESS });
          dispatch(getSpecificHackathon( response.data.data.hackathon_id ))
          // history.push(`/hackathon/${hackathon_id}`);
@@ -51,7 +87,6 @@ export const updateProject = (
    (await axiosWithAuth())
       .put(`/projects/${project_id}`, info)
       .then(response => {
-         console.log('ACTION RESPONSE', response)
          dispatch({ type: UPDATEPROJECT_SUCCESS });
       })
       .catch(error => {
@@ -139,6 +174,7 @@ export const editHackathon = (
       .put(`/hackathons/${id}/u/${org_id}`, hackathonInfo)
       .then(response => {
          dispatch({ type: EDITHACKATHON_SUCCESS });
+         dispatch(getSpecificHackathon(id));
          history.push(`/success`, response.data.id);
       })
       .catch(error => {

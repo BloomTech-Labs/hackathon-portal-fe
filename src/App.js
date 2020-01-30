@@ -14,6 +14,7 @@ import EditHackathon from './components/Organizers/EditHackathon';
 import SinglePage from './components/Organizers/SinglePageHackathon';
 import SuccessPage from './components/SuccessPage';
 import UserProfile from './components/UserProfile';
+import PendingProjects from './components/Projects/pendingProjectsPage';
 import PastHackathons from './components/pastHackathons';
 // import Footer from './components/Footer';
 import CreateProject from './components/Projects/CreateProject';
@@ -42,6 +43,7 @@ function App(props) {
                <Route exact path='/hackathons/archive' component={PastHackathons} />
                <Route exact path='/hackathon/:id/projects/:project_id' component={ProjectModal} />
                <PrivateRoute path="/profile" component={UserProfile} />
+               <PrivateRoute path='/:id/pendingprojects' id={`:id`} component={PendingProjects}/>
                <PrivateRoute
                   exact
                   path="/hackathon/create"
