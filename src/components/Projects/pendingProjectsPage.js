@@ -27,7 +27,6 @@ const PendingProjects = props => {
      },[]);
 
      const pending = !hackathon ? [] : hackathon.projects.filter(element=> !element.is_approved)
-     console.log(pending)
 
     const handledisapprove = data => (e) => {
         const id = user.sub.replace('auth0|', '');
