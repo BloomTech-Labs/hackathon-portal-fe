@@ -12,6 +12,7 @@ import { getSpecificHackathon } from '../../actions/actions';
 
 import JoinProjectModal from './JoinProject';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
+import moment from 'moment';
 
 
 const useStyles = makeStyles(theme => ({
@@ -31,6 +32,7 @@ const useStyles = makeStyles(theme => ({
      const [registered, setRegistered] = useState({ registered:false, project_id:0 })
      const classes = useStyles();
      const { user } = useAuth0();
+     const currentDate = new Date().toString();
 
      useEffect(() => {
       if(hackathon && hackathon.projects){
@@ -72,7 +74,8 @@ const useStyles = makeStyles(theme => ({
 
     const project = !projects ? [] : projects.find(p => p.project_id === Number(project_id));
     const totals = [project.ios_spots, project.android_spots, project.back_end_spots, project.front_end_spots, project.ux_spots, project.data_science_spots];
-    const spotsOpen = totals.reduce((a, c) => a+c) !== 0
+    const spotsOpen = totals.reduce((a, c) => a+c) !== 0;
+    const isPast = moment(hackathon.end_date).isBefore(currentDate)
   
      return (
 
@@ -121,7 +124,7 @@ const useStyles = makeStyles(theme => ({
          
         </DialogContent>
         <DialogActions>
-             {(spotsOpen && !registered.registered) || (!spotsOpen &&  !project.participants.length && !registered.registered) ? 
+             {(spotsOpen && !registered.registered && !isPast) || (!spotsOpen && !project.participants.length && !registered.registered && !isPast)  ? 
              <Button color="primary" variant='contained'>
               <JoinProjectModal project={project} hackathon_id={hackathon.id} 
                     history={props.history} registered={registered.registered} />

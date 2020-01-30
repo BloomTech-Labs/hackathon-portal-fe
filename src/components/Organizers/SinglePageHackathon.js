@@ -20,6 +20,8 @@ const SinglePage = props => {
    const isFetching = useSelector(state => state.isFetching);
    const [isOpen, setIsOpen] = useState({ is_open: true });
    const { user } = useAuth0();
+   const [pending, setPending] = useState([])
+   
   
    useEffect(() => {
       dispatch(getSpecificHackathon((props.match.params.id)));
@@ -28,8 +30,15 @@ const SinglePage = props => {
    useEffect(() => {
       if(hackathon){
          setIsOpen({ is_open: hackathon.is_open })
+         setPending(hackathon.projects.filter(p => !p.is_approved))
       }
    }, [hackathon]);
+
+   // useEffect(() => {
+   //    if (hackathon.projects) {
+   //       setPending(hackathon.projects.filter(p => !p.is_approved))
+   //    }
+   // }, [hackathon.projects])
 
    const handleIsOpen = () => {
       setIsOpen({ is_open: !isOpen.is_open })
@@ -68,6 +77,8 @@ const SinglePage = props => {
       return `${day}, ${m} ${d}, ${y}`;
    };
 
+   //const pending = !hackathon ? [] : hackathon.projects.filter(element=> !element.is_approved)
+
    if (isFetching) {
       return <div>Loading...</div>;
    }
@@ -99,7 +110,7 @@ const SinglePage = props => {
          <div className='single-hackathon-crud-btns-container'>
                {user.id === hackathon.organizer_id && (
                   <div className='single-hackathon-crud-btns'>
-                     <div><Button><Link id='pendingpagebutton' to={{ pathname:`/${props.match.params.id}/pendingprojects`, state: { hackathonId: Number(props.match.params.id) }}}>Pending Projects</Link></Button></div>
+<div><Button><Link id='pendingpagebutton' to={{ pathname:`/${props.match.params.id}/pendingprojects`, state: { hackathonId: Number(props.match.params.id) }}}>Pending Projects{pending.length ? <>({pending.length})</> : null}</Link></Button></div>
                      <ServerModal id='single-hackathon-crud-btn' props={`/hackathon/edit/${hackathon.id}`}/>
                      <div>
                      <DeleteHackathon id={hackathon.id} org_id={hackathon.organizer_id} history={props.history} />
@@ -108,7 +119,6 @@ const SinglePage = props => {
                )}
          </div>
    
-
 
       <div className='admins-parent'>
             <Typography variant='h4' id="admins-title">Admins</Typography>

@@ -26,6 +26,9 @@ const PendingProjects = props => {
             dispatch(getSpecificHackathon(hackathonId))
      },[]);
 
+     const pending = !hackathon ? [] : hackathon.projects.filter(element=> !element.is_approved)
+     console.log(pending)
+
     const handledisapprove = data => (e) => {
         const id = user.sub.replace('auth0|', '');
         e.preventDefault();
@@ -57,11 +60,11 @@ const PendingProjects = props => {
         
         <div>
             <div className='pendingList'>
-                    {hackathon.projects.map(e => {
+                <button onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back to Hackathon details</button>
+                    {pending.length ? pending.map(e => {
                         return (
-                        !e.is_approved && (<form key={e.project_id} className={classes.projectcard}
+                        (<form key={e.project_id} className={classes.projectcard}
                             onSubmit={handleApprove(e.project_id)} 
-                            // onClick={setCount + 1}
                             >
                                 <h3>{e.project_title}</h3>
                                 <h3>{e.project_id}</h3>
@@ -69,9 +72,9 @@ const PendingProjects = props => {
                                 <button type='submit' >Approve Project</button>
                                 <button 
                                 onClick={handledisapprove(e.project_id)}type='submit'>Disapprove Project</button>
-                            </form>))
-
-                        })}
+                            </form>)
+                            )
+                        }) : <p>no pending</p>}
             </div>
         </div>
     )

@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
+import moment from 'moment';
 
 // ACTIONS
 import { getSpecificHackathon } from "../../actions/actions";
 import { Typography, Avatar, FormControlLabel, Radio, RadioGroup, FormHelperText } from "@material-ui/core";
-import JoinProjectModal from "./JoinProject";
+
 
 const ProjectList = props => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const ProjectList = props => {
   const [approvedProjects, setApprovedProjects] = useState(true);
   const [registered, setRegistered] = useState({ registered:false, project_id:0 })
   const { user } = useAuth0();
+  const currentDate = new Date().toString();
 
   useEffect(() => {
     dispatch(getSpecificHackathon(props.match.params.id));
@@ -26,7 +28,6 @@ const ProjectList = props => {
       setFilterBy(e.target.value)
   }
 
-  // if (hackathon.participants.find(i => i.user_id === user_id))
 
   useEffect(() => {
     if(hackathon){
@@ -71,9 +72,10 @@ const ProjectList = props => {
   return (
     <div>
       <Typography variant='h4'>Project List</Typography>
-      <button><Link to={`/hackathon/${hackathon.id}/create/project`}>Submit a project idea</Link></button>
-      {console.log(projects, filterBy)}
+     { !moment(hackathon.end_date).isBefore(currentDate)?
+      <button><Link to={`/hackathon/${hackathon.id}/create/project`}>Submit a project idea</Link></button> : null}
       <RadioGroup value={filterBy} onChange={handleCheckboxChange}>
+        <button onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back to Hackathon details</button>
           <FormControlLabel
             control={<Radio />}
             value=''
