@@ -112,6 +112,7 @@ const CreateProject = props => {
   const dispatch = useDispatch();
   const classes = useStyles();
   let spotsArray = Object.values(spots);
+  const [match, setMatch] = useState(true)
 
   // useEffect(() => {
   //   dispatch(getSpecificHackathon((props.match.params.id)));
@@ -141,6 +142,12 @@ const CreateProject = props => {
       setCurrentUser({...currentUser, user_hackathon_role: 'participant', hackathon_id: `${hackathon.id}`, developer_role: `${role}`})
     }
   }, [role])
+
+  useEffect(() => {
+    if (!props.match) {
+      setMatch(false)
+    }
+  }, [])
 
   const handleFormChange = e => {
     setFormInfo({ ...formInfo, [e.target.name]: e.target.value });
@@ -180,6 +187,7 @@ const CreateProject = props => {
       e.preventDefault();
       console.log(projectInfo, currentUser)
       dispatch(createProject(hackathon.id, projectInfo, props.history))
+      if (match) props.history.push(`/hackathon/${hackathon.id}`)
     }
   }
   
@@ -468,14 +476,17 @@ const CreateProject = props => {
           )}
     </>
       )}
-      <Button
-      variant="contained"
-      color="primary"
-      className={classes.activeButton}
-      type='submit'
-      >
-      ADD PROJECT 
-      </Button>
+    
+        <Button
+        variant="contained"
+        color="primary"
+        className={classes.activeButton}
+        type='submit'
+       
+        >
+        ADD PROJECT 
+        </Button>
+  
 
       </form> 
     </div>
