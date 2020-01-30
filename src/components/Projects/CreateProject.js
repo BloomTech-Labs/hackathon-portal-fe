@@ -113,9 +113,9 @@ const CreateProject = props => {
   const classes = useStyles();
   let spotsArray = Object.values(spots);
 
-  useEffect(() => {
-    dispatch(getSpecificHackathon((props.match.params.id)));
-  }, [dispatch, props.match.params.id]);
+  // useEffect(() => {
+  //   dispatch(getSpecificHackathon((props.match.params.id)));
+  // }, [dispatch, props.match.params.id]);
 
   useEffect(() => {
     if(hackathon) {
@@ -130,7 +130,8 @@ const CreateProject = props => {
         data_science_spots: spots.ds,
         creator_id: currentUser.id,
         hackathon_id: hackathon.id,
-        is_approved: false
+        creator_id: currentUser.id,
+        is_approved: true
       });
     }
   }, [formInfo, spots]);
@@ -473,7 +474,7 @@ const CreateProject = props => {
       className={classes.activeButton}
       type='submit'
       >
-      Finish
+      ADD PROJECT 
       </Button>
 
       </form> 

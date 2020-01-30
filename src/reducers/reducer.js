@@ -66,28 +66,19 @@ const reducer = (state = initialState, action) => {
       case DELETE_HACKATHON_SUCCESS:
       case EDIT_HACKATHON_SUCCESS:
       case POST_HACKATHON_SUCCESS:
-         return {
-            ...state,
-            isFetching: false,
-            error: ''
-         };
-         case POST_PROJECT_SUCCESS:
-            return {
-               ...state,
-               isFetching: false,
-               error: ''
-            };
-      case FETCH_HACKATHONS:
-         return {
-            ...state,
-            hackathons: action.payload,
-            isFetching: false,
-            error: ''
-         };
+      case POST_PROJECT_SUCCESS:
       case DELETE_USER:
       case DELETE_USER_SUCCESS:
          return {
             ...state,
+            isFetching: false,
+            error: ''
+         };
+         
+      case FETCH_HACKATHONS:
+         return {
+            ...state,
+            hackathons: action.payload,
             isFetching: false,
             error: ''
          };

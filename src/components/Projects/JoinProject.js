@@ -95,11 +95,15 @@ function JoinProjectModal({ project, hackathon_id, registered, history }) {
             <form onSubmit={handleSubmit}>
               <h2 id="projectTitle">{project.project_title}</h2>
               <p>Choose your role:</p>
-              <Select onChange={handleChange}>
-                {openRoles.map(element => {
-                  return (<MenuItem value={element}>{element}</MenuItem>)
-                })}
-              </Select>
+              {!openRoles[0]?
+                false
+                :
+                <Select onChange={handleChange}>
+                  {openRoles.map(element => {
+                    return (<MenuItem value={element}>{element}</MenuItem>)
+                  })}
+                </Select>
+              }
               <Button type='submit'>Submit</Button>
               {error && (<FormHelperText error>You are already registered for this hackathon</FormHelperText>)}
             </form>

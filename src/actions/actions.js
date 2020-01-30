@@ -31,7 +31,8 @@ export const createProject = (
       .then(response => {
          console.log('ACTION RESPONSE', response)
          dispatch({ type: POST_PROJECT_SUCCESS });
-         history.push(`/hackathon/${hackathon_id}`);
+         dispatch(getSpecificHackathon( response.data.data.hackathon_id ))
+         // history.push(`/hackathon/${hackathon_id}`);
       })
       .catch(error => {
          dispatch({ type: FETCH_FAILURE, payload: error.response });
@@ -103,14 +104,18 @@ export const getSpecificHackathon = id => async dispatch => {
 export const createHackathon = (
    user_id,
    hackathonInfo,
-   history
+   history,
+   setId
 ) => async dispatch => {
    dispatch({ type: FETCH_START });
    (await axiosWithAuth())
       .post(`/hackathons/u/${user_id}`, hackathonInfo)
-      .then(response => {
+      .then(response => {  
          dispatch({ type: POST_HACKATHON_SUCCESS });
-         history.push(`/success`, response.data.id);
+         dispatch(getSpecificHackathon(response.data.id))
+         setId(response.data.id)
+         // console.log(response.data)
+         // history.push(`/success`, response.data.id);
       })
       .catch(error => {
          dispatch({ type: FETCH_FAILURE, payload: error.response });

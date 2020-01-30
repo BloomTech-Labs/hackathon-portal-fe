@@ -26,6 +26,8 @@ const ProjectList = props => {
       setFilterBy(e.target.value)
   }
 
+  // if (hackathon.participants.find(i => i.user_id === user_id))
+
   useEffect(() => {
     if(hackathon){
       setProjects(hackathon.projects)
@@ -33,11 +35,22 @@ const ProjectList = props => {
     }
     if(hackathon && hackathon.projects){
       hackathon.projects.map(item => {
-        item.participants.map(element => {
-        if(element.user_id === user.id){
-          setRegistered({ registered:true, project_id:item.project_id })
+        if(item.participants.find(element => {
+          return element.user_id === user.id
+        })){
+          setRegistered({ registered:true, project_id: item.project_id })
         }
-      })})
+      })
+    }
+    
+  }, [hackathon])
+  useEffect(() => {
+    if(hackathon && hackathon.projects){
+      if(hackathon.admins.find(element => {
+        return element.user_id === user.id
+      })){
+        setRegistered({ registered:true })
+      }
     }
   }, [hackathon])
 

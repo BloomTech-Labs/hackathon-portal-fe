@@ -76,60 +76,57 @@ const SinglePage = props => {
       return <div>Loading...</div>;
    }
    return (
-      <div className='single-hackathon-container'>
-         <div className='single-hackathon-title'>
-               <h3>{hackathon.name}</h3>
-         </div>
+   <div className='single-hackathon-container'>
+      <div className='single-hackathon-title'>
+            <h3>{hackathon.name}</h3>
+      </div>
 
-
-         
-         <div className='single-hackathon-description'>
-               <Typography variant='h4'>Description</Typography>
-               <Typography variant='h5'>{hackathon.description}
-               </Typography>
-               <Typography variant='h5'>{hackathon.location}</Typography>
-         </div>
+      <div className='single-hackathon-description'>
+            <Typography variant='h4'>Description</Typography>
+            <Typography variant='h5'>{hackathon.description}
+            </Typography>
+            <Typography variant='h5'>{hackathon.location}</Typography>
+      </div>
       
-         <div className='single-hackathon-dates'>
-               <Typography variant='h5'>Start date: {formatDate(hackathon.start_date)}</Typography>
-   
-               <Typography variant='h5'>End date: {formatDate(hackathon.end_date)}</Typography>
-         </div>
+      <div className='single-hackathon-dates'>
+            <Typography variant='h5'>Start date: {formatDate(hackathon.start_date)}</Typography>
 
-         <div className='single-hackathon-crud-btns-container'>
-            {user.id === hackathon.organizer_id && (
-               <div className='single-hackathon-crud-btns'>
-                  <Link to={`/hackathon/edit/${hackathon.id}`}><Button id='single-hackathon-crud-btn'>EDIT EVENT</Button></Link>
-                  <DeleteHackathon id={hackathon.id} org_id={hackathon.organizer_id} history={props.history} />
-               </div>
-            )}
-         </div>
+            <Typography variant='h5'>End date: {formatDate(hackathon.end_date)}</Typography>
+      </div>
 
-         {hackathon.is_open && (
-            <div className='single-hackathon-crud-btns-container'>
-               {user.id !== hackathon.organizer_id && (
-                  <Link to={`/hackathon/${hackathon.id}/projects`}><Button id='single-hackathon-crud-btn'>VIEW PROJECTS</Button></Link>
-               )}
+      <div className='single-hackathon-crud-btns-container'>
+         {user.id === hackathon.organizer_id && (
+            <div className='single-hackathon-crud-btns'>
+               <Link to={`/hackathon/edit/${hackathon.id}`}><Button id='single-hackathon-crud-btn'>EDIT EVENT</Button></Link>
+               <DeleteHackathon id={hackathon.id} org_id={hackathon.organizer_id} history={props.history} />
             </div>
          )}
-         
-         <div className='admins-parent'>
+      </div>
+
+      {hackathon.is_open && (
+         <div className='single-hackathon-crud-btns-container'>
+            <Link to={`/hackathon/${hackathon.id}/projects`}><Button id='single-hackathon-crud-btn'>VIEW PROJECTS</Button></Link>
+         </div>
+      )}
+
+      <Link>Submit Project Idea</Link>
+
+      <div className='admins-parent'>
             <Typography variant='h4' id="admins-title">Admins</Typography>
             {user.id === hackathon.organizer_id && (
                <Link to={`/hackathon/${hackathon.id}/users`}>Add New Admin</Link>
             )}
-               {hackathon.admins.map((admin, index) => {
-                  return (
-                     <div className='single-hackathon-admins'
-                        key={index}>
-                        <h2>{admin.username}</h2>
-                        <p>{admin.user_hackathon_role}</p>
-                     </div>
-                  );
-               })}
-         </div>
+            {hackathon.admins.map((admin, index) => {
+               return (
+                  <div className='single-hackathon-admins'
+                     key={index}>
+                     <h2>{admin.username}</h2>
+                     <p>{admin.user_hackathon_role}</p>
+                  </div>
+               );
+            })}
       </div>
-   );
-};
+   </div>
+)}
 
 export default SinglePage;
