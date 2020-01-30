@@ -9,6 +9,7 @@ import {
    POST_PROJECT_SUCCESS,
    EDIT_HACKATHON_SUCCESS,
    DELETE_HACKATHON_SUCCESS,
+   EDIT_PROJECT_SUCCESS,
    DELETE_USER,
    DELETE_USER_SUCCESS,
    DELETE_USER_FAIL,
@@ -74,7 +75,12 @@ const reducer = (state = initialState, action) => {
             isFetching: false,
             error: ''
          };
-         
+      case EDIT_PROJECT_SUCCESS:
+         return {
+            ...state,
+            isFetching: false,
+            error: ''
+         };
       case FETCH_HACKATHONS:
          return {
             ...state,

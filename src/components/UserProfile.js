@@ -122,7 +122,6 @@ const UserProfile = props => {
 
    return (
       <div className='profile-wrapper'>
-   
          <div className='profile-container' id='profile-info'>
             <div className='profile-left'>
                <img id='profile-img' src='https://i.imgflip.com/1slnr0.jpg' alt="profile"></img>
@@ -137,7 +136,6 @@ const UserProfile = props => {
                {user.id === userProfile.id ? (
                   <>
                      <Button  id='profile-edit-btn' variant='outlined'  onClick={handleClickOpen}>Edit Profile</Button>
-                    
                   </>
                ) : null}
             </div>

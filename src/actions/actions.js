@@ -18,8 +18,50 @@ export const POST_PROJECT_SUCCESS = 'POST_PROJECT_SUCCESS';
 export const UPDATE_PROJECT_SUCCESS = 'UPDATE_PROJECT_SUCCESS';
 export const JOIN_PROJECT_SUCCESS = 'JOIN_PROJECT_SUCCESS';
 export const ASSIGN_ROLE_SUCCESS = 'ASSIGN_ROLE_SUCCESS';
+export const EDIT_PROJECT_SUCCESS = 'EDIT_PROJECT_SUCCESS';
+
+// ACTIONS
+
+
 
 //PROJECTS
+export const editProject = (
+   hackathonId,
+   project_id,
+   projectInfo
+   ) => async dispatch => {
+   dispatch({ type: FETCH_START });
+   (await axiosWithAuth())
+      .put(`/projects/${project_id}`, projectInfo)
+      .then(response => {
+         dispatch({ type: EDIT_PROJECT_SUCCESS })
+         if(projectInfo.is_approved){
+            dispatch(getSpecificHackathon(hackathonId))
+         };
+      })
+      .catch(error => {
+         dispatch({ type: FETCH_FAILURE, payload: error.response });
+      });
+}
+
+export const deleteProject = (
+   hackathonId,
+   project_id,
+) => async dispatch => {
+   dispatch({ type: FETCH_START });
+   (await axiosWithAuth())
+   .delete(`/projects/${project_id}`)
+   .then(response => {
+      dispatch({ type: POST_PROJECT_SUCCESS })
+      if(project_id){
+         dispatch(getSpecificHackathon(hackathonId))
+      };
+   })
+   .catch(error => {
+      dispatch({ type: FETCH_FAILURE})
+   })
+}
+
 export const createProject = (
    hackathon_id,
    projectInfo,
@@ -135,6 +177,7 @@ export const editHackathon = (
       .put(`/hackathons/${id}/u/${org_id}`, hackathonInfo)
       .then(response => {
          dispatch({ type: EDIT_HACKATHON_SUCCESS });
+         dispatch(getSpecificHackathon(id));
          history.push(`/success`, response.data.id);
       })
       .catch(error => {

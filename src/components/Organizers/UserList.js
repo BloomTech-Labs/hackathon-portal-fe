@@ -112,9 +112,9 @@ const UserList = props => {
 
   const results = !searchTerm.length
     ? hackers
-    : hackers.filter(hacker => {
+    : hackers ? hackers.filter(hacker => {
       return hacker.username.toLowerCase().includes(searchTerm.toLowerCase());
-    });
+    }) : false
 
     
   if (isFetching || !hackathon || !hackers) {
