@@ -19,6 +19,7 @@ import {
    withStyles
 } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
+import Loader from 'react-loader-spinner';
 
 
 const useStyles = makeStyles(theme => style);
@@ -82,7 +83,7 @@ const PastHackathons = (props) => {
          formatDate(hackathon.start_date).toLowerCase().includes(searchTerm.toLowerCase())
         );
    if (isFetching || !hackathons) {
-      return <h2>Loading Events...</h2>;
+      return <Loader type="Rings" color="#4885E1" height={100} width={100} />;
    }
    console.log(results)
 
@@ -91,6 +92,7 @@ const PastHackathons = (props) => {
 
    return (
       <div className={classes.fullList}>
+           <p id='hackathons-head'>Past Hackathons</p>
          <TextField
             name="searchHackathon"
             fullWidth
@@ -110,7 +112,6 @@ const PastHackathons = (props) => {
          ></TextField>
 
 <container class='hackathon-list-header'>
-      <p id='hackathons-head'>Past Hackathons</p>
         
         <div className='hackathon-buttons'>
            <Button id='view-archive-btn' onClick={() => props.history.push('/hackathons')}>View Upcoming Hackathons</Button>

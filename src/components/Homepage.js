@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getHackathons, getHackers } from '../actions/actions';
 import standIn2 from './images/standIn2.jpg';
 import logo1 from './images/logo1.png';
+import Loader from 'react-loader-spinner';
 
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
@@ -49,9 +50,9 @@ const Homepage = (props) => {
         }, [dispatch]);
 
         if (isFetching || !hackathons || !hackers) {
-         return <h2>Loading Events...</h2>;
+         return <Loader type="Rings" color="#4885E1" height={100} width={100} />
       }else if(!hackathons[0]){
-         return <h2>Loading Events...</h2>
+         return <Loader type="Rings" color="#4885E1" height={100} width={100} />
       }
 
         const randomize = arr => {
@@ -70,12 +71,11 @@ const Homepage = (props) => {
      
       const hacks = randomize(hackathons)
       const randomHackathons = [...new Set(hacks)];
-      
 
     return (
        <>
        { !randomHackathons.length ? (
-          <h2>Loading...</h2>
+          <Loader type="Rings" color="#4885E1" height={80} width={80} />
        ) : (
       <div className='Homepage'>
            <section>

@@ -28,15 +28,25 @@ import Radio from '@material-ui/core/Radio';
 import MenuItem from '@material-ui/core/MenuItem';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Select from '@material-ui/core/Select';
+import Loader from 'react-loader-spinner';
 
 
 const useStyles = makeStyles(theme => ({
+  container: {
+    display: 'flex',
+    justifyContent: 'center',
+    color: 'white',
+    width: '600px',
+    margin: '0 auto',
+    width: '600px'
+  },
   label: {
     background: '#D0DDFF',
     borderRadius: '5px',
     marginBottom: '20px',
   },
   root: {
+    
     padding: '3%',
     borderRadius: '5px',
         width: '50%',
@@ -52,6 +62,13 @@ const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
+    borderRadius: '5px',
+    backgroundColor: '#C0CBEB'
+  },
+  maxMembers: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column'
   },
 }));
 
@@ -114,10 +131,6 @@ const CreateProject = props => {
   const classes = useStyles();
   let spotsArray = Object.values(spots);
   const [match, setMatch] = useState(true)
-
-  // useEffect(() => {
-  //   dispatch(getSpecificHackathon((props.match.params.id)));
-  // }, [dispatch, props.match.params.id]);
 
   useEffect(() => {
     if(hackathon) {
@@ -196,11 +209,11 @@ const CreateProject = props => {
   
   if(loading || !hackathon){
     return(
-      <div>Loading...</div>
+      <Loader type="Rings" color="#4885E1" height={100} width={100} />
       )
   }else if(!hackathon.organizer_id){
     return(
-      <div>Loading...</div>
+      <Loader type="Rings" color="#4885E1" height={100} width={100} />
       )
     }
     
@@ -210,7 +223,7 @@ const CreateProject = props => {
     }
 
   return(
-    <div>
+    <div className={classes.container}>
       <form
       noValidate autoComplete="off"
       className={classes.root}
@@ -272,11 +285,11 @@ const CreateProject = props => {
         
         {project === "Team Project" && (
         <>
-          <label className="max-members">
+          <label className={classes.maxMembers}>
             <Typography  gutterBottom variant="h5" component="h5">
                   Will there be specific roles for this project? 
             </Typography>
-            <FormHelperText style={{color:'#1a2fa6'}}>The maximum number of members allowed per team is {hackathon.max_team_participants}</FormHelperText>
+            <FormHelperText style={{color:'#4885E1'}}>The maximum number of members allowed per team is {hackathon.max_team_participants}</FormHelperText>
   
             <FormControlLabel
                 control={
@@ -297,6 +310,7 @@ const CreateProject = props => {
                   name='front_end_spots'
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
+                  className={classes.formControl}
                   value={spots.frontend}
                   onChange={handleChange('frontend')}
                 >

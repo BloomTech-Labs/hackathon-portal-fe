@@ -25,6 +25,7 @@ import ErrorPage from './components/ErrorPage';
 // ACTIONS
 import { getHackathons } from './actions/actions';
 import ProjectModal from './components/Projects/ProjectModal';
+import Footer from './components/Footer';
 
 
 function App(props) {
@@ -35,6 +36,7 @@ function App(props) {
    return (
       <div className="App">
          <Router history={history}>
+            <container className='main-container'>
             <header>
                <NavBar />
             </header>
@@ -64,6 +66,8 @@ function App(props) {
                <Route path="/success" component={SuccessPage} />
                <Route component={ErrorPage} />
             </Switch>
+            </container>
+            {/* <Footer /> */}
          </Router>
       </div>
    );

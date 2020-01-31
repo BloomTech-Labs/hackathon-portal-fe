@@ -3,6 +3,7 @@ import { useAuth0 } from "../../auth0-hooks/react-auth0-spa";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import { style } from "../../styles/hackathonListStyles";
+import Button from '@material-ui/core/Button'
 
 // ACTION
 import { getSpecificHackathon, getHackers, getUser, assignRole } from "../../actions/actions";
@@ -19,12 +20,42 @@ import {
   ListItemText,
   Typography,
   Avatar,
-  Button
 } from "@material-ui/core";
+import Loader from 'react-loader-spinner';
 
 const useStyles = makeStyles(theme => style);
 
 const useListStyles = makeStyles(theme => ({
+  container: {
+    margin: '10% 10% 0 10%',
+  },
+  userListContainer: {
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  btnWrapper: {
+    textAlign: 'left'
+  },
+  usersList: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    marginTop: '50px',
+    justifyContent: 'initial'
+  },
+  card: {
+    width: "250px",
+    height: '250px',
+    border: '1px solid',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: '5%',
+    margin: '20px',
+    "&:hover": {
+      color: "#4885E1",
+      transition: "0.3s"
+    }
+  },
   modal: {
     display: "flex",
     alignItems: "center",
@@ -32,21 +63,23 @@ const useListStyles = makeStyles(theme => ({
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
+    // border: "2px solid #000",
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3)
+    padding: theme.spacing(2, 4, 3),
+    width: '200px',
+    height: '200px',
+    color: 'black',
+    display: 'flex',
+justifyContent: 'center',
+alignItems: 'center',
+flexDirection: 'column',
   },
   unorderedList: {
-    listStyleType: "none"
+    listStyleType: "none",
   },
   listItem: {
     transition: "0.3s",
-    width: "30%",
     cursor: "pointer",
-    "&:hover": {
-      color: "#1a2fa6",
-      transition: "0.3s"
-    }
   },
   test: {
     variant:'h1'
@@ -87,7 +120,14 @@ const UserList = props => {
     if(test){
       return test.user_hackathon_role
     }
-  } 
+  }
+  
+  const isParticipant = hackathon && userInfo && (hackathon.projects.map(project => {
+    return project.participants.find(part => {
+        return (part.user_id === userInfo.id)
+    })
+  }).filter(p => p !== undefined).length ? true : false)
+ 
 
   const makeOrganizer = () => {
     dispatch(assignRole(hackathon.id, userInfo.id, { user_hackathon_role: 'organizer' }, setOpen))
@@ -116,24 +156,29 @@ const UserList = props => {
       return hacker.username.toLowerCase().includes(searchTerm.toLowerCase());
     }) : false
 
+    console.log(userInfo)
+
     
   if (isFetching || !hackathon || !hackers) {
     return(
-      <div>Loading...</div>
+      <Loader type="Rings" color="#4885E1" height={100} width={100} />
     );
   }
   
   if (hackathon.organizer_id === user.id) {
     return (
-      <>
-      <Link to={`/hackathon/${hackathon.id}`}>Go back to hackathon page</Link>
+      <div className={styles.container}>
+        <div className={styles.btnWrapper}>
+          <p id='hackathons-head'>Add an Organizer</p>
+      <Button id='view-archive-btn' onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</Button>
+      </div>
         <div>
           <TextField
             name="searchHackathon"
             fullWidth
             className={classes.searchBar}
             type="text"
-            placeholder="Search Hackathons"
+            placeholder="Search Users"
             variant="outlined"
             onChange={handleChange}
             value={searchTerm}
@@ -146,17 +191,21 @@ const UserList = props => {
             }}
           ></TextField>
         </div>
-        <div>
+        <div className={styles.usersList}>
           {results.map((hacker, index) => {
             return (
-              <div key={index}>
-                <ul className={styles.unorderedList}>
-                  <ListItemText onClick={()=>handleOpen(hacker.id)} className={styles.listItem} primary={hacker.username} secondary={fn(hacker.id)}
+              <div key={index} className={styles.card} onClick={()=>handleOpen(hacker.id)} >
+                
+                <div className={styles.unorderedList}>
+                <i class="material-icons">
+person_outline
+</i>
+                  <ListItemText className={styles.listItem} primary={hacker.username} secondary={fn(hacker.id)}
                   secondaryTypographyProps={{
                     color:'primary'
                   }}>
                   </ListItemText>
-                </ul>
+                </div>
               </div>
             );
           })}
@@ -175,25 +224,23 @@ const UserList = props => {
           >
               <Fade in={open}>
                 <div className={styles.paper}>
-                  <Avatar src='./images/profile_img.jpg' />
-                    {userInfo.first_name !== undefined && (
-                      <Typography>{userInfo.first_name}</Typography>
-                    )}
-                    {userInfo.last_name !== undefined && (
-                      <Typography>{userInfo.last_name}</Typography>
-                    )}
-                      <Typography>{userInfo.username}</Typography>
+                      <i class="material-icons">
+                      person_outline
+                      </i>
+                    {userInfo.first_name !== null && userInfo.last_name !== null && (
+                      <Typography>{`${userInfo.first_name} ${userInfo.last_name}`}</Typography>
+                     )}
+                      <Typography >{userInfo.username}</Typography>
                     {role && (
                       <Typography>{role}</Typography>
                     )}
                     {hackathon.organizer_id !== userInfo.id && (
                       <>
-                        {fn(userInfo.id) !== 'organizer' && (
+                        {fn(userInfo.id) !== 'organizer' && !isParticipant  ? (
                         <>
-                          <Button onClick={() => makeOrganizer()}>Set as organizer</Button>
-                          {/* <Button onClick={() => makeJudge()}>Set as judge</Button> */}
+                          <Button color='primary' variant='contained' onClick={() => makeOrganizer()}>Set as organizer</Button>
                         </>
-                        )}
+                        ) : <p id='admin-err'>{userInfo.username} is already associated and can't be added as an organizer.</p>}
                       </>
                     )}
                 </div>
@@ -201,7 +248,7 @@ const UserList = props => {
           </Modal>
           ):false}
         </div>
-      </>
+      </div>
     );
   } else {
     return <Redirect to={`/hackathon/${hackathon.id}`} />;

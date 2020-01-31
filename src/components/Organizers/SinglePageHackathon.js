@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import Button from '@material-ui/core/Button';
 import ServerModal from './editButton/modal';
+import Loader from 'react-loader-spinner';
 
 
 // COMPONENTS
@@ -20,6 +21,8 @@ const SinglePage = props => {
    const isFetching = useSelector(state => state.isFetching);
    const [isOpen, setIsOpen] = useState({ is_open: true });
    const { user } = useAuth0();
+   const [pending, setPending] = useState([])
+   
   
    useEffect(() => {
       dispatch(getSpecificHackathon((props.match.params.id)));
@@ -28,8 +31,15 @@ const SinglePage = props => {
    useEffect(() => {
       if(hackathon){
          setIsOpen({ is_open: hackathon.is_open })
+         setPending(hackathon.projects.filter(p => !p.is_approved))
       }
    }, [hackathon]);
+
+   // useEffect(() => {
+   //    if (hackathon.projects) {
+   //       setPending(hackathon.projects.filter(p => !p.is_approved))
+   //    }
+   // }, [hackathon.projects])
 
    const handleIsOpen = () => {
       setIsOpen({ is_open: !isOpen.is_open })
@@ -68,11 +78,13 @@ const SinglePage = props => {
       return `${day}, ${m} ${d}, ${y}`;
    };
 
+   //const pending = !hackathon ? [] : hackathon.projects.filter(element=> !element.is_approved)
+
    if (isFetching) {
-      return <div>Loading...</div>;
+      return <Loader type="Rings" color="#4885E1" height={100} width={100} />
    }
    if (hackathon === undefined) {
-      return <div>Loading...</div>;
+      return <Loader type="Rings" color="#4885E1" height={100} width={100} />
    }
    return (
       <div className='single-hackathon-container'>
@@ -94,27 +106,24 @@ const SinglePage = props => {
             </div>
 
          <div>
-         <Link to={`/hackathon/${hackathon.id}/projects`}><Button id='single-hackathon-crud-btn'>VIEW PROJECTS</Button></Link>
+         
          </div>
          <div className='single-hackathon-crud-btns-container'>
-               {user.id === hackathon.organizer_id && (
+               {user.id === hackathon.organizer_id ? (
                   <div className='single-hackathon-crud-btns'>
-                     <div><Button><Link id='pendingpagebutton' to={{ pathname:`/${props.match.params.id}/pendingprojects`, state: { hackathonId: Number(props.match.params.id) }}}>Pending Projects</Link></Button></div>
-                     <ServerModal id='single-hackathon-crud-btn' props={`/hackathon/edit/${hackathon.id}`}/>
+                     <Link to={`/hackathon/${hackathon.id}/projects`}><Button className={!hackathon.projects.length ? 'grayed' : null} id='single-hackathon-crud-btn'>VIEW PROJECTS</Button></Link>
+<div className={!pending.length ? `grayed` : null}><Button><Link id='pendingpagebutton' to={{ pathname:`/${props.match.params.id}/pendingprojects`, state: { hackathonId: Number(props.match.params.id) }}}>Pending Projects{pending.length ? <div id='frag'>({pending.length})</div> : null}</Link></Button></div>
+                     <ServerModal id='pendingpagebtn' props={`/hackathon/edit/${hackathon.id}`}/>
                      <div>
                      <DeleteHackathon id={hackathon.id} org_id={hackathon.organizer_id} history={props.history} />
                      </div>
                   </div>
-               )}
+               ) : <Link to={`/hackathon/${hackathon.id}/projects`}><Button className={!hackathon.projects.length ? 'grayed' : null} id='single-hackathon-crud-btn'>VIEW PROJECTS</Button></Link>}
          </div>
    
 
-
       <div className='admins-parent'>
             <Typography variant='h4' id="admins-title">Admins</Typography>
-            {user.id === hackathon.organizer_id && (
-               <Link to={`/hackathon/${hackathon.id}/users`}>Add New Admin</Link>
-            )}
             {hackathon.admins.map((admin, index) => {
                return (
                   <div className='single-hackathon-admins'
@@ -124,6 +133,9 @@ const SinglePage = props => {
                   </div>
                );
             })}
+             {user.id === hackathon.organizer_id && (
+               <Button id='view-archive-btn' onClick={() => props.history.push(`/hackathon/${hackathon.id}/users`)}>Add Organizer</Button>
+            )}
       </div>
    </div>
 )}

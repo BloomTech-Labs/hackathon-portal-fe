@@ -4,6 +4,10 @@
   font-family: 'Roboto', sans-serif;
 }
 
+.main-container {
+  margin: 0 20px 0 0;
+}
+
 a {
   text-decoration: none;
 }
@@ -38,10 +42,6 @@ a {
   align-self: auto;
 }
 
-.hackathon-list-header{
-  display: flex;
-  justify-content: space-between;
-}
 .hackathon-buttons {
   display: flex;
   justify-content: flex-end;
@@ -50,7 +50,8 @@ a {
 
 #hackathons-head {
   font-weight: 1000;
-  font-size: 2.5rem;
+  font-size: 2.7rem;
+  text-align: left;
   color: white;
 }
 #view-archive-btn {
@@ -430,6 +431,14 @@ border: 1px solid #d0ddff;
 
 }
 
+#pending-btn {
+    color: '#d0ddff';
+    border: '1px solid #d0ddff';
+    width: '160px';
+    border-radius: '13.5px';
+    padding: 0;
+}
+
 .single-hackathon-description {
 display: flex;
 width: 35%;
@@ -475,10 +484,12 @@ margin: 1% 1% 1% 0;
   border: 1px solid;
   margin-top: 5%;
   width: 160px;
+  border-radius: 13.5px;
 }
 #single-hackathon-crud-btn {
   color: #d0ddff;
   border: 1px solid #d0ddff;
+  border-radius: 13.5px;
   margin-top: 4%;
   width: 160px;
 }
@@ -488,23 +499,18 @@ margin: 1% 1% 1% 0;
   border: 1px solid #d0ddff;
   margin-top: 4%;
   width: 160px;
+  border-radius: 13.5px;
 }
 
-/* #pendingpagebtn{
-  color: #d0ddff;
-  border: 1px solid #d0ddff;
-  margin-top: -12%;
-  width: 160px;
-} */
 
 #pendingpagebutton {
   color: #d0ddff;
   border: 1px solid #d0ddff;
   border-radius: 5px;
-  /* margin-top: -4%; */
   width: 160px;
-  padding-top: 9px;
-  padding-bottom: 9px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border-radius: 13.5px;
 }
 
 .single-hackathon-participants {
@@ -555,9 +561,9 @@ margin-top: -1%;
 }
 
 .footer {
-  display: flex;
-  justify-content: center;
-  margin: 2%;
+  text-align: center;
+  bottom: 0;
+  margin: 10px;
 }
 
 /* project modal */
@@ -568,4 +574,42 @@ margin-top: -1%;
 }
 .modal-role {
   margin-top: 5px;
+}
+.grayed {
+  opacity: 0.4;
+}
+
+/* pending list */
+
+.pendingList {
+    display: flex;
+    flex-flow: row wrap;
+    margin-top: 50px;
+    
+}
+.pending-container {
+  text-align: left;
+  margin: 0 0 3% 3%;
+  margin-top: 50px;
+}
+
+.pending-container button {
+  margin-left: 20px;
+}
+
+.checkbox {
+  border-radius: 5px;
+  background: #1c1c1f;
+  color:  #D0DDFF;
+}
+
+.decline {
+  margin-left: 20px;
+  border-radius: 5px;
+  background: #1c1c1f;
+  color:  #D0DDFF;
+}
+
+#admin-err {
+  text-align: center;
 }

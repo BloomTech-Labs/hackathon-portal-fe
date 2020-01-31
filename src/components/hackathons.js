@@ -17,6 +17,7 @@ import {
    TextField
 } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
+import Loader from 'react-loader-spinner';
 
 const useStyles = makeStyles(theme => style);
 
@@ -90,14 +91,13 @@ function Hackathons(props) {
         );
 
    if (isFetching || !hackathons) {
-      return <h2>Loading Events...</h2>;
+      return <Loader type="Rings" color="#4885E1" height={100} width={100} />
    }
 
-   // `/users/${user.id}`
-   console.log(results)
 
    return (
       <div className={classes.fullList}>
+           <p id='hackathons-head'>Hackathons</p>
          <TextField
             name="searchHackathon"
             fullWidth
@@ -116,7 +116,7 @@ function Hackathons(props) {
             }}
          ></TextField>
       <container class='hackathon-list-header'>
-      <p id='hackathons-head'>Hackathons</p>
+    
         
         <div className='hackathon-buttons'>
            <Button id='view-archive-btn' onClick={() => props.history.push('hackathons/archive')}>View Past Hackathons</Button>

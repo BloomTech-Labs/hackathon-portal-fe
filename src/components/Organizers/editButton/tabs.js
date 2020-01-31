@@ -277,7 +277,7 @@ export const SimpleTabs = props => {
                               defaultValue={hackathon.start_date}
                               value={start_date}
                               InputAdornmentProps={{ position: 'start' }}
-                              onInput={enableSave}
+                              onClickCapture={enableSave}
                               onChange={handleStartDateChange}
                            />
                         </MuiPickersUtilsProvider>
@@ -296,7 +296,7 @@ export const SimpleTabs = props => {
                               inputVariant="filled"
                               defaultValue={hackathon.start_date}
                               value={start_date}
-                              onInput={enableSave}
+                              onClickCapture={enableSave}
                               onChange={handleStartDateChange}
                               inputRef={register}
                               keyboardIcon={
@@ -327,7 +327,7 @@ export const SimpleTabs = props => {
                               inputRef={register}
                               value={end_date}
                               InputAdornmentProps={{ position: 'start' }}
-                              onInput={enableSave}
+                              onClickCapture={enableSave}
                               onChange={handleEndDateChange}
                            />
                         </MuiPickersUtilsProvider>
@@ -345,7 +345,7 @@ export const SimpleTabs = props => {
                               label='End Time'
                               inputVariant="filled"
                               value={end_date}
-                              onInput={enableSave}
+                              onClickCapture={enableSave}
                               onChange={handleEndDateChange}
                               inputRef={register}
                               keyboardIcon={

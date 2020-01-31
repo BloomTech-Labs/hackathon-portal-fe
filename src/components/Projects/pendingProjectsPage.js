@@ -4,12 +4,30 @@ import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import { editProject, getSpecificHackathon, deleteProject } from '../../actions/actions';
+import Button from '@material-ui/core/Button';
+import Loader from 'react-loader-spinner';
 
 const useStyles = makeStyles(theme => ({
     projectcard: {
-        width: '20%',
-        border: '3px solid red',
+        padding: '25px',
+        height: '250px',
+         margin: '20px',
+        background: "#1c1c1f",
+        border: "1px solid #D0DDFF",
+         width: "250px",
+        borderRadius: "3%",
+    },
+    h3: {
+         margin:' 0 0 5px',
+        fontSize: '22px',
+        fontWeight: 'bold',
+    },
+    description: {
+        overflow: 'scroll',
+        textOverflow: 'ellipsis',
+        height: '164px'
     }
+
   }));
 
 const PendingProjects = props => {
@@ -25,6 +43,8 @@ const PendingProjects = props => {
      useEffect(() => {
             dispatch(getSpecificHackathon(hackathonId))
      },[]);
+
+     const pending = !hackathon ? [] : hackathon.projects.filter(element=> !element.is_approved)
 
     const handledisapprove = data => (e) => {
         const id = user.sub.replace('auth0|', '');
@@ -50,28 +70,34 @@ const PendingProjects = props => {
      }
      console.log(hackathon, 'this is hackathon')
      if (isFetching || !hackathon) {
-        return <div>Loading...</div>;
+        return <Loader type="Rings" color="#4885E1" height={100} width={100} />;
      }
 
     return (
-        
-        <div>
-            <div className='pendingList'>
-                    {hackathon.projects.map(e => {
+        <div className='pending-container'>
+          
+         <Button id='view-archive-btn'onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</Button>
+          
+            <div>
+                <div className='pendingList'>
+               
+                    {pending.length ? pending.map(e => {
                         return (
-                        !e.is_approved && (<form key={e.project_id} className={classes.projectcard}
+                        (<form key={e.project_id} className={classes.projectcard}
                             onSubmit={handleApprove(e.project_id)} 
-                            // onClick={setCount + 1}
                             >
-                                <h3>{e.project_title}</h3>
-                                <h3>{e.project_id}</h3>
-                                <p>{e.project_description}</p>
-                                <button type='submit' >Approve Project</button>
-                                <button 
-                                onClick={handledisapprove(e.project_id)}type='submit'>Disapprove Project</button>
-                            </form>))
-
-                        })}
+                                <h3 className={classes.h3}>{e.project_title}</h3>
+                                <p className={classes.description}>{e.project_description}</p>
+                                <button type='submit' className='checkbox' ><i class="material-icons checkbox">
+                                    check</i></button>
+                                <button className='decline'
+                                onClick={handledisapprove(e.project_id)}type='submit'><i class="material-icons">
+                                close
+                                </i></button>
+                            </form>)
+                            )
+                        }) : <p>No pending projects</p>}
+                </div>
             </div>
         </div>
     )
