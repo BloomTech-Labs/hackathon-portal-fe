@@ -119,7 +119,14 @@ const UserList = props => {
     if(test){
       return test.user_hackathon_role
     }
-  } 
+  }
+  
+  const isParticipant = hackathon && userInfo && (hackathon.projects.map(project => {
+    return project.participants.find(part => {
+        return (part.user_id === userInfo.id)
+    })
+  }).filter(p => p !== undefined).length ? true : false)
+ 
 
   const makeOrganizer = () => {
     dispatch(assignRole(hackathon.id, userInfo.id, { user_hackathon_role: 'organizer' }, setOpen))
@@ -147,6 +154,8 @@ const UserList = props => {
     : hackers ? hackers.filter(hacker => {
       return hacker.username.toLowerCase().includes(searchTerm.toLowerCase());
     }) : false
+
+    console.log(userInfo)
 
     
   if (isFetching || !hackathon || !hackers) {
@@ -226,11 +235,11 @@ person_outline
                     )}
                     {hackathon.organizer_id !== userInfo.id && (
                       <>
-                        {fn(userInfo.id) !== 'organizer' && (
+                        {fn(userInfo.id) !== 'organizer' && !isParticipant  ? (
                         <>
                           <Button color='primary' variant='contained' onClick={() => makeOrganizer()}>Set as organizer</Button>
                         </>
-                        )}
+                        ) : <p id='admin-err'>{userInfo.username} is already associated and can't be added as an organizer.</p>}
                       </>
                     )}
                 </div>

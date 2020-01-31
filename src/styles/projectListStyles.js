@@ -17,8 +17,6 @@ export const style = {
     border: "1px solid #D0DDFF",
     padding: '25px',
      margin: '20px',
-    background: "#1c1c1f",
-    border: "1px solid #D0DDFF",
      width: "250px",
     borderRadius: "3%",
   },

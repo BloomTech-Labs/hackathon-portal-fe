@@ -99,7 +99,7 @@ const ProjectList = props => {
               control={<Radio />}
               value='back_end_spots'
               label="back end"
-              style={{color:'blue'}}
+              style={{color:'#4885E1'}}
             />
             <FormControlLabel
               control={<Radio />}
@@ -111,7 +111,7 @@ const ProjectList = props => {
               control={<Radio />}
               value='data_science_spots'
               label="data science"
-              style={{color:'purple'}}
+              style={{color:'#ffbfde'}}
             />
             <FormControlLabel
               control={<Radio />}
@@ -156,13 +156,13 @@ const ProjectList = props => {
                         <Avatar style={{background:'none', border:'1px solid green', color:'green'}}>FE</Avatar>
                       )}
                       {project.back_end_spots > 0 && (
-                        <Avatar style={{background:'none', border:'1px solid blue', color:'blue'}}>BE</Avatar>
+                        <Avatar style={{background:'none', border:'1px solid #4885E1', color:'#4885E1'}}>BE</Avatar>
                       )}
                       {project.ux_spots > 0 && (
                         <Avatar style={{background:'none', border:'1px solid orange', color:'orange'}}>UX</Avatar>
                       )}
                       {project.data_science_spots > 0 && (
-                        <Avatar style={{background:'none', border:'1px solid purple', color:'purple'}}>DS</Avatar>
+                        <Avatar style={{background:'none', border:'1px solid #ffbfde', color:'#ffbfde'}}>DS</Avatar>
                       )}
                       {project.ios_spots > 0 && (
                         <Avatar style={{background:'none', border:'1px solid white', color:'white'}}>IOS</Avatar>

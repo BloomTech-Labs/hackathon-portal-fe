@@ -33,7 +33,11 @@ import Select from '@material-ui/core/Select';
 const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    color: 'white',
+    width: '600px',
+    margin: '0 auto',
+    width: '600px'
   },
   label: {
     background: '#D0DDFF',
@@ -59,6 +63,11 @@ const useStyles = makeStyles(theme => ({
     minWidth: 120,
     borderRadius: '5px',
     backgroundColor: '#C0CBEB'
+  },
+  maxMembers: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column'
   },
 }));
 
@@ -275,11 +284,11 @@ const CreateProject = props => {
         
         {project === "Team Project" && (
         <>
-          <label className="max-members">
+          <label className={classes.maxMembers}>
             <Typography  gutterBottom variant="h5" component="h5">
                   Will there be specific roles for this project? 
             </Typography>
-            <FormHelperText style={{color:'#1a2fa6'}}>The maximum number of members allowed per team is {hackathon.max_team_participants}</FormHelperText>
+            <FormHelperText style={{color:'#4885E1'}}>The maximum number of members allowed per team is {hackathon.max_team_participants}</FormHelperText>
   
             <FormControlLabel
                 control={
