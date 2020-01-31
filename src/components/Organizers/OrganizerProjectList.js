@@ -16,6 +16,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
+import Loader from 'react-loader-spinner';
 
 
 const useStyles = makeStyles(theme => ({
@@ -68,7 +69,6 @@ const useStyles = makeStyles(theme => ({
       }
   }));
 
-
  
 const OrganizerProjectList = props => {
     const classes = useStyles();
@@ -86,7 +86,7 @@ const OrganizerProjectList = props => {
 
   
     if (!hackathon) {
-        return <h2>Loading...</h2>
+        return <Loader type="Rings" color="#4885E1" height={100} width={100} />
     }
 
 console.log(hackathon)

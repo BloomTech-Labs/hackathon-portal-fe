@@ -21,6 +21,7 @@ import {
   Typography,
   Avatar,
 } from "@material-ui/core";
+import Loader from 'react-loader-spinner';
 
 const useStyles = makeStyles(theme => style);
 
@@ -160,7 +161,7 @@ const UserList = props => {
     
   if (isFetching || !hackathon || !hackers) {
     return(
-      <h2>Loading...</h2>
+      <Loader type="Rings" color="#4885E1" height={100} width={100} />
     );
   }
   

@@ -28,6 +28,7 @@ import Radio from '@material-ui/core/Radio';
 import MenuItem from '@material-ui/core/MenuItem';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Select from '@material-ui/core/Select';
+import Loader from 'react-loader-spinner';
 
 
 const useStyles = makeStyles(theme => ({
@@ -208,11 +209,11 @@ const CreateProject = props => {
   
   if(loading || !hackathon){
     return(
-      <h2>Loading...</h2>
+      <Loader type="Rings" color="#4885E1" height={100} width={100} />
       )
   }else if(!hackathon.organizer_id){
     return(
-      <h2>Loading...</h2>
+      <Loader type="Rings" color="#4885E1" height={100} width={100} />
       )
     }
     

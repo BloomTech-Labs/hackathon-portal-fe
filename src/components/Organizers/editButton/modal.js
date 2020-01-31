@@ -31,6 +31,7 @@ const useStyles = makeStyles(theme => ({
   color: '#d0ddff',
   border: '1px solid #d0ddff',
   width: '160px',
+  borderRadius: '13.5px',
  }
 }));
 

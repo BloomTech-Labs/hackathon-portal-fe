@@ -6,6 +6,7 @@ import {
     DialogTitle,
     makeStyles,
  } from '@material-ui/core';
+ import Loader from 'react-loader-spinner';
  import Button from '@material-ui/core/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSpecificHackathon } from '../../actions/actions';
@@ -62,7 +63,7 @@ const useStyles = makeStyles(theme => ({
     }, [dispatch, props.match.params.id]);
 
     if (isFetching || !hackathon) {
-        return <h2>Loading...</h2>
+        return <Loader type="Rings" color="#4885E1" height={100} width={100} />
     }
 
     const handleClose = e => {

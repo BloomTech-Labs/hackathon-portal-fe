@@ -32,6 +32,7 @@ import {
    KeyboardTimePicker,
    KeyboardDatePicker
 } from '@material-ui/pickers';
+import Loader from 'react-loader-spinner';
 
 const useStyles = makeStyles(theme => ({
    label: {
@@ -129,7 +130,7 @@ const EditHackathon = props => {
    
 
    if (isFetching || !hackathon) {
-      return <h2>Loading...</h2>;
+      return <Loader type="Rings" color="#4885E1" height={100} width={100} />
    }
 
    return (

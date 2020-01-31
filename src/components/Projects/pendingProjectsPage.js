@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import { editProject, getSpecificHackathon, deleteProject } from '../../actions/actions';
 import Button from '@material-ui/core/Button';
+import Loader from 'react-loader-spinner';
 
 const useStyles = makeStyles(theme => ({
     projectcard: {
@@ -69,7 +70,7 @@ const PendingProjects = props => {
      }
      console.log(hackathon, 'this is hackathon')
      if (isFetching || !hackathon) {
-        return <h2>Loading...</h2>;
+        return <Loader type="Rings" color="#4885E1" height={100} width={100} />;
      }
 
     return (

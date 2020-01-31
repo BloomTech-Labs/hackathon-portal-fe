@@ -13,6 +13,7 @@ import {
    DialogTitle,
    TextField
 } from '@material-ui/core';
+import Loader from 'react-loader-spinner';
 
 // ACTIONS
 import { getUser } from '../actions/actions';
@@ -102,7 +103,7 @@ const UserProfile = props => {
    };
 
    if (loading || !userProfile) {
-      return <h2>Loading...</h2>;
+      return <Loader type="Rings" color="#4885E1" height={100} width={100} />
    }
 
    let presentHackathons = userProfile.hackathons.filter(hackathon => {
