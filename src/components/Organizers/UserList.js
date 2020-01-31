@@ -151,7 +151,7 @@ const UserList = props => {
     
   if (isFetching || !hackathon || !hackers) {
     return(
-      <div>Loading...</div>
+      <h2>Loading...</h2>
     );
   }
   

@@ -199,11 +199,11 @@ const CreateProject = props => {
   
   if(loading || !hackathon){
     return(
-      <div>Loading...</div>
+      <h2>Loading...</h2>
       )
   }else if(!hackathon.organizer_id){
     return(
-      <div>Loading...</div>
+      <h2>Loading...</h2>
       )
     }
     

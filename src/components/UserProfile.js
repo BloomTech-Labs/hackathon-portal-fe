@@ -102,7 +102,7 @@ const UserProfile = props => {
    };
 
    if (loading || !userProfile) {
-      return <div>Loading...</div>;
+      return <h2>Loading...</h2>;
    }
 
    let presentHackathons = userProfile.hackathons.filter(hackathon => {

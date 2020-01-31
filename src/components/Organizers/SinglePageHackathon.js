@@ -80,10 +80,10 @@ const SinglePage = props => {
    //const pending = !hackathon ? [] : hackathon.projects.filter(element=> !element.is_approved)
 
    if (isFetching) {
-      return <div>Loading...</div>;
+      return <h2>Loading...</h2>;
    }
    if (hackathon === undefined) {
-      return <div>Loading...</div>;
+      return <h2>Loading...</h2>;
    }
    return (
       <div className='single-hackathon-container'>

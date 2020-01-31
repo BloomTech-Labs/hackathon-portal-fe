@@ -73,7 +73,7 @@ const ProjectList = props => {
   }, [filterBy])
 
   if (isFetching || !hackathon) {
-    return <div>Loading...</div>;
+    return <h2>Loading...</h2>;
   }
 
   return (
