@@ -4,6 +4,10 @@
   font-family: 'Roboto', sans-serif;
 }
 
+.main-container {
+  margin: 0 20px 0 0;
+}
+
 a {
   text-decoration: none;
 }
@@ -552,9 +556,9 @@ margin-top: -1%;
 }
 
 .footer {
-  display: flex;
-  justify-content: center;
-  margin: 2%;
+  text-align: center;
+  bottom: 0;
+  margin: 10px;
 }
 
 /* project modal */
