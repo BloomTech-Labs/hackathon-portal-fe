@@ -220,9 +220,6 @@ person_outline
                     {userInfo.first_name !== null && userInfo.last_name !== null && (
                       <Typography>{`${userInfo.first_name} ${userInfo.last_name}`}</Typography>
                      )}
-                    {/* {userInfo.last_name !== undefined && (
-                      <Typography>{userInfo.last_name}</Typography>
-                    )} */}
                       <Typography >{userInfo.username}</Typography>
                     {role && (
                       <Typography>{role}</Typography>

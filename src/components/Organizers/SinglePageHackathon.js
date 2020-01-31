@@ -123,9 +123,6 @@ const SinglePage = props => {
 
       <div className='admins-parent'>
             <Typography variant='h4' id="admins-title">Admins</Typography>
-            {user.id === hackathon.organizer_id && (
-               <Link to={`/hackathon/${hackathon.id}/users`}>Add New Admin</Link>
-            )}
             {hackathon.admins.map((admin, index) => {
                return (
                   <div className='single-hackathon-admins'
@@ -135,6 +132,9 @@ const SinglePage = props => {
                   </div>
                );
             })}
+             {user.id === hackathon.organizer_id && (
+               <Button id='view-archive-btn' onClick={() => props.history.push(`/hackathon/${hackathon.id}/users`)}>Add Organizer</Button>
+            )}
       </div>
    </div>
 )}
