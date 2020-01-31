@@ -21,6 +21,7 @@ const useStyles = makeStyles(theme => ({
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    color: 'black'
   },
   button: {
     color: 'white',
@@ -94,7 +95,7 @@ function JoinProjectModal({ project, hackathon_id, registered, history }) {
           <div className={classes.paper}>
             <form onSubmit={handleSubmit}>
               <h2 id="projectTitle">{project.project_title}</h2>
-              <p>Choose your role:</p>
+              {openRoles.length > 1 && (<p>Choose your role:</p>)}
               {!openRoles[0]?
                 false
                 :
