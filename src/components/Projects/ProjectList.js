@@ -78,9 +78,9 @@ const ProjectList = props => {
 
   return (
     <div>
+      <>
       <Typography className={classes.projectsHeader} variant='h4'>Project List</Typography>
-     { !moment(hackathon.end_date).isBefore(currentDate)?
-      <Button id='view-archive-btn' onClick={() => props.history.push(`/hackathon/${hackathon.id}/create/project`)}>Submit a project idea</Button> : null}
+     
       <div className={classes.contentContainer}>
         <RadioGroup value={filterBy} onChange={handleCheckboxChange} className={classes.radioGroup}>
           <Button id='view-archive-btn' onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</Button>
@@ -125,6 +125,8 @@ const ProjectList = props => {
               label="android"
               style={{color:'red'}}
             />
+            {!moment(hackathon.end_date).isBefore(currentDate)?
+      <Button className={classes.button} onClick={() => props.history.push(`/hackathon/${hackathon.id}/create/project`)}>Submit a project idea</Button> : null}
           </RadioGroup>
         {!hackathon.projects ? 
           <Typography variant='h6'>This hackathon currently has no projects</Typography>
@@ -178,6 +180,7 @@ const ProjectList = props => {
           <Typography variant='h6'>This hackathon currently has no projects</Typography>
         }
       </div>
+      </>
     </div>
   );
 };

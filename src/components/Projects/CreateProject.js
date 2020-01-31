@@ -31,6 +31,10 @@ import Select from '@material-ui/core/Select';
 
 
 const useStyles = makeStyles(theme => ({
+  container: {
+    display: 'flex',
+    justifyContent: 'center'
+  },
   label: {
     background: '#D0DDFF',
     borderRadius: '5px',
@@ -117,10 +121,6 @@ const CreateProject = props => {
   const classes = useStyles();
   let spotsArray = Object.values(spots);
   const [match, setMatch] = useState(true)
-
-  // useEffect(() => {
-  //   dispatch(getSpecificHackathon((props.match.params.id)));
-  // }, [dispatch, props.match.params.id]);
 
   useEffect(() => {
     if(hackathon) {
@@ -213,7 +213,7 @@ const CreateProject = props => {
     }
 
   return(
-    <div>
+    <div className={classes.container}>
       <form
       noValidate autoComplete="off"
       className={classes.root}

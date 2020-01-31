@@ -6,7 +6,11 @@ export const style = {
     textAlign: 'left'
   },
   projectsHeader: {
-    textAlign: 'left'
+    textAlign: 'left',
+      fontWeight: '1000',
+      fontSize: '2.7rem',
+      color: 'white',
+      marginLeft: '30px'
   },
   projectCards: {
     background: "#1c1c1f",
@@ -20,11 +24,9 @@ export const style = {
   },
   contentContainer: {
     display: 'flex',
-    // border: '2px solid blue'
   },
   cardContainer: {
     display: 'flex',
-    // border: '2px solid white',
     flexWrap: 'wrap',
     width: '80%',
     margin:'0 auto'
@@ -45,6 +47,20 @@ export const style = {
   viewMore: {
     color: '#D0DDFF',
     cursor: 'pointer'
+  },
+  button: {
+  background: '#4885E1',
+  color: 'black',
+  border: '1px solid',
+  borderRadius: '13.5px',
+  padding: '10px',
+  width: '200px',
+  minHeight: '50px',
+  transition: '0.5s',
+  marginTop: '20px',
+  "&:hover": {
+    color: '#4885E1'
+  }
   }
  
   // projectcard: {
