@@ -21,6 +21,9 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles(theme => ({
     card: {
       maxWidth: '25%',
+      margin: '0 auto',
+      color: 'white',
+      background: 'inherit',
     },
     bullet: {
       display: 'inline-block',
@@ -28,7 +31,8 @@ const useStyles = makeStyles(theme => ({
       transform: 'scale(0.8)',
     },
     title: {
-      fontSize: 26,
+      fontSize: 18,
+      color: 'white',
     },
     pos: {
       marginBottom: 12,
@@ -47,6 +51,21 @@ const useStyles = makeStyles(theme => ({
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
       },
+      content: {
+          color: 'white',
+          border: '1px solid',
+          borderRadius: '13.5px',
+          paddingBottom: '0'
+      },
+      projects: {
+        display: 'flex',
+        flexDirection: 'column',
+        marginBottom: '50px'
+      },
+      listItem: {
+          color: 'white',
+          textAlign: 'left'
+      }
   }));
 
 
@@ -65,12 +84,7 @@ const OrganizerProjectList = props => {
       setOpen(false);
     };
 
-    // useEffect(() => {
-    //     if(hackathon){
-    //         dispatch(getSpecificHackathon( hackathon.id ));
-    //     }
-    // }, [open]);
-
+  
     if (!hackathon) {
         return <h2>Loading...</h2>
     }
@@ -81,7 +95,7 @@ console.log(hackathon)
         <div className="container">
             <div>    
                 <Card className={classes.card} onClick={handleOpen}>
-                        <CardContent>
+                        <CardContent className={classes.content}>
                             <AddIcon />
                             <Typography className={classes.title} color="textSecondary" gutterBottom>
                                 Create Project 
@@ -107,23 +121,21 @@ console.log(hackathon)
                     
                 </div>
 
-                <div className="projects">
+                <div className={classes.projects}>
                     {hackathon.projects.map(project => {
                         return (
-                            <Card className={classes.card} key={project.project_id}>
-                                <Link
-                                    to={`/hackathon/${project.project_id}`}
-                                >
-                                    <div>
+                            <div className={classes.listItem} key={project.project_id}>
+                                 <div>
                                     <CardHeader
                                         title={project.project_title}
                                     />
-                                        <CardContent>
+                                    <CardContent>
+                                        <Typography noWrap={true}>
                                                 {project.project_description}
-                                        </CardContent>
-                                    </div>
-                                </Link>
-                            </Card>
+                                        </Typography>
+                                    </CardContent>
+                                </div>
+                            </div>
                         )
                     })}
                     

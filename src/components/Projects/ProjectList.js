@@ -148,7 +148,7 @@ const ProjectList = props => {
                       <Typography variant='h5' className={classes.projectTitle}>{project.project_title}</Typography>
                       <Typography noWrap={true} variant='body2' className={classes.projectDescription}>{project.project_description}</Typography>
                       {registered.project_id === project.project_id ? (
-                    <FormHelperText style={{color:'lime'}}>You are successfully registered for {project.project_title}!</FormHelperText>
+                    <FormHelperText style={{color:'lime'}}>You are registered for {project.project_title}!</FormHelperText>
                     ):false}
                     </div>
                     <div style={{display:'flex', margin:'0 auto'}}>
