@@ -38,10 +38,6 @@ a {
   align-self: auto;
 }
 
-.hackathon-list-header{
-  display: flex;
-  justify-content: space-between;
-}
 .hackathon-buttons {
   display: flex;
   justify-content: flex-end;
@@ -50,7 +46,8 @@ a {
 
 #hackathons-head {
   font-weight: 1000;
-  font-size: 2.5rem;
+  font-size: 2.7rem;
+  text-align: left;
   color: white;
 }
 #view-archive-btn {
@@ -571,4 +568,35 @@ margin-top: -1%;
 }
 .grayed {
   opacity: 0.4;
+}
+
+/* pending list */
+
+.pendingList {
+    display: flex;
+    flex-flow: row wrap;
+    margin-top: 50px;
+    
+}
+.pending-container {
+  text-align: left;
+  margin: 0 0 3% 3%;
+  margin-top: 50px;
+}
+
+.pending-container button {
+  margin-left: 20px;
+}
+
+.checkbox {
+  border-radius: 5px;
+  background: #1c1c1f;
+  color:  #D0DDFF;
+}
+
+.decline {
+  margin-left: 20px;
+  border-radius: 5px;
+  background: #1c1c1f;
+  color:  #D0DDFF;
 }

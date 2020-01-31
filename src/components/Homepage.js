@@ -70,7 +70,6 @@ const Homepage = (props) => {
      
       const hacks = randomize(hackathons)
       const randomHackathons = [...new Set(hacks)];
-      
 
     return (
        <>

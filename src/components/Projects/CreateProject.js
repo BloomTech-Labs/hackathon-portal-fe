@@ -37,6 +37,7 @@ const useStyles = makeStyles(theme => ({
     marginBottom: '20px',
   },
   root: {
+    
     padding: '3%',
     borderRadius: '5px',
         width: '50%',
@@ -52,6 +53,8 @@ const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
+    borderRadius: '5px',
+    backgroundColor: '#C0CBEB'
   },
 }));
 
@@ -297,6 +300,7 @@ const CreateProject = props => {
                   name='front_end_spots'
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
+                  className={classes.formControl}
                   value={spots.frontend}
                   onChange={handleChange('frontend')}
                 >

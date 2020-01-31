@@ -105,18 +105,19 @@ const SinglePage = props => {
             </div>
 
          <div>
-         <Link to={`/hackathon/${hackathon.id}/projects`}><Button id='single-hackathon-crud-btn'>VIEW PROJECTS</Button></Link>
+         
          </div>
          <div className='single-hackathon-crud-btns-container'>
-               {user.id === hackathon.organizer_id && (
+               {user.id === hackathon.organizer_id ? (
                   <div className='single-hackathon-crud-btns'>
+                     <Link to={`/hackathon/${hackathon.id}/projects`}><Button className={!hackathon.projects.length ? 'grayed' : null} id='single-hackathon-crud-btn'>VIEW PROJECTS</Button></Link>
 <div className={!pending.length ? `grayed` : null}><Button><Link id='pendingpagebutton' to={{ pathname:`/${props.match.params.id}/pendingprojects`, state: { hackathonId: Number(props.match.params.id) }}}>Pending Projects{pending.length ? <div id='frag'>({pending.length})</div> : null}</Link></Button></div>
                      <ServerModal id='single-hackathon-crud-btn' props={`/hackathon/edit/${hackathon.id}`}/>
                      <div>
                      <DeleteHackathon id={hackathon.id} org_id={hackathon.organizer_id} history={props.history} />
                      </div>
                   </div>
-               )}
+               ) : <Link to={`/hackathon/${hackathon.id}/projects`}><Button className={!hackathon.projects.length ? 'grayed' : null} id='single-hackathon-crud-btn'>VIEW PROJECTS</Button></Link>}
          </div>
    
 

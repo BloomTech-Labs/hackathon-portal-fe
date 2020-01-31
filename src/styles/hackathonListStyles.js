@@ -41,7 +41,7 @@ export const style = {
     transform: "rotate(180deg)"
   },
   searchBar: {
-    width: '99%'
+    width: '500px'
   },
   fullList: {
     margin: "8% 10% 0px 10%"
