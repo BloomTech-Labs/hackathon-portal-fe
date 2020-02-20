@@ -1,4 +1,4 @@
-/* NOTE: css code for Dashabord */
+/* /* NOTE: css code for Dashabord
 .App {
   text-align: center;
   font-family: 'Roboto', sans-serif;
@@ -74,10 +74,10 @@ a {
 #createEventButtonText {
   margin-top: -8%;
   color:silver;
-  /* margin-left: 5%; */
+   margin-left: 5%; 
 }
 
-/*css code for the Events.js file*/
+css code for the Events.js file
 .createEvent{
   width: 28%;
   margin: 1.5%;
@@ -105,7 +105,7 @@ a {
   margin-bottom: 3%;
 }
 
-           /*navBar */
+           /*navBar 
 
 header {
   margin-top: 20px;
@@ -156,7 +156,7 @@ header {
   background: white;
 }
 
-           /* homepage css */
+           /* homepage css 
 
 .Homepage {
   width: 58%;
@@ -205,7 +205,7 @@ header {
 }
 
 .hackathonCard {
-  /* border: 2px solid red; */
+  /* border: 2px solid red; 
   padding: 1%;
 }
 
@@ -264,7 +264,7 @@ header {
 
            
 }
-/* user profile  */
+/* user profile  
 
 .profile-wrapper {
   display: flex;
@@ -378,7 +378,7 @@ line-height: 53px;
   flex-direction: column;
 }
 
-/* create hackathon form  */
+/* create hackathon form  
 .createHackathonContainer1 {
   display: flex;
   justify-content: center;
@@ -401,7 +401,7 @@ line-height: 53px;
 }
 
 
-            /* single hackathon styling*/
+            /* single hackathon styling
 
 .single-hackathon-container {
   display: flex;
@@ -468,7 +468,7 @@ font-weight: normal;
 font-size: 30px;
 line-height: 29px;
 color: #4885E1;
-/* margin-top: 6%; */
+/* margin-top: 6%; 
 margin: 1% 1% 1% 0;
 }
 
@@ -520,7 +520,7 @@ text-align: left;
 justify-content: flex-start;
 width: 50%;
 color: #4885E1;
-/* margin-top: 7%; */
+/* margin-top: 7%; 
 margin: 1% 1% 1% 0;
 }
 
@@ -566,7 +566,7 @@ margin-top: -1%;
   margin: 10px;
 }
 
-/* project modal */
+/* project modal 
 
 .modal-username {
   font-weight: bold;
@@ -579,7 +579,7 @@ margin-top: -1%;
   opacity: 0.4;
 }
 
-/* pending list */
+/* pending list 
 
 .pendingList {
     display: flex;
@@ -612,4 +612,4 @@ margin-top: -1%;
 
 #admin-err {
   text-align: center;
-}
+}  */

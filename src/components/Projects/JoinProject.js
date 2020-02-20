@@ -1,3 +1,7 @@
+// A button on ProjectModel that says "Join Project"
+// When clicked, opens a seperate modal that says "submit"
+// Where you would choose you role for the project
+
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';

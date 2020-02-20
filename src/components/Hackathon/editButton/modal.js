@@ -1,3 +1,5 @@
+//Hackathon Setting. File needs to be renames from modal.js
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';

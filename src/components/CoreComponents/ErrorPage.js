@@ -1,3 +1,5 @@
+// Used for routes in the site that do not exist
+
 import React from 'react';
 import { Typography } from '@material-ui/core';
 

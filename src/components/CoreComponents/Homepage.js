@@ -1,8 +1,9 @@
+// The homepage for the website
+
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getHackathons, getHackers } from '../actions/actions';
-import standIn2 from './images/standIn2.jpg';
-import logo1 from './images/logo1.png';
+import { getHackathons, getHackers } from '../../actions/actions';
+import logo1 from '../../images/logo1.png';
 import Loader from 'react-loader-spinner';
 
 import { Carousel } from 'react-responsive-carousel';

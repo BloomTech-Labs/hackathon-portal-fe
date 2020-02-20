@@ -1,7 +1,12 @@
+// Displays a list of all active users
+// Contains a search bar that can search through all users and return back matching searched results
+// Only used to add organizers
+// Try extracting the search function and creating its own component so it can be used outside of the UserList component
+
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "../../auth0-hooks/react-auth0-spa";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { style } from "../../styles/hackathonListStyles";
 import Button from '@material-ui/core/Button'
 
@@ -15,11 +20,8 @@ import {
   Modal,
   Backdrop,
   Fade,
-  createMuiTheme,
-  FormHelperText,
   ListItemText,
   Typography,
-  Avatar,
 } from "@material-ui/core";
 import Loader from 'react-loader-spinner';
 
@@ -121,13 +123,13 @@ const UserList = props => {
       return test.user_hackathon_role
     }
   }
-  
+
   const isParticipant = hackathon && userInfo && (hackathon.projects.map(project => {
     return project.participants.find(part => {
         return (part.user_id === userInfo.id)
     })
   }).filter(p => p !== undefined).length ? true : false)
- 
+
 
   const makeOrganizer = () => {
     dispatch(assignRole(hackathon.id, userInfo.id, { user_hackathon_role: 'organizer' }, setOpen))
@@ -150,6 +152,8 @@ const UserList = props => {
     setOpen(false);
   };
 
+  const username = hackers.username;
+
   const results = !searchTerm.length
     ? hackers
     : hackers ? hackers.filter(hacker => {
@@ -158,13 +162,13 @@ const UserList = props => {
 
     console.log(userInfo)
 
-    
+
   if (isFetching || !hackathon || !hackers) {
     return(
       <Loader type="Rings" color="#4885E1" height={100} width={100} />
     );
   }
-  
+
   if (hackathon.organizer_id === user.id) {
     return (
       <div className={styles.container}>
@@ -195,11 +199,11 @@ const UserList = props => {
           {results.map((hacker, index) => {
             return (
               <div key={index} className={styles.card} onClick={()=>handleOpen(hacker.id)} >
-                
+
                 <div className={styles.unorderedList}>
                 <i class="material-icons">
-person_outline
-</i>
+                  person_outline
+                </i>
                   <ListItemText className={styles.listItem} primary={hacker.username} secondary={fn(hacker.id)}
                   secondaryTypographyProps={{
                     color:'primary'

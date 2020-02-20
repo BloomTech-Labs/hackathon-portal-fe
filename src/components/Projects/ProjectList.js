@@ -1,5 +1,6 @@
+// A page that shows a list of all approved project ideas in a hackathon
+
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import moment from 'moment';

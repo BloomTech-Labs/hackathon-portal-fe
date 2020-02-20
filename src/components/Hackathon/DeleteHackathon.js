@@ -1,3 +1,5 @@
+//Deletes a hackathon
+
 import React, {useState} from 'react';
 import {
   Dialog,

@@ -1,9 +1,13 @@
+// Displays a list of all hackathons
+// Has a search function to find hackathons
+// Try to extract search function and create its own component
+
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getHackathons } from '../actions/actions';
+import { getHackathons } from '../../actions/actions';
 import { Link } from 'react-router-dom';
-import logo3 from './images/logo3.png'
-import { style } from '../styles/hackathonListStyles';
+import logo3 from '../../images/logo3.png'
+import { style } from '../../styles/hackathonListStyles';
 import moment from 'moment';
 
 //material UI
@@ -56,7 +60,7 @@ function Hackathons(props) {
    };
 
    useEffect(() => {
-      dispatch(getHackathons()); 
+      dispatch(getHackathons());
    }, [dispatch]);
 
 
@@ -79,7 +83,7 @@ function Hackathons(props) {
     console.log(presentHackathons)
     console.log(pastHackathons)
 
-  
+
 
    const results = !searchTerm.length
       ? presentHackathons
@@ -116,15 +120,15 @@ function Hackathons(props) {
             }}
          ></TextField>
       <container class='hackathon-list-header'>
-    
-        
+
+
         <div className='hackathon-buttons'>
            <Button id='view-archive-btn' onClick={() => props.history.push('hackathons/archive')}>View Past Hackathons</Button>
         </div>
 
       </container>
-         
-         
+
+
          <div className={classes.cardParent}>
             {results.map(hackathon => {
                return (
@@ -168,7 +172,7 @@ function Hackathons(props) {
                   </Card>
                );
             })}
-           
+
          </div>
       </div>
    );

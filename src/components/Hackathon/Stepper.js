@@ -1,3 +1,6 @@
+// A counting "stepper" that counts what step you are on in a process
+// Seems to only be used on the CreateHackathon page
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
@@ -7,9 +10,6 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Check from '@material-ui/icons/Check';
 import StepConnector from '@material-ui/core/StepConnector';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import FormHelperText from '@material-ui/core/FormHelperText';
 
 const QontoConnector = withStyles({
   alternativeLabel: {

@@ -4,29 +4,25 @@ import { connect } from 'react-redux';
 
 import { Router, Route, Switch } from 'react-router-dom';
 import history from './utils/history';
-import PrivateRoute from './components/PrivateRoute';
-import NavBar from './components/NavBar';
-import HackerList from './components/hackerList';
-import Homepage from './components/Homepage';
-import Hackathons from './components/hackathons';
-import CreateHackathon from './components/Organizers/CreateHackathon';
-import EditHackathon from './components/Organizers/EditHackathon';
-import SinglePage from './components/Organizers/SinglePageHackathon';
-import SuccessPage from './components/SuccessPage';
-import UserProfile from './components/UserProfile';
+import PrivateRoute from './components/CoreComponents/PrivateRoute';
+import NavBar from './components/CoreComponents/NavBar';
+import Homepage from './components/CoreComponents/Homepage';
+import Hackathons from './components/Hackathon/hackathons';
+import CreateHackathon from './components/Hackathon/CreateHackathon';
+import EditHackathon from './components/Hackathon/EditHackathon';
+import SinglePage from './components/Hackathon/SinglePageHackathon';
+import SuccessPage from './components/NotBeingUsed/SuccessPage';
+import UserProfile from './components/UserPorfile/UserProfile';
 import PendingProjects from './components/Projects/pendingProjectsPage';
-import PastHackathons from './components/pastHackathons';
-// import Footer from './components/Footer';
+import PastHackathons from './components/Hackathon/pastHackathons';
 import CreateProject from './components/Projects/CreateProject';
 import ProjectList from './components/Projects/ProjectList';
 import UserList from './components/Organizers/UserList';
-import ErrorPage from './components/ErrorPage';
+import ErrorPage from './components/CoreComponents/ErrorPage';
 
 // ACTIONS
 import { getHackathons } from './actions/actions';
 import ProjectModal from './components/Projects/ProjectModal';
-import Footer from './components/Footer';
-
 
 function App(props) {
    useEffect(() => {
@@ -59,11 +55,11 @@ function App(props) {
                   component={EditHackathon}
                />
                <PrivateRoute exact path={`/hackathon/:id`} component={SinglePage} />
-               <Route path="/success" component={SuccessPage} />
+               {/* <Route path="/success" component={SuccessPage} /> */}
                <PrivateRoute exact path='/hackathon/:id/projects' component={ProjectList} />
                <PrivateRoute exact path='/hackathon/:id/create/project' component={CreateProject} />
                <PrivateRoute exact path='/hackathon/:id/users' component={UserList} />
-               <Route path="/success" component={SuccessPage} />
+               {/* <Route path="/success" component={SuccessPage} /> */}
                <Route component={ErrorPage} />
             </Switch>
             </container>

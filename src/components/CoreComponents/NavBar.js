@@ -1,7 +1,9 @@
+// The navbar for the website
+
 import React from 'react';
-import { useAuth0 } from '../auth0-hooks/react-auth0-spa';
+import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import { Link } from 'react-router-dom';
-import HackathonLogo from '../components/images/HackathonLogo.png';
+import HackathonLogo from '../../images/HackathonLogo.png';
 
 
 const NavBar = props => {

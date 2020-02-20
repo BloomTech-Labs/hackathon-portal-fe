@@ -1,11 +1,13 @@
+// Can create a project idea for a hackathon
+// Either as a organizer (with pre-approval), or as a hacker (without pre-approval)
+
 import React, { useState, useEffect } from 'react';
-import clsx from 'clsx';
 import { blue } from '@material-ui/core/colors';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import { useDispatch, useSelector } from 'react-redux';
 
 //ACTIONS
-import { createProject, getSpecificHackathon } from '../../actions/actions';
+import { createProject } from '../../actions/actions';
 
 // STYLE
 import 'date-fns';

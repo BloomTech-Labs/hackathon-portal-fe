@@ -1,8 +1,11 @@
+// Shows your user profile 
+// When refreshing on the page it breaks.
+
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useAuth0 } from '../auth0-hooks/react-auth0-spa';
+import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import moment from 'moment';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
+import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 import Button from '@material-ui/core/Button';
 
@@ -16,8 +19,8 @@ import {
 import Loader from 'react-loader-spinner';
 
 // ACTIONS
-import { getUser } from '../actions/actions';
-import { deleteUser } from '../actions/actions';
+import { getUser } from '../../actions/actions';
+import { deleteUser } from '../../actions/actions';
 import ProfileCard from './ProfileCard';
 
 const UserProfile = props => {
