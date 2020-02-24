@@ -152,8 +152,6 @@ const UserList = props => {
     setOpen(false);
   };
 
-  const username = hackers.username;
-
   const results = !searchTerm.length
     ? hackers
     : hackers ? hackers.filter(hacker => {
