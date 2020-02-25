@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
+.hackathonHeaders {
+  font-family: Muli;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 40px;
+  text-align: center;
+  letter-spacing: 0.1px;
+}
+
+.fullList {
+  margin: 8% 5% 0px 5%;
+  text-align: center;
+}
+
+.fullList #hackathons-head {
+  margin: auto;
+  width: 65%;
+  text-align: left;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.cardParent {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: 10%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.content {
+  text-align: left;
+}
+
+.hackathonInfo {
+  font-family: Muli;
+  text-align: center;
+  color: black;
+  font-size: 14px;
+  line-height: 20px;
+}
+/*# sourceMappingURL=hackathonlist.css.map */

@@ -1,0 +1,126 @@
+.homepage {
+    margin: auto;
+    height: 100vh;
+    .hero {
+        width: 100%;
+        height: 60%;
+        background-color:  lightgrey;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .hero2 {
+        width:80%;
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .hero-left {
+        width: 35%;
+        left: 165px;
+        // font-family: Muli;
+         p{
+            font-size: 16px;
+            line-height: 22px;
+            width: 400px;
+            height: 88px;
+        }
+        button {
+            font-size: 14px;
+            line-height: 18px;
+            width: 170px;
+            height: 55px;
+            border-radius: 4px;
+            margin-top: 40px;
+            background-color: #fff;
+            border: 1px solid #fff;
+        }
+        h1{
+            font-family: Muli;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 44px;
+            line-height: 56px;
+            width: 445px;
+            height: 112px;
+        }
+    }
+    .hero-right {
+        width: 735px;
+        height: 512px;
+        left: 640px;
+    }
+}
+
+.homePageDataDisplay {
+    margin: 20px auto;
+    text-align: center;
+    width: 80%;
+        .upcoming-hackathons {
+            display: flex;
+            justify-content: space-between;
+          }
+
+         .hackathon-card {
+                width: 350px;
+                height: 260px;
+                background-color: grey;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 4px;
+                font-size: 18px;
+                line-height: 24px;
+
+    }
+}
+
+.displayInfo {
+   font-weight: bold;
+   font-size: 14px;
+   line-height: 18px;
+   height: 18px;
+   margin: 10px;
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+}
+
+.middle-content {
+   width: 80%;
+   margin: auto;
+   text-align: center;
+   font-size: 32px;
+   line-height: 40px;
+
+   h2 {
+    font-size: 32px;
+    line-height: 40px;
+   }
+
+    p{
+       font-size: 16px;
+       line-height: 22px;
+       text-align: center;
+   }
+
+    .values {
+        display:flex;
+        justify-content:space-between;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: center;
+         p{
+        font-size: 14px;
+        line-height: 20px;
+    }
+     h3{
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 24px;
+    }
+ }
+}
+

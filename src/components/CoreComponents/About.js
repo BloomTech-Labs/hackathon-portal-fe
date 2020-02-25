@@ -1,6 +1,6 @@
-import React from 'react' 
+import React from 'react'
 
-import '../../sass/about.scss'
+import '../../sass/about/about.scss'
 
  const About = () => {
      return (
@@ -15,12 +15,12 @@ import '../../sass/about.scss'
             </div>
             <div className="bottom">
                <div className="bottom-left">
-                  <h1>Fostering creativity and innovationeam definiebas reformidans, exerci persecuti</h1>
+                  <h2>Fostering creativity and innovationeam definiebas reformidans, exerci persecuti</h2>
                   <div className='values'>
                       <p>Et has minim elitr intellegat. Mea aeterno eleifend antiopam ad, nam no suscipit quaerendum</p>
                       <p>At nam minimum ponderum. Est audiam animal molestiae te. Ex duo eripuit mentitum.</p>
                   </div>
-                  
+
                </div>
                <img className='bottom-right' src='https://picsum.photos/300/300'/>
             </div>

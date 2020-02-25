@@ -12,7 +12,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 import moment from 'moment';
 
-import '../../sass/homePage.scss'
+import '../../sass/homepage/homePage.scss'
 
 const formatDate = date => {
    const months = [
@@ -94,15 +94,15 @@ const Homepage = (props) => {
                   <p className='test'>Hackathon Portal is the hub for everything hackathon. Whether you're coordinating a hackathon, judging a project, or participating, Hackathon Portal is the best way to stay up to date on the event's activity.</p>
                   <div className="values">
                      <div>
-                        <h4>Organize</h4>
+                        <h3>Organize</h3>
                         <p>At eripuit signiferumque sea, vel ad mucius molestie, cu labitur iuvaret vulputate sed.</p>
                      </div>
                      <div>
-                        <h4>Participate</h4>
+                        <h3>Participate</h3>
                         <p>At eripuit signiferumque sea, vel ad mucius molestie, cu labitur iuvaret vulputate sed.</p>
                      </div>
                      <div>
-                        <h4>Evaluate</h4>
+                        <h3>Evaluate</h3>
                         <p>At eripuit signiferumque sea, vel ad mucius molestie, cu labitur iuvaret vulputate sed.</p>
                      </div>
                   </div>

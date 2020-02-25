@@ -26,7 +26,7 @@ import About from './components/CoreComponents/About';
 import { getHackathons } from './actions/actions';
 import ProjectModal from './components/Projects/ProjectModal';
 
-import './sass/app.scss'
+import './sass/app/app.scss'
 
 function App(props) {
    useEffect(() => {

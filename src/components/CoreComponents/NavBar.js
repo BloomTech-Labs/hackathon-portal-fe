@@ -6,7 +6,7 @@ import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import { Link } from 'react-router-dom';
 import HackathonLogo from '../../images/HackathonLogo.png';
 
-import '../../sass/navBar.scss'
+import '../../sass/navbar/navBar.scss'
 
 const NavBar = props => {
    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();

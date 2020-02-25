@@ -100,24 +100,24 @@ function Hackathons(props) {
 
 
    return (
-      <div className={classes.fullList}>
-           <p id='hackathons-head'>Hackathons</p>
+      <div className='fullList'>
+         <p id='hackathons-head'>Search</p>
          <TextField
             name="searchHackathon"
             fullWidth
             className={classes.searchBar}
             type="text"
-            placeholder="Search Hackathons"
+            placeholder="Search all Hackathons"
             variant="outlined"
             onChange={handleChange}
             value={searchTerm}
-            InputProps={{
-               classes: {
-                  root: classes.inputOutline,
-                  focused: classes.focusedOutline,
-                  notchedOutline: classes.notchedOutline
-               }
-            }}
+            // InputProps={{
+            //    classes: {
+            //       root: classes.inputOutline,
+            //       focused: classes.focusedOutline,
+            //       notchedOutline: classes.notchedOutline
+            //    }
+            // }}
          ></TextField>
       <container class='hackathon-list-header'>
 
@@ -128,17 +128,23 @@ function Hackathons(props) {
 
       </container>
 
-
-         <div className={classes.cardParent}>
+      <h3 className='hackathonHeaders'>Upcoming Hackathons</h3>
+         <div className='cardParent'>
             {results.map(hackathon => {
                return (
                   <Card className={classes.card} key={hackathon.id}>
+                    
+                    <Link
+                        to={`/hackathon/${hackathon.id}`}
+                        className={classes.link}
+                     >
+                        <CardMedia className={classes.media} image='https://picsum.photos/300/300' id='hackathon-card'/>
+                     </Link>
+                        <div className='content'>
                      <Link
                         to={`/hackathon/${hackathon.id}`}
                         className={classes.link}
                      >
-                        <CardMedia className={classes.media} image={logo3} id='hackathon-card'/>
-                        <div className={classes.content}>
                            <CardHeader
                               title={hackathon.name}
                               className={classes.hackathonName}
@@ -148,15 +154,16 @@ function Hackathons(props) {
                                  }
                               }}
                            />
+                     </Link>
                            <CardContent>
-                              <Typography
+                              {/* <Typography
                                  variant="body2"
                                  component="p"
                                  className={classes.hackathonDescription}
                               >
                                  {hackathon.description}
-                              </Typography>
-                              <div className={classes.hackathonInfo}>
+                              </Typography> */}
+                              <div className='hackathonInfo'>
                                  <Typography variant="body2" component="p">
                                     {hackathon.location}
                                  </Typography>
@@ -167,14 +174,139 @@ function Hackathons(props) {
                                  {hackathon.is_open === false ? <div>CLOSED</div> : null}
                               </div>
                            </CardContent>
-                        </div>
-                     </Link>
+                        <Link
+                           to={`/hackathon/${hackathon.id}`}
+                           className={classes.link}
+                        >
+                           <Typography className={classes.details} variant="body2" component="p">
+                              Details
+                           </Typography>
+                        </Link>
+                     </div>
                   </Card>
                );
             })}
-
+         </div>
+         <h3 className='hackathonHeaders'>Active Hackathons</h3>
+         <div className='cardParent'>
+            {results.map(hackathon => {
+               return (
+                  <Card className={classes.card} key={hackathon.id}>
+                    
+                    <Link
+                        to={`/hackathon/${hackathon.id}`}
+                        className={classes.link}
+                     >
+                        <CardMedia className={classes.media} image='https://picsum.photos/300/300' id='hackathon-card'/>
+                     </Link>
+                        <div className='content'>
+                     <Link
+                        to={`/hackathon/${hackathon.id}`}
+                        className={classes.link}
+                     >
+                           <CardHeader
+                              title={hackathon.name}
+                              className={classes.hackathonName}
+                              titleTypographyProps={{
+                                 classes: {
+                                    root: classes.hackathonName
+                                 }
+                              }}
+                           />
+                     </Link>
+                           <CardContent>
+                              {/* <Typography
+                                 variant="body2"
+                                 component="p"
+                                 className={classes.hackathonDescription}
+                              >
+                                 {hackathon.description}
+                              </Typography> */}
+                              <div className='hackathonInfo'>
+                                 <Typography variant="body2" component="p">
+                                    {hackathon.location}
+                                 </Typography>
+                                 <Typography variant="body2" component="p">
+                                    Start Date:{' '}
+                                    {formatDate(hackathon.start_date)}
+                                 </Typography>
+                                 {hackathon.is_open === false ? <div>CLOSED</div> : null}
+                              </div>
+                           </CardContent>
+                        <Link
+                           to={`/hackathon/${hackathon.id}`}
+                           className={classes.link}
+                        >
+                           <Typography className={classes.details} variant="body2" component="p">
+                              Details
+                           </Typography>
+                        </Link>
+                     </div>
+                  </Card>
+               );
+            })}
+         </div>
+         <h3 className='hackathonHeaders'>Past Hackathons</h3>
+         <div className='cardParent'>
+            {results.map(hackathon => {
+               return (
+                  <Card className={classes.card} key={hackathon.id}>
+                    
+                    <Link
+                        to={`/hackathon/${hackathon.id}`}
+                        className={classes.link}
+                     >
+                        <CardMedia className={classes.media} image='https://picsum.photos/300/300' id='hackathon-card'/>
+                     </Link>
+                        <div className='content'>
+                     <Link
+                        to={`/hackathon/${hackathon.id}`}
+                        className={classes.link}
+                     >
+                           <CardHeader
+                              title={hackathon.name}
+                              className={classes.hackathonName}
+                              titleTypographyProps={{
+                                 classes: {
+                                    root: classes.hackathonName
+                                 }
+                              }}
+                           />
+                     </Link>
+                           <CardContent>
+                              {/* <Typography
+                                 variant="body2"
+                                 component="p"
+                                 className={classes.hackathonDescription}
+                              >
+                                 {hackathon.description}
+                              </Typography> */}
+                              <div className='hackathonInfo'>
+                                 <Typography variant="body2" component="p">
+                                    {hackathon.location}
+                                 </Typography>
+                                 <Typography variant="body2" component="p">
+                                    Start Date:{' '}
+                                    {formatDate(hackathon.start_date)}
+                                 </Typography>
+                                 {hackathon.is_open === false ? <div>CLOSED</div> : null}
+                              </div>
+                           </CardContent>
+                        <Link
+                           to={`/hackathon/${hackathon.id}`}
+                           className={classes.link}
+                        >
+                           <Typography className={classes.details} variant="body2" component="p">
+                              Details
+                           </Typography>
+                        </Link>
+                     </div>
+                  </Card>
+               );
+            })}
          </div>
       </div>
+      
    );
 }
 
