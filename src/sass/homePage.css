@@ -1,0 +1,104 @@
+.homepage {
+  margin: auto;
+  height: 100vh;
+}
+
+.homepage .hero {
+  width: 100%;
+  height: 60%;
+  background-color: grey;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.homepage .hero2 {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.homepage .hero-left {
+  width: 35%;
+}
+
+.homepage .hero-left button {
+  font-size: 14px;
+  width: 160px;
+  height: 48px;
+  border-radius: 4px;
+  margin-top: 40px;
+  background-color: #fff;
+  border: 1px solid #fff;
+}
+
+.homepage .hero-right {
+  width: 55%;
+  height: 45vh;
+}
+
+.homePageDataDisplay {
+  margin: 20px auto;
+  text-align: center;
+  width: 80%;
+}
+
+.homePageDataDisplay .upcoming-hackathons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.homePageDataDisplay .hackathon-card {
+  width: 30%;
+  height: 200px;
+  background-color: grey;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.displayInfo {
+  font-size: 20px;
+  margin-top: 40px;
+}
+
+.displayInfo a {
+  text-decoration: none;
+  color: black;
+}
+
+.middle-content {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+}
+
+.middle-content .values {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+/*# sourceMappingURL=homePage.css.map */

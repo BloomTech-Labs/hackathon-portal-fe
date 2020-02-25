@@ -3,8 +3,12 @@
 
 import React from 'react';
 
-export default function Footer () {
+import '../../sass/footer.scss'
+
+const Footer = () => {
     return (
-        <footer className='footer'>Lambda Labs 21</footer>
+        <p className='footer'>Lambda Labs 21</p>
     )
 }
+
+export default Footer;

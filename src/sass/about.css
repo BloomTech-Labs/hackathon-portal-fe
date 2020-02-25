@@ -1,0 +1,70 @@
+.about {
+  margin: auto;
+  width: 100%;
+  height: 100vh;
+}
+
+.about .hero {
+  width: 100%;
+  height: 60%;
+  background-color: grey;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.about .hero .hero-left {
+  width: 500px;
+  height: 400px;
+}
+
+.about .hero .hero-right {
+  width: 40%;
+}
+
+.about .hero .hero-right button {
+  font-size: 14px;
+  width: 160px;
+  height: 48px;
+  border-radius: 4px;
+  margin-top: 40px;
+  background-color: grey;
+  border: 1px solid black;
+}
+
+.about .bottom {
+  margin-top: 50px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.about .bottom .bottom-left {
+  width: 40%;
+}
+
+.about .bottom .values {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.about .bottom .bottom-right {
+  height: 300px;
+  width: 450px;
+}
+/*# sourceMappingURL=about.css.map */

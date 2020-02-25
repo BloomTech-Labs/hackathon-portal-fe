@@ -5,11 +5,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getHackathons, getHackers } from '../../actions/actions';
 import logo1 from '../../images/logo1.png';
 import Loader from 'react-loader-spinner';
+import { Link } from 'react-router-dom'
 
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 import moment from 'moment';
+
+import '../../sass/homePage.scss'
 
 const formatDate = date => {
    const months = [
@@ -41,8 +44,8 @@ const Homepage = (props) => {
         const hackers = useSelector(state => state.hackers);
         const hackathons = useSelector(state => state.hackathons);
         const currentDate = new Date().toString();
-       
-           
+
+
 
         useEffect(() => {
            dispatch(getHackathons()).then(() => {
@@ -63,56 +66,59 @@ const Homepage = (props) => {
             ) && (
                h.name.length && h.description.length
             ))
-          
+
            return [filtered[Math.floor(Math.random() * Math.floor(filtered.length))],
             filtered[Math.floor(Math.random() * Math.floor(filtered.length))],
             filtered[Math.floor(Math.random() * Math.floor(filtered.length))]
          ]
       };
-     
+
       const hacks = randomize(hackathons)
       const randomHackathons = [...new Set(hacks)];
 
     return (
        <>
-       { !randomHackathons.length ? (
-          <Loader type="Rings" color="#4885E1" height={80} width={80} />
-       ) : (
-      <div className='Homepage'>
-           <section>
-           <Carousel autoplay>
-            {randomHackathons.map(r => (
-                <div className='featured-card'>
-                <img src={logo1} alt="computer monitors" />
-                  <div className="legend" onClick={() => props.history.push(`/hackathon/${randomHackathons[0].id}`)}>
-                     <h2>{r.name}</h2>
-                     <p>Begins {formatDate(r.start_date)}</p>
-                     <p>{r.location}</p>
-                     <p>{r.description}</p>
+         <div className='homepage'>
+            <div className="hero">
+               <div className="hero2">
+                  <div className="hero-left">
+                     <h1>Join a hackathon from anywhere</h1>
+                     <p>Hackathon Portal is the hub for everything hackathon. Whether you are coordinating a hackathon, judging aproject, or participating, Hakathon Portal is the best wayu to stay up to date on the event's actvity</p>
+                     <button>Join the fun</button>
                   </div>
+                  <img className='hero-right' src='https://picsum.photos/300/300'/>
                </div>
-            ))
-         }
- 
-           </Carousel>
-           </section>
-           <section className='blurb'>
-               <p className='test'>Hackathon Portal is the hub for everything hackathon. Whether you're coordinating a hackathon, judging a project, or participating, Hackathon Portal is the best way to stay up to date on the event's activity.</p>
-           </section>
-           <section className='homePageDataDisplay'>
-              <div className='display' id='display-bottom'>
-                 <div className='displayInfo'>
-                  <h1>{hackathons.length}</h1>
-                  <h3>Hackathons</h3> 
-                 </div>
-                 <div className='displayInfo'>
-                  <h1>{hackers.length}</h1>
-                  <h3>Users</h3> 
-                 </div>
-              </div>
-           </section>
+            </div>
+            <section className='middle-content'>
+                  <h2>You should totally sign up</h2>
+                  <p className='test'>Hackathon Portal is the hub for everything hackathon. Whether you're coordinating a hackathon, judging a project, or participating, Hackathon Portal is the best way to stay up to date on the event's activity.</p>
+                  <div className="values">
+                     <div>
+                        <h4>Organize</h4>
+                        <p>At eripuit signiferumque sea, vel ad mucius molestie, cu labitur iuvaret vulputate sed.</p>
+                     </div>
+                     <div>
+                        <h4>Participate</h4>
+                        <p>At eripuit signiferumque sea, vel ad mucius molestie, cu labitur iuvaret vulputate sed.</p>
+                     </div>
+                     <div>
+                        <h4>Evaluate</h4>
+                        <p>At eripuit signiferumque sea, vel ad mucius molestie, cu labitur iuvaret vulputate sed.</p>
+                     </div>
+                  </div>
+                     </section>
+            <section className='homePageDataDisplay'>
+                  <h2>Upcoming Hackathons</h2>
+                  <div className='upcoming-hackathons'>
+                     <div className="hackathon-card">Hack #1</div>
+                     <div className="hackathon-card">Hack #2</div>
+                     <div className="hackathon-card">Hack #3</div>
+                     </div>
+                  <div className='displayInfo'>
+                     <Link>See more hackathons</Link>
+                  </div>
+            </section>
         </div>
-       )}
        </>
    )
 }

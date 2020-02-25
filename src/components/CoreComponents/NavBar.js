@@ -1,10 +1,12 @@
 // The navbar for the website
+// possibly rename nav-bar classnames to be more clear
 
 import React from 'react';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import { Link } from 'react-router-dom';
 import HackathonLogo from '../../images/HackathonLogo.png';
 
+import '../../sass/navBar.scss'
 
 const NavBar = props => {
    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
@@ -16,25 +18,42 @@ const NavBar = props => {
          </Link>
 
          {!isAuthenticated && (
-            <>
-               <p
-                  className="navBarLink"
+            <div className = 'navBar-div'>
+
+               <Link className='navBarLink' to="/">
+                  Home
+               </Link>
+               <Link className='navBarLink' to="/about">
+                  About
+               </Link>
+               <Link className='navBarLink' to="/hackathons">
+                  All Hackathons
+               </Link>
+               <button
+                  className='logInButton'
                   id='login-btn'
                   onClick={() => loginWithRedirect({})}
                >
                   Log in
-               </p>
-            </>
+               </button>
+               <button
+                  className='signUpButton'
+                  id='login-btn'
+                  onClick={() => loginWithRedirect({})}
+               >
+                  Sign up
+               </button>
+            </div>
          )}
 
          {isAuthenticated && (
-            <span className="navBar-span">
+            <div className="navBar-div">
                <Link className="navBarLink" to="/">
                   home
                </Link>
                <div className='dot'></div>
                <Link className="navBarLink" to="/hackathons">
-                  hackathons
+                  All Hackathons
                </Link>
                <div className='dot'></div>
                <Link className="navBarLink" to={`/profile`}>
@@ -45,10 +64,10 @@ const NavBar = props => {
                   create a hackathon
                </Link>
                <div className='dot'></div>
-               <p className="navBarLink" onClick={() => logout()}>
+               <button className="logInButton" onClick={() => logout()}>
                   log out
-               </p>
-            </span>
+               </button>
+            </div>
          )}
       </div>
    );
