@@ -80,14 +80,14 @@ const Homepage = (props) => {
        <>
          <div className='homepage'>
             <div className="hero">
-               <div className="hero2">
+               {/* <div className="hero2"> */}
                   <div className="hero-left">
                      <h1>Join a hackathon from anywhere</h1>
                      <p>Hackathon Portal is the hub for everything hackathon. Whether you are coordinating a hackathon, judging aproject, or participating, Hakathon Portal is the best wayu to stay up to date on the event's actvity</p>
                      <button>Join the fun</button>
                   </div>
                   <img className='hero-right' src='https://picsum.photos/300/300'/>
-               </div>
+               {/* </div> */}
             </div>
             <section className='middle-content'>
                   <h2>You should totally sign up</h2>

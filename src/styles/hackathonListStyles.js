@@ -1,6 +1,9 @@
 import "../sass/hackathonlist/hackathonlist.scss"
 
 export const style = {
+  root: {
+    border: 'none'
+  },
   card: {
     // 'text-align': 'center',
     background: "#fff",
@@ -35,12 +38,6 @@ export const style = {
   },
   expandOpen: {
     transform: "rotate(180deg)"
-  },
-  searchBar: {
-    border: '1px solid white',
-    width: '65%',
-    'border-radius': '4px',
-    'background-color': '#F5F8FA'
   },
   inputOutline: {
    // RGB FOR #9b9b9b with opacity 64%
@@ -88,4 +85,13 @@ export const style = {
     'margin-bottom':'10px'
   }
 
+}
+
+export const styledTextField = {
+  root: {
+    border: '0',
+    width: '65%',
+    'border-radius': '4px',
+    'background-color': '#F5F8FA'
+  },
 }

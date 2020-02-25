@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getHackathons } from '../../actions/actions';
 import { Link } from 'react-router-dom';
 import logo3 from '../../images/logo3.png'
-import { style } from '../../styles/hackathonListStyles';
+import { style, styledTextField } from '../../styles/hackathonListStyles';
 import moment from 'moment';
 
 //material UI
@@ -18,12 +18,14 @@ import {
    CardContent,
    CardMedia,
    Typography,
-   TextField
+   TextField,
+   withStyles
 } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Loader from 'react-loader-spinner';
 
 const useStyles = makeStyles(theme => style);
+const NewTextField = withStyles(styledTextField)
 
 const formatDate = date => {
    const months = [
@@ -102,7 +104,7 @@ function Hackathons(props) {
    return (
       <div className='fullList'>
          <p id='hackathons-head'>Search</p>
-         <TextField
+         <NewTextField
             name="searchHackathon"
             fullWidth
             className={classes.searchBar}
@@ -118,7 +120,7 @@ function Hackathons(props) {
             //       notchedOutline: classes.notchedOutline
             //    }
             // }}
-         ></TextField>
+         ></NewTextField>
       <container class='hackathon-list-header'>
 
 
