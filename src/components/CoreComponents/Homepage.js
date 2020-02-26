@@ -4,62 +4,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getHackathons, getHackers } from "../../actions/actions";
-// import logo1 from "../../images/logo1.png";
 import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
 
-// import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import moment from "moment";
 
 import "../../sass/homepage/homePage.scss";
 
-// import {
-//   makeStyles,import {
-//    makeStyles,
-//    Card,
-//    CardHeader,
-//    CardContent,
-//    CardMedia,
-//    Typography
-//  } from "@material-ui/core";
-//   CardHeader,
-//   CardContent,
-//   CardMedia,
-//   Typography
-// } from "@material-ui/core";
-
-// import { style } from "../../styles/hackathonListStyles";
-
 import HackathonCard from "../Reusable/HackathonCard";
 
-// const useStyles = makeStyles(theme => style);
-
-// const formatDate = date => {
-//   const months = [
-//     "January",
-//     "February",
-//     "March",
-//     "April",
-//     "May",
-//     "June",
-//     "July",
-//     "August",
-//     "September",
-//     "October",
-//     "November",
-//     "December"
-//   ];
-//   const newDate = new Date(date);
-//   const y = newDate.getFullYear();
-//   const d = newDate.getDate();
-//   const m = months[newDate.getMonth()];
-//   return `${m} ${d}, ${y}`;
-// };
-
 const Homepage = props => {
-  //   const classes = useStyles();
   const isFetching = useSelector(state => state.isFetching);
   const dispatch = useDispatch();
   const hackers = useSelector(state => state.hackers);
@@ -85,26 +41,6 @@ const Homepage = props => {
         }
       })
     : [];
-
-  //   const randomize = arr => {
-  //     let filtered = arr.filter(
-  //       h =>
-  //         !h.is_open === false &&
-  //         (moment(h.start_date).isSame(currentDate) ||
-  //           moment(h.start_date).isAfter(currentDate)) &&
-  //         h.name.length &&
-  //         h.description.length
-  //     );
-
-  //     return [
-  //       filtered[Math.floor(Math.random() * Math.floor(filtered.length))],
-  //       filtered[Math.floor(Math.random() * Math.floor(filtered.length))],
-  //       filtered[Math.floor(Math.random() * Math.floor(filtered.length))]
-  //     ];
-  //   };
-
-  //   const hacks = randomize(hackathons);
-  //   const randomHackathons = [...new Set(hacks)];
 
   return (
     <>
@@ -220,3 +156,4 @@ const Homepage = props => {
 };
 
 export default Homepage;
+// import { style } from "../../styles/hackathonListStyles";

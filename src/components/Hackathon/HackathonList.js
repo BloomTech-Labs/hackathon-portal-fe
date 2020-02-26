@@ -7,26 +7,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getHackathons } from "../../actions/actions";
-import { Link } from "react-router-dom";
-import logo3 from "../../images/logo3.png";
-import { style } from "../../styles/hackathonListStyles";
 import moment from "moment";
 
-//material UI
-import {
-  makeStyles,
-  Card,
-  CardHeader,
-  CardContent,
-  CardMedia,
-  Typography,
-  TextField
-} from "@material-ui/core";
-import Button from "@material-ui/core/Button";
 import Loader from "react-loader-spinner";
 
-const useStyles = makeStyles(theme => style);
-// const NewTextField = withStyles(styledTextField)
+import HackathonCard from "../Reusable/HackathonCard";
 
 const formatDate = date => {
   const months = [
@@ -51,7 +36,7 @@ const formatDate = date => {
 };
 
 function Hackathons(props) {
-  const classes = useStyles();
+  //   const classes = useStyles();
   const isFetching = useSelector(state => state.isFetching);
   const dispatch = useDispatch();
   const hackathons = useSelector(state => state.hackathons);
@@ -85,7 +70,6 @@ function Hackathons(props) {
         }
       })
     : [];
-
   let pastHackathons = hackathons
     ? hackathons.filter(hackathon => {
         if (moment(hackathon.end_date).isBefore(currentDate)) {
@@ -141,20 +125,9 @@ function Hackathons(props) {
           variant="outlined"
           onChange={handleChange}
           value={searchTerm}
-          // InputProps={{
-          //    classes: {
-          //       root: classes.inputOutline,
-          //       focused: classes.focusedOutline,
-          //       notchedOutline: classes.notchedOutline
-          //    }
-          // }}
         />
       </label>
       <container class="hackathon-list-header">
-        {/* <div className='hackathon-buttons'>
-           <Button id='view-archive-btn' onClick={() => props.history.push('hackathons/archive')}>View Past Hackathons</Button>
-        </div> */}
-
         <div className="filter">
           <svg
             className="filter-icon"
@@ -183,191 +156,21 @@ function Hackathons(props) {
 
       <h3 className="hackathonHeaders">Upcoming Hackathons</h3>
       <div className="cardParent">
-        {upcomingHackathons.map(hackathon => {
-          return (
-            <Card className={classes.card} key={hackathon.id}>
-              <Link to={`/hackathon/${hackathon.id}`} className={classes.link}>
-                <CardMedia
-                  className={classes.media}
-                  image="https://picsum.photos/300/300"
-                  id="hackathon-card"
-                />
-              </Link>
-              <div className="content">
-                <Link
-                  to={`/hackathon/${hackathon.id}`}
-                  className={classes.link}
-                >
-                  <CardHeader
-                    title={hackathon.name}
-                    className={classes.hackathonName}
-                    titleTypographyProps={{
-                      classes: {
-                        root: classes.hackathonName
-                      }
-                    }}
-                  />
-                </Link>
-                <CardContent>
-                  <div className="hackathonInfo">
-                    <Typography variant="body2" component="p">
-                      {hackathon.location}
-                    </Typography>
-                    <Typography variant="body2" component="p">
-                      Start Date: {formatDate(hackathon.start_date)}
-                    </Typography>
-                    <Typography variant="body2" component="p">
-                      End Date: {formatDate(hackathon.end_date)}
-                    </Typography>
-                    {hackathon.is_open === false ? <div>CLOSED</div> : null}
-                  </div>
-                </CardContent>
-                <Link
-                  to={`/hackathon/${hackathon.id}`}
-                  className={classes.link}
-                >
-                  <Typography
-                    className={classes.details}
-                    variant="body2"
-                    component="p"
-                  >
-                    Details
-                  </Typography>
-                </Link>
-              </div>
-            </Card>
-          );
-        })}
+        {upcomingHackathons.map(hackathon => (
+          <HackathonCard hackathon={hackathon} />
+        ))}
       </div>
       <h3 className="hackathonHeaders">Active Hackathons</h3>
       <div className="cardParent">
-        {activeHackathons.map(hackathon => {
-          return (
-            <Card className={classes.card} key={hackathon.id}>
-              <Link to={`/hackathon/${hackathon.id}`} className={classes.link}>
-                <CardMedia
-                  className={classes.media}
-                  image="https://picsum.photos/300/300"
-                  id="hackathon-card"
-                />
-              </Link>
-              <div className="content">
-                <Link
-                  to={`/hackathon/${hackathon.id}`}
-                  className={classes.link}
-                >
-                  <CardHeader
-                    title={hackathon.name}
-                    className={classes.hackathonName}
-                    titleTypographyProps={{
-                      classes: {
-                        root: classes.hackathonName
-                      }
-                    }}
-                  />
-                </Link>
-                <CardContent>
-                  {/* <Typography
-                                 variant="body2"
-                                 component="p"
-                                 className={classes.hackathonDescription}
-                              >
-                                 {hackathon.description}
-                              </Typography> */}
-                  <div className="hackathonInfo">
-                    <Typography variant="body2" component="p">
-                      {hackathon.location}
-                    </Typography>
-                    <Typography variant="body2" component="p">
-                      Start Date: {formatDate(hackathon.start_date)}
-                    </Typography>
-                    <Typography variant="body2" component="p">
-                      End Date: {formatDate(hackathon.end_date)}
-                    </Typography>
-                    {hackathon.is_open === false ? <div>CLOSED</div> : null}
-                  </div>
-                </CardContent>
-                <Link
-                  to={`/hackathon/${hackathon.id}`}
-                  className={classes.link}
-                >
-                  <Typography
-                    className={classes.details}
-                    variant="body2"
-                    component="p"
-                  >
-                    Details
-                  </Typography>
-                </Link>
-              </div>
-            </Card>
-          );
-        })}
+        {activeHackathons.map(hackathon => (
+          <HackathonCard hackathon={hackathon} />
+        ))}
       </div>
       <h3 className="hackathonHeaders">Past Hackathons</h3>
       <div className="cardParent">
-        {pastHackathons.map(hackathon => {
-          return (
-            <Card className={classes.card} key={hackathon.id}>
-              <Link to={`/hackathon/${hackathon.id}`} className={classes.link}>
-                <CardMedia
-                  className={classes.media}
-                  image="https://picsum.photos/300/300"
-                  id="hackathon-card"
-                />
-              </Link>
-              <div className="content">
-                <Link
-                  to={`/hackathon/${hackathon.id}`}
-                  className={classes.link}
-                >
-                  <CardHeader
-                    title={hackathon.name}
-                    className={classes.hackathonName}
-                    titleTypographyProps={{
-                      classes: {
-                        root: classes.hackathonName
-                      }
-                    }}
-                  />
-                </Link>
-                <CardContent>
-                  {/* <Typography
-                                 variant="body2"
-                                 component="p"
-                                 className={classes.hackathonDescription}
-                              >
-                                 {hackathon.description}
-                              </Typography> */}
-                  <div className="hackathonInfo">
-                    <Typography variant="body2" component="p">
-                      {hackathon.location}
-                    </Typography>
-                    <Typography variant="body2" component="p">
-                      Start Date: {formatDate(hackathon.start_date)}
-                    </Typography>
-                    <Typography variant="body2" component="p">
-                      End Date: {formatDate(hackathon.end_date)}
-                    </Typography>
-                    {hackathon.is_open === false ? <div>CLOSED</div> : null}
-                  </div>
-                </CardContent>
-                <Link
-                  to={`/hackathon/${hackathon.id}`}
-                  className={classes.link}
-                >
-                  <Typography
-                    className={classes.details}
-                    variant="body2"
-                    component="p"
-                  >
-                    Details
-                  </Typography>
-                </Link>
-              </div>
-            </Card>
-          );
-        })}
+        {pastHackathons.map(hackathon => (
+          <HackathonCard hackathon={hackathon} />
+        ))}
       </div>
     </div>
   );
