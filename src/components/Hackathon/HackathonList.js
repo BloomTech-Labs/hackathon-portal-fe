@@ -216,6 +216,9 @@ function Hackathons(props) {
                     <Typography variant="body2" component="p">
                       Start Date: {formatDate(hackathon.start_date)}
                     </Typography>
+                    <Typography variant="body2" component="p">
+                      End Date: {formatDate(hackathon.end_date)}
+                    </Typography>
                     {hackathon.is_open === false ? <div>CLOSED</div> : null}
                   </div>
                 </CardContent>
@@ -278,6 +281,9 @@ function Hackathons(props) {
                     <Typography variant="body2" component="p">
                       Start Date: {formatDate(hackathon.start_date)}
                     </Typography>
+                    <Typography variant="body2" component="p">
+                      End Date: {formatDate(hackathon.end_date)}
+                    </Typography>
                     {hackathon.is_open === false ? <div>CLOSED</div> : null}
                   </div>
                 </CardContent>
@@ -339,6 +345,9 @@ function Hackathons(props) {
                     </Typography>
                     <Typography variant="body2" component="p">
                       Start Date: {formatDate(hackathon.start_date)}
+                    </Typography>
+                    <Typography variant="body2" component="p">
+                      End Date: {formatDate(hackathon.end_date)}
                     </Typography>
                     {hackathon.is_open === false ? <div>CLOSED</div> : null}
                   </div>
