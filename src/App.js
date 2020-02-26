@@ -40,33 +40,35 @@ function App(props) {
             <header>
                <NavBar />
             </header>
-            <Switch>
-               <Route exact path="/" component={Homepage} />
-               <Route exact path="/hackathons" component={Hackathons} />
-               <Route exact path='/hackathons/archive' component={PastHackathons} />
-               <Route exact path='/about' component={About} />
-               <Route exact path='/hackathon/:id/projects/:project_id' component={ProjectModal} />
-               <PrivateRoute path="/profile" component={UserProfile} />
-               <PrivateRoute path='/:id/pendingprojects' id={`:id`} component={PendingProjects}/>
-               <PrivateRoute
-                  exact
-                  path="/hackathon/create"
-                  component={CreateHackathon}
-               />
+            <div  className='all-but-nav'>
+               <Switch>
+                  <Route exact path="/" component={Homepage} />
+                  <Route exact path="/hackathons" component={Hackathons} />
+                  <Route exact path='/hackathons/archive' component={PastHackathons} />
+                  <Route exact path='/about' component={About} />
+                  <Route exact path='/hackathon/:id/projects/:project_id' component={ProjectModal} />
+                  <PrivateRoute path="/profile" component={UserProfile} />
+                  <PrivateRoute path='/:id/pendingprojects' id={`:id`} component={PendingProjects}/>
+                  <PrivateRoute
+                     exact
+                     path="/hackathon/create"
+                     component={CreateHackathon}
+                  />
 
-               <PrivateRoute
-                  exact
-                  path="/hackathon/edit/:id"
-                  component={EditHackathon}
-               />
-               <PrivateRoute exact path={`/hackathon/:id`} component={SinglePage} />
-               {/* <Route path="/success" component={SuccessPage} /> */}
-               <PrivateRoute exact path='/hackathon/:id/projects' component={ProjectList} />
-               <PrivateRoute exact path='/hackathon/:id/create/project' component={CreateProject} />
-               <PrivateRoute exact path='/hackathon/:id/users' component={UserList} />
-               {/* <Route path="/success" component={SuccessPage} /> */}
-               <Route component={ErrorPage} />
-            </Switch>
+                  <PrivateRoute
+                     exact
+                     path="/hackathon/edit/:id"
+                     component={EditHackathon}
+                  />
+                  <PrivateRoute exact path={`/hackathon/:id`} component={SinglePage} />
+                  {/* <Route path="/success" component={SuccessPage} /> */}
+                  <PrivateRoute exact path='/hackathon/:id/projects' component={ProjectList} />
+                  <PrivateRoute exact path='/hackathon/:id/create/project' component={CreateProject} />
+                  <PrivateRoute exact path='/hackathon/:id/users' component={UserList} />
+                  {/* <Route path="/success" component={SuccessPage} /> */}
+                  <Route component={ErrorPage} />
+               </Switch>
+            </div>
                {/* <footer>
                   <Footer />
                </footer> */}

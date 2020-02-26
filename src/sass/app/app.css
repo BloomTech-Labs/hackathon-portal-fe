@@ -8,4 +8,8 @@ html, body {
   font-style: normal;
   font-weight: normal;
 }
+
+.all-but-nav {
+  margin-top: 96px;
+}
 /*# sourceMappingURL=app.css.map */

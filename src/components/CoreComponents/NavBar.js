@@ -13,6 +13,7 @@ const NavBar = props => {
 
    return (
       <div className="navBar">
+        <div className='navbar-content'>
          <Link to="/">
             <img id="logo" src={HackathonLogo} alt="logo"></img>
          </Link>
@@ -30,7 +31,7 @@ const NavBar = props => {
                   All Hackathons
                </Link>
                <button
-                  className='logInButton'
+                  className='logIn-OutButton'
                   id='login-btn'
                   onClick={() => loginWithRedirect({})}
                >
@@ -51,24 +52,21 @@ const NavBar = props => {
                <Link className="navBarLink" to="/">
                   Home
                </Link>
-               <div className='dot'></div>
+               <Link className="navBarLink" to='/about'>
+                  About
+               </Link>
                <Link className="navBarLink" to="/hackathons">
                   All Hackathons
                </Link>
-               <div className='dot'></div>
-               <Link className="navBarLink" to={`/profile`}>
-                  Profile
+               <Link className="navBarLink" to="/profile">
+                  Dashboard
                </Link>
-               <div className='dot'></div>
-               <Link className="navBarLink" to="/hackathon/create">
-                  Create A Hackathon
-               </Link>
-               <div className='dot'></div>
-               <button className="logInButton" onClick={() => logout()}>
+               <button className="logIn-OutButton" onClick={() => logout()}>
                   Log Out
                </button>
             </div>
          )}
+         </div>
       </div>
    );
 };

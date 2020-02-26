@@ -15,10 +15,6 @@
         display:flex;
         justify-content: space-between;
         align-items: center;
-
-        img {
-            width: 40%;
-        }
     }
     .hero-left {
         width: 35%;
@@ -55,7 +51,7 @@
         height: 60vh;
         border-radius: 4px;
     }
-    
+
 }
 
 .homePageDataDisplay {
@@ -106,7 +102,7 @@
     line-height: 40px;
    }
 
-    p { 
+    p {
        margin: 20px auto;
        font-size: 16px;
        line-height: 22px;
