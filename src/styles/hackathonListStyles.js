@@ -9,6 +9,7 @@ export const style = {
     background: "#fff",
     "box-shadow": 'none',
     width: "30%",
+    // margin: '10px',
     marginBottom: "3%",
   },
   pastCard: {
@@ -85,13 +86,4 @@ export const style = {
     'margin-bottom':'10px'
   }
 
-}
-
-export const styledTextField = {
-  root: {
-    border: '0',
-    width: '65%',
-    'border-radius': '4px',
-    'background-color': '#F5F8FA'
-  },
 }

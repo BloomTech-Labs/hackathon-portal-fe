@@ -49,7 +49,7 @@ const NavBar = props => {
          {isAuthenticated && (
             <div className="navBar-div">
                <Link className="navBarLink" to="/">
-                  home
+                  Home
                </Link>
                <div className='dot'></div>
                <Link className="navBarLink" to="/hackathons">
@@ -57,15 +57,15 @@ const NavBar = props => {
                </Link>
                <div className='dot'></div>
                <Link className="navBarLink" to={`/profile`}>
-                  profile
+                  Profile
                </Link>
                <div className='dot'></div>
                <Link className="navBarLink" to="/hackathon/create">
-                  create a hackathon
+                  Create A Hackathon
                </Link>
                <div className='dot'></div>
                <button className="logInButton" onClick={() => logout()}>
-                  log out
+                  Log Out
                </button>
             </div>
          )}

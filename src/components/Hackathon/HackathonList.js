@@ -1,13 +1,15 @@
 // Displays a list of all hackathons
 // Has a search function to find hackathons
 // Try to extract search function and create its own component
+// Don't forget to delete past hackathons page
+// Take out the upcoming hackathon component and make it a reuseable 
 
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHackathons } from '../../actions/actions';
 import { Link } from 'react-router-dom';
 import logo3 from '../../images/logo3.png'
-import { style, styledTextField } from '../../styles/hackathonListStyles';
+import { style } from '../../styles/hackathonListStyles';
 import moment from 'moment';
 
 //material UI
@@ -18,14 +20,13 @@ import {
    CardContent,
    CardMedia,
    Typography,
-   TextField,
-   withStyles
+   TextField
 } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Loader from 'react-loader-spinner';
 
 const useStyles = makeStyles(theme => style);
-const NewTextField = withStyles(styledTextField)
+// const NewTextField = withStyles(styledTextField)
 
 const formatDate = date => {
    const months = [
@@ -104,28 +105,40 @@ function Hackathons(props) {
    return (
       <div className='fullList'>
          <p id='hackathons-head'>Search</p>
-         <NewTextField
-            name="searchHackathon"
-            fullWidth
-            className={classes.searchBar}
-            type="text"
-            placeholder="Search all Hackathons"
-            variant="outlined"
-            onChange={handleChange}
-            value={searchTerm}
-            // InputProps={{
-            //    classes: {
-            //       root: classes.inputOutline,
-            //       focused: classes.focusedOutline,
-            //       notchedOutline: classes.notchedOutline
-            //    }
-            // }}
-         ></NewTextField>
+         <label className='search-container'>
+            <svg className='search-icon' width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+               <path d="M10.9167 9.66667H10.2583L10.025 9.44167C10.8417 8.49167 11.3333 7.25833 11.3333 5.91667C11.3333 2.925 8.90833 0.5 5.91667 0.5C2.925 0.5 0.5 2.925 0.5 5.91667C0.5 8.90833 2.925 11.3333 5.91667 11.3333C7.25833 11.3333 8.49167 10.8417 9.44167 10.025L9.66667 10.2583V10.9167L13.8333 15.075L15.075 13.8333L10.9167 9.66667ZM5.91667 9.66667C3.84167 9.66667 2.16667 7.99167 2.16667 5.91667C2.16667 3.84167 3.84167 2.16667 5.91667 2.16667C7.99167 2.16667 9.66667 3.84167 9.66667 5.91667C9.66667 7.99167 7.99167 9.66667 5.91667 9.66667Z" fill="#C2CFE0"/>
+            </svg>
+            <input
+               name="searchHackathon"
+               fullWidth
+               className='searchBar'
+               type="text"
+               placeholder="Search all Hackathons"
+               variant="outlined"
+               onChange={handleChange}
+               value={searchTerm}
+               // InputProps={{
+               //    classes: {
+               //       root: classes.inputOutline,
+               //       focused: classes.focusedOutline,
+               //       notchedOutline: classes.notchedOutline
+               //    }
+               // }}
+            />
+         </label>
       <container class='hackathon-list-header'>
 
 
-        <div className='hackathon-buttons'>
+        {/* <div className='hackathon-buttons'>
            <Button id='view-archive-btn' onClick={() => props.history.push('hackathons/archive')}>View Past Hackathons</Button>
+        </div> */}
+
+      <div className='filter'>
+         <svg className='filter-icon' width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 1H1L9 10.46V17L13 19V10.46L21 1Z" stroke="#373F41" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+         </svg>
+           <p id='view-archive-btn' onClick={() => props.history.push('hackathons/archive')}>Filter</p>
         </div>
 
       </container>
@@ -158,13 +171,6 @@ function Hackathons(props) {
                            />
                      </Link>
                            <CardContent>
-                              {/* <Typography
-                                 variant="body2"
-                                 component="p"
-                                 className={classes.hackathonDescription}
-                              >
-                                 {hackathon.description}
-                              </Typography> */}
                               <div className='hackathonInfo'>
                                  <Typography variant="body2" component="p">
                                     {hackathon.location}

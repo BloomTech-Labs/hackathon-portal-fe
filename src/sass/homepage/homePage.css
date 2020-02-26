@@ -3,22 +3,22 @@
   height: 100vh;
 }
 
-.homepage .hero {
+.homepage .hero-background {
   width: 100%;
-  height: 80%;
+  height: 70%;
   background-color: lightgrey;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
-.homepage .hero2 {
+.homepage .hero-content {
   width: 80%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -31,6 +31,10 @@
           align-items: center;
 }
 
+.homepage .hero-content img {
+  width: 40%;
+}
+
 .homepage .hero-left {
   width: 35%;
 }
@@ -38,8 +42,7 @@
 .homepage .hero-left p {
   font-size: 16px;
   line-height: 22px;
-  width: 400px;
-  height: 88px;
+  width: 80%;
 }
 
 .homepage .hero-left button {
@@ -48,7 +51,7 @@
   width: 170px;
   height: 55px;
   border-radius: 4px;
-  margin-top: 40px;
+  margin-top: 5%;
   background-color: #fff;
   border: 1px solid #fff;
 }
@@ -62,12 +65,13 @@
 }
 
 .homepage .hero-right {
-  width: 635px;
-  height: 512px;
+  min-width: 60%;
+  height: 60vh;
+  border-radius: 4px;
 }
 
 .homePageDataDisplay {
-  margin: 20px auto;
+  margin: 60px auto;
   text-align: center;
   width: 80%;
 }
@@ -104,7 +108,7 @@
   font-size: 14px;
   line-height: 18px;
   height: 18px;
-  margin: 10px;
+  margin-top: 32px;
 }
 
 .displayInfo a {
@@ -126,12 +130,15 @@
 }
 
 .middle-content p {
+  margin: 20px auto;
   font-size: 16px;
   line-height: 22px;
   text-align: center;
+  width: 70%;
 }
 
 .middle-content .values {
+  margin-top: 40px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
