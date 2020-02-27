@@ -4,7 +4,7 @@
 // Don't forget to delete past hackathons page
 // Take out the upcoming hackathon component and make it a reuseable
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getHackathons } from "../../actions/actions";
 import moment from "moment";
@@ -40,8 +40,10 @@ function Hackathons(props) {
   const isFetching = useSelector(state => state.isFetching);
   const dispatch = useDispatch();
   const hackathons = useSelector(state => state.hackathons);
-  const [searchTerm, setSearchTerm] = React.useState("");
+  const [searchTerm, setSearchTerm] = useState("");
   const currentDate = new Date().toString();
+
+  const [dropdown, setDropdown] = useState(false);
 
   const handleChange = event => {
     setSearchTerm(event.target.value);
@@ -53,54 +55,55 @@ function Hackathons(props) {
 
   let upcomingHackathons = hackathons
     ? hackathons.filter(hackathon => {
-        if (moment(hackathon.start_date).isAfter(currentDate)) {
-          return hackathon;
-        }
-      })
+      if (moment(hackathon.start_date).isAfter(currentDate)) {
+        return hackathon;
+      }
+    })
     : [];
   let activeHackathons = hackathons
     ? hackathons.filter(hackathon => {
-        if (
-          (moment(hackathon.start_date).isBefore(currentDate) &&
-            moment(hackathon.end_date).isAfter(currentDate)) ||
-          moment(hackathon.start_date).isSame(currentDate) ||
-          moment(hackathon.end_date).isSame(currentDate)
-        ) {
-          return hackathon;
-        }
-      })
+      if (
+        (moment(hackathon.start_date).isBefore(currentDate) &&
+          moment(hackathon.end_date).isAfter(currentDate)) ||
+        moment(hackathon.start_date).isSame(currentDate) ||
+        moment(hackathon.end_date).isSame(currentDate)
+      ) {
+        return hackathon;
+      }
+    })
     : [];
   let pastHackathons = hackathons
     ? hackathons.filter(hackathon => {
-        if (moment(hackathon.end_date).isBefore(currentDate)) {
-          return hackathon;
-        }
-      })
+      if (moment(hackathon.end_date).isBefore(currentDate)) {
+        return hackathon;
+      }
+    })
     : [];
 
-  console.log(upcomingHackathons);
-  console.log(pastHackathons);
+  // console.log(upcomingHackathons);
+  // console.log(pastHackathons);
 
   const results = !searchTerm.length
-    ? upcomingHackathons
-    : upcomingHackathons.filter(
-        hackathon =>
-          hackathon.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          hackathon.description
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase()) ||
-          hackathon.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          formatDate(hackathon.start_date)
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase())
-      );
+    ? hackathons
+    : hackathons.filter(
+      hackathon =>
+        hackathon.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        hackathon.description
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase()) ||
+        hackathon.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        formatDate(hackathon.start_date)
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase())
+    );
 
   if (isFetching || !hackathons) {
-    return <Loader type="Rings" color="#4885E1" height={100} width={100} />;
+    return <Loader type="Rings" color="#4885E1" height={500} width={500} />;
   }
 
   return (
     <div className="fullList">
+
       <p id="hackathons-head">Search</p>
       <label className="search-container">
         <svg
@@ -128,7 +131,12 @@ function Hackathons(props) {
         />
       </label>
       <container class="hackathon-list-header">
-        <div className="filter">
+
+        {/* this is the drop down menu */}
+
+        <div className="filter" onClick={() => {
+          setDropdown(!dropdown)
+        }} >
           <svg
             className="filter-icon"
             width="22"
@@ -145,34 +153,69 @@ function Hackathons(props) {
               stroke-linejoin="round"
             />
           </svg>
-          <p
-            id="view-archive-btn"
-            onClick={() => props.history.push("hackathons/archive")}
-          >
+          <p>
             Filter
           </p>
+          <div className={`dropdown ${dropdown ? 'showDropdown' : ''}`}>
+            <div className="dropdown-content">
+              <label className='filter-label'>Upcoming Hackathons
+                <input type='checkbox' />
+                <span className='checkmark'></span>
+              </label>
+              <label className='filter-label'>Active Hackathons
+                  <input type='checkbox' />
+                <span className='checkmark'></span>
+              </label>
+              <label className='filter-label'>Past Hackathons
+                <input type='checkbox' />
+                <span className='checkmark'></span>
+              </label>
+              <label className='filter-label'>Remote Hackathons
+                <input type='checkbox' />
+                <span className='checkmark'></span>
+              </label>
+              <label className='filter-label'>Offline Hackathons
+                <input type='checkbox' />
+                <span className='checkmark'></span>
+              </label>
+            </div>
+          </div>
         </div>
-      </container>
+      </container >
+      {
+        searchTerm ? (
+          <div className='cardParent' >
+            {
+              results.map(hackathon => (
+                <HackathonCard hackathon={hackathon} />
+              ))
+            }
 
-      <h3 className="hackathonHeaders">Upcoming Hackathons</h3>
-      <div className="cardParent">
-        {upcomingHackathons.map(hackathon => (
-          <HackathonCard hackathon={hackathon} />
-        ))}
-      </div>
-      <h3 className="hackathonHeaders">Active Hackathons</h3>
-      <div className="cardParent">
-        {activeHackathons.map(hackathon => (
-          <HackathonCard hackathon={hackathon} />
-        ))}
-      </div>
-      <h3 className="hackathonHeaders">Past Hackathons</h3>
-      <div className="cardParent">
-        {pastHackathons.map(hackathon => (
-          <HackathonCard hackathon={hackathon} />
-        ))}
-      </div>
-    </div>
+          </div>
+        ) :
+          <>
+            <h3 className="hackathonHeaders">Upcoming Hackathons</h3>
+            <div className="cardParent">
+              {upcomingHackathons.map(hackathon => (
+                <HackathonCard hackathon={hackathon} />
+              ))
+              }
+            </div>
+            <h3 className="hackathonHeaders">Active Hackathons</h3>
+            <div className="cardParent">
+              {activeHackathons.map(hackathon => (
+                <HackathonCard hackathon={hackathon} />
+              ))}
+            </div>
+            <h3 className="hackathonHeaders">Past Hackathons</h3>
+            <div className="cardParent">
+              {pastHackathons.map(hackathon => (
+                <HackathonCard hackathon={hackathon} />
+              ))}
+            </div>
+          </>
+      }
+    </div >
   );
 }
 

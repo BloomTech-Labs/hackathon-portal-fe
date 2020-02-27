@@ -36,10 +36,10 @@ const Homepage = props => {
 
   let upcomingHackathons = hackathons
     ? hackathons.filter(hackathon => {
-        if (moment(hackathon.start_date).isAfter(currentDate)) {
-          return hackathon;
-        }
-      })
+      if (moment(hackathon.start_date).isAfter(currentDate)) {
+        return hackathon;
+      }
+    })
     : [];
 
   return (
