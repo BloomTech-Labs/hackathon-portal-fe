@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import moment from 'moment';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
+import { Link } from "react-router-dom";
 
 import Button from '@material-ui/core/Button';
 
@@ -23,12 +24,17 @@ import { getUser } from '../../actions/actions';
 import { deleteUser } from '../../actions/actions';
 import ProfileCard from './ProfileCard';
 
+import '../../sass/userProfile/userProfile.scss'
+
 const UserProfile = props => {
    const dispatch = useDispatch();
    const { loading, user, logout } = useAuth0();
    const userProfile = useSelector(state => state.userInfo);
    const currentDate = new Date().toString();
-   const [open, setOpen] = useState(false);
+   const [tabs, setTabs] = useState({
+      active: true,
+      past: false
+   });
    const [deleteOpen, setDeleteOpen] = useState(false);
    const [profileInfo, setProfileInfo] = useState({
       first_name: '',
@@ -37,6 +43,7 @@ const UserProfile = props => {
       email: '',
       id: ''
    });
+
    console.log(user.id)
 
    const getAndSetUserHook = async () => {
@@ -61,49 +68,87 @@ const UserProfile = props => {
       getAndSetUserHook();
    }, [user.id]);
 
-   const handleClickOpen = () => {
-      setOpen(true);
-   };
+   // const handleClickOpen = () => {
+   //    setOpen(true);
+   // };
 
-   const handleClose = () => {
-      setOpen(false);
-   };
+   // const handleClose = () => {
+   //    setOpen(false);
+   // };
 
-   const handleDeleteClick = () => {
-      setDeleteOpen(true);
-   };
+   // const handleDeleteClick = () => {
+   //    setDeleteOpen(true);
+   // };
 
-   const handleDeleteClose = () => {
-      setDeleteOpen(false);
-   };
+   // const handleDeleteClose = () => {
+   //    setDeleteOpen(false);
+   // };
 
-   const handleChange = event => {
-      setProfileInfo({
-         ...profileInfo,
-         [event.target.name]: event.target.value
-      });
-      console.log(profileInfo);
-   };
+   // const handleChange = event => {
+   //    setProfileInfo({
+   //       ...profileInfo,
+   //       [event.target.name]: event.target.value
+   //    });
+   //    console.log(profileInfo);
+   // };
 
-   const handleSubmit = async event => {
-      event.preventDefault();
-      (await axiosWithAuth())
-         .put(`/users/${user.id}`, profileInfo)
-         .then(res => {
-            setProfileInfo({
-               first_name: `${res.data.first_name}`,
-               last_name: `${res.data.last_name}`,
-               username: `${res.data.username}`,
-               email: `${res.data.email}`,
-               id: `${res.data.id}`
-            });
-            handleClose();
-            dispatch(getUser(profileInfo.id));
-         })
-         .catch(error => {
-            console.log('Profile Update', error);
-         });
-   };
+   // const handleSubmit = async event => {
+   //    event.preventDefault();
+   //    (await axiosWithAuth())
+   //       .put(`/users/${user.id}`, profileInfo)
+   //       .then(res => {
+   //          setProfileInfo({
+   //             first_name: `${res.data.first_name}`,
+   //             last_name: `${res.data.last_name}`,
+   //             username: `${res.data.username}`,
+   //             email: `${res.data.email}`,
+   //             id: `${res.data.id}`
+   //          });
+   //          handleClose();
+   //          dispatch(getUser(profileInfo.id));
+   //       })
+   //       .catch(error => {
+   //          console.log('Profile Update', error);
+   //       });
+   // };
+
+   const renderTableHeader = () => {
+      const header = [
+         'Hackathon Name',
+         'Location',
+         'Start Date',
+         'Role',
+         'Hackathon Details',
+         'Status'
+      ];
+
+      return header.map((header, i) => {
+         return (
+            <th key={i} className='th-header'>{header}</th>
+         )
+      })
+   }
+
+   const renderTableData = (hackathonStatus) => {
+      // const { id, hackathon_name, start_date, end_date, user_hackathon_role } = userProfile.hackathons;
+
+      return hackathonStatus.map(hackathon => {
+         return (
+            <tr key={hackathon.id} className='tr-data'>
+               <td className='td-hackathon-name'>{hackathon.hackathon_name}</td>
+               <td className='td-info'>Location</td>
+               <td className='td-info'>{hackathon.start_date}</td>
+               <td className='td-info'>{hackathon.user_hackathon_role}</td>
+               {/* <Link to={`/hackathon/${hackathon.hackathon_id}`}> */}
+               <td className='td-details' onClick={() => {
+                  props.history.push(`/hackathon/${hackathon.hackathon_id}`)
+               }}>Details</td>
+               {/* </Link> */}
+               <td className='td-status'>Status</td>
+            </tr>
+         )
+      })
+   }
 
    if (loading || !userProfile) {
       return <Loader type="Rings" color="#4885E1" height={100} width={100} />
@@ -126,158 +171,57 @@ const UserProfile = props => {
 
    return (
       <div className='profile-wrapper'>
-         <div className='profile-container' id='profile-info'>
-            <div className='profile-left'>
-               {/* <img id='profile-img' src='https://i.imgflip.com/1slnr0.jpg' alt="profile"></img> */}
-               <div className='profile-headers'>
-                  <h1 id='profile-name'>
-                     {userProfile.first_name} {userProfile.last_name}
-                  </h1>
-                  <h1 id='profile-username'>{userProfile.username}</h1>
-               </div>
+         <div className='top-content'>
+            <div className='top-left'>
+               <h1> Dashboard</h1>
             </div>
-            <div className='profile-buttons'>
-               {user.id === userProfile.id ? (
-                  <>
-                     <Button id='profile-edit-btn' variant='outlined' onClick={handleClickOpen}>Edit Profile</Button>
-                  </>
-               ) : null}
+            <div className='top-right'>
+               <p className={`tabs tabPresent ${tabs.active ? 'active' : ''}`} onClick={() => {
+                  setTabs({
+                     active: true,
+                     past: false
+                  })
+               }}>Active & Upcoming</p>
+               <p className={`tabs tabPast ${tabs.past ? 'active' : ''}`} onClick={() => {
+                  setTabs({
+                     active: false,
+                     past: true
+                  })
+               }}>Past</p>
             </div>
          </div>
-         <p id='hackathons-header'>Hackathons</p>
+         <div className='logged-in-as'>
+            <h3 className='bottom-left'>Logged in as: <p>{userProfile.email}</p></h3>
+         </div>
+         <div className='above-table'>
+            <p className={`hackathons-header ${tabs.active ? '' : 'hidden'}`}>Active & upcoming hackathons</p>
+            <p className={`hackathons-header ${tabs.past ? '' : 'hidden'}`}>Past hackathons</p>
+            <button>Create a hackathon</button>
+         </div>
          <section className='hackathons-section'>
             <div className='profile-container'>
                {presentHackathons.length ? (
-                  <div className='profile-hackathons'>
+                  <table className={`table ${tabs.active ? '' : 'hidden'}`}>
+                     <tbody>
+                        <tr className='tr-header'>{renderTableHeader()}</tr>
+                        {renderTableData(presentHackathons)}
+                     </tbody>
+                  </table>
 
-                     <div className='profile-hackathon-list'>
-                        <h1>Present</h1>
-                        {presentHackathons.map(hackathon => (
-                           <ProfileCard
-                              key={hackathon.hackathon_id}
-                              id={hackathon.hackathon_id}
-                              name={hackathon.hackathon_name}
-                              //                      team_name={hackathon.team_name}
-                              user_role={hackathon.user_hackathon_role}
-                           />
-                        ))}
-
-                     </div>
-                  </div>
                ) : null
                }
 
-
                {pastHackathons.length ? (
-                  <div className='profile-hackathons'>
-
-                     <div className='profile-hackathon-list'>
-                        <h1>Past</h1>
-                        {pastHackathons.map(hackathon => (
-                           <ProfileCard
-                              key={hackathon.hackathon_id}
-                              id={hackathon.hackathon_id}
-                              name={hackathon.hackathon_name}
-                              //                      team_name={hackathon.team_name}
-                              user_role={hackathon.user_hackathon_role}
-                           />
-                        ))}
-                     </div>
-                  </div>
-               ) : null
+                  <table className={`table ${tabs.past ? '' : 'hidden'}`} >
+                     <tbody>
+                        <tr className='tr-header'>{renderTableHeader()}</tr>
+                        {renderTableData(pastHackathons)}
+                     </tbody>
+                  </table>
+               ) : <p>nothing to display</p>
                }
             </div>
          </section>
-         {user.id === userProfile.id ? (
-            <>
-               <Button id='profile-delete-btn' variant="outlined" onClick={handleDeleteClick}>Delete Profile</Button>
-
-            </>
-         ) : null}
-
-         <Dialog
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="form-dialog-title"
-         >
-            <DialogTitle id="form-dialog-title">
-               Update your profile
-            </DialogTitle>
-            <DialogContent>
-               <TextField
-                  autoFocus
-                  margin="dense"
-                  name="first_name"
-                  value={profileInfo.first_name}
-                  label="First name"
-                  type="text"
-                  fullWidth
-                  onChange={handleChange}
-               />
-               <TextField
-                  autoFocus
-                  margin="dense"
-                  name="last_name"
-                  value={profileInfo.last_name}
-                  label="Last name"
-                  type="text"
-                  fullWidth
-                  onChange={handleChange}
-               />
-               <TextField
-                  autoFocus
-                  margin="dense"
-                  name="username"
-                  value={profileInfo.username}
-                  label="Username"
-                  type="text"
-                  fullWidth
-                  onChange={handleChange}
-               />
-               <TextField
-                  autoFocus
-                  margin="dense"
-                  name="email"
-                  value={profileInfo.email}
-                  label="Email"
-                  type="email"
-                  fullWidth
-                  onChange={handleChange}
-               />
-            </DialogContent>
-            <DialogActions>
-               <Button onClick={handleClose} color="primary">
-                  Cancel
-               </Button>
-               <Button onClick={handleSubmit} color="primary">
-                  Confirm
-               </Button>
-            </DialogActions>
-         </Dialog>
-         <Dialog
-            open={deleteOpen}
-            onClose={handleDeleteClose}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-         >
-            <DialogTitle id="alert-dialog-title">
-               {'Are you sure you want to delete your account?'}
-            </DialogTitle>
-            <DialogActions>
-               <Button onClick={handleDeleteClose} color="primary">
-                  Cancel
-               </Button>
-               <Button
-                  onClick={() =>
-                     dispatch(deleteUser(`${user.id}`)).then(() => logout())
-                  }
-                  color="primary"
-                  autoFocus
-               >
-                  Delete
-               </Button>
-            </DialogActions>
-         </Dialog>
       </div>
    );
 };

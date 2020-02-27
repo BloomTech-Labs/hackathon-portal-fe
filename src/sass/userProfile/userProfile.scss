@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+.profile-wrapper{
+    width:80%;
+    margin:auto;
+    .top-content{
+        display: flex;
+        text-align: center;
+        justify-content: space-between;
+        border-bottom: .1px solid #E5E5E5;
+        padding-top: 60px;
+        padding-bottom: 0px;
+        .top-left{
+            h1{
+                font-family: Muli;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 44px;
+                line-height: 56px;
+                margin:0px;
+                padding:0px;
+            }
+        }
+        .top-right{
+                display: flex;
+                align-items: center;
+                text-align: center;
+                .tabPast {
+                    padding-left: 40px;
+                    padding-right: 40px;
+                }
+                p {
+                    font-family: Muli;
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 18px;
+                    line-height: 24px;
+                    color: rgba(0, 0, 0, 0.6);
+                    margin-bottom: 0px;
+                    padding-bottom: 12px;
+                    margin-left: 1px;
+                    cursor: pointer;
+                }
+        }
+    }
+    .logged-in-as{
+        h3{
+            font-family: Muli;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 22px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin:0px;
+            p{
+                font-family: Muli;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 18px;
+                line-height: 24px;
+                margin-left: 10px;
+            }
+        }
+    }
+    .above-table{
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: space-between;
+        margin-top: 50px;
+        .hackathons-header{
+            font-family: Muli;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 32px;
+            line-height: 40px;
+        }
+        button{
+            font-family: Muli;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 18px;
+            width: 196px;
+            height: 42px;
+            right: 165px;
+            top: 336px;
+            background: #373F41;
+            border: 1px solid #373f41;
+            color: #FFFFFF;
+            border-radius: 4px;
+            align-items: center;
+            text-align: center;
+            margin: 10px 0px;
+        }
+    }
+    .active {
+        border-bottom: 1px solid black;
+        color: rgba(0, 0, 0, 0.87);     
+    }
+    .hidden {
+        display: none;
+    }
+    .table {
+        width: 100%;
+        border-spacing: 0;
+        tbody {
+            border: 1px solid blue;
+            border-collapse: collapse;
+            .tr-data{
+                border-bottom: 1px solid #373f41;
+
+                .td-hackathon-name {
+                    font-weight: bold;
+                    font-size: 18px;
+                }
+
+                .td-details {
+                    font-weight: bold;
+                    font-size: 14px;
+                    line-height: 18px;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+            }
+            .th-header {
+                padding-bottom: 0.5rem;
+            }
+            td, th {
+                padding: 1rem;
+                width: 20%;
+                // max-width: 50px;
+                // max-width: 200px;
+                white-space: nowrap;
+                overflow: hidden;
+                padding-left: 0;
+                text-align: left;
+                border-bottom: 1.5px solid #DFE0EB;
+            }
+            th{
+                font-size: 14px;
+                line-height: 18px;
+                color: #9FA2B4;
+            }
+            td {
+                border-bottom: 1px solid #DFE0EB;
+                font-size: 16px;
+                line-height: 22px;
+                color: #252733;
+            }
+        }
+
+    }
+}
