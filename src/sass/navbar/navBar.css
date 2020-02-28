@@ -1,12 +1,22 @@
 .navBar {
+  width: 100%;
+  margin: auto;
+  padding: 15px 0;
+  border: 1px solid #E2E5E6;
+  position: fixed;
+  top: 0;
+  background-color: white;
+}
+
+.navbar-content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  width: 80%;
   margin: auto;
+  width: 80%;
 }
 
 .navBar-div {
@@ -43,10 +53,10 @@
   border: 1px solid #373f41;
 }
 
-.logInButton {
+.logIn-OutButton {
   width: 83px;
   height: 42px;
-  border-radius: 7px;
+  border-radius: 4px;
   border: solid 1px #252733;
   font-family: Muli;
   font-size: 14px;

@@ -3,10 +3,10 @@
   height: 100vh;
 }
 
-.homepage .hero {
+.homepage .hero-background {
   width: 100%;
-  height: 60%;
-  background-color: grey;
+  height: 70%;
+  background-color: lightgrey;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -18,7 +18,7 @@
           align-items: center;
 }
 
-.homepage .hero2 {
+.homepage .hero-content {
   width: 80%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -35,23 +35,39 @@
   width: 35%;
 }
 
+.homepage .hero-left p {
+  font-size: 16px;
+  line-height: 22px;
+  width: 80%;
+}
+
 .homepage .hero-left button {
   font-size: 14px;
-  width: 160px;
-  height: 48px;
+  line-height: 18px;
+  width: 170px;
+  height: 55px;
   border-radius: 4px;
-  margin-top: 40px;
+  margin-top: 5%;
   background-color: #fff;
   border: 1px solid #fff;
 }
 
+.homepage .hero-left h1 {
+  font-family: Muli;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 44px;
+  line-height: 56px;
+}
+
 .homepage .hero-right {
-  width: 55%;
-  height: 45vh;
+  min-width: 60%;
+  height: 60vh;
+  border-radius: 4px;
 }
 
 .homePageDataDisplay {
-  margin: 20px auto;
+  margin: 60px auto;
   text-align: center;
   width: 80%;
 }
@@ -67,7 +83,7 @@
 
 .homePageDataDisplay .hackathon-card {
   width: 30%;
-  height: 200px;
+  height: 260px;
   background-color: grey;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -78,11 +94,17 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  border-radius: 4px;
+  font-size: 18px;
+  line-height: 24px;
 }
 
 .displayInfo {
-  font-size: 20px;
-  margin-top: 40px;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  height: 18px;
+  margin-top: 32px;
 }
 
 .displayInfo a {
@@ -94,11 +116,44 @@
   width: 80%;
   margin: auto;
   text-align: center;
+  font-size: 32px;
+  line-height: 40px;
+}
+
+.middle-content h2 {
+  font-size: 32px;
+  line-height: 40px;
+}
+
+.middle-content p {
+  margin: 20px auto;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  width: 70%;
 }
 
 .middle-content .values {
+  margin-top: 40px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.middle-content .values p {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.middle-content .values h3 {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 24px;
 }
 /*# sourceMappingURL=homePage.css.map */

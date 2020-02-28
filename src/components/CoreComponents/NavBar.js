@@ -6,13 +6,14 @@ import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import { Link } from 'react-router-dom';
 import HackathonLogo from '../../images/HackathonLogo.png';
 
-import '../../sass/navBar.scss'
+import '../../sass/navbar/navBar.scss'
 
 const NavBar = props => {
    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
    return (
       <div className="navBar">
+        <div className='navbar-content'>
          <Link to="/">
             <img id="logo" src={HackathonLogo} alt="logo"></img>
          </Link>
@@ -30,7 +31,7 @@ const NavBar = props => {
                   All Hackathons
                </Link>
                <button
-                  className='logInButton'
+                  className='logIn-OutButton'
                   id='login-btn'
                   onClick={() => loginWithRedirect({})}
                >
@@ -49,26 +50,23 @@ const NavBar = props => {
          {isAuthenticated && (
             <div className="navBar-div">
                <Link className="navBarLink" to="/">
-                  home
+                  Home
                </Link>
-               <div className='dot'></div>
+               <Link className="navBarLink" to='/about'>
+                  About
+               </Link>
                <Link className="navBarLink" to="/hackathons">
                   All Hackathons
                </Link>
-               <div className='dot'></div>
-               <Link className="navBarLink" to={`/profile`}>
-                  profile
+               <Link className="navBarLink" to="/profile">
+                  Dashboard
                </Link>
-               <div className='dot'></div>
-               <Link className="navBarLink" to="/hackathon/create">
-                  create a hackathon
-               </Link>
-               <div className='dot'></div>
-               <button className="logInButton" onClick={() => logout()}>
-                  log out
+               <button className="logIn-OutButton" onClick={() => logout()}>
+                  Log Out
                </button>
             </div>
          )}
+         </div>
       </div>
    );
 };

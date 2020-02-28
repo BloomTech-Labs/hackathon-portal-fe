@@ -3,7 +3,7 @@
 
 import React from 'react';
 
-import '../../sass/footer.scss'
+import '../../sass/footer/footer.scss'
 
 const Footer = () => {
     return (
