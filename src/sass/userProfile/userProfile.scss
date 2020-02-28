@@ -97,7 +97,7 @@
     }
     .active {
         border-bottom: 1px solid black;
-        color: rgba(0, 0, 0, 0.87);     
+        color: rgba(0, 0, 0, 0.87);
     }
     .hidden {
         display: none;
@@ -129,9 +129,6 @@
             }
             td, th {
                 padding: 1rem;
-                width: 20%;
-                // max-width: 50px;
-                // max-width: 200px;
                 white-space: nowrap;
                 overflow: hidden;
                 padding-left: 0;
