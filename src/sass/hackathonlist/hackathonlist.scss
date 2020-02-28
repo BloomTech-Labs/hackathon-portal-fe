@@ -47,6 +47,85 @@
         p{
             margin: 1px;
         }
+
+        .dropdown{
+            display: none;
+        }
+        .showDropdown {
+            display: block;
+            position: absolute;
+            background-color: #fff;
+            margin-top: 130px;
+            height: 208px;
+            min-width: 255px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            border-radius: 4px;
+            padding: 12px 12px;
+            z-index: 1;
+            .dropdown-content{
+                display:flex;
+                flex-direction:column;
+
+                .filter-label {
+                    position: relative;
+                    padding-left: 35px;
+                    // margin-bottom: 12px;
+                    cursor: pointer;
+                    font-size: 22px;
+                    user-select: none;
+                    font-size: 16px;
+                    margin: 9px 0px;
+                    display:flex;
+                    justify-content: flex-start;
+                    input {
+                        position: absolute;
+                        opacity: 0;
+                        cursor: pointer;
+                        height: 0;
+                        width: 0;
+                    }
+                }
+                .checkmark {
+
+                        position: absolute;
+                        top: 1px;
+                        left: 1px;
+                        height: 17px;
+                        width: 17px;
+                        background-color: #fff;
+                        border:2px solid black;
+                        border-radius: 4px;
+                }
+
+                .filter-label input:checked ~ .checkmark {
+                    background-color: black;
+                  }
+
+                  .checkmark:after {
+                    content: "";
+                    position: absolute;
+                    display: none;
+                  }
+
+                  .filter-label input:checked ~ .checkmark:after {
+                    display: block;
+                  }
+
+                  .filter-label .checkmark:after {
+                    left: 4px;
+                    top: 0px;
+                    width: 5px;
+                    height: 10px;
+                    border: solid white;
+                    border-width: 0 3px 3px 0;
+                    -webkit-transform: rotate(45deg);
+                    -ms-transform: rotate(45deg);
+                    transform: rotate(45deg);
+                  }
+            }
+
+        }
+
 }
 .filter-icon {
     // width
@@ -92,4 +171,5 @@
     line-height: 20px;
     // RGB FOR #d0ddff with opacity 64%
 }
+
 
