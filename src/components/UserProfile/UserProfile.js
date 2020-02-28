@@ -46,6 +46,28 @@ const UserProfile = props => {
 
    console.log(user.id)
 
+   const formatDate = date => {
+      const months = [
+         "January",
+         "February",
+         "March",
+         "April",
+         "May",
+         "June",
+         "July",
+         "August",
+         "September",
+         "October",
+         "November",
+         "December"
+      ];
+      const newDate = new Date(date);
+      const y = newDate.getFullYear();
+      const d = newDate.getDate();
+      const m = months[newDate.getMonth()];
+      return `${m} ${d}, ${y}`;
+   };
+
    const getAndSetUserHook = async () => {
       (await axiosWithAuth())
          .get(`/users/${user.id}`)
@@ -117,8 +139,8 @@ const UserProfile = props => {
          'Hackathon Name',
          'Location',
          'Start Date',
+         'End Date',
          'Role',
-         'Hackathon Details',
          'Status'
       ];
 
@@ -135,14 +157,17 @@ const UserProfile = props => {
       return hackathonStatus.map(hackathon => {
          return (
             <tr key={hackathon.id} className='tr-data'>
-               <td className='td-hackathon-name'>{hackathon.hackathon_name}</td>
+               <td className='td-hackathon-name' onClick={() => {
+                  props.history.push(`/hackathon/${hackathon.hackathon_id}`)
+               }}>{hackathon.hackathon_name}</td>
                <td className='td-info'>Location</td>
-               <td className='td-info'>{hackathon.start_date}</td>
+               <td className='td-info'>{formatDate(hackathon.start_date)}</td>
+               <td className='td-info'>{formatDate(hackathon.end_date)}</td>
                <td className='td-info'>{hackathon.user_hackathon_role}</td>
                {/* <Link to={`/hackathon/${hackathon.hackathon_id}`}> */}
-               <td className='td-details' onClick={() => {
+               {/* <td className='td-details' onClick={() => {
                   props.history.push(`/hackathon/${hackathon.hackathon_id}`)
-               }}>Details</td>
+               }}>Details</td> */}
                {/* </Link> */}
                <td className='td-status'>Status</td>
             </tr>

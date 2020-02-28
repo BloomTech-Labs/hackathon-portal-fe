@@ -233,8 +233,7 @@ function Hackathons(props) {
         ))} */}
 
         {searchFn(pastHackathons).map(hackathon => (
-
-          hackathon ? <HackathonCard hackathon={hackathon} /> : <p>Nothing to display</p>
+          hackathon === {} ? console.log('yep') : console.log('nope')
 
           // <HackathonCard hackathon={hackathon} />
         ))}

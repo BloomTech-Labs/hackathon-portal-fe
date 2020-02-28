@@ -17,17 +17,17 @@ const useStyles = makeStyles({
     minWidth: 345,
     margin: '1%',
     background:
-'rgb(22,22,23)',
-boxShadow: 'none',
-borderBottom: '1px solid #606060'
+      'rgb(22,22,23)',
+    boxShadow: 'none',
+    borderBottom: '1px solid #606060'
     // background: '#1c1c1f',
   },
   media: {
     height: 140,
   },
   text: {
-      textAlign: 'left',
-      color: 'white'
+    textAlign: 'left',
+    color: 'white'
   },
   button: {
     display: 'flex',
@@ -37,7 +37,7 @@ borderBottom: '1px solid #606060'
   cardInner: {
     padding: '0',
   }
-  
+
 });
 
 export default function ProfileCard(props) {
@@ -51,10 +51,10 @@ export default function ProfileCard(props) {
             {props.name}
           </Typography>
           <Typography className={classes.text} component='h4'>
-           {props.team_name ? (
-                `Team: ${props.team_name}`
+            {props.team_name ? (
+              `Team: ${props.team_name}`
             ) : null
-           }
+            }
 
           </Typography>
           <Typography className={classes.text} variant="body2" color="textSecondary" component="h6">
@@ -63,9 +63,9 @@ export default function ProfileCard(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-      <Link to={`/hackathon/${props.id}`}>
-        <Button className={classes.button} size="small" color="primary">
-          View Details
+        <Link to={`/hackathon/${props.id}`}>
+          <Button className={classes.button} size="small" color="primary">
+            View Details
         </Button>
         </Link>
       </CardActions>

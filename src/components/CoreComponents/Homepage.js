@@ -141,13 +141,13 @@ const Homepage = props => {
         <section className="homePageDataDisplay">
           <h2>Upcoming Hackathons</h2>
           <div className="upcoming-hackathons">
-            {upcomingHackathons.map(hackathon => (
+            {upcomingHackathons.slice(0, 3).map(hackathon => (
               <HackathonCard hackathon={hackathon} />
             ))}
           </div>
 
           <div className="displayInfo">
-            <Link>See more hackathons</Link>
+            <Link> See more hackathons </Link>
           </div>
         </section>
       </div>
@@ -156,4 +156,4 @@ const Homepage = props => {
 };
 
 export default Homepage;
-// import { style } from "../../styles/hackathonListStyles";
+// import {style} from "../../styles/hackathonListStyles";
