@@ -1,3 +1,6 @@
+// Creates a hackathon
+// Do we need a hackathon URL?
+
 import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import useForm from 'react-hook-form';
@@ -7,7 +10,6 @@ import { useDispatch } from 'react-redux';
 // COMPONENTS
 import Stepper from './Stepper';
 import OrganizerProjectList from '../Organizers/OrganizerProjectList';
-import CreateProject from '../Projects/CreateProject';
 
 // ACTIONS
 import { createHackathon } from '../../actions/actions';
@@ -23,15 +25,12 @@ import {
    withStyles,
    Checkbox,
    FormControlLabel,
-   FormHelperText
 } from '@material-ui/core';
 import DescriptionIcon from '@material-ui/icons/Description';
 import LanguageIcon from '@material-ui/icons/Language';
 import TodayIcon from '@material-ui/icons/Today';
 import EventIcon from '@material-ui/icons/Event';
 import ScheduleIcon from '@material-ui/icons/Schedule';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import DateFnsUtils from '@date-io/date-fns';
 import {
@@ -43,7 +42,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import InputBase from '@material-ui/core/InputBase';
 import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
 
 
 
@@ -91,7 +89,7 @@ const useStyles = makeStyles(theme => ({
       borderRadius: '5px',
          width: '50%',
          '& > *': {
-   
+
             width: '100%',
          },
       margin: '0 auto',
@@ -200,7 +198,7 @@ const CreateHackathon = props => {
    const [id, setId] = useState(0)
 
 
-   
+
    let { register, handleSubmit, errors, clearError } = useForm();
 
    useEffect(() => {
@@ -254,7 +252,7 @@ console.log('CREATE HACKATHON ID FROM ACTION', id)
          setDescLength(false)
        } if (!page1Info.hasOwnProperty('location') || !page1Info.location.trim().length) {
          setLocationLength(false)
-       } 
+       }
        else {
           setActiveStep(prevActiveStep => prevActiveStep + 1);
           nextStep();
@@ -278,7 +276,7 @@ console.log('CREATE HACKATHON ID FROM ACTION', id)
       setMax(Number(e.target.value));
       console.log(Number(e.target.value));
     };
-    
+
     console.log(max)
 
    const handleFormSubmit = (data, e) => {
@@ -287,7 +285,7 @@ console.log('CREATE HACKATHON ID FROM ACTION', id)
 
    return (
       <div className="createHackathonContainer1" className={classes.container}>
-         <Stepper 
+         <Stepper
          activeStep={activeStep}
          setActiveStep={setActiveStep}
          />
@@ -339,7 +337,7 @@ console.log('CREATE HACKATHON ID FROM ACTION', id)
                            )
                         }}
                      />
-                      
+
                   </label>
                   {!descLength ? <p className='create-error'>Please include a description</p> : null}
                   <label className="location-input">
@@ -393,7 +391,7 @@ console.log('CREATE HACKATHON ID FROM ACTION', id)
                <>
                   <div>
                      <label className="startDate">
-         
+
 
                         <MuiPickersUtilsProvider  utils={DateFnsUtils}>
                            <KeyboardDatePicker
@@ -492,7 +490,7 @@ console.log('CREATE HACKATHON ID FROM ACTION', id)
                         />
                      </label>
                   </div>
-                  
+
                   <div>
                      <label className="max-members">
                      <Typography className={classes.text} gutterBottom variant="h5" component="h5">
@@ -502,11 +500,11 @@ console.log('CREATE HACKATHON ID FROM ACTION', id)
                            <InputLabel htmlFor="demo-customized-textbox"></InputLabel>
                            <input
                            type='number'
-                            id="demo-customized-textbox" 
+                            id="demo-customized-textbox"
                             placeholder="Max: 30"
                             value={max}
                             onChange={handleChange}/>
-                            
+
                         </FormControl>
                      </label>
                   </div>
@@ -528,9 +526,9 @@ console.log('CREATE HACKATHON ID FROM ACTION', id)
                Back
                </Button>)}
                <div className={classes.buttonsSubContainer}>
-                  
-                  
-                  {activeStep === 2 ? 
+
+
+                  {activeStep === 2 ?
                      <Button
                      variant="contained"
                      color="primary"
@@ -548,8 +546,8 @@ console.log('CREATE HACKATHON ID FROM ACTION', id)
                      >
                         Next
                      </Button>
-              
-                  }            
+
+                  }
                </div>
             </div>
          </form>

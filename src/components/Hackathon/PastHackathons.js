@@ -1,11 +1,15 @@
+// Displays a list of hackathons that have already taken place
+// Combine hackathons.js with pastHackathons.js
+// Has a search function to find past hackathons
+// Try to extract search function and create its own component
+
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getHackathons } from '../actions/actions';
+import { getHackathons } from '../../actions/actions';
 import { Link } from 'react-router-dom';
-import billNye from './images/Frame (1).png';
-import { style } from '../styles/hackathonListStyles';
+import billNye from '../../images/Frame (1).png';
+import { style } from '../../styles/hackathonListStyles';
 import moment from 'moment';
-
 
 //material UI
 import {
@@ -16,7 +20,6 @@ import {
    CardMedia,
    Typography,
    TextField,
-   withStyles
 } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Loader from 'react-loader-spinner';

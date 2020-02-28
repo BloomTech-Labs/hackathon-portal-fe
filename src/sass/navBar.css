@@ -1,0 +1,74 @@
+.navBar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 80%;
+  margin: auto;
+}
+
+.navBar-div {
+  width: 55%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+.navBar-div a {
+  text-decoration: none;
+}
+
+.signUpButton {
+  width: 83px;
+  height: 42px;
+  border-radius: 4px;
+  background-color: #373f41;
+  font-family: Muli;
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.29;
+  letter-spacing: 0.3px;
+  color: #ffffff;
+  border: 1px solid #373f41;
+}
+
+.logInButton {
+  width: 83px;
+  height: 42px;
+  border-radius: 7px;
+  border: solid 1px #252733;
+  font-family: Muli;
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.29;
+  letter-spacing: 0.3px;
+  color: #252733;
+  background-color: white;
+}
+
+.navBarLink {
+  width: 106px;
+  height: 18px;
+  font-family: Muli;
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.29;
+  letter-spacing: 0.3px;
+  color: #373f41;
+}
+/*# sourceMappingURL=navBar.css.map */

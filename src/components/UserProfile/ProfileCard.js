@@ -1,3 +1,5 @@
+// Displays you're projects, past and present, on UserProfile.js
+
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';

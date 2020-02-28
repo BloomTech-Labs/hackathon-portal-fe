@@ -1,5 +1,6 @@
+// A page that shows an organizer a list of pending project ideas for their hackathon that can be approved or denied
+
 import React, { useEffect, useState } from 'react';
-import useForm from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';

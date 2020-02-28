@@ -1,17 +1,16 @@
-import React, { useEffect } from 'react';
+//Organizer of hackathon can see a list of projects
+//Can create projects after creating hackathons
+//Try to find "Create Projects"
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import CreateProject from '../Projects/CreateProject';
-import { getSpecificHackathon } from '../../actions/actions';
 
 //STYLES
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import AddIcon from '@material-ui/icons/Add';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
