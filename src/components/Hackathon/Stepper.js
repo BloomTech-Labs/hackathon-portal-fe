@@ -12,6 +12,9 @@ import Check from '@material-ui/icons/Check';
 import StepConnector from '@material-ui/core/StepConnector';
 
 const QontoConnector = withStyles({
+  root: {
+    background:'red'
+  },
   alternativeLabel: {
     top: 10,
     left: 'calc(-50% + 16px)',
@@ -19,45 +22,47 @@ const QontoConnector = withStyles({
   },
   active: {
     '& $line': {
-      borderColor: '#3f51b5',
+      borderColor: 'green',
     },
   },
   completed: {
     '& $line': {
-      borderColor: '#3f51b5',
+      borderColor: 'green',
     },
   },
   line: {
-    borderColor: '#D0DDFF',
+    borderColor: 'red',
     borderTopWidth: 3,
     borderRadius: 1,
   },
 })(StepConnector);
 
 const useQontoStepIconStyles = makeStyles({
-  root: {
-    color: '#D0DDFF',
-    display: 'flex',
-    height: 22,
-    alignItems: 'center',
-    MuiStepLabelLabel: {
-      color: "rgb(242, 101, 34)"
-    }
-  },
-  active: {
-    color: '#4885E1',
-  },
-  circle: {
-    width: 8,
-    height: 8,
-    borderRadius: '50%',
-    backgroundColor: 'currentColor',
-  },
-  completed: {
-    color: '#4885E1',
-    zIndex: 1,
-    fontSize: 18,
-  },
+  // root: {
+  //   background: 'green',
+  //   display: 'flex',
+  //   height: 22,
+  //   alignItems: 'center',
+  //   MuiStepLabelLabel: {
+  //     color: "green"
+  //   }
+  // },
+  // active: {
+  //   background: 'green',
+  // },
+  // circle: {
+  //   background: 'green',
+  //   width: 8,
+  //   height: 8,
+  //   borderRadius: '50%',
+
+  // },
+  // completed: {
+  //   background: 'green',
+  //   color: 'yellow',
+  //   zIndex: 1,
+  //   fontSize: 18,
+  // }
 });
 
 function QontoStepIcon(props) {
@@ -83,21 +88,24 @@ QontoStepIcon.propTypes = {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '100%',
+    width: '30%',
+    backgroundColor: 'green',
   },
   button: {
     marginRight: theme.spacing(1),
+    backgroundColor: 'green',
   },
+active: {
+  backgroundColor: 'red'
+},
   instructions: {
     marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1)
-  },
-  stepper: {
-    background: 'rgb(22,22,23)'
+    marginBottom: theme.spacing(1),
+    backgroundColor: 'green',
   },
   labels: {
     fontColor: '#fff',
-    
+    backgroundColor: 'green',
   }
 }));
 
@@ -113,7 +121,7 @@ export default function CustomizedSteppers({ activeStep, skipped, isStepOptional
 
   return (
     <div className={classes.root}>
-      <Stepper alternativeLabel activeStep={activeStep} connector={<QontoConnector />} className={classes.stepper}>
+      <Stepper alternativeLabel activeStep={activeStep} connector={<QontoConnector />} className={classes.circle}>
         {steps.map((label, index) => {
           const stepProps = {};
           return(

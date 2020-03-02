@@ -14,6 +14,8 @@ import OrganizerProjectList from '../Organizers/OrganizerProjectList';
 // ACTIONS
 import { createHackathon } from '../../actions/actions';
 
+import "../../sass/stepper/stepper.scss";
+
 // STYLE
 import 'date-fns';
 import TextField from '@material-ui/core/TextField';
@@ -285,10 +287,13 @@ const CreateHackathon = props => {
 
    return (
       <div className="createHackathonContainer1" className={classes.container}>
+         <div className='stepper-container'>
+         <h3>Create a new hackathon</h3>
          <Stepper
             activeStep={activeStep}
             setActiveStep={setActiveStep}
          />
+         </div>
          <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
          <form
             noValidate autoComplete="off"

@@ -24,8 +24,11 @@ import Loader from 'react-loader-spinner';
 import { getUser } from '../../actions/actions';
 import { deleteUser } from '../../actions/actions';
 import ProfileCard from './ProfileCard';
+import HacakthonModal from '../Reusable/HackathonModal';
+
 
 import '../../sass/userProfile/userProfile.scss'
+import HackathonModal from '../Reusable/HackathonModal';
 
 const UserProfile = props => {
    const dispatch = useDispatch();
@@ -44,9 +47,6 @@ const UserProfile = props => {
       email: '',
       id: ''
    });
-
-   const [modal, setModal] = useState(false)
-
    console.log(user.id)
 
    const formatDate = date => {
@@ -197,14 +197,6 @@ const UserProfile = props => {
       }
    });
 
-   const toggleModal = () => {
-      setModal(!modal)
-   }
-
-   const handleBackgroundClick = e => {
-      if(e.target === e.currentTarget) toggleModal();
-   }
-
    return (
       <div className='profile-wrapper'>
          <div className='top-content'>
@@ -232,12 +224,7 @@ const UserProfile = props => {
          <div className='above-table'>
             <p className={`hackathons-header ${tabs.active ? '' : 'hidden'}`}>Active & upcoming hackathons</p>
             <p className={`hackathons-header ${tabs.past ? '' : 'hidden'}`}>Past hackathons</p>
-            <button onClick={() => toggleModal()}>Create a hackathon</button>
-         </div>
-         <div className={`backdrop ${modal ? '' : 'hideModal' }`} onClick={handleBackgroundClick}>
-            <div className='modal'>
-               <p>testdfsdsdfsd</p>
-            </div>
+            <HackathonModal />
          </div>
          <section className='hackathons-section'>
             <div className='profile-container'>
