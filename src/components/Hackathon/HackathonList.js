@@ -82,12 +82,14 @@ function Hackathons(props) {
 
   const searchFn = hackathonStatus => {
     if (searchTerm) {
-      let filterHackathon = hackathonStatus.filter(hackathon => hackathon.name.toLowerCase().includes(searchTerm.toLowerCase()))
-
-      return filterHackathon;
+      return hackathonStatus.filter(hackathon => hackathon.name.toLowerCase().includes(searchTerm.toLowerCase()))
     }
     return hackathonStatus;
   }
+
+  const upcomingSearch = searchFn(pastHackathons);
+  const activeSearch = searchFn(pastHackathons);
+  const pastSearch = searchFn(pastHackathons);
 
   // console.log(upcomingHackathons);
   // console.log(pastHackathons);
@@ -191,56 +193,24 @@ function Hackathons(props) {
           </div>
         </div>
       </container >
-      {/* {
-        searchTerm ? (
-          <div className='cardParent' >
-            {
-              results.map(hackathon => (
-                <HackathonCard hackathon={hackathon} />
-              ))
-            }
-
-          </div>
-        ) :
-          <> */}
       <h3 className="hackathonHeaders">Upcoming Hackathons</h3>
       <div className="cardParent">
-        {/* {upcomingHackathons.map(hackathon => (
-          <HackathonCard hackathon={hackathon} />
-        ))
-        } */}
-
         {searchFn(upcomingHackathons).map(hackathon => (
           <HackathonCard hackathon={hackathon} />
         ))}
-
       </div>
       <h3 className="hackathonHeaders">Active Hackathons</h3>
       <div className="cardParent">
-        {/* {activeHackathons.map(hackathon => (
-          <HackathonCard hackathon={hackathon} />
-        ))} */}
         {searchFn(activeHackathons).map(hackathon => (
           <HackathonCard hackathon={hackathon} />
         ))}
-
       </div>
-
       <h3 className="hackathonHeaders">Past Hackathons</h3>
       <div className="cardParent">
-        {/* {pastHackathons.map(hackathon => (
+        {pastSearch.length === 0 ? <p>nopeeee</p> : pastSearch.map(hackathon => (
           <HackathonCard hackathon={hackathon} />
-        ))} */}
-
-        {searchFn(pastHackathons).map(hackathon => (
-          hackathon === {} ? console.log('yep') : console.log('nope')
-
-          // <HackathonCard hackathon={hackathon} />
         ))}
-
       </div>
-      {/* </0>
-      } */}
     </div >
   );
 }
