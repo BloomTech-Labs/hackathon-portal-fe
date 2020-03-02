@@ -1,5 +1,6 @@
 // Shows your user profile
 // When refreshing on the page it breaks.
+// Clicking on the modal takes you out of the modal
 
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -43,6 +44,8 @@ const UserProfile = props => {
       email: '',
       id: ''
    });
+
+   const [modal, setModal] = useState(false)
 
    console.log(user.id)
 
@@ -194,6 +197,14 @@ const UserProfile = props => {
       }
    });
 
+   const toggleModal = () => {
+      setModal(!modal)
+   }
+
+   const handleBackgroundClick = e => {
+      if(e.target === e.currentTarget) toggleModal();
+   }
+
    return (
       <div className='profile-wrapper'>
          <div className='top-content'>
@@ -221,7 +232,12 @@ const UserProfile = props => {
          <div className='above-table'>
             <p className={`hackathons-header ${tabs.active ? '' : 'hidden'}`}>Active & upcoming hackathons</p>
             <p className={`hackathons-header ${tabs.past ? '' : 'hidden'}`}>Past hackathons</p>
-            <button>Create a hackathon</button>
+            <button onClick={() => toggleModal()}>Create a hackathon</button>
+         </div>
+         <div className={`backdrop ${modal ? '' : 'hideModal' }`} onClick={handleBackgroundClick}>
+            <div className='modal'>
+               <p>testdfsdsdfsd</p>
+            </div>
          </div>
          <section className='hackathons-section'>
             <div className='profile-container'>

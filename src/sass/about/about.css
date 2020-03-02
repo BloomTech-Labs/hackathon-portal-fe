@@ -4,70 +4,93 @@
   height: 100vh;
 }
 
-.about .hero {
+.about .hero-background {
   width: 100%;
-  height: 60%;
+  height: 70%;
   background-color: lightgrey;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
-.about .hero p {
+.about .hero-content {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.about .hero-right {
+  width: 35%;
+}
+
+.about .hero-right p {
+  font-family: Muli;
+  font-style: normal;
+  font-weight: normal;
   font-size: 16px;
   line-height: 22px;
 }
 
-.about .hero .hero-left {
-  min-width: 60%;
-  height: 60vh;
-  border-radius: 4px;
-  left: 165px;
-  top: 80px;
-}
-
-.about .hero .hero-right {
-  width: 40%;
-}
-
-.about .hero .hero-right button {
+.about .hero-right button {
   font-size: 14px;
-  width: 160px;
-  height: 48px;
+  line-height: 18px;
+  width: 170px;
+  height: 55px;
   border-radius: 4px;
-  margin-top: 40px;
+  margin-top: 5%;
   background-color: lightgrey;
   border: 1px solid black;
 }
 
-.about h1 {
+.about .hero-right h1 {
+  font-family: Muli;
+  font-style: normal;
   font-weight: bold;
   font-size: 44px;
   line-height: 56px;
 }
 
+.about .hero-left {
+  min-width: 60%;
+  height: 60vh;
+  border-radius: 4px;
+}
+
 .about .bottom {
   margin-top: 50px;
+  margin-bottom: 50px;
   width: 100%;
+}
+
+.about .bottom .bottom-content {
+  margin: auto;
+  width: 80%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
 .about .bottom .bottom-left {
-  width: 40%;
+  width: 45%;
   font-size: 32px;
   line-height: 40px;
 }
@@ -83,14 +106,26 @@
   font-size: 16px;
   line-height: 22px;
   top: 48px;
-  text-align: center;
+  text-align: left;
+  margin-top: 50px;
+}
+
+.about .bottom .values .value-left {
+  margin-right: 3%;
 }
 
 .about .bottom .bottom-right {
-  width: 540px;
-  height: 440px;
-  left: 735px;
-  top: 80px;
-  margin: 15px;
+  min-width: 50%;
+  height: 50vh;
+  border-radius: 4px;
+}
+
+.about .bottom h2 {
+  font-family: Muli;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 40px;
+  color: #373f41;
 }
 /*# sourceMappingURL=about.css.map */
