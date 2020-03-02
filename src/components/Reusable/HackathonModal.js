@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import CreateHackathon from '../Hackathon/CreateHackathon';
-
+import { textfield } from "@material-ui/core"
 const HackathonModal = () => {
    const [modal, setModal] = useState(false)
 

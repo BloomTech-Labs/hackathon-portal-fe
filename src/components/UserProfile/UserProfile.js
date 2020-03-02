@@ -246,7 +246,7 @@ const UserProfile = props => {
                         {renderTableData(pastHackathons)}
                      </tbody>
                   </table>
-               ) : <p>nothing to display</p>
+               ) : <p className={`${tabs.past ? '' : 'hidden'}`}>Nothing to display</p>
                }
             </div>
          </section>
