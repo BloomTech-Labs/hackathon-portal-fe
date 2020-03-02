@@ -147,7 +147,7 @@ const Homepage = props => {
           </div>
 
           <div className="displayInfo">
-            <Link> See more hackathons </Link>
+            <Link to="/hackathons"> See more hackathons </Link>
           </div>
         </section>
       </div>

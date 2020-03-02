@@ -221,7 +221,7 @@ const UserProfile = props => {
          <div className='above-table'>
             <p className={`hackathons-header ${tabs.active ? '' : 'hidden'}`}>Active & upcoming hackathons</p>
             <p className={`hackathons-header ${tabs.past ? '' : 'hidden'}`}>Past hackathons</p>
-            <button>Create a hackathon</button>
+            <button onClick={() => props.history.push('/hackathon/create')}>Create a hackathon</button>
          </div>
          <section className='hackathons-section'>
             <div className='profile-container'>
