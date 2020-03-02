@@ -93,6 +93,7 @@
             align-items: center;
             text-align: center;
             margin: 10px 0px;
+            cursor: pointer;
         }
     }
     .active {
@@ -149,4 +150,31 @@
         }
 
     }
+
+
+    .hideModal {
+        display: none;
+    }
+
+    .backdrop {
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: rgba(0,0,0,0.75);
+
+        .modal {
+            background-color: #FFFFFF;
+            position: fixed;
+            top: 20%;
+            left: 35%;
+            border: 1px solid #888;
+            border-radius: 4px;
+            width: 30%; 
+            height: 60%;
+          }
+      }
 }

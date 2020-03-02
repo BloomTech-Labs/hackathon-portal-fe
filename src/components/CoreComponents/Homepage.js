@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getHackathons, getHackers } from "../../actions/actions";
 import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
+import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
@@ -21,6 +22,7 @@ const Homepage = props => {
   const hackers = useSelector(state => state.hackers);
   const hackathons = useSelector(state => state.hackathons);
   const currentDate = new Date().toString();
+   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
   useEffect(() => {
     dispatch(getHackathons()).then(() => {
@@ -55,7 +57,9 @@ const Homepage = props => {
                 participating, Hakathon Portal is the best wayu to stay up to
                 date on the event's actvity
               </p>
-              <button>Join the fun</button>
+              <button  className='logIn-OutButton'
+                  id='login-btn'
+                  onClick={() => loginWithRedirect({})}>Join the fun</button>
             </div>
             <img className="hero-right" src="https://picsum.photos/300/300" />
           </div>
@@ -147,7 +151,7 @@ const Homepage = props => {
           </div>
 
           <div className="displayInfo">
-            <Link> See more hackathons </Link>
+            <Link to="/hackathons"> See more hackathons </Link>
           </div>
         </section>
       </div>

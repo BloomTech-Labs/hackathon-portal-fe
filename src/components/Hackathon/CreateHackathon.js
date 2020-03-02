@@ -1,5 +1,5 @@
 // Creates a hackathon
-// Do we need a hackathon URL?
+// Do we need a hackathon URL? yes
 
 import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
@@ -47,36 +47,36 @@ import Radio from '@material-ui/core/Radio';
 
 const BootstrapInput = withStyles(theme => ({
    root: {
-     'label + &': {
-       marginTop: theme.spacing(3),
-     },
+      'label + &': {
+         marginTop: theme.spacing(3),
+      },
    },
    input: {
-     borderRadius: 3,
-     position: 'relative',
-     backgroundColor: theme.palette.background.paper,
-     border: '1px solid #ced4da',
-     fontSize: 16,
-     transition: theme.transitions.create(['border-color', 'box-shadow']),
-     fontFamily: [
-       '-apple-system',
-       'BlinkMacSystemFont',
-       '"Segoe UI"',
-       'Roboto',
-       '"Helvetica Neue"',
-       'Arial',
-       'sans-serif',
-       '"Apple Color Emoji"',
-       '"Segoe UI Emoji"',
-       '"Segoe UI Symbol"',
-     ].join(','),
-     '&:focus': {
-       borderRadius: 4,
-       borderColor: '#80bdff',
-       boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
-     },
+      borderRadius: 3,
+      position: 'relative',
+      backgroundColor: theme.palette.background.paper,
+      border: '1px solid #ced4da',
+      fontSize: 16,
+      transition: theme.transitions.create(['border-color', 'box-shadow']),
+      fontFamily: [
+         '-apple-system',
+         'BlinkMacSystemFont',
+         '"Segoe UI"',
+         'Roboto',
+         '"Helvetica Neue"',
+         'Arial',
+         'sans-serif',
+         '"Apple Color Emoji"',
+         '"Segoe UI Emoji"',
+         '"Segoe UI Symbol"',
+      ].join(','),
+      '&:focus': {
+         borderRadius: 4,
+         borderColor: '#80bdff',
+         boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+      },
    },
- }))(InputBase);
+}))(InputBase);
 
 const useStyles = makeStyles(theme => ({
    label: {
@@ -87,11 +87,11 @@ const useStyles = makeStyles(theme => ({
    root: {
       padding: '3%',
       borderRadius: '5px',
-         width: '50%',
-         '& > *': {
+      width: '50%',
+      '& > *': {
 
-            width: '100%',
-         },
+         width: '100%',
+      },
       margin: '0 auto',
    },
    button: {
@@ -101,11 +101,11 @@ const useStyles = makeStyles(theme => ({
    formControl: {
       margin: theme.spacing(1),
       minWidth: 120,
-    },
-    selectEmpty: {
+   },
+   selectEmpty: {
       marginTop: theme.spacing(2),
-    },
-    icon: {
+   },
+   icon: {
       borderRadius: '50%',
       width: 16,
       height: 16,
@@ -113,31 +113,31 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: '#f5f8fa',
       backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))',
       '$root.Mui-focusVisible &': {
-        outline: '2px auto rgba(19,124,189,.6)',
-        outlineOffset: 2,
+         outline: '2px auto rgba(19,124,189,.6)',
+         outlineOffset: 2,
       },
       'input:hover ~ &': {
-        backgroundColor: '#ebf1f5',
+         backgroundColor: '#ebf1f5',
       },
       'input:disabled ~ &': {
-        boxShadow: 'none',
-        background: 'rgba(206,217,224,.5)',
+         boxShadow: 'none',
+         background: 'rgba(206,217,224,.5)',
       },
-    },
-    checkedIcon: {
+   },
+   checkedIcon: {
       backgroundColor: '#137cbd',
       backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
       '&:before': {
-        display: 'block',
-        width: 16,
-        height: 16,
-        backgroundImage: 'radial-gradient(#fff,#fff 28%,transparent 32%)',
-        content: '""',
+         display: 'block',
+         width: 16,
+         height: 16,
+         backgroundImage: 'radial-gradient(#fff,#fff 28%,transparent 32%)',
+         content: '""',
       },
       'input:hover ~ &': {
-        backgroundColor: '#106ba3',
+         backgroundColor: '#106ba3',
       },
-    },
+   },
    activeButton: {
       backgroundColor: '#4885E1',
       color: '#0A0A0B',
@@ -243,21 +243,21 @@ const CreateHackathon = props => {
       }
    }
 
-console.log('CREATE HACKATHON ID FROM ACTION', id)
+   console.log('CREATE HACKATHON ID FROM ACTION', id)
 
    const handleNext = () => {
-       if (!page1Info.hasOwnProperty('name') || !page1Info.name.trim().length) {
+      if (!page1Info.hasOwnProperty('name') || !page1Info.name.trim().length) {
          setNameLength(false)
-       } if (!page1Info.hasOwnProperty('description') || !page1Info.description.trim().length) {
+      } if (!page1Info.hasOwnProperty('description') || !page1Info.description.trim().length) {
          setDescLength(false)
-       } if (!page1Info.hasOwnProperty('location') || !page1Info.location.trim().length) {
+      } if (!page1Info.hasOwnProperty('location') || !page1Info.location.trim().length) {
          setLocationLength(false)
-       }
-       else {
-          setActiveStep(prevActiveStep => prevActiveStep + 1);
-          nextStep();
-       }
-       //  console.log(nameLength, descLength, locationLength)
+      }
+      else {
+         setActiveStep(prevActiveStep => prevActiveStep + 1);
+         nextStep();
+      }
+      //  console.log(nameLength, descLength, locationLength)
       //  console.log(page1Info)
    };
 
@@ -275,9 +275,9 @@ console.log('CREATE HACKATHON ID FROM ACTION', id)
    const handleChange = e => {
       setMax(Number(e.target.value));
       console.log(Number(e.target.value));
-    };
+   };
 
-    console.log(max)
+   console.log(max)
 
    const handleFormSubmit = (data, e) => {
       props.history.push()
@@ -286,8 +286,8 @@ console.log('CREATE HACKATHON ID FROM ACTION', id)
    return (
       <div className="createHackathonContainer1" className={classes.container}>
          <Stepper
-         activeStep={activeStep}
-         setActiveStep={setActiveStep}
+            activeStep={activeStep}
+            setActiveStep={setActiveStep}
          />
          <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
          <form
@@ -361,7 +361,7 @@ console.log('CREATE HACKATHON ID FROM ACTION', id)
                            )
                         }}
                      />
-                       {!locationLength ? <p className='create-error'>Please include a location (ex. San Francisco, Online, etc)</p> : null}
+                     {!locationLength ? <p className='create-error'>Please include a location (ex. San Francisco, Online, etc)</p> : null}
                   </label>
                   <label className="url">
 
@@ -393,9 +393,9 @@ console.log('CREATE HACKATHON ID FROM ACTION', id)
                      <label className="startDate">
 
 
-                        <MuiPickersUtilsProvider  utils={DateFnsUtils}>
+                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardDatePicker
-                           className={classes.label}
+                              className={classes.label}
                               autoOk
                               fullWidth
                               name="startDate"
@@ -416,7 +416,7 @@ console.log('CREATE HACKATHON ID FROM ACTION', id)
                      <label className="startTime">
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardTimePicker
-                           className={classes.label}
+                              className={classes.label}
                               fullWidth
                               ampm={true}
                               name="startTime"
@@ -438,7 +438,7 @@ console.log('CREATE HACKATHON ID FROM ACTION', id)
                      <label className="endDate">
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardDatePicker
-                           className={classes.label}
+                              className={classes.label}
                               fullWidth
                               autoOk
                               name="endDate"
@@ -493,17 +493,17 @@ console.log('CREATE HACKATHON ID FROM ACTION', id)
 
                   <div>
                      <label className="max-members">
-                     <Typography className={classes.text} gutterBottom variant="h5" component="h5">
-                        What is the max number of members you want to allow per project?
+                        <Typography className={classes.text} gutterBottom variant="h5" component="h5">
+                           What is the max number of members you want to allow per project?
                      </Typography>
                         <FormControl className={classes.margin}>
                            <InputLabel htmlFor="demo-customized-textbox"></InputLabel>
                            <input
-                           type='number'
-                            id="demo-customized-textbox"
-                            placeholder="Max: 30"
-                            value={max}
-                            onChange={handleChange}/>
+                              type='number'
+                              id="demo-customized-textbox"
+                              placeholder="Max: 30"
+                              value={max}
+                              onChange={handleChange} />
 
                         </FormControl>
                      </label>
@@ -518,31 +518,31 @@ console.log('CREATE HACKATHON ID FROM ACTION', id)
 
             <div className={classes.buttonsContainer}>
                {activeStep === 0 && (
-                  <Button disabled style={{color:'#5F6471'}} onClick={handleBack} className={classes.disabledButton}>
-               Back
+                  <Button disabled style={{ color: '#5F6471' }} onClick={handleBack} className={classes.disabledButton}>
+                     Back
                </Button>)}
                {activeStep > 0 && (
                   <Button onClick={handleBack} className={classes.backButton}>
-               Back
+                     Back
                </Button>)}
                <div className={classes.buttonsSubContainer}>
 
 
                   {activeStep === 2 ?
                      <Button
-                     variant="contained"
-                     color="primary"
-                     className={classes.activeButton}
-                     onClick={()=> props.history.push(`/hackathon/${id}`)}
+                        variant="contained"
+                        color="primary"
+                        className={classes.activeButton}
+                        onClick={() => props.history.push(`/hackathon/${id}`)}
                      >
                         Finish
                      </Button>
                      :
                      <Button
-                     variant="contained"
-                     color="primary"
-                     onClick={handleNext}
-                     className={classes.activeButton}
+                        variant="contained"
+                        color="primary"
+                        onClick={handleNext}
+                        className={classes.activeButton}
                      >
                         Next
                      </Button>

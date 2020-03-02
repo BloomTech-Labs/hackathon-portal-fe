@@ -87,8 +87,8 @@ function Hackathons(props) {
     return hackathonStatus;
   }
 
-  const upcomingSearch = searchFn(pastHackathons);
-  const activeSearch = searchFn(pastHackathons);
+  const upcomingSearch = searchFn(upcomingHackathons)
+  const activeSearch = searchFn(activeHackathons)
   const pastSearch = searchFn(pastHackathons);
 
   // console.log(upcomingHackathons);
@@ -193,21 +193,28 @@ function Hackathons(props) {
           </div>
         </div>
       </container >
+
       <h3 className="hackathonHeaders">Upcoming Hackathons</h3>
       <div className="cardParent">
-        {searchFn(upcomingHackathons).map(hackathon => (
+
+        {upcomingSearch.length === 0 ? <p>Nothing to display</p> : upcomingHackathons.map(hackathon => (
+
           <HackathonCard hackathon={hackathon} />
         ))}
       </div>
       <h3 className="hackathonHeaders">Active Hackathons</h3>
       <div className="cardParent">
-        {searchFn(activeHackathons).map(hackathon => (
+
+        {activeSearch.length === 0 ? <p>Nothing to display</p> : activeHackathons.map(hackathon => (
+
           <HackathonCard hackathon={hackathon} />
         ))}
       </div>
       <h3 className="hackathonHeaders">Past Hackathons</h3>
       <div className="cardParent">
-        {pastSearch.length === 0 ? <p>nopeeee</p> : pastSearch.map(hackathon => (
+
+        {pastSearch.length === 0 ? <p>Nothing to display</p> : pastHackathons.map(hackathon => (
+
           <HackathonCard hackathon={hackathon} />
         ))}
       </div>
