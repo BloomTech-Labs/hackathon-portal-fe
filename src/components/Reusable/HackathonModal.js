@@ -1,39 +1,37 @@
 import React, { useState } from 'react';
-import { textfield } from "@material-ui/core"
-const HackathonModal = () => {
-   const [modal, setModal] = useState(false)
+import { TextField } from "@material-ui/core"
+import '../../sass/hackathonModel/hackathonModel.scss'
 
-   const toggleModal = () => {
-    setModal(!modal)
+const HackathonModal = () => {
+    const [modal, setModal] = useState(false)
+
+    const toggleModal = () => {
+        setModal(!modal)
     }
 
     const handleBackgroundClick = e => {
-        if(e.target === e.currentTarget) toggleModal();
+        if (e.target === e.currentTarget) toggleModal();
     }
 
     return (
         <>
-            <div className={`backdrop ${modal ? '' : 'hideModal' }`} onClick={handleBackgroundClick}>
+            <div className={`backdrop ${modal ? '' : 'hideModal'}`} onClick={handleBackgroundClick}>
                 <div className='modal'>
-                    <div className='top-content'>
-                        <h3>Create a new hackathon</h3>
-                        <div className='Stepper'>
-                            <div>1</div>
-                            <div>-</div>
-                            <div>2</div>
-                            <div>-</div>
-                            <div>3</div>
+                    <div>
+                        <div className='modal-top'>
+                            <h3>Create a new hackathon</h3>
+
                         </div>
-                    </div>
-                    <form className='middle-content'>
-                        <input placeholder='Hackathon name' />
-                        <input placeholder='Hackathon url'/>
-                        <input placeholder='Hackathon location'/>
-                        <textarea placeholder='Hackathon description'/>
-                    </form>
-                    <div className='bottom-content'>
-                        <button>Cancel</button>
-                        <button>Next</button>
+                        <form className='modal-middle'>
+                            <TextField required varient='filled' placeholder='Hackathon Name' />
+                            <TextField required varient='filled' placeholder='Hackathon location' />
+                            <TextField varient='filled' placeholder='Hackathon url' />
+                            <TextField required multiline rows='5' placeholder='Hackathon description' />
+                        </form>
+                        <div className='modal-bottom'>
+                            <button className='cancel-button'>Cancel</button>
+                            <button className='next-button'>Next</button>
+                        </div>
                     </div>
                 </div>
             </div>
