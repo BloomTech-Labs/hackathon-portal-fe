@@ -6,7 +6,7 @@
     display: flex;
     background-color: #F5F8FA;
     color: #000000;
-    border: none;
+    border: 1px solid black;
     padding: 5px 0 5px 3px;
     font-size: 25px;
   }
@@ -160,12 +160,17 @@
     justify-content: space-evenly;
 }
 .content {
-    text-align: left;
+    a{
+        span, p{
+            text-align: left;
+        }
+    }
 }
 .hackathonInfo {
     font-family: Muli;
-    text-align: center;
+    text-align: left; 
     color: black;
+    padding: 0;
     // margin-top: 7%;
     font-size: 14px;
     line-height: 20px;

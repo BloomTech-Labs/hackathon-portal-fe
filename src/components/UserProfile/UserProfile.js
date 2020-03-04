@@ -30,6 +30,8 @@ import HacakthonModal from '../Reusable/HackathonModal';
 import '../../sass/userProfile/userProfile.scss'
 import HackathonModal from '../Reusable/HackathonModal';
 
+import CreateHackathon from '../Hackathon/CreateHackathon'
+
 const UserProfile = props => {
    const dispatch = useDispatch();
    const { loading, user, logout } = useAuth0();
@@ -47,7 +49,13 @@ const UserProfile = props => {
       email: '',
       id: ''
    });
-   console.log(user.id)
+   const [hackathons, setHackathons] = useState([])
+
+   useEffect(() => {
+      if (userProfile?.hackathons.length > 0) {
+         setHackathons(userProfile.hackathons)
+      }
+   }, [userProfile?.hackathons])
 
    const formatDate = date => {
       const months = [
@@ -89,9 +97,11 @@ const UserProfile = props => {
    };
 
    useEffect(() => {
-      dispatch(getUser(user.id));
-      getAndSetUserHook();
-   }, [user.id]);
+      if (user?.id) {
+         dispatch(getUser(user.id));
+         getAndSetUserHook();
+      }
+   }, [user]);
 
    // const handleClickOpen = () => {
    //    setOpen(true);
@@ -178,11 +188,11 @@ const UserProfile = props => {
       })
    }
 
-   if (loading || !userProfile) {
+   if (loading || !profileInfo) {
       return <Loader type="Rings" color="#4885E1" height={100} width={100} />
    }
 
-   let presentHackathons = userProfile.hackathons.filter(hackathon => {
+   let presentHackathons = hackathons.filter(hackathon => {
       if (
          moment(hackathon.end_date).isSame(currentDate) ||
          moment(hackathon.end_date).isAfter(currentDate)
@@ -191,7 +201,7 @@ const UserProfile = props => {
       }
    });
 
-   let pastHackathons = userProfile.hackathons.filter(hackathon => {
+   let pastHackathons = hackathons.filter(hackathon => {
       if (moment(hackathon.end_date).isBefore(currentDate)) {
          return hackathon;
       }
@@ -199,6 +209,7 @@ const UserProfile = props => {
 
    return (
       <div className='profile-wrapper'>
+
          <div className='top-content'>
             <div className='top-left'>
                <h1> Dashboard</h1>
@@ -219,7 +230,7 @@ const UserProfile = props => {
             </div>
          </div>
          <div className='logged-in-as'>
-            <h3 className='bottom-left'>Logged in as: <p>{userProfile.email}</p></h3>
+            <h3 className='bottom-left'>Logged in as: <p>{profileInfo.email}</p></h3>
          </div>
          <div className='above-table'>
             <p className={`hackathons-header ${tabs.active ? '' : 'hidden'}`}>Active & upcoming hackathons</p>

@@ -60,7 +60,7 @@ const HackathonCard = ({ hackathon }) => {
             }}
           />
         </Link>
-        <CardContent>
+        <CardContent className={classes.root}>
           <div className="hackathonInfo">
             <Typography variant="body2" component="p">
               {hackathon.location}
