@@ -29,13 +29,16 @@ const useStyles = makeStyles(theme => ({
     background: '#D0DDFF',
     borderRadius: '5px',
     marginBottom: '20px',
- },
- button: {
-  color: '#d0ddff',
-  border: '1px solid #d0ddff',
-  width: '160px',
-  borderRadius: '13.5px',
- },
+  },
+  button: {
+    background: 'white',
+    width: '187px',
+    height: '42px',
+    'font-weight': 'bold',
+    'font-size': '14px',
+    border: '1px solid rgba(0, 0, 0, 0.87)',
+    'border-radius': '4px',
+  },
 }));
 
 const Fade = React.forwardRef(function Fade(props, ref) {
@@ -101,8 +104,8 @@ export default function SpringModal() {
         <Fade in={open}>
           <div className={classes.paper}>
             <h2 id="spring-modal-title">Hackathon Settings</h2>
-            <SimpleTabs/>
-            <Button  color='primary' onClick={handleClose}>Exit</Button>
+            <SimpleTabs />
+            <Button color='primary' onClick={handleClose}>Exit</Button>
           </div>
         </Fade>
       </Modal>

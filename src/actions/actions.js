@@ -29,13 +29,13 @@ export const editProject = (
    hackathonId,
    project_id,
    projectInfo
-   ) => async dispatch => {
+) => async dispatch => {
    dispatch({ type: FETCH_START });
    (await axiosWithAuth())
       .put(`/projects/${project_id}`, projectInfo)
       .then(response => {
          dispatch({ type: EDIT_PROJECT_SUCCESS })
-         if(projectInfo.is_approved){
+         if (projectInfo.is_approved) {
             dispatch(getSpecificHackathon(hackathonId))
          };
       })
@@ -50,16 +50,16 @@ export const deleteProject = (
 ) => async dispatch => {
    dispatch({ type: FETCH_START });
    (await axiosWithAuth())
-   .delete(`/projects/${project_id}`)
-   .then(response => {
-      dispatch({ type: POST_PROJECT_SUCCESS })
-      if(project_id){
-         dispatch(getSpecificHackathon(hackathonId))
-      };
-   })
-   .catch(error => {
-      dispatch({ type: FETCH_FAILURE})
-   })
+      .delete(`/projects/${project_id}`)
+      .then(response => {
+         dispatch({ type: POST_PROJECT_SUCCESS })
+         if (project_id) {
+            dispatch(getSpecificHackathon(hackathonId))
+         };
+      })
+      .catch(error => {
+         dispatch({ type: FETCH_FAILURE })
+      })
 }
 
 export const createProject = (
@@ -73,7 +73,7 @@ export const createProject = (
       .then(response => {
          console.log('ACTION RESPONSE', response)
          dispatch({ type: POST_PROJECT_SUCCESS });
-         dispatch(getSpecificHackathon( response.data.data.hackathon_id ))
+         dispatch(getSpecificHackathon(response.data.data.hackathon_id))
          // history.push(`/hackathon/${hackathon_id}`);
       })
       .catch(error => {
@@ -147,17 +147,21 @@ export const createHackathon = (
    user_id,
    hackathonInfo,
    history,
-   setId
+   setId,
+   setActiveStep
 ) => async dispatch => {
    dispatch({ type: FETCH_START });
    (await axiosWithAuth())
       .post(`/hackathons/u/${user_id}`, hackathonInfo)
-      .then(response => {  
-         dispatch({ type: POST_HACKATHON_SUCCESS });
-         dispatch(getSpecificHackathon(response.data.id))
+      .then(response => {
+         console.log(response.data)
+         // debugger
+         dispatch({ type: POST_HACKATHON_SUCCESS, payload: response.data });
+         // dispatch(getSpecificHackathon(response.data.id))
          setId(response.data.id)
+         setActiveStep(prev => prev + 1)
          // console.log(response.data)
-         // history.push(`/success`, response.data.id);
+         // history.push(`/success/${response.data.id}`);
       })
       .catch(error => {
          dispatch({ type: FETCH_FAILURE, payload: error.response });
@@ -171,7 +175,7 @@ export const editHackathon = (
    org_id,
    history,
    hackathonInfo
-   ) => async dispatch => {
+) => async dispatch => {
    dispatch({ type: FETCH_START });
    (await axiosWithAuth())
       .put(`/hackathons/${id}/u/${org_id}`, hackathonInfo)

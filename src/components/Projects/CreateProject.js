@@ -40,7 +40,6 @@ const useStyles = makeStyles(theme => ({
     color: 'white',
     width: '600px',
     margin: '0 auto',
-    width: '600px'
   },
   label: {
     background: '#D0DDFF',
@@ -48,18 +47,19 @@ const useStyles = makeStyles(theme => ({
     marginBottom: '20px',
   },
   root: {
-    
+
     padding: '3%',
     borderRadius: '5px',
-        width: '50%',
-        '& > *': {
-  
-          width: '100%',
-        },
+    width: '50%',
+    '& > *': {
+
+      width: '100%',
+    },
   },
   button: {
-    width: '150px',
-    marginTop: '50px'
+    marginTop: '50px',
+    width: '92px',
+    height: '42px',
   },
   formControl: {
     margin: theme.spacing(1),
@@ -75,31 +75,31 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-  const GreenCheckbox = withStyles({
-    root: {
-      color: blue[400],
-      '&$checked': {
-        color: blue[600],
-      },
+const GreenCheckbox = withStyles({
+  root: {
+    color: blue[400],
+    '&$checked': {
+      color: blue[600],
     },
-    checked: {},
-  })(props => <Checkbox color="default" {...props} />);
+  },
+  checked: {},
+})(props => <Checkbox color="default" {...props} />);
 
-  const GreenRadio = withStyles({
-    root: {
-      color: blue[400],
-      '&$checked': {
-        color: blue[600],
-      },
+const GreenRadio = withStyles({
+  root: {
+    color: blue[400],
+    '&$checked': {
+      color: blue[600],
     },
-    checked: {},
-  })(props => <Radio color="default" {...props} />);
+  },
+  checked: {},
+})(props => <Radio color="default" {...props} />);
 
 const CreateProject = props => {
   const hackathon = useSelector(state => state.singleHackathon);
   const [formInfo, setFormInfo] = useState({});
   const [currentUser, setCurrentUser] = useState({})
-  const [project, setProject] = useState( "Solo Project" );
+  const [project, setProject] = useState("Solo Project");
   const [projectInfo, setProjectInfo] = useState({
     title: '',
     description: '',
@@ -135,7 +135,7 @@ const CreateProject = props => {
   const [match, setMatch] = useState(true)
 
   useEffect(() => {
-    if(hackathon) {
+    if (hackathon) {
       setProjectInfo({
         title: `${formInfo.title}`,
         description: `${formInfo.description}`,
@@ -156,8 +156,8 @@ const CreateProject = props => {
 
 
   useEffect(() => {
-    if(user) {
-      setCurrentUser({...currentUser, user_hackathon_role: 'participant', hackathon_id: `${hackathon.id}`, developer_role: `${role}`})
+    if (user) {
+      setCurrentUser({ ...currentUser, user_hackathon_role: 'participant', hackathon_id: `${hackathon.id}`, developer_role: `${role}` })
     }
   }, [role])
 
@@ -173,19 +173,19 @@ const CreateProject = props => {
 
 
   const handleButtonChange = name => event => {
-    setChecked({ ...checked, [name]: event.target.checked  });
+    setChecked({ ...checked, [name]: event.target.checked });
   };
 
   const handleChange = name => event => {
-    setSpots({...spots, [name]:event.target.value});
+    setSpots({ ...spots, [name]: event.target.value });
   };
 
   const handleRoleChange = e => {
-    setRole( e.target.value)
+    setRole(e.target.value)
   }
 
   const handleTeamChange = e => {
-    setProject( e.target.value )
+    setProject(e.target.value)
   }
 
   useEffect(() => {
@@ -198,102 +198,102 @@ const CreateProject = props => {
     if (loading) {
       return;
     }
-    if(spotsArray.reduce((acc, curr) => acc + curr) > hackathon.max_team_participants){
+    if (spotsArray.reduce((acc, curr) => acc + curr) > hackathon.max_team_participants) {
       e.preventDefault();
       setError(true)
-    }else{
+    } else {
       e.preventDefault();
       console.log(projectInfo, currentUser)
       dispatch(createProject(hackathon.id, projectInfo, props.history))
       if (match) props.history.push(`/hackathon/${hackathon.id}`)
     }
   }
-  
-  if(loading || !hackathon){
-    return(
-      <Loader type="Rings" color="#4885E1" height={100} width={100} />
-      )
-  }else if(!hackathon.organizer_id){
-    return(
-      <Loader type="Rings" color="#4885E1" height={100} width={100} />
-      )
-    }
-    
-    let selectOptions = [];
-    for(let i=0; i <= hackathon.max_team_participants; i++){
-      selectOptions.push(i)
-    }
 
-  return(
+  if (loading || !hackathon) {
+    return (
+      <Loader type="Rings" color="#4885E1" height={100} width={100} />
+    )
+  } else if (!hackathon.organizer_id) {
+    return (
+      <Loader type="Rings" color="#4885E1" height={100} width={100} />
+    )
+  }
+
+  let selectOptions = [];
+  for (let i = 0; i <= hackathon.max_team_participants; i++) {
+    selectOptions.push(i)
+  }
+
+  return (
     <div className={classes.container}>
       <form
-      noValidate autoComplete="off"
-      className={classes.root}
-      onSubmit={handleFormSubmit}
+        noValidate autoComplete="off"
+        className={classes.root}
+        onSubmit={handleFormSubmit}
       >
         {user.id !== hackathon.organizer_id ? (
           <>
             <Typography variant='h5'>Submit a project idea</Typography>
           </>
-        ): <Typography variant='h5'>Submit a project</Typography>}
+        ) : <Typography variant='h5'>Submit a project</Typography>}
         <label className="title">
-            <TextField
-              type="text"
-              fullWidth
-              label="Project Title"
-              name="title"
-              variant="filled"
-              margin="dense"
-              className={classes.label}
-              defaultValue={formInfo.title}
-              onChange={handleFormChange}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start"></InputAdornment>
-                )
-              }}
-            />
-      
-            <TextField
-              className={classes.label}
-              type="text"
-              fullWidth
-              multiline
-              rows="4"
-              name="description"
-              variant="filled"
-              label='Project Description'
-              margin="dense"
-              defaultValue={formInfo.description}
-              onChange={handleFormChange}
-              InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                        <DescriptionIcon />
-                    </InputAdornment>
-                  )
-              }}
-            />
+          <TextField
+            type="text"
+            fullWidth
+            label="Project Title"
+            name="title"
+            variant="filled"
+            margin="dense"
+            className={classes.label}
+            defaultValue={formInfo.title}
+            onChange={handleFormChange}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start"></InputAdornment>
+              )
+            }}
+          />
+
+          <TextField
+            className={classes.label}
+            type="text"
+            fullWidth
+            multiline
+            rows="4"
+            name="description"
+            variant="filled"
+            label='Project Description'
+            margin="dense"
+            defaultValue={formInfo.description}
+            onChange={handleFormChange}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <DescriptionIcon />
+                </InputAdornment>
+              )
+            }}
+          />
         </label>
-          
+
         <label className="project-radio">
-        <FormControl component="fieldset">                  
-          <RadioGroup defaultValue="solo" aria-label="project" name="customized-radios">
+          <FormControl component="fieldset">
+            <RadioGroup defaultValue="solo" aria-label="project" name="customized-radios">
               <FormControlLabel checked={project === "Solo Project"} onChange={handleTeamChange} value="Solo Project" control={<GreenRadio />} label="Solo Project" />
               <FormControlLabel checked={project === "Team Project"} onChange={handleTeamChange} value="Team Project" control={<GreenRadio />} label="Team Project" />
-          </RadioGroup>
-      </FormControl>
-      </label>
-        
+            </RadioGroup>
+          </FormControl>
+        </label>
+
         {project === "Team Project" && (
-        <>
-          <label className={classes.maxMembers}>
-            <Typography  gutterBottom variant="h5" component="h5">
-                  Will there be specific roles for this project? 
+          <>
+            <label className={classes.maxMembers}>
+              <Typography gutterBottom variant="h5" component="h5">
+                Will there be specific roles for this project?
             </Typography>
-            <FormHelperText style={{color:'#4885E1'}}>The maximum number of members allowed per team is {hackathon.max_team_participants}</FormHelperText>
-  
-            <FormControlLabel
+              <FormHelperText style={{ color: '#4885E1' }}>The maximum number of members allowed per team is {hackathon.max_team_participants}</FormHelperText>
+
+              <FormControlLabel
                 control={
                   <GreenCheckbox
                     name='frontend'
@@ -303,27 +303,27 @@ const CreateProject = props => {
                   />
                 }
                 label="Front End"
-            />
-  
-            {checked.frontend && (
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">Max</InputLabel>
-                <Select
-                  name='front_end_spots'
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  className={classes.formControl}
-                  value={spots.frontend}
-                  onChange={handleChange('frontend')}
-                >
-                  {selectOptions.map(number => {
-                    return (<MenuItem value={number}>{number}</MenuItem>)
-                  })}
-                </Select>
-              </FormControl>
-            )}
-  
-            <FormControlLabel
+              />
+
+              {checked.frontend && (
+                <FormControl className={classes.formControl}>
+                  <InputLabel id="demo-simple-select-label">Max</InputLabel>
+                  <Select
+                    name='front_end_spots'
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    className={classes.formControl}
+                    value={spots.frontend}
+                    onChange={handleChange('frontend')}
+                  >
+                    {selectOptions.map(number => {
+                      return (<MenuItem value={number}>{number}</MenuItem>)
+                    })}
+                  </Select>
+                </FormControl>
+              )}
+
+              <FormControlLabel
                 control={
                   <GreenCheckbox
                     name='backend'
@@ -333,24 +333,24 @@ const CreateProject = props => {
                   />
                 }
                 label="Back End"
-            />
-  
+              />
+
               {checked.backend && (
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">Max</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={spots.backend}
-                  onChange={handleChange('backend')}
-                >
-                  {selectOptions.map(number => {
-                    return (<MenuItem value={number}>{number}</MenuItem>)
-                  })}
-                </Select>
-              </FormControl>
-            )}
-  
+                <FormControl className={classes.formControl}>
+                  <InputLabel id="demo-simple-select-label">Max</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={spots.backend}
+                    onChange={handleChange('backend')}
+                  >
+                    {selectOptions.map(number => {
+                      return (<MenuItem value={number}>{number}</MenuItem>)
+                    })}
+                  </Select>
+                </FormControl>
+              )}
+
               <FormControlLabel
                 control={
                   <GreenCheckbox
@@ -361,24 +361,24 @@ const CreateProject = props => {
                   />
                 }
                 label="UX"
-            />
-  
+              />
+
               {checked.ux && (
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">Max</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={spots.ux}
-                  onChange={handleChange('ux')}
-                >
-                  {selectOptions.map(number => {
-                    return (<MenuItem value={number}>{number}</MenuItem>)
-                  })}
-                </Select>
-              </FormControl>
-            )}
-  
+                <FormControl className={classes.formControl}>
+                  <InputLabel id="demo-simple-select-label">Max</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={spots.ux}
+                    onChange={handleChange('ux')}
+                  >
+                    {selectOptions.map(number => {
+                      return (<MenuItem value={number}>{number}</MenuItem>)
+                    })}
+                  </Select>
+                </FormControl>
+              )}
+
               <FormControlLabel
                 control={
                   <GreenCheckbox
@@ -389,24 +389,24 @@ const CreateProject = props => {
                   />
                 }
                 label="Data Science"
-            />
-  
+              />
+
               {checked.ds && (
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">Max</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={spots.ds}
-                  onChange={handleChange('ds')}
-                >
-                  {selectOptions.map(number => {
-                    return (<MenuItem value={number}>{number}</MenuItem>)
-                  })}
-                </Select>
-              </FormControl>
-            )}
-  
+                <FormControl className={classes.formControl}>
+                  <InputLabel id="demo-simple-select-label">Max</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={spots.ds}
+                    onChange={handleChange('ds')}
+                  >
+                    {selectOptions.map(number => {
+                      return (<MenuItem value={number}>{number}</MenuItem>)
+                    })}
+                  </Select>
+                </FormControl>
+              )}
+
               <FormControlLabel
                 control={
                   <GreenCheckbox
@@ -417,24 +417,24 @@ const CreateProject = props => {
                   />
                 }
                 label="IOS"
-            />
-  
+              />
+
               {checked.ios && (
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">Max</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={spots.ios}
-                  onChange={handleChange('ios')}
-                >
-                  {selectOptions.map(number => {
-                    return (<MenuItem value={number}>{number}</MenuItem>)
-                  })}
-                </Select>
-              </FormControl>
-            )}
-  
+                <FormControl className={classes.formControl}>
+                  <InputLabel id="demo-simple-select-label">Max</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={spots.ios}
+                    onChange={handleChange('ios')}
+                  >
+                    {selectOptions.map(number => {
+                      return (<MenuItem value={number}>{number}</MenuItem>)
+                    })}
+                  </Select>
+                </FormControl>
+              )}
+
               <FormControlLabel
                 control={
                   <GreenCheckbox
@@ -445,70 +445,70 @@ const CreateProject = props => {
                   />
                 }
                 label="Android"
-                />
-                
-                {checked.and && (
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">Max</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={spots.and}
-                  onChange={handleChange('and')}
-                >
-                  {selectOptions.map(number => {
-                    return (<MenuItem value={number}>{number}</MenuItem>)
-                  })}
-                </Select>
-              </FormControl>
-            )}
-          </label>
-  
-          <label className="total-members">
-          <Typography  gutterBottom variant="h6" component="h6">
-            Total Members: {spotsArray.reduce((acc, curr) => acc + curr)}
+              />
+
+              {checked.and && (
+                <FormControl className={classes.formControl}>
+                  <InputLabel id="demo-simple-select-label">Max</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={spots.and}
+                    onChange={handleChange('and')}
+                  >
+                    {selectOptions.map(number => {
+                      return (<MenuItem value={number}>{number}</MenuItem>)
+                    })}
+                  </Select>
+                </FormControl>
+              )}
+            </label>
+
+            <label className="total-members">
+              <Typography gutterBottom variant="h6" component="h6">
+                Total Members: {spotsArray.reduce((acc, curr) => acc + curr)}
+              </Typography>
+            </label>
+
+
+            {user.id !== hackathon.organizer_id && (
+              <label className="role">
+                <Typography gutterBottom variant="h6" component="h6">
+                  Your Role:
           </Typography>
-          </label>
 
-
-          { user.id !== hackathon.organizer_id && (
-          <label className="role">
-          <Typography  gutterBottom variant="h6" component="h6">
-            Your Role:
-          </Typography>
-
-          <FormControl className={classes.formControl}>
-        <Select value={role} onChange={handleRoleChange} displayEmpty className={classes.selectEmpty}>
-          <MenuItem value="" disabled>
-            Role
+                <FormControl className={classes.formControl}>
+                  <Select value={role} onChange={handleRoleChange} displayEmpty className={classes.selectEmpty}>
+                    <MenuItem value="" disabled>
+                      Role
           </MenuItem>
-          <MenuItem value={"frontend"}>Frontend</MenuItem>
-          <MenuItem value={"backend"}>Backend</MenuItem>
-          <MenuItem value={"ux"}>UX</MenuItem>
-          <MenuItem value={"ds"}>Data Science</MenuItem>
-          <MenuItem value={"ios"}>IOS</MenuItem>
-          <MenuItem value={"and"}>Android</MenuItem>
-        </Select>
-        <FormHelperText>Role</FormHelperText>
-      </FormControl>
-          </label>
-          )}
-    </>
-      )}
-    
+                    <MenuItem value={"frontend"}>Frontend</MenuItem>
+                    <MenuItem value={"backend"}>Backend</MenuItem>
+                    <MenuItem value={"ux"}>UX</MenuItem>
+                    <MenuItem value={"ds"}>Data Science</MenuItem>
+                    <MenuItem value={"ios"}>IOS</MenuItem>
+                    <MenuItem value={"and"}>Android</MenuItem>
+                  </Select>
+                  <FormHelperText>Role</FormHelperText>
+                </FormControl>
+              </label>
+            )}
+          </>
+        )}
+
         <Button
-        variant="contained"
-        color="primary"
-        className={classes.activeButton}
-        type='submit'
-       
+          variant="contained"
+          color="primary"
+          className={classes.activeButton}
+          type='submit'
+
         >
-        ADD PROJECT 
+          ADD PROJECT
         </Button>
         {error && (<FormHelperText error>The total number of participants is more than the maximum number allowed per team</FormHelperText>)}
-  
 
-      </form> 
+
+      </form>
     </div>
   )
 };

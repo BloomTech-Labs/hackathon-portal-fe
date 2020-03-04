@@ -2,11 +2,11 @@ import "../sass/hackathonlist/hackathonlist.scss"
 
 export const style = {
   root: {
-    border: 'none'
+    border: 'none',
+    'padding-left': '0px',
   },
   card: {
     // 'text-align': 'center',
-    background: "#fff",
     "box-shadow": 'none',
     width: "30%",
     // margin: '10px',
@@ -41,7 +41,7 @@ export const style = {
     transform: "rotate(180deg)"
   },
   inputOutline: {
-   // RGB FOR #9b9b9b with opacity 64%
+    // RGB FOR #9b9b9b with opacity 64%
     backgroundColor: "rgba(155, 155, 155, 0.64)",
     borderRadius: "0.75rem",
     color: "#d0ddff",
@@ -57,7 +57,7 @@ export const style = {
     "font-family": "Muli",
     marginTop: '10px',
     padding: 0,
-    "text-align":'center',
+    "text-align": 'center',
     color: "black",
     "font-size": "18px",
     "line-height": "24px",
@@ -76,14 +76,14 @@ export const style = {
     textDecoration: 'none'
   },
   details: {
-    "text-align":'center',
-    'color':'black',
+    "text-align": 'center',
+    'color': 'black',
     'font-family': 'Muli',
     'font-style': 'normal',
     'font-weight': 'bold',
     'font-size': '14px',
     'line-height': '18px',
-    'margin-bottom':'10px'
+    'margin-bottom': '10px'
   }
 
 }

@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import useForm from 'react-hook-form';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom'
 
 // COMPONENTS
 import Stepper from './Stepper';
@@ -15,6 +16,8 @@ import OrganizerProjectList from '../Organizers/OrganizerProjectList';
 import { createHackathon } from '../../actions/actions';
 
 import "../../sass/stepper/stepper.scss";
+import "../../sass/hackathonModel/hackathonModel.scss";
+import "../../sass/createHackathon/createHackathon.scss";
 
 // STYLE
 import 'date-fns';
@@ -44,68 +47,78 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import InputBase from '@material-ui/core/InputBase';
 import Radio from '@material-ui/core/Radio';
+import { blue, red } from '@material-ui/core/colors';
+import { relativeTimeRounding } from 'moment';
 
 
 
-const BootstrapInput = withStyles(theme => ({
-   root: {
-      'label + &': {
-         marginTop: theme.spacing(3),
-      },
-   },
-   input: {
-      borderRadius: 3,
-      position: 'relative',
-      backgroundColor: theme.palette.background.paper,
-      border: '1px solid #ced4da',
-      fontSize: 16,
-      transition: theme.transitions.create(['border-color', 'box-shadow']),
-      fontFamily: [
-         '-apple-system',
-         'BlinkMacSystemFont',
-         '"Segoe UI"',
-         'Roboto',
-         '"Helvetica Neue"',
-         'Arial',
-         'sans-serif',
-         '"Apple Color Emoji"',
-         '"Segoe UI Emoji"',
-         '"Segoe UI Symbol"',
-      ].join(','),
-      '&:focus': {
-         borderRadius: 4,
-         borderColor: '#80bdff',
-         boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
-      },
-   },
-}))(InputBase);
+// const BootstrapInput = withStyles(theme => ({
+//    root: {
+//       'label + &': {
+//          marginTop: theme.spacing(3),
+//       },
+//    },
+//    input: {
+//       borderRadius: 3,
+//       position: 'relative',
+//       backgroundColor: theme.palette.background.paper,
+//       border: '1px solid #ced4da',
+//       fontSize: 16,
+//       transition: theme.transitions.create(['border-color', 'box-shadow']),
+//       fontFamily: [
+//          '-apple-system',
+//          'BlinkMacSystemFont',
+//          '"Segoe UI"',
+//          'Roboto',
+//          '"Helvetica Neue"',
+//          'Arial',
+//          'sans-serif',
+//          '"Apple Color Emoji"',
+//          '"Segoe UI Emoji"',
+//          '"Segoe UI Symbol"',
+//       ].join(','),
+//       '&:focus': {
+//          borderRadius: 4,
+//          borderColor: '#80bdff',
+//          boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+//       },
+//    },
+// }))(InputBase);
 
 const useStyles = makeStyles(theme => ({
+   container: {
+      // border: '10px solid green',
+      width: '100%',
+      // height: '10vh',
+      // height: '200px',
+      // background: 'blue',
+   },
    label: {
       background: '#D0DDFF',
       borderRadius: '5px',
       marginBottom: '20px',
    },
    root: {
+      overflow: 'auto',
       padding: '3%',
-      borderRadius: '5px',
-      width: '50%',
-      '& > *': {
+      borderRadius: '4px',
+      width: '80%',
+      // '& > *': {
 
-         width: '100%',
-      },
-      margin: '0 auto',
+      //    width: '100%',
+      // },
+      margin: 'auto',
    },
    button: {
-      width: '150px',
-      marginTop: '50px'
+      // width: '150px',
+      // marginTop: '50px'
    },
    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 120,
+      // margin: theme.spacing(1),
+      // minWidth: 120,
    },
    selectEmpty: {
-      marginTop: theme.spacing(2),
+      // marginTop: theme.spacing(2),
    },
    icon: {
       borderRadius: '50%',
@@ -143,7 +156,8 @@ const useStyles = makeStyles(theme => ({
    activeButton: {
       backgroundColor: '#4885E1',
       color: '#0A0A0B',
-      marginLeft: '3%',
+      width: '8%',
+      // marginLeft: '3%',
    },
    backButton: {
       border: '1px solid #4885E1',
@@ -151,16 +165,21 @@ const useStyles = makeStyles(theme => ({
    },
    buttonsContainer: {
       display: 'flex',
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
+      top: 0,
+      right: 0,
    },
    buttonsSubContainer: {
-      display: 'flex',
-      justifyContent: 'space-between'
+      top: 0,
+      right: 0,
+      // display: 'flex',
+      // justifyContent: 'space-between'
    }
 }));
 
 function StyledRadio(props) {
    const classes = useStyles();
+
 
    return (
       <Radio
@@ -179,12 +198,12 @@ const CreateHackathon = props => {
    const [start_date, setStart_date] = useState(`${new Date()}`);
    const [end_date, setEnd_date] = useState(`${new Date()}`);
    const [hackathonInfo, setHackathonInfo] = useState({
-      name: '',
-      description: '',
-      location: '',
-      url: '',
-      start_date: '',
-      end_date: '',
+      name: 'Test',
+      description: 'Test',
+      location: 'Test',
+      url: 'Test',
+      start_date: '2020/03/31',
+      end_date: '2020/03/31',
       is_open: '',
       max_team_participants: 0,
    });
@@ -198,6 +217,7 @@ const CreateHackathon = props => {
    const [descLength, setDescLength] = React.useState(true)
    const [locationLength, setLocationLength] = React.useState(true)
    const [id, setId] = useState(0)
+   const history = useHistory()
 
 
 
@@ -235,7 +255,7 @@ const CreateHackathon = props => {
    function getStepContent(step) {
       switch (step) {
          case 0:
-            return 'Basic hackathon details';
+            return 'Hackathon basic details';
          case 1:
             return 'Hackathon date and time';
          case 2:
@@ -244,8 +264,6 @@ const CreateHackathon = props => {
             return 'Unknown step';
       }
    }
-
-   console.log('CREATE HACKATHON ID FROM ACTION', id)
 
    const handleNext = () => {
       if (!page1Info.hasOwnProperty('name') || !page1Info.name.trim().length) {
@@ -256,8 +274,8 @@ const CreateHackathon = props => {
          setLocationLength(false)
       }
       else {
-         setActiveStep(prevActiveStep => prevActiveStep + 1);
          nextStep();
+
       }
       //  console.log(nameLength, descLength, locationLength)
       //  console.log(page1Info)
@@ -265,10 +283,14 @@ const CreateHackathon = props => {
 
    function nextStep() {
       if (activeStep === 1) {
-         const id = user.sub.replace('auth0|', '');
-         dispatch(createHackathon(id, hackathonInfo, props.history, setId));
+         const user_id = user.sub.replace('auth0|', '');
+         dispatch(createHackathon(user_id, hackathonInfo, history, setId, setActiveStep));
+      } else {
+         setActiveStep(prevActiveStep => prevActiveStep + 1);
       }
    }
+
+   // useEffect(() => { debugger }, [hackathonInfo])
 
    const handleBack = () => {
       setActiveStep(prevActiveStep => prevActiveStep - 1);
@@ -279,22 +301,19 @@ const CreateHackathon = props => {
       console.log(Number(e.target.value));
    };
 
-   console.log(max)
-
    const handleFormSubmit = (data, e) => {
-      props.history.push()
+      history.push()
    };
 
    return (
-      <div className="createHackathonContainer1" className={classes.container}>
+      <div className='create-hackathon-container' >
          <div className='stepper-container'>
-         <h3>Create a new hackathon</h3>
-         <Stepper
-            activeStep={activeStep}
-            setActiveStep={setActiveStep}
-         />
+            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+            <Stepper
+               activeStep={activeStep}
+               setActiveStep={setActiveStep}
+            />
          </div>
-         <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
          <form
             noValidate autoComplete="off"
             className={classes.root}
@@ -538,7 +557,7 @@ const CreateHackathon = props => {
                         variant="contained"
                         color="primary"
                         className={classes.activeButton}
-                        onClick={() => props.history.push(`/hackathon/${id}`)}
+                        onClick={() => history.push(`/hackathon/${id}`)}
                      >
                         Finish
                      </Button>

@@ -1,0 +1,108 @@
+.backdrop {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.backdrop .modal {
+  border: 1px solid green;
+  overflow: auto;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: #FFFFFF;
+  position: fixed;
+  border: 1px solid #888;
+  border-radius: 4px;
+  width: 30%;
+  height: 70%;
+}
+
+.backdrop .modal-wrapper {
+  width: 90%;
+  margin: auto;
+}
+
+.backdrop .modal-top {
+  border: 1px solid blue;
+  width: 100%;
+}
+
+.backdrop .modal-top h3 {
+  font-family: Muli;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: left;
+}
+
+.backdrop .modal-top .stepper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid red;
+}
+
+.backdrop .modal-middle {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.backdrop .modal-middle .muiInput {
+  margin-bottom: 5%;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.backdrop .modal-middle input {
+  margin: 0;
+}
+
+.backdrop .modal-bottom {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.backdrop .modal-bottom .cancel-button {
+  padding: 0;
+  margin: auto;
+  margin-right: 30px;
+  font-size: 14px;
+  width: 62px;
+  height: 18px;
+  background: #FFFFFF;
+  border-radius: 4px;
+  border: none;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.backdrop .modal-bottom .next-button {
+  text-align: center;
+  width: 92px;
+  height: 42px;
+  background: rgba(0, 0, 0, 0.87);
+  border-radius: 4px;
+  color: #FFFFFF;
+}
+
+.hideModal {
+  display: none;
+}
+/*# sourceMappingURL=hackathonModel.css.map */
