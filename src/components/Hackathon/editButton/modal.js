@@ -34,10 +34,16 @@ const useStyles = makeStyles(theme => ({
     background: 'white',
     width: '187px',
     height: '42px',
-    'font-weight': 'bold',
+    // 'font-weight': 'bold',
     'font-size': '14px',
+    'font-family': 'Muli',
     border: '1px solid rgba(0, 0, 0, 0.87)',
     'border-radius': '4px',
+    'margin-bottom': '10px',
+    'text-transform': 'none',
+    "&:hover": {
+      backgroundColor: "transparent"
+    }
   },
 }));
 
@@ -86,8 +92,8 @@ export default function SpringModal() {
 
   return (
     <div>
-      <Button className={classes.button} type="button" onClick={handleOpen}>
-        EDIT EVENT
+      <Button disableRipple className={classes.button} type="button" onClick={handleOpen}>
+        Edit Event
       </Button>
       <Modal
         aria-labelledby="spring-modal-title"

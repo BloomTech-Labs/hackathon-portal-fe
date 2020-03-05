@@ -1,6 +1,7 @@
 .single-hackathon-container{
     width:80%;
     margin:auto;
+    padding-top:60px;
     display:flex;
     justify-content: space-between;
     h3{
@@ -26,16 +27,21 @@
         font-size: 14px;
         border: 1px solid rgba(0, 0, 0, 0.87);
         border-radius: 4px;
+        margin-bottom: 10px;
          a{
              text-decoration: none;
+             color: black;
          }
+    }
+    .single-hackathon-admins {
+        margin-bottom: 30px;
     }
 }
 .single-hackathon-container-left{
-width:100%;
+width:45%;
 }
-.top-content{
-    width:45%;
+.description{
+    width:48%;
 }
 .single-hackathon-description{
     display: flex;
@@ -43,8 +49,33 @@ width:100%;
        
 }
 .single-hackathon-dates{
+    width: 70%;
     display:flex;
+    justify-content: space-between;
 }
-.start-container{
-    width:25%;
+// .start-container{
+//     width:;
+// }
+// .end-container{
+//     width:25%;
+// }
+.single-hackathon-container-right{
+    width:48%;
+    img {
+        width: 100%;
+        // min-width: 40%;
+        height: 40vh;
+        border-radius: 4px;
+    }
+  
 }
+.sh-buttons-container{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5%;
+}
+
+// .MuiButtonBase-root.MuiButton-text {
+//     font-weight: bold;
+
+// }

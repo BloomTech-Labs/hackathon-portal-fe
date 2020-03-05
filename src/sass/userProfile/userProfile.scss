@@ -76,7 +76,7 @@
             font-size: 32px;
             line-height: 40px;
         }
-        button{
+        .dashboard-buttons{
             font-family: Muli;
             font-style: normal;
             font-weight: bold;
@@ -92,6 +92,26 @@
             text-align: center;
             margin: 10px 0px;
             cursor: pointer;
+        }
+        .back-button, .next-button{
+            width: 92px;
+            height:42px;
+        }
+        .back-button {
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.6);
+            color: rgba(0, 0, 0, 0.6);
+            margin-right:10px;
+        }
+        .cancel-button {
+            margin-right: 10px;
+            background: #fff;
+            border: none;
+            color: #9E9E9E;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+
         }
     }
     .active {

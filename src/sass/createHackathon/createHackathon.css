@@ -1,1 +1,87 @@
-/* No CSS *//*# sourceMappingURL=createHackathon.css.map */
+.create-error {
+  color: red;
+  margin: 0;
+  padding: 0;
+}
+
+.modal-button-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.test {
+  width: 15px;
+}
+
+p {
+  padding: o;
+  margin: 0;
+  text-align: left;
+  font-family: Muli;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.makeStyles-label-83 {
+  margin-bottom: 0;
+}
+
+.text {
+  font-family: Muli;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.MuiPickersToolbar-toolbar {
+  background: rgba(0, 0, 0, 0.87);
+}
+
+.MuiPickersDay-daySelected {
+  background: #F6F6F6;
+  color: black;
+}
+
+.MuiPickersClock-pin {
+  background: rgba(0, 0, 0, 0.87);
+}
+
+.MuiPickersClockPointer-pointer {
+  background: rgba(0, 0, 0, 0.87);
+}
+
+.MuiButton-textPrimary {
+  font-family: Muli;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.MuiPickersClockPointer-thumb {
+  background-color: rgba(0, 0, 0, 0.87);
+  border-color: rgba(0, 0, 0, 0.87);
+}
+
+.MuiStepIcon-root.MuiStepIcon-completed,
+.MuiCheckbox-colorPrimary.Mui-checked,
+.MuiStepIcon-root.MuiStepIcon-active {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.MuiInputBase-input {
+  width: 100%;
+}
+
+.MuiFormControlLabel-root {
+  width: 100%;
+}
+/*# sourceMappingURL=createHackathon.css.map */

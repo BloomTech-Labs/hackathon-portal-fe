@@ -21,7 +21,7 @@ const HackathonModal = () => {
             <div className={`backdrop ${modal ? '' : 'hideModal'}`} onClick={handleBackgroundClick}>
                 <div className='modal'>
 
-                    <CreateHackathon />
+                    <CreateHackathon toggleModal={toggleModal} />
 
                     {/* <div className='modal-wrapper'>
                         <div className='modal-top'>
@@ -41,7 +41,7 @@ const HackathonModal = () => {
                     </div> */}
                 </div>
             </div>
-            <button onClick={() => toggleModal()}>Create a hackathon</button>
+            <button className='dashboard-buttons' onClick={() => toggleModal()}>Create a hackathon</button>
         </>
     )
 }
