@@ -16,13 +16,15 @@ import "../../sass/homepage/homePage.scss";
 
 import HackathonCard from "../Reusable/HackathonCard";
 
+import "../../svg's/organize.svg"
+
 const Homepage = props => {
   const isFetching = useSelector(state => state.isFetching);
   const dispatch = useDispatch();
   const hackers = useSelector(state => state.hackers);
   const hackathons = useSelector(state => state.hackathons);
   const currentDate = new Date().toString();
-   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
   useEffect(() => {
     dispatch(getHackathons()).then(() => {
@@ -57,9 +59,9 @@ const Homepage = props => {
                 participating, Hakathon Portal is the best wayu to stay up to
                 date on the event's actvity
               </p>
-              <button  className='logIn-OutButton'
-                  id='login-btn'
-                  onClick={() => loginWithRedirect({})}>Join the fun</button>
+              <button className='logIn-OutButton'
+                id='login-btn'
+                onClick={() => loginWithRedirect({})}>Join the fun</button>
             </div>
             <img className="hero-right" src="https://picsum.photos/300/300" />
           </div>
@@ -89,6 +91,7 @@ const Homepage = props => {
                   stroke-linejoin="round"
                 />
               </svg>
+              <organize />
               <h3>Organize</h3>
               <p>
                 At eripuit signiferumque sea, vel ad mucius molestie, cu labitur

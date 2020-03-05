@@ -257,7 +257,7 @@ const CreateHackathon = props => {
          case 1:
             return 'Hackathon date and time';
          case 2:
-            return 'Create projects';
+            return '(Optional) Add a project';
          default:
             return 'Unknown step';
       }
@@ -564,12 +564,18 @@ const CreateHackathon = props => {
                      >
                         Finish
                      </button>
-                     :
-                     <button
-                        onClick={handleNext}
-                        className='next-button dashboard-buttons'
-                     >
-                        Next
+                     : activeStep === 1 ?
+                        <button
+                           onClick={handleNext}
+                           className='next-button dashboard-buttons'
+                        >
+                           Create
+                     </button> :
+                        <button
+                           onClick={handleNext}
+                           className='next-button dashboard-buttons'
+                        >
+                           Next
                      </button>
 
                   }

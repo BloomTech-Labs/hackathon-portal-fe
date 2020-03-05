@@ -21,7 +21,9 @@ import {
   Checkbox,
   FormControlLabel,
   FormHelperText
-} from '@material-ui/core';
+} from '@material-ui/core';// BackdropProps={{
+//     timeout: 500,
+// }}
 import DescriptionIcon from '@material-ui/icons/Description';
 
 import InputLabel from '@material-ui/core/InputLabel';
@@ -31,18 +33,20 @@ import MenuItem from '@material-ui/core/MenuItem';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Select from '@material-ui/core/Select';
 import Loader from 'react-loader-spinner';
+import "../../sass/hackathonModel/hackathonModel.scss";
 
 
 const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     justifyContent: 'center',
-    color: 'white',
-    width: '600px',
+    color: 'black',
+    width: '28.3%',
+    // maxHeight: '70%',
     margin: '0 auto',
   },
   label: {
-    background: '#D0DDFF',
+    background: 'rgba(0, 0, 0, 0.04);',
     borderRadius: '5px',
     marginBottom: '20px',
   },
@@ -50,21 +54,24 @@ const useStyles = makeStyles(theme => ({
 
     padding: '3%',
     borderRadius: '5px',
-    width: '50%',
+    background: 'white',
+    minWidth: '100%',
     '& > *': {
 
-      width: '100%',
+      Width: '100%',
     },
   },
   button: {
     marginTop: '50px',
     width: '92px',
     height: '42px',
+    background: 'rgba(0, 0, 0, 0.87)',
+    color: '#FFFFFF',
   },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
-    borderRadius: '5px',
+    borderRadius: '4px',
     backgroundColor: '#C0CBEB'
   },
   maxMembers: {
@@ -235,12 +242,12 @@ const CreateProject = props => {
           <>
             <Typography variant='h5'>Submit a project idea</Typography>
           </>
-        ) : <Typography variant='h5'>Submit a project</Typography>}
+        ) : <Typography variant='h5'>Add a project</Typography>}
         <label className="title">
           <TextField
             type="text"
             fullWidth
-            label="Project Title"
+            label="Project name"
             name="title"
             variant="filled"
             margin="dense"
@@ -262,7 +269,7 @@ const CreateProject = props => {
             rows="4"
             name="description"
             variant="filled"
-            label='Project Description'
+            label='Project description'
             margin="dense"
             defaultValue={formInfo.description}
             onChange={handleFormChange}
@@ -503,7 +510,7 @@ const CreateProject = props => {
           type='submit'
 
         >
-          ADD PROJECT
+          ADD
         </Button>
         {error && (<FormHelperText error>The total number of participants is more than the maximum number allowed per team</FormHelperText>)}
 

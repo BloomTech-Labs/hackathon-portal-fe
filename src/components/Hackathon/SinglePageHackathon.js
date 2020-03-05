@@ -35,7 +35,7 @@ const SinglePage = props => {
    useEffect(() => {
       if (hackathon) {
          setIsOpen({ is_open: hackathon.is_open })
-         setPending(hackathon.projects.filter(p => !p.is_approved))
+         setPending(hackathon?.projects?.filter(p => !p.is_approved))
       }
    }, [hackathon]);
 
@@ -134,7 +134,7 @@ const SinglePage = props => {
 
             <div className='admins-parent'>
                <h3>Organizer</h3>
-               {hackathon.admins.map((admin, index) => {
+               {hackathon?.admins?.map((admin, index) => {
                   return (
                      <div className='single-hackathon-admins'
                         key={index}>
