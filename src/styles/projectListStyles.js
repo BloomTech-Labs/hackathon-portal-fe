@@ -7,17 +7,17 @@ export const style = {
   },
   projectsHeader: {
     textAlign: 'left',
-      fontWeight: '1000',
-      fontSize: '2.7rem',
-      color: 'white',
-      marginLeft: '30px'
+    fontWeight: '1000',
+    fontSize: '2.7rem',
+    color: 'white',
+    marginLeft: '30px'
   },
   projectCards: {
     background: "#1c1c1f",
     border: "1px solid #D0DDFF",
     padding: '25px',
-     margin: '20px',
-     width: "250px",
+    margin: '20px',
+    width: "250px",
     borderRadius: "3%",
   },
   contentContainer: {
@@ -27,7 +27,7 @@ export const style = {
     display: 'flex',
     flexWrap: 'wrap',
     width: '80%',
-    margin:'0 auto'
+    margin: '0 auto'
   },
   projectTitle: {
     textAlign: 'left',
@@ -47,20 +47,24 @@ export const style = {
     cursor: 'pointer'
   },
   button: {
-  background: '#4885E1',
-  color: 'black',
-  border: '1px solid',
-  borderRadius: '13.5px',
-  padding: '10px',
-  width: '200px',
-  minHeight: '50px',
-  transition: '0.5s',
-  marginTop: '20px',
-  "&:hover": {
-    color: '#4885E1'
+    background: '#4885E1',
+    color: 'black',
+    border: '1px solid',
+    borderRadius: '13.5px',
+    padding: '10px',
+    width: '200px',
+    minHeight: '50px',
+    transition: '0.5s',
+    marginTop: '20px',
+    "&:hover": {
+      color: '#4885E1'
+    }
+  },
+
+  'makeStyles-modal': {
+    background: 'transparent',
   }
-  }
- 
+
   // projectcard: {
   //     padding: '25px',
   //     height: '250px',

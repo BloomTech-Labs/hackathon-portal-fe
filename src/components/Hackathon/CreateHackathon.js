@@ -31,12 +31,9 @@ import {
    Checkbox,
    FormControlLabel,
 } from '@material-ui/core';
-import DescriptionIcon from '@material-ui/icons/Description';
-import LanguageIcon from '@material-ui/icons/Language';
 import TodayIcon from '@material-ui/icons/Today';
 import EventIcon from '@material-ui/icons/Event';
 import ScheduleIcon from '@material-ui/icons/Schedule';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
 import DateFnsUtils from '@date-io/date-fns';
 import {
    MuiPickersUtilsProvider,
@@ -110,10 +107,11 @@ const useStyles = makeStyles(theme => ({
       margin: 'auto',
    },
    button: {
-      // width: '150px',
+      width: '150px',
       // marginTop: '50px'
    },
    formControl: {
+      width: '100 %',
       // margin: theme.spacing(1),
       // minWidth: 120,
    },
@@ -198,12 +196,12 @@ const CreateHackathon = props => {
    const [start_date, setStart_date] = useState(`${new Date()}`);
    const [end_date, setEnd_date] = useState(`${new Date()}`);
    const [hackathonInfo, setHackathonInfo] = useState({
-      name: 'Test',
-      description: 'Test',
-      location: 'Test',
-      url: 'Test',
-      start_date: '2020/03/31',
-      end_date: '2020/03/31',
+      name: '',
+      description: '',
+      location: '',
+      url: '',
+      start_date: '',
+      end_date: '',
       is_open: '',
       max_team_participants: 0,
    });
@@ -259,7 +257,7 @@ const CreateHackathon = props => {
          case 1:
             return 'Hackathon date and time';
          case 2:
-            return 'Create projects';
+            return '(Optional) Add a project';
          default:
             return 'Unknown step';
       }
@@ -325,11 +323,11 @@ const CreateHackathon = props => {
                      <TextField
                         type="text"
                         fullWidth
-                        label="Hackathon Name (required)"
+                        label="Hackathon Name"
                         name="name"
                         variant="filled"
                         margin="dense"
-                        className={classes.label}
+                        className={classes.active}
                         defaultValue={page1Info.name}
                         onChange={handlePage1Change}
                         inputRef={register({ required: true })}
@@ -340,86 +338,90 @@ const CreateHackathon = props => {
                         }}
                      />
                      {!nameLength ? <p className='create-error'>Please include a name</p> : null}
+                     <p>* Required</p>
+
+                     <label className="url">
+
+                        <TextField
+                           className={classes.active}
+                           type="text"
+                           fullWidth
+                           name="url"
+                           variant="filled"
+                           label='Hackathon URL'
+                           margin="dense"
+                           defaultValue={page1Info.url}
+                           onChange={handlePage1Change}
+                           inputRef={register}
+                           InputProps={{
+                              startAdornment: (
+                                 <InputAdornment position="start">
+                                    {/* <LanguageIcon /> */}
+                                 </InputAdornment>
+                              )
+                           }}
+                        />
+                     </label>
+
+                     <label className="location-input">
+
+                        <TextField
+                           className={classes.active}
+                           type="text"
+                           fullWidth
+                           name="location"
+                           variant="filled"
+                           margin="dense"
+                           label='Hackathon Location'
+                           defaultValue={page1Info.location}
+                           onChange={handlePage1Change}
+                           inputRef={register}
+                           InputProps={{
+                              startAdornment: (
+                                 <InputAdornment position="start">
+                                    {/* <LocationOnIcon /> */}
+                                 </InputAdornment>
+                              )
+                           }}
+                        />
+                        {!locationLength ? <p className='create-error'>Please include a location (ex. San Francisco, Online, etc)</p> : null}
+                     </label>
+                     <p>* Required</p>
+
                      <TextField
-                        className={classes.label}
+                        className={classes.active}
                         type="text"
                         fullWidth
                         multiline
                         rows="4"
                         name="description"
                         variant="filled"
-                        label='Hackathon Description (required)'
+                        label='Hackathon Description'
                         margin="dense"
                         defaultValue={page1Info.description}
                         onChange={handlePage1Change}
                         inputRef={register}
-                        InputProps={{
-                           startAdornment: (
-                              <InputAdornment position="start">
-                                 <DescriptionIcon />
-                              </InputAdornment>
-                           )
-                        }}
+                     // InputProps={{
+                     //    startAdornment: (
+                     //       <InputAdornment position="start">
+                     //          {/* <DescriptionIcon /> */}
+                     //       </InputAdornment>
+                     //    )
+                     // }}
                      />
 
                   </label>
                   {!descLength ? <p className='create-error'>Please include a description</p> : null}
-                  <label className="location-input">
-
-                     <TextField
-                        className={classes.label}
-                        type="text"
-                        fullWidth
-                        name="location"
-                        variant="filled"
-                        margin="dense"
-                        label='Hackathon Location (required)'
-                        defaultValue={page1Info.location}
-                        onChange={handlePage1Change}
-                        inputRef={register}
-                        InputProps={{
-                           startAdornment: (
-                              <InputAdornment position="start">
-                                 <LocationOnIcon />
-                              </InputAdornment>
-                           )
-                        }}
-                     />
-                     {!locationLength ? <p className='create-error'>Please include a location (ex. San Francisco, Online, etc)</p> : null}
-                  </label>
-                  <label className="url">
-
-                     <TextField
-                        className={classes.label}
-                        type="text"
-                        fullWidth
-                        name="url"
-                        variant="filled"
-                        label='Hackathon URL'
-                        margin="dense"
-                        defaultValue={page1Info.url}
-                        onChange={handlePage1Change}
-                        inputRef={register}
-                        InputProps={{
-                           startAdornment: (
-                              <InputAdornment position="start">
-                                 <LanguageIcon />
-                              </InputAdornment>
-                           )
-                        }}
-                     />
-                  </label>
+                  <p>* Required</p>
                </>
             )}
             {activeStep === 1 && (
                <>
                   <div>
                      <label className="startDate">
-
-
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardDatePicker
-                              className={classes.label}
+                              className={classes.active}
                               autoOk
                               fullWidth
                               name="startDate"
@@ -440,7 +442,7 @@ const CreateHackathon = props => {
                      <label className="startTime">
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardTimePicker
-                              className={classes.label}
+                              className={classes.active}
                               fullWidth
                               ampm={true}
                               name="startTime"
@@ -462,7 +464,7 @@ const CreateHackathon = props => {
                      <label className="endDate">
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardDatePicker
-                              className={classes.label}
+                              className={classes.active}
                               fullWidth
                               autoOk
                               name="endDate"
@@ -483,7 +485,7 @@ const CreateHackathon = props => {
                      <label className="endTime">
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardTimePicker
-                              className={classes.label}
+                              className={classes.active}
                               fullWidth
                               ampm={true}
                               name="endTime"
@@ -510,26 +512,26 @@ const CreateHackathon = props => {
                                  color="primary"
                               />
                            }
-                           label="Open hackathon (this lets participants sign up)"
+                           label="Make hackathon public"
                         />
                      </label>
                   </div>
 
                   <div>
                      <label className="max-members">
-                        <Typography className={classes.text} gutterBottom variant="h5" component="h5">
-                           What is the max number of members you want to allow per project?
-                     </Typography>
-                        <FormControl className={classes.margin}>
-                           <InputLabel htmlFor="demo-customized-textbox"></InputLabel>
-                           <input
-                              type='number'
-                              id="demo-customized-textbox"
-                              placeholder="Max: 30"
-                              value={max}
-                              onChange={handleChange} />
+                        {/* <FormControl className={classes.margin}> */}
+                        <InputLabel htmlFor="demo-customized-textbox"></InputLabel>
+                        <TextField
+                           type='number'
+                           fullWidth
+                           variant="filled"
+                           id="demo-customized-textbox"
+                           placeholder="Max number of members (up to 30)"
+                           value={max}
+                           onChange={handleChange} />
 
-                        </FormControl>
+                        {/* </FormControl> */}
+
                      </label>
                   </div>
 
@@ -540,42 +542,47 @@ const CreateHackathon = props => {
                <OrganizerProjectList />
             )}
 
-            <div className={classes.buttonsContainer}>
+            <div className='modal-button-container'>
+               <button className='cancel-button' onClick={() => {
+                  props.toggleModal()
+               }}>Cancel</button>
                {activeStep === 0 && (
-                  <Button disabled style={{ color: '#5F6471' }} onClick={handleBack} className={classes.disabledButton}>
+                  <button className='back-button dashboard-buttons' style={{ display: 'none' }} onClick={handleBack}>
                      Back
-               </Button>)}
+               </button>)}
                {activeStep > 0 && (
-                  <Button onClick={handleBack} className={classes.backButton}>
+                  <button className='back-button dashboard-buttons' onClick={handleBack}>
                      Back
-               </Button>)}
-               <div className={classes.buttonsSubContainer}>
+               </button>)}
+               <div className='modal-button-container'>
 
 
                   {activeStep === 2 ?
-                     <Button
-                        variant="contained"
-                        color="primary"
-                        className={classes.activeButton}
+                     <button
+                        className='finish-button dashboard-buttons'
                         onClick={() => history.push(`/hackathon/${id}`)}
                      >
                         Finish
-                     </Button>
-                     :
-                     <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={handleNext}
-                        className={classes.activeButton}
-                     >
-                        Next
-                     </Button>
+                     </button>
+                     : activeStep === 1 ?
+                        <button
+                           onClick={handleNext}
+                           className='next-button dashboard-buttons'
+                        >
+                           Create
+                     </button> :
+                        <button
+                           onClick={handleNext}
+                           className='next-button dashboard-buttons'
+                        >
+                           Next
+                     </button>
 
                   }
                </div>
             </div>
          </form>
-      </div>
+      </div >
    );
 };
 

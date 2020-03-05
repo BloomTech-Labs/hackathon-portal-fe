@@ -16,9 +16,14 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
 import Loader from 'react-loader-spinner';
+import "../../sass/organizerProjectList/organizerProjectList.scss"
 
 
 const useStyles = makeStyles(theme => ({
+    root: {
+        background: 'white',
+        textTransform: 'none'
+    },
     card: {
         maxWidth: '25%',
         margin: '0 auto',
@@ -41,9 +46,10 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: '#686875',
+        width: '100%',
+        // opacity: '0.5',
         color: 'white',
-        overflow: 'scroll'
+        overflow: 'hidden'
     },
     paper: {
         backgroundColor: theme.palette.background.paper,
@@ -63,7 +69,7 @@ const useStyles = makeStyles(theme => ({
         marginBottom: '50px'
     },
     listItem: {
-        color: 'white',
+        color: 'black',
         textAlign: 'left'
     }
 }));
@@ -93,14 +99,9 @@ const OrganizerProjectList = props => {
     return (
         <div className="container">
             <div>
-                <Card className={classes.card} onClick={handleOpen}>
-                    <CardContent className={classes.content}>
-                        <AddIcon />
-                        <Typography className={classes.title} color="textSecondary" gutterBottom>
-                            Create Project
-                            </Typography>
-                    </CardContent>
-                </Card>
+                <button onClick={handleOpen} className='create-project-button'>
+                    Add a project
+                </button>
                 <Modal
                     aria-labelledby="transition-modal-title"
                     aria-describedby="transition-modal-description"
@@ -109,31 +110,27 @@ const OrganizerProjectList = props => {
                     onClose={handleClose}
                     closeAfterTransition
                     BackdropComponent={Backdrop}
-                    BackdropProps={{
-                        timeout: 500,
-                    }}
+                // BackdropProps={{
+                //     timeout: 500,
+                // }}
                 >
                     <Fade in={open}>
                         <CreateProject />
                     </Fade>
                 </Modal>
 
-            </div>
-
-            <div className={classes.projects}>
                 {hackathon?.projects?.map(project => {
                     return (
-                        <div className={classes.listItem} key={project.project_id}>
-                            <div>
-                                <CardHeader
-                                    title={project.project_title}
-                                />
-                                <CardContent>
+                        <div className='project-title' key={project.project_id}>
+                            <p>Project</p>
+                            <p>
+                                {project.project_title}
+                            </p>
+                            {/* <CardContent>
                                     <Typography noWrap={true}>
                                         {project.project_description}
                                     </Typography>
-                                </CardContent>
-                            </div>
+                                </CardContent> */}
                         </div>
                     )
                 })}

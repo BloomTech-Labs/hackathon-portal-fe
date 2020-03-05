@@ -21,8 +21,13 @@ const useStyles = makeStyles(theme => ({
     height: '42px',
     'font-weight': 'bold',
     'font-size': '14px',
+    'font-family': 'Muli',
     border: '1px solid rgba(0, 0, 0, 0.87)',
     'border-radius': '4px',
+    'text-transform': 'none',
+    "&:hover": {
+      backgroundColor: "transparent"
+    }
   },
 }))
 
@@ -42,8 +47,8 @@ export default function DeleteHackathonModal(props) {
   };
   return (
     <div>
-      <Button id='single-hackathon-delete-btn' type="button" variant='outlined' onClick={handleDeleteClick} className={classes.button}>
-        DELETE EVENT
+      <Button disableRipple id='single-hackathon-delete-btn' type="button" variant='outlined' onClick={handleDeleteClick} className={classes.button}>
+        Delete Event
       </Button>
 
       <Dialog
