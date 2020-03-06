@@ -20,7 +20,7 @@ import {
   withStyles,
   Checkbox,
   FormControlLabel,
-  FormHelperText
+  FormHelperText,
 } from '@material-ui/core';// BackdropProps={{
 //     timeout: 500,
 // }}
@@ -34,6 +34,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import Select from '@material-ui/core/Select';
 import Loader from 'react-loader-spinner';
 import "../../sass/hackathonModel/hackathonModel.scss";
+import { findByLabelText } from '@testing-library/react';
 
 
 const useStyles = makeStyles(theme => ({
@@ -46,7 +47,7 @@ const useStyles = makeStyles(theme => ({
     margin: '0 auto',
   },
   label: {
-    background: 'rgba(0, 0, 0, 0.04);',
+    background: '#9E9E9E',
     borderRadius: '5px',
     marginBottom: '20px',
   },
@@ -66,18 +67,45 @@ const useStyles = makeStyles(theme => ({
     width: '92px',
     height: '42px',
     background: 'rgba(0, 0, 0, 0.87)',
-    color: '#FFFFFF',
+    // color: '#FFFFFF',
   },
   formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
+    // margin: theme.spacing(1),
+    // 'max-width': '40%',
+    marginRight: '5px',
+    minWidth: '23%',
     borderRadius: '4px',
-    backgroundColor: '#C0CBEB'
+    background: 'rgba(0, 0, 0, 0.04);',
+  },
+  topInputs: {
+    background: 'rgba(0, 0, 0, 0.04);',
+    ':focused': {
+      color: 'green'
+    }
   },
   maxMembers: {
+    width: '100%',
+  },
+  topDropdowns: {
     display: 'flex',
-    justifyContent: 'center',
-    flexDirection: 'column'
+    justifyContent: 'space-between',
+    marginBottom: '10px',
+  },
+  bottomDropdowns: {
+    minWidth: '100%',
+    display: 'flex',
+    justifyContent: 'flex-start',
+  },
+  iosBox: {
+    marginRight: '2%',
+  },
+  radioGroup: {
+    display: 'flex',
+  },
+  rgroupContainer: {
+    display: 'flex',
+    flexWrap: 'nowrap',
+    flexDirection: 'row-reverse',
   },
 }));
 
@@ -131,7 +159,7 @@ const CreateProject = props => {
     ux: false,
     ds: false,
     ios: false,
-    and: false,
+    and: false,    // display: 'flex',
   });
   const [role, setRole] = useState(" ")
   const { loading, user } = useAuth0();
@@ -251,18 +279,18 @@ const CreateProject = props => {
             name="title"
             variant="filled"
             margin="dense"
-            className={classes.label}
+            className={classes.topInputs}
             defaultValue={formInfo.title}
             onChange={handleFormChange}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start"></InputAdornment>
-              )
-            }}
+          // InputProps={{
+          //   startAdornment: (
+          //     <InputAdornment position="start"></InputAdornment>
+          //   )
+          // }}
           />
 
           <TextField
-            className={classes.label}
+            className={classes.topInputs}
             type="text"
             fullWidth
             multiline
@@ -273,21 +301,32 @@ const CreateProject = props => {
             margin="dense"
             defaultValue={formInfo.description}
             onChange={handleFormChange}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <DescriptionIcon />
-                </InputAdornment>
-              )
-            }}
+          // InputProps={{
+          //   startAdornment: (
+          //     <InputAdornment position="start">
+          //       <DescriptionIcon />
+          //     </InputAdornment>
+          //   )
+          // }}
           />
         </label>
 
         <label className="project-radio">
-          <FormControl component="fieldset">
-            <RadioGroup defaultValue="solo" aria-label="project" name="customized-radios">
-              <FormControlLabel checked={project === "Solo Project"} onChange={handleTeamChange} value="Solo Project" control={<GreenRadio />} label="Solo Project" />
-              <FormControlLabel checked={project === "Team Project"} onChange={handleTeamChange} value="Team Project" control={<GreenRadio />} label="Team Project" />
+          <FormControl component="fieldset" className={classes.radioGroup}>
+            <RadioGroup
+              className={classes.rgroupContainer}
+              defaultValue="solo"
+              aria-label="project"
+              name="customized-radios">
+              <FormControlLabel
+                checked={project === "Solo Project"}
+                onChange={handleTeamChange} value="Solo Project"
+                control={<GreenRadio />} label="Solo Project" />
+              <FormControlLabel
+                checked={project === "Team Project"}
+                onChange={handleTeamChange}
+                value="Team Project" control={<GreenRadio />}
+                label={`Team Projects (max team of: ${hackathon.max_team_participants})`} />
             </RadioGroup>
           </FormControl>
         </label>
@@ -295,12 +334,14 @@ const CreateProject = props => {
         {project === "Team Project" && (
           <>
             <label className={classes.maxMembers}>
-              <Typography gutterBottom variant="h5" component="h5">
-                Will there be specific roles for this project?
-            </Typography>
-              <FormHelperText style={{ color: '#4885E1' }}>The maximum number of members allowed per team is {hackathon.max_team_participants}</FormHelperText>
+              <div className={classes.topDropdowns}>
 
-              <FormControlLabel
+                {/* <Typography gutterBottom variant="h5" component="h5">
+                Will there be specific roles for this project?
+            </Typography> */}
+                {/* <FormHelperText style={{ color: '#4885E1' }} </FormHelperText> */}
+
+                {/* <FormControlLabel
                 control={
                   <GreenCheckbox
                     name='frontend'
@@ -310,16 +351,16 @@ const CreateProject = props => {
                   />
                 }
                 label="Front End"
-              />
+              /> */}
 
-              {checked.frontend && (
+                {/* {checked.frontend && ( */}
                 <FormControl className={classes.formControl}>
-                  <InputLabel id="demo-simple-select-label">Max</InputLabel>
+                  <InputLabel id="demo-simple-select-label">Front end</InputLabel>
                   <Select
                     name='front_end_spots'
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    className={classes.formControl}
+                    className='drop-down-boxes'
                     value={spots.frontend}
                     onChange={handleChange('frontend')}
                   >
@@ -328,9 +369,9 @@ const CreateProject = props => {
                     })}
                   </Select>
                 </FormControl>
-              )}
+                {/* // )} */}
 
-              <FormControlLabel
+                {/* <FormControlLabel
                 control={
                   <GreenCheckbox
                     name='backend'
@@ -340,14 +381,15 @@ const CreateProject = props => {
                   />
                 }
                 label="Back End"
-              />
+              /> */}
 
-              {checked.backend && (
+                {/* {checked.backend && ( */}
                 <FormControl className={classes.formControl}>
-                  <InputLabel id="demo-simple-select-label">Max</InputLabel>
+                  <InputLabel id="demo-simple-select-label">Back end</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
+                    className='drop-down-boxes'
                     value={spots.backend}
                     onChange={handleChange('backend')}
                   >
@@ -356,9 +398,9 @@ const CreateProject = props => {
                     })}
                   </Select>
                 </FormControl>
-              )}
+                {/* )} */}
 
-              <FormControlLabel
+                {/* <FormControlLabel
                 control={
                   <GreenCheckbox
                     name='ux'
@@ -368,14 +410,15 @@ const CreateProject = props => {
                   />
                 }
                 label="UX"
-              />
+              /> */}
 
-              {checked.ux && (
+                {/* {checked.ux && ( */}
                 <FormControl className={classes.formControl}>
-                  <InputLabel id="demo-simple-select-label">Max</InputLabel>
+                  <InputLabel id="demo-simple-select-label">UX</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
+                    className='drop-down-boxes'
                     value={spots.ux}
                     onChange={handleChange('ux')}
                   >
@@ -384,9 +427,9 @@ const CreateProject = props => {
                     })}
                   </Select>
                 </FormControl>
-              )}
+                {/* )} */}
 
-              <FormControlLabel
+                {/* <FormControlLabel
                 control={
                   <GreenCheckbox
                     name='ds'
@@ -396,14 +439,15 @@ const CreateProject = props => {
                   />
                 }
                 label="Data Science"
-              />
+              /> */}
 
-              {checked.ds && (
+                {/* {checked.ds && ( */}
                 <FormControl className={classes.formControl}>
-                  <InputLabel id="demo-simple-select-label">Max</InputLabel>
+                  <InputLabel id="demo-simple-select-label">Data Science</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
+                    className='drop-down-boxes'
                     value={spots.ds}
                     onChange={handleChange('ds')}
                   >
@@ -412,9 +456,10 @@ const CreateProject = props => {
                     })}
                   </Select>
                 </FormControl>
-              )}
+              </div>
+              {/* )} */}
 
-              <FormControlLabel
+              {/* <FormControlLabel
                 control={
                   <GreenCheckbox
                     name='ios'
@@ -424,14 +469,16 @@ const CreateProject = props => {
                   />
                 }
                 label="IOS"
-              />
+              /> */}
 
-              {checked.ios && (
-                <FormControl className={classes.formControl}>
-                  <InputLabel id="demo-simple-select-label">Max</InputLabel>
+              {/* {checked.ios && ( */}
+              <div className={classes.bottomDropdowns}>
+                <FormControl className={`${classes.formControl} ${classes.iosBox}`}>
+                  <InputLabel id="demo-simple-select-label">IOS</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
+                    className='drop-down-boxes'
                     value={spots.ios}
                     onChange={handleChange('ios')}
                   >
@@ -440,9 +487,9 @@ const CreateProject = props => {
                     })}
                   </Select>
                 </FormControl>
-              )}
+                {/* )} */}
 
-              <FormControlLabel
+                {/* <FormControlLabel
                 control={
                   <GreenCheckbox
                     name='and'
@@ -452,14 +499,15 @@ const CreateProject = props => {
                   />
                 }
                 label="Android"
-              />
+              /> */}
 
-              {checked.and && (
+                {/* {checked.and && ( */}
                 <FormControl className={classes.formControl}>
-                  <InputLabel id="demo-simple-select-label">Max</InputLabel>
+                  <InputLabel id="demo-simple-select-label">Android</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
+                    className='drop-down-boxes'
                     value={spots.and}
                     onChange={handleChange('and')}
                   >
@@ -468,7 +516,8 @@ const CreateProject = props => {
                     })}
                   </Select>
                 </FormControl>
-              )}
+              </div>
+              {/* )} */}
             </label>
 
             <label className="total-members">
@@ -502,6 +551,10 @@ const CreateProject = props => {
             )}
           </>
         )}
+
+        {/* <button className='cancel-button' onClick={() => {
+          props.toggleModal()
+        }}>Cancel</button> */}
 
         <Button
           variant="contained"

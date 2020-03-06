@@ -84,7 +84,7 @@
             line-height: 18px;
             width: 196px;
             height: 42px;
-            background: #373F41;
+            background: #311B92;;
             border: 1px solid #373f41;
             color: #FFFFFF;
             border-radius: 4px;
@@ -114,8 +114,8 @@
         }
     }
     .active {
-        border-bottom: 1px solid black;
-        color: rgba(0, 0, 0, 0.87);
+        border-bottom: 1px solid #311B92;;
+        color: #311B92;;
     }
     .hidden {
         display: none;
@@ -130,8 +130,12 @@
                 border-bottom: 1px solid #373f41;
 
                 .td-hackathon-name {
+                    font-family: Muli;
+                    font-style: normal;
                     font-weight: bold;
                     font-size: 18px;
+                    line-height: 24px;
+                    color: #311B92;
                 }
 
                 .td-details {

@@ -8,7 +8,7 @@
     overflow: hidden;
     background-color: rgba(0,0,0,0.75);
     .modal{
-        border:1px solid green;
+        // border:1px solid green;
         overflow: auto;
         top: 50%;
         left: 50%;
@@ -29,7 +29,7 @@
         margin:auto;
     }
     .modal-top{
-        border:1px solid blue;
+        // border:1px solid blue;
         width:100%;
         h3{
             font-family: Muli;
@@ -41,7 +41,7 @@
         }
         .stepper{
             display:flex;
-            border: 1px solid red;
+            // border: 1px solid red;
         }
     }
     .modal-middle{
@@ -88,4 +88,28 @@
 
 .hideModal {
     display: none;
+}
+
+.MuiButton-containedPrimary {
+    background: rgba(0, 0, 0, 0.87);
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.87);
+
+    }
+}
+
+// Focused color for input
+.MuiFormLabel-root.Mui-focused {
+    color: black;
+}
+// focused bottom border for input
+.MuiFilledInput-underline:after {
+    border-color: black;
+    
+}
+
+// targets the radio buttons and also checkboxes, maybe more?
+.MuiIconButton-label {
+    color: rgba(0, 0, 0, 0.6);
 }

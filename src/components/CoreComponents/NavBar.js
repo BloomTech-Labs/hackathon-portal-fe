@@ -7,65 +7,67 @@ import { Link } from 'react-router-dom';
 import HackathonLogo from '../../images/HackathonLogo.png';
 
 import '../../sass/navbar/navBar.scss'
+import logo from '../../svgs/logo.svg'
+
 
 const NavBar = props => {
    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
    return (
       <div className="navBar">
-        <div className='navbar-content'>
-         <Link to="/">
-            <img id="logo" src={HackathonLogo} alt="logo"></img>
-         </Link>
+         <div className='navbar-content'>
+            <Link to="/">
+               <img id="logo" src={logo} alt="logo"></img>
+            </Link>
 
-         {!isAuthenticated && (
-            <div className = 'navBar-div'>
+            {!isAuthenticated && (
+               <div className='navBar-div'>
 
-               <Link className='navBarLink' to="/">
-                  Home
+                  <Link className='navBarLink' to="/">
+                     Home
                </Link>
-               <Link className='navBarLink' to="/about">
-                  About
+                  <Link className='navBarLink' to="/about">
+                     About
                </Link>
-               <Link className='navBarLink' to="/hackathons">
-                  All Hackathons
+                  <Link className='navBarLink' to="/hackathons">
+                     All Hackathons
                </Link>
-               <button
-                  className='logIn-OutButton'
-                  id='login-btn'
-                  onClick={() => loginWithRedirect({})}
-               >
-                  Log in
+                  <button
+                     className='logIn-OutButton'
+                     id='login-btn'
+                     onClick={() => loginWithRedirect({})}
+                  >
+                     Log in
                </button>
-               <button
-                  className='signUpButton'
-                  id='login-btn'
-                  onClick={() => loginWithRedirect({})}
-               >
-                  Sign up
+                  <button
+                     className='signUpButton'
+                     id='login-btn'
+                     onClick={() => loginWithRedirect({})}
+                  >
+                     Sign up
                </button>
-            </div>
-         )}
+               </div>
+            )}
 
-         {isAuthenticated && (
-            <div className="navBar-div">
-               <Link className="navBarLink" to="/">
-                  Home
+            {isAuthenticated && (
+               <div className="navBar-div">
+                  <Link className="navBarLink" to="/">
+                     Home
                </Link>
-               <Link className="navBarLink" to='/about'>
-                  About
+                  <Link className="navBarLink" to='/about'>
+                     About
                </Link>
-               <Link className="navBarLink" to="/hackathons">
-                  All Hackathons
+                  <Link className="navBarLink" to="/hackathons">
+                     All Hackathons
                </Link>
-               <Link className="navBarLink" to="/profile">
-                  Dashboard
+                  <Link className="navBarLink" to="/profile">
+                     Dashboard
                </Link>
-               <button className="logIn-OutButton" onClick={() => logout()}>
-                  Log Out
+                  <button className="logIn-OutButton" onClick={() => logout()}>
+                     Log Out
                </button>
-            </div>
-         )}
+               </div>
+            )}
          </div>
       </div>
    );

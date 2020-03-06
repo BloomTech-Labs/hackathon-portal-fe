@@ -5,7 +5,7 @@
   .hero-background {
     width: 100%;
     height: 70%;
-    background-color: lightgrey;
+    background-color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,6 +44,15 @@
       font-weight: bold;
       font-size: 44px;
       line-height: 56px;
+    }
+
+    h4 {
+      font-weight: bold;
+    }
+
+    span {
+      color: #311B92;
+      font-weight: bold;
     }
   }
 
