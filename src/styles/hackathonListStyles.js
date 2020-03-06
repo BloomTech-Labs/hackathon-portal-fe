@@ -76,8 +76,8 @@ export const style = {
     textDecoration: 'none'
   },
   details: {
+    'color': '#311B92',
     "text-align": 'center',
-    'color': 'black',
     'font-family': 'Muli',
     'font-style': 'normal',
     'font-weight': 'bold',

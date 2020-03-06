@@ -253,9 +253,9 @@ const CreateHackathon = props => {
    function getStepContent(step) {
       switch (step) {
          case 0:
-            return 'Hackathon basic details';
+            return 'Create a new hackathon';
          case 1:
-            return 'Hackathon date and time';
+            return 'Add details';
          case 2:
             return '(Optional) Add a project';
          default:
@@ -430,7 +430,7 @@ const CreateHackathon = props => {
                               inputVariant="filled"
                               format="MM/dd/yyyy"
                               keyboardIcon={
-                                 <TodayIcon style={{ color: 'black' }} />
+                                 <TodayIcon style={{ color: '#311B92' }} />
                               }
                               inputRef={register}
                               value={start_date}
@@ -453,7 +453,7 @@ const CreateHackathon = props => {
                               onChange={handleStartDateChange}
                               inputRef={register}
                               keyboardIcon={
-                                 <ScheduleIcon style={{ color: 'black' }} />
+                                 <ScheduleIcon style={{ color: '#311B92' }} />
                               }
                               InputAdornmentProps={{ position: 'start' }}
                            />
@@ -473,7 +473,7 @@ const CreateHackathon = props => {
                               inputVariant="filled"
                               format="MM/dd/yyyy"
                               keyboardIcon={
-                                 <EventIcon style={{ color: 'black' }} />
+                                 <EventIcon style={{ color: '#311B92' }} />
                               }
                               inputRef={register}
                               value={end_date}
@@ -496,7 +496,7 @@ const CreateHackathon = props => {
                               onChange={handleEndDateChange}
                               inputRef={register}
                               keyboardIcon={
-                                 <ScheduleIcon style={{ color: 'black' }} />
+                                 <ScheduleIcon style={{ color: '#311B92' }} />
                               }
                               InputAdornmentProps={{ position: 'start' }}
                            />
