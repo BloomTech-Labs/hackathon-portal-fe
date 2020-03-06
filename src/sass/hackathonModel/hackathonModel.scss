@@ -101,15 +101,14 @@
 
 // Focused color for input
 .MuiFormLabel-root.Mui-focused {
-    color: black;
+    color: #232323;
 }
 // focused bottom border for input
 .MuiFilledInput-underline:after {
-    border-color: black;
-    
+    border-color: #232323;
 }
 
 // targets the radio buttons and also checkboxes, maybe more?
-.MuiIconButton-label {
-    color: rgba(0, 0, 0, 0.6);
-}
+// .MuiIconButton-label {
+//     color: rgba(0, 0, 0, 0.6);
+// }

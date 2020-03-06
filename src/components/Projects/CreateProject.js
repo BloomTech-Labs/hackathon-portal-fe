@@ -106,15 +106,15 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexWrap: 'nowrap',
     flexDirection: 'row-reverse',
-  },
+  }
 }));
 
 
 const GreenCheckbox = withStyles({
   root: {
-    color: blue[400],
+    color: 'rgba(0, 0, 0, 0.6)',
     '&$checked': {
-      color: blue[600],
+      color: 'rgba(0, 0, 0, 0.87)',
     },
   },
   checked: {},
@@ -122,9 +122,9 @@ const GreenCheckbox = withStyles({
 
 const GreenRadio = withStyles({
   root: {
-    color: blue[400],
+    color: 'rgba(0, 0, 0, 0.6)',
     '&$checked': {
-      color: blue[600],
+      color: 'rgba(0, 0, 0, 0.87)',
     },
   },
   checked: {},
@@ -315,8 +315,7 @@ const CreateProject = props => {
           <FormControl component="fieldset" className={classes.radioGroup}>
             <RadioGroup
               className={classes.rgroupContainer}
-              defaultValue="solo"
-              aria-label="project"
+              defaultValue="solo" Team Projec
               name="customized-radios">
               <FormControlLabel
                 checked={project === "Solo Project"}

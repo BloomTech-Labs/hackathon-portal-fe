@@ -34,17 +34,17 @@ p{
     line-height: 20px;
 }
 .MuiPickersToolbar-toolbar{
-    background: rgba(0, 0, 0, 0.87);;
+    background: #311B92;
 }
 .MuiPickersDay-daySelected{
-    background: #F6F6F6;
-    color:black;
+    background: #311B92;
+    color: white;
 }
 .MuiPickersClock-pin {
-    background: rgba(0, 0, 0, 0.87);
+    background: #311B92;
 }
 .MuiPickersClockPointer-pointer{
-    background: rgba(0, 0, 0, 0.87);
+    background: #311B92;
 }
 
 .MuiButton-textPrimary{
@@ -56,13 +56,13 @@ p{
     color: rgba(0, 0, 0, 0.87);
 }
 .MuiPickersClockPointer-thumb {
-    background-color: rgba(0, 0, 0, 0.87);
-    border-color: rgba(0, 0, 0, 0.87);
+    background-color: #311B92;
+    border-color: #311B92;
 }
 .MuiStepIcon-root.MuiStepIcon-completed, 
 .MuiCheckbox-colorPrimary.Mui-checked, 
 .MuiStepIcon-root.MuiStepIcon-active {
-    color:rgba(0, 0, 0, 0.87);
+    color:#311B92;
 }
 .MuiInputBase-input{
     width:100%;

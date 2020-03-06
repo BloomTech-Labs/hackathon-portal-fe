@@ -13,25 +13,26 @@ import StepConnector from '@material-ui/core/StepConnector';
 
 const QontoConnector = withStyles({
   root: {
-    background: 'grey'
+    background: '#311B92;'
   },
   alternativeLabel: {
     top: 10,
-    left: 'calc(-50% + 16px)',
-    right: 'calc(50% + 16px)',
+    width: '17px',
+    left: 'calc(-63% + 16px)',
+    right: 'calc(63% + 16px)',
   },
   active: {
     '& $line': {
-      borderColor: 'grey',
+      borderColor: '#311B92;',
     },
   },
   completed: {
     '& $line': {
-      borderColor: 'grey',
+      borderColor: '#311B92;',
     },
   },
   line: {
-    borderColor: 'black',
+    borderColor: '#858585;',
     borderTopWidth: 3,
     borderRadius: 1,
   },
@@ -89,19 +90,20 @@ QontoStepIcon.propTypes = {
 const useStyles = makeStyles(theme => ({
   root: {
     width: '30%',
-    backgroundColor: 'grey',
+    backgroundColor: '#311B92;',
   },
   button: {
     marginRight: theme.spacing(1),
     // backgroundColor: 'grey',
   },
   active: {
-    backgroundColor: 'grey'
+    backgroundColor: '#311B92;'
   },
   instructions: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
     backgroundColor: 'grey',
+    // fontSize: '18px',
   },
   labels: {
     fontColor: '#fff',
@@ -126,7 +128,7 @@ export default function CustomizedSteppers({ activeStep, skipped, isStepOptional
           return (
             <Step key={label}>
               <StepLabel className={classes.labels}
-                style={{ color: '#fff' }}
+                style={{ color: '#858585' }}
                 StepIcon='default'
                 StepIconProps={QontoStepIcon}></StepLabel>
             </Step>
