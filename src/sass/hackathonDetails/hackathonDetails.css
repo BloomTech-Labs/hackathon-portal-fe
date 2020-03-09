@@ -39,6 +39,11 @@
 
 .single-hackathon-container .single-hackathon-buttons a {
   text-decoration: none;
+  color: black;
+}
+
+.single-hackathon-container .single-hackathon-admins {
+  margin-bottom: 30px;
 }
 
 .single-hackathon-container-left {
@@ -59,13 +64,13 @@
 }
 
 .single-hackathon-dates {
+  width: 70%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-}
-
-.start-container {
-  width: 25%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .single-hackathon-container-right {

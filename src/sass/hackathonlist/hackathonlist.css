@@ -5,11 +5,18 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: #F5F8FA;
+  background-color: #F5F5F5;
   color: #000000;
-  border: 1px solid black;
-  padding: 5px 0 5px 3px;
+  padding: 10px 0 10px 3px;
   font-size: 25px;
+}
+
+.search-container img {
+  margin-left: 10px;
+}
+
+.search-container input {
+  margin-left: 10px;
 }
 
 .searchBar {
@@ -17,8 +24,9 @@
   border-radius: 4px;
   height: 25px;
   margin: auto;
-  border: 1px solid #F5F8FA;
-  background-color: #F5F8FA;
+  border: 1px solid #F5F5F5;
+  background-color: #F5F5F5;
+  color: #858585;
   font-family: Muli;
   font-style: normal;
   font-weight: normal;
@@ -54,7 +62,11 @@
 }
 
 .filter p {
+  display: none;
   margin: 1px;
+  color: #311B92;
+  font-weight: bold;
+  line-height: 18px;
 }
 
 .filter .dropdown {
@@ -86,6 +98,7 @@
 }
 
 .filter .showDropdown .dropdown-content .filter-label {
+  color: #232323;
   position: relative;
   padding-left: 35px;
   cursor: pointer;
@@ -119,12 +132,13 @@
   height: 17px;
   width: 17px;
   background-color: #fff;
-  border: 2px solid black;
+  border: 2px solid #232323;
   border-radius: 4px;
 }
 
 .filter .showDropdown .dropdown-content .filter-label input:checked ~ .checkmark {
-  background-color: black;
+  border: 2px solid #311B92;
+  background: #311B92;
 }
 
 .filter .showDropdown .dropdown-content .checkmark:after {
@@ -154,8 +168,9 @@
   font-weight: bold;
   font-size: 32px;
   line-height: 40px;
-  text-align: center;
+  text-align: left;
   letter-spacing: 0.1px;
+  margin-left: 32px;
 }
 
 .fullList {
@@ -166,10 +181,11 @@
 .fullList #hackathons-head {
   margin: auto;
   width: 65%;
-  color: #90A0B7;
+  color: #232323;
   text-align: left;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 24px;
 }
 
 .cardParent {

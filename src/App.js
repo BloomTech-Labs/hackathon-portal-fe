@@ -97,8 +97,8 @@ function App(props) {
               </Switch>
             </div>
             {/* <footer>
-                  <Footer />
-               </footer> */}
+              <Footer />
+            </footer> */}
           </container>
         </Router>
       </div>

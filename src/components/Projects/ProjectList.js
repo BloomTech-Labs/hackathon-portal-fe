@@ -25,7 +25,7 @@ const ProjectList = props => {
   const [projects, setProjects] = useState([]);
   const [filterBy, setFilterBy] = useState('');
   const [approvedProjects, setApprovedProjects] = useState(true);
-  const [registered, setRegistered] = useState({ registered:false, project_id:0 })
+  const [registered, setRegistered] = useState({ registered: false, project_id: 0 })
   const { user } = useAuth0();
   const currentDate = new Date().toString();
 
@@ -34,40 +34,40 @@ const ProjectList = props => {
   }, [dispatch, props.match.params.id]);
 
   const handleCheckboxChange = e => {
-      setFilterBy(e.target.value)
+    setFilterBy(e.target.value)
   }
 
 
   useEffect(() => {
-    if(hackathon){
+    if (hackathon) {
       setProjects(hackathon.projects)
-      setApprovedProjects(hackathon.projects.filter(element=>{return element.is_approved}))
+      setApprovedProjects(hackathon.projects.filter(element => { return element.is_approved }))
     }
-    if(hackathon && hackathon.projects){
+    if (hackathon && hackathon.projects) {
       hackathon.projects.map(item => {
-        if(item.participants.find(element => {
+        if (item.participants.find(element => {
           return element.user_id === user.id
-        })){
-          setRegistered({ registered:true, project_id: item.project_id })
+        })) {
+          setRegistered({ registered: true, project_id: item.project_id })
         }
       })
     }
-    
+
   }, [hackathon])
   useEffect(() => {
-    if(hackathon && hackathon.projects){
-      if(hackathon.admins.find(element => {
+    if (hackathon && hackathon.projects) {
+      if (hackathon.admins.find(element => {
         return element.user_id === user.id
-      })){
-        setRegistered({ registered:true })
+      })) {
+        setRegistered({ registered: true })
       }
     }
   }, [hackathon])
 
   useEffect(() => {
-    if(hackathon && !filterBy){
+    if (hackathon && !filterBy) {
       setProjects(hackathon.projects)
-    }else if(hackathon){
+    } else if (hackathon) {
       setProjects(hackathon.projects.filter(element => {
         return element[filterBy] > 0
       }))
@@ -75,114 +75,132 @@ const ProjectList = props => {
   }, [filterBy])
 
   if (isFetching || !hackathon) {
-    return <Loader type="Rings" color="#4885E1" height={100} width={100} />;
+    return <Loader type="Rings" color="#311B92" height={100} width={100} />;
   }
 
   return (
-    <div>
-      <>
-      <Typography className={classes.projectsHeader} variant='h4'>Project List</Typography>
-     
+    <div className={classes.projectListWrapper}>
+      <h4 style={{ color: '#311B92' }} onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</h4>
+      <Typography className={classes.projectsHeader} variant='h4'>{hackathon.name} project list</Typography>
+
       <div className={classes.contentContainer}>
         <RadioGroup value={filterBy} onChange={handleCheckboxChange} className={classes.radioGroup}>
-          <Button id='view-archive-btn' onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</Button>
-            <FormControlLabel
-              control={<Radio />}
-              value=''
-              label="show all"
-            />
-            <FormControlLabel
-              control={<Radio />}
-              value='front_end_spots'
-              label="front end"
-              style={{color:'green'}}
-            />
-            <FormControlLabel
-              control={<Radio />}
-              value='back_end_spots'
-              label="back end"
-              style={{color:'#4885E1'}}
-            />
-            <FormControlLabel
-              control={<Radio />}
-              value='ux_spots'
-              label="ux"
-              style={{color:'orange'}}
-            />
-            <FormControlLabel
-              control={<Radio />}
-              value='data_science_spots'
-              label="data science"
-              style={{color:'#ffbfde'}}
-            />
-            <FormControlLabel
-              control={<Radio />}
-              value='ios_spots'
-              label="ios"
-              style={{color:'white'}}
-            />
-            <FormControlLabel
-              control={<Radio />}
-              value='android_spots'
-              label="android"
-              style={{color:'red'}}
-            />
-            {!moment(hackathon.end_date).isBefore(currentDate)?
-      <Button className={classes.button} onClick={() => props.history.push(`/hackathon/${hackathon.id}/create/project`)}>Submit a project idea</Button> : null}
-          </RadioGroup>
-        {!hackathon.projects ? 
-          <Typography variant='h6'>This hackathon currently has no projects</Typography>
-          :
-          !projects[0] && filterBy !== '' ? 
-          <Typography variant='h6'>There are no projects with the chosen role available</Typography>
-          :
-          !approvedProjects[0] ? 
-          <Typography variant='h6'>This hackathon currently has no projects</Typography>
-          :
-          projects[0] ? 
-          <div className={classes.cardContainer}>
-            {projects.map((project, index) => {
-              return(
-                project.is_approved && (
-                  <Card key={index}  className={classes.projectCards} 
-                  onClick={() => props.history.push(`/hackathon/${hackathon.id}/projects/${project.project_id}`)}>
-                    <div>
-                      <Typography variant='h5' className={classes.projectTitle}>{project.project_title}</Typography>
-                      <Typography noWrap={true} variant='body2' className={classes.projectDescription}>{project.project_description}</Typography>
-                      {registered.project_id === project.project_id ? (
-                    <FormHelperText style={{color:'lime'}}>You are registered for {project.project_title}!</FormHelperText>
-                    ):false}
-                    </div>
-                    <div style={{display:'flex', margin:'0 auto'}}>
-                      {project.front_end_spots > 0 && (
-                        <Avatar style={{background:'none', border:'1px solid green', color:'green'}}>FE</Avatar>
-                      )}
-                      {project.back_end_spots > 0 && (
-                        <Avatar style={{background:'none', border:'1px solid #4885E1', color:'#4885E1'}}>BE</Avatar>
-                      )}
-                      {project.ux_spots > 0 && (
-                        <Avatar style={{background:'none', border:'1px solid orange', color:'orange'}}>UX</Avatar>
-                      )}
-                      {project.data_science_spots > 0 && (
-                        <Avatar style={{background:'none', border:'1px solid #ffbfde', color:'#ffbfde'}}>DS</Avatar>
-                      )}
-                      {project.ios_spots > 0 && (
-                        <Avatar style={{background:'none', border:'1px solid white', color:'white'}}>IOS</Avatar>
-                      )}
-                      {project.android_spots > 0 && (
-                        <Avatar style={{background:'none', border:'1px solid red', color:'red'}}>AND</Avatar>
-                      )}
-                    </div>
-                    <p className={classes.viewMore}>View More</p>
-                  </Card>
-              ))
-            })}
+          <h3>Filter</h3>
+          <div className={classes.middleContent}>
+            <div className={classes.middleLeftContent}>
+              <div className={classes.showAll}>
+                <FormControlLabel
+                  control={<Radio style={{ color: 'black' }} />}
+                  value=''
+                  label="Show all"
+                />
+              </div>
+              <div className={classes.filterRadios}>
+
+                <div className={classes.topRadios}>
+                  <FormControlLabel
+                    control={<Radio style={{ color: 'black' }} />}
+                    value='front_end_spots'
+                    label="Front-end"
+                    style={{ color: 'black' }}
+                  />
+                  <FormControlLabel
+                    control={<Radio style={{ color: 'black' }} />}
+                    value='ux_spots'
+                    label="UX design"
+                    style={{ color: 'black' }}
+                  />
+                  <FormControlLabel
+                    control={<Radio style={{ color: 'black' }} />}
+                    value='ios_spots'
+                    label="iOS"
+                    style={{ color: 'black' }}
+                  />
+                </div>
+                <div className={classes.bottomRadios}>
+                  <FormControlLabel
+                    control={<Radio style={{ color: 'black' }} />}
+                    value='back_end_spots'
+                    label="Back-end"
+                    style={{ color: 'black' }}
+                  />
+                  <FormControlLabel
+                    control={<Radio style={{ color: 'black' }} />}
+                    value='data_science_spots'
+                    label="Data science"
+                    style={{ color: 'black' }}
+                  />
+
+                  <FormControlLabel
+                    control={<Radio style={{ color: 'black' }} />}
+                    value='android_spots'
+                    label="Android"
+                    style={{ color: 'black' }}
+                  />
+                </div>
+              </div>
+            </div>
+            {!moment(hackathon.end_date).isBefore(currentDate) ?
+              <Button className={classes.button} onClick={() => props.history.push(`/hackathon/${hackathon.id}/create/project`)}>Add a project idea</Button> : null}
           </div>
-          :
+        </RadioGroup>
+        {!hackathon.projects ?
           <Typography variant='h6'>This hackathon currently has no projects</Typography>
+          :
+          !projects[0] && filterBy !== '' ?
+            <Typography variant='h6'>There are no projects with the chosen role available</Typography>
+            :
+            !approvedProjects[0] ?
+              <Typography variant='h6'>This hackathon currently has no projects</Typography>
+              :
+              projects[0] ?
+                <div className={classes.cardContainer}>
+                  {projects.map((project, index) => {
+                    return (
+                      project.is_approved && (
+                        <Card key={index} className={classes.projectCards}
+                          onClick={() => props.history.push(`/hackathon/${hackathon.id}/projects/${project.project_id}`)}>
+                          <div>
+                            <Typography variant='h5' className={classes.projectTitle}>{project.project_title}</Typography>
+                            <Typography noWrap={true} variant='body2' className={classes.projectDescription}>{project.project_description}</Typography>
+
+                          </div>
+                          <div>
+                            <div style={{ display: 'flex' }}>
+                              {project.front_end_spots > 0 && (
+                                <Avatar style={{ background: 'none', border: '1px solid #232323', color: '#232323' }}>FE</Avatar>
+                              )}
+                              {project.back_end_spots > 0 && (
+                                <Avatar style={{ background: 'none', border: '1px solid #232323', color: '#232323' }}>BE</Avatar>
+                              )}
+                              {project.ux_spots > 0 && (
+                                <Avatar style={{ background: 'none', border: '1px solid #232323', color: '#232323' }}>UX</Avatar>
+                              )}
+                              {project.data_science_spots > 0 && (
+                                <Avatar style={{ background: 'none', border: '1px solid #232323', color: '#232323' }}>DS</Avatar>
+                              )}
+                              {project.ios_spots > 0 && (
+                                <Avatar style={{ background: 'none', border: '1px solid #232323', color: '#232323' }}>IOS</Avatar>
+                              )}
+                              {project.android_spots > 0 && (
+                                <Avatar style={{ background: 'none', border: '1px solid #232323', color: '#232323' }}>AND</Avatar>
+                              )}
+                            </div>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
+                              <p className={classes.viewMore}>View More</p>
+                              {registered.project_id === project.project_id ? (
+                                <FormHelperText style={{ color: '#007C5D', fontSize: '16px', marginTop: '0px' }}>Participating</FormHelperText>
+                              ) : false}
+                            </div>
+                          </div>
+                        </Card>
+                      ))
+                  })}
+                </div>
+                :
+                <Typography variant='h6'>This hackathon currently has no projects</Typography>
         }
       </div>
-      </>
     </div>
   );
 };

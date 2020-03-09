@@ -9,27 +9,64 @@ import Button from '@material-ui/core/Button';
 import Loader from 'react-loader-spinner';
 
 const useStyles = makeStyles(theme => ({
-    projectcard: {
+    pendingContainer: {
+        width: '80%',
+        margin: 'auto',
+    },
+    pendingProjectCard: {
         padding: '25px',
+        width: '20%',
         height: '250px',
-         margin: '20px',
-        background: "#1c1c1f",
-        border: "1px solid #D0DDFF",
-         width: "250px",
-        borderRadius: "3%",
+        margin: '20px',
+        background: "white",
+        border: "1px solid black",
+        width: "250px",
+        borderRadius: "4px",
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between'
     },
     h3: {
-         margin:' 0 0 5px',
+        margin: ' 0 0 5px',
         fontSize: '22px',
         fontWeight: 'bold',
     },
     description: {
-        overflow: 'scroll',
-        textOverflow: 'ellipsis',
-        height: '164px'
+        // height: '164px'
+    },
+    buttonsContainer: {
+        display: 'flex',
+        justifyContent: 'flex-end'
+    },
+    approve: {
+        cursor: 'pointer',
+        fontFamily: 'Muli',
+        fontStyle: 'normal',
+        fontWeight: 'bold',
+        fontSize: '14px',
+        lineHeight: '18px',
+        color: '#311B92',
+        background: 'white',
+        border: '1px solid white'
+    },
+    disapprove: {
+        cursor: 'pointer',
+        fontFamily: 'Muli',
+        fontStyle: 'normal',
+        fontWeight: 'bold',
+        fontSize: '14px',
+        lineHeight: '18px',
+        color: '#858585',
+        background: 'white',
+        border: '1px solid white',
+        marginRight: '10px'
+    },
+    backButton: {
+        color: '#311B92',
+        textTransform: 'none'
     }
 
-  }));
+}));
 
 const PendingProjects = props => {
     const classes = useStyles();
@@ -41,11 +78,11 @@ const PendingProjects = props => {
     const hackathonId = (props.history.location.state.hackathonId)
     const [count, setCount] = useState(0);
 
-     useEffect(() => {
-            dispatch(getSpecificHackathon(hackathonId))
-     },[]);
+    useEffect(() => {
+        dispatch(getSpecificHackathon(hackathonId))
+    }, []);
 
-     const pending = !hackathon ? [] : hackathon.projects.filter(element=> !element.is_approved)
+    const pending = !hackathon ? [] : hackathon.projects.filter(element => !element.is_approved)
 
     const handledisapprove = data => (e) => {
         const id = user.sub.replace('auth0|', '');
@@ -59,45 +96,57 @@ const PendingProjects = props => {
     }
 
     const handleApprove = data => (e) => {
-         const id = user.sub.replace('auth0|', '');
-         e.preventDefault();
-         dispatch(
+        const id = user.sub.replace('auth0|', '');
+        e.preventDefault();
+        dispatch(
             editProject(
                 hackathon.id,
-               data,
-               {is_approved: true}
+                data,
+                { is_approved: true }
             )
-         );
-     }
-     console.log(hackathon, 'this is hackathon')
-     if (isFetching || !hackathon) {
-        return <Loader type="Rings" color="#4885E1" height={100} width={100} />;
-     }
+        );
+    }
+    console.log(hackathon, 'this is hackathon')
+    if (isFetching || !hackathon) {
+        return <Loader type="Rings" color="#311B92" height={100} width={100} />;
+    }
 
     return (
-        <div className='pending-container'>
-          
-         <Button id='view-archive-btn'onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</Button>
-          
+        <div className={classes.pendingContainer}>
+
+            <Button className={classes.backButton} id='view-archive-btn' onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</Button>
+
             <div>
                 <div className='pendingList'>
-               
+
                     {pending.length ? pending.map(e => {
                         return (
-                        (<form key={e.project_id} className={classes.projectcard}
-                            onSubmit={handleApprove(e.project_id)} 
+                            (<form className={classes.pendingProjectCard} key={e.project_id}
+                                onSubmit={handleApprove(e.project_id)}
                             >
-                                <h3 className={classes.h3}>{e.project_title}</h3>
-                                <p className={classes.description}>{e.project_description}</p>
-                                <button type='submit' className='checkbox' ><i class="material-icons checkbox">
-                                    check</i></button>
-                                <button className='decline'
-                                onClick={handledisapprove(e.project_id)}type='submit'><i class="material-icons">
-                                close
-                                </i></button>
+                                <div className={classes.upperContent}>
+                                    <h3 className={classes.h3}>{e.project_title}</h3>
+                                    <p className={classes.description}>{e.project_description}</p>
+                                </div>
+                                <div className={classes.buttonsContainer}>
+
+                                    <button
+                                        className={classes.disapprove}
+                                        onClick={handledisapprove(e.project_id)}
+                                        type='submit'>
+                                        Disapprove
+                                </button>
+                                    <button
+                                        type='submit'
+                                        className={classes.approve}
+                                    >
+                                        Approve
+                                </button>
+
+                                </div>
                             </form>)
-                            )
-                        }) : <p>No pending projects</p>}
+                        )
+                    }) : <p>No pending projects</p>}
                 </div>
             </div>
         </div>

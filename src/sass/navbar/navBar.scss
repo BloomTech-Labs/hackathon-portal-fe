@@ -41,6 +41,10 @@
     border: 1px solid #373f41;
 }
 
+.signUpButton:hover{
+    cursor: pointer;
+}
+
 .logIn-OutButton {
     width: 83px;
     height: 42px;
@@ -55,6 +59,10 @@
     letter-spacing: 0.3px;
     color: #311B92;
     background-color:white;
+}
+
+.logIn-OutButton:hover{
+    cursor: pointer;
 }
 
 .navBarLink{

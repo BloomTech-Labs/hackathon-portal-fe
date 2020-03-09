@@ -16,13 +16,14 @@ import { deleteHackathon } from '../../actions/actions'
 
 const useStyles = makeStyles(theme => ({
   button: {
+    color: '#C21F1D',
     background: 'white',
     width: '187px',
     height: '42px',
     'font-weight': 'bold',
     'font-size': '14px',
     'font-family': 'Muli',
-    border: '1px solid rgba(0, 0, 0, 0.87)',
+    border: '1px solid #C21F1D',
     'border-radius': '4px',
     'text-transform': 'none',
     "&:hover": {

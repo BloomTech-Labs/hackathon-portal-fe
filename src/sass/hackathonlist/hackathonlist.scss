@@ -2,11 +2,11 @@
 
 .search-container {
     width: 65%;
-    margin: auto;
+    margin-left: 30px;
     display: flex;
     background-color: #F5F5F5;
     color: #000000;
-    // border: 1px solid black;
+    // border: 1px solid red;
     padding: 10px 0 10px 3px;
     font-size: 25px;
     img { 
@@ -159,7 +159,7 @@
     text-align: center;
 
     #hackathons-head {
-        margin: auto;
+        margin-left: 30px;
         width: 65%;
         color: #232323;
         text-align: left;

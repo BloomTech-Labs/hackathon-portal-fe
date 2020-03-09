@@ -49,7 +49,7 @@
   font-size: 18px;
   line-height: 24px;
   color: rgba(0, 0, 0, 0.6);
-  margin-bottom: 0px;
+  margin-top: 17px;
   padding-bottom: 12px;
   margin-left: 1px;
   cursor: pointer;
@@ -78,6 +78,7 @@
   font-size: 18px;
   line-height: 24px;
   margin-left: 10px;
+  color: #311B92;
 }
 
 .profile-wrapper .above-table {
@@ -110,7 +111,7 @@
   line-height: 18px;
   width: 196px;
   height: 42px;
-  background: #373F41;
+  background: #311B92;
   border: 1px solid #373f41;
   color: #FFFFFF;
   border-radius: 4px;
@@ -122,7 +123,7 @@
   cursor: pointer;
 }
 
-.profile-wrapper .above-table .back-button, .profile-wrapper .above-table .next-button {
+.profile-wrapper .above-table .back-button, .profile-wrapper .above-table .next-button, .profile-wrapper .above-table .finish-button {
   width: 92px;
   height: 42px;
 }
@@ -145,8 +146,8 @@
 }
 
 .profile-wrapper .active {
-  border-bottom: 1px solid black;
-  color: rgba(0, 0, 0, 0.87);
+  border-bottom: 1px solid #311B92;
+  color: #311B92 !important;
 }
 
 .profile-wrapper .hidden {
@@ -168,8 +169,12 @@
 }
 
 .profile-wrapper .table tbody .tr-data .td-hackathon-name {
+  font-family: Muli;
+  font-style: normal;
   font-weight: bold;
   font-size: 18px;
+  line-height: 24px;
+  color: #311B92;
 }
 
 .profile-wrapper .table tbody .tr-data .td-details {
