@@ -7,7 +7,7 @@
 .about .hero-background {
   width: 100%;
   height: 70%;
-  background-color: lightgrey;
+  background-color: #fff;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -61,6 +61,15 @@
   font-weight: bold;
   font-size: 44px;
   line-height: 56px;
+}
+
+.about .hero-right h4 {
+  font-weight: bold;
+}
+
+.about .hero-right span {
+  color: #311B92;
+  font-weight: bold;
 }
 
 .about .hero-left {

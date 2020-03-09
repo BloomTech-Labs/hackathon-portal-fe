@@ -79,13 +79,13 @@ const ProjectList = props => {
   }
 
   return (
-    <div>
-      <>
-      <Typography className={classes.projectsHeader} variant='h4'>Project List</Typography>
+    <div classname='project-list-wrapper'>
+    <Button id='view-archive-btn' onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</Button>
+      <Typography className={classes.projectsHeader} variant='h4'>{hackathon.name} project list</Typography>
      
       <div className={classes.contentContainer}>
         <RadioGroup value={filterBy} onChange={handleCheckboxChange} className={classes.radioGroup}>
-          <Button id='view-archive-btn' onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</Button>
+          <h3>Filter</h3>
             <FormControlLabel
               control={<Radio />}
               value=''
@@ -95,40 +95,40 @@ const ProjectList = props => {
               control={<Radio />}
               value='front_end_spots'
               label="front end"
-              style={{color:'green'}}
+              style={{color:'black'}}
             />
             <FormControlLabel
               control={<Radio />}
               value='back_end_spots'
               label="back end"
-              style={{color:'#4885E1'}}
+              style={{color:'black'}}
             />
             <FormControlLabel
               control={<Radio />}
               value='ux_spots'
               label="ux"
-              style={{color:'orange'}}
+              style={{color:'black'}}
             />
             <FormControlLabel
               control={<Radio />}
               value='data_science_spots'
               label="data science"
-              style={{color:'#ffbfde'}}
+              style={{color:'black'}}
             />
             <FormControlLabel
               control={<Radio />}
               value='ios_spots'
               label="ios"
-              style={{color:'white'}}
+              style={{color:'black'}}
             />
             <FormControlLabel
               control={<Radio />}
               value='android_spots'
               label="android"
-              style={{color:'red'}}
+              style={{color:'black'}}
             />
             {!moment(hackathon.end_date).isBefore(currentDate)?
-      <Button className={classes.button} onClick={() => props.history.push(`/hackathon/${hackathon.id}/create/project`)}>Submit a project idea</Button> : null}
+      <Button className={classes.button} onClick={() => props.history.push(`/hackathon/${hackathon.id}/create/project`)}>Add a project idea</Button> : null}
           </RadioGroup>
         {!hackathon.projects ? 
           <Typography variant='h6'>This hackathon currently has no projects</Typography>
@@ -182,7 +182,6 @@ const ProjectList = props => {
           <Typography variant='h6'>This hackathon currently has no projects</Typography>
         }
       </div>
-      </>
     </div>
   );
 };

@@ -10,7 +10,6 @@
 }
 
 .backdrop .modal {
-  border: 1px solid green;
   overflow: auto;
   top: 50%;
   left: 50%;
@@ -30,7 +29,6 @@
 }
 
 .backdrop .modal-top {
-  border: 1px solid blue;
   width: 100%;
 }
 
@@ -47,7 +45,6 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  border: 1px solid red;
 }
 
 .backdrop .modal-middle {
@@ -104,5 +101,21 @@
 
 .hideModal {
   display: none;
+}
+
+.MuiButton-containedPrimary {
+  background: rgba(0, 0, 0, 0.87);
+}
+
+.MuiButton-containedPrimary:hover {
+  background: rgba(0, 0, 0, 0.87);
+}
+
+.MuiFormLabel-root.Mui-focused {
+  color: #232323;
+}
+
+.MuiFilledInput-underline:after {
+  border-color: #232323;
 }
 /*# sourceMappingURL=hackathonModel.css.map */

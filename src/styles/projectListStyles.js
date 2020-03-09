@@ -1,4 +1,8 @@
 export const style = {
+  'project-list-wrapper': {
+    width: '80%',
+    border: '10px solid red',
+  },
   radioGroup: {
     // border: '2px solid green',
     width: '20%',
@@ -7,9 +11,9 @@ export const style = {
   },
   projectsHeader: {
     textAlign: 'left',
-    fontWeight: '1000',
-    fontSize: '2.7rem',
-    color: 'white',
+    fontWeight: 'bold',
+    fontSize: '44px',
+    color: '#232323',
     marginLeft: '30px'
   },
   projectCards: {
@@ -47,10 +51,10 @@ export const style = {
     cursor: 'pointer'
   },
   button: {
-    background: '#4885E1',
-    color: 'black',
+    background: '#311B92;',
+    color: '#FFFFFF',
     border: '1px solid',
-    borderRadius: '13.5px',
+    borderRadius: '4px',
     padding: '10px',
     width: '200px',
     minHeight: '50px',
