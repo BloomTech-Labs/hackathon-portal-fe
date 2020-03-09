@@ -17,7 +17,7 @@ import { getSpecificHackathon, getHackers, getUser, assignRole } from "../../act
 import {
   makeStyles,
   TextField,
-  Modal,
+  Modal, projectModal,
   Backdrop,
   Fade,
   ListItemText,
@@ -33,7 +33,7 @@ const useListStyles = makeStyles(theme => ({
   },
   userListContainer: {
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'space-between'
   },
   btnWrapper: {
     textAlign: 'left'
@@ -42,17 +42,20 @@ const useListStyles = makeStyles(theme => ({
     display: 'flex',
     flexWrap: 'wrap',
     marginTop: '50px',
-    justifyContent: 'initial'
+    justifyContent: 'space-between'
   },
   card: {
-    width: "250px",
-    height: '250px',
-    border: '1px solid',
+    width: "275px",
+    height: '100px',
+    border: '1px solid #858585',
     display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: '5%',
+    justifyContent: 'left',
+    alignItems: 'left',
+    borderRadius: '4px',
     margin: '20px',
+    marginLeft: '0',
+    marginRight: '0',
+    padding: '16px',
     "&:hover": {
       color: "#4885E1",
       transition: "0.3s"
@@ -61,20 +64,21 @@ const useListStyles = makeStyles(theme => ({
   modal: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    // height: '150px',
+    // width: '500px'
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    // border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
-    width: '200px',
-    height: '200px',
+    width: '300px',
+    height: '100px',
     color: 'black',
+    borderRadius: '4px',
     display: 'flex',
-justifyContent: 'center',
-alignItems: 'center',
-flexDirection: 'column',
+    justifyContent: 'space-between',
+    flexDirection: 'column',
   },
   unorderedList: {
     listStyleType: "none",
@@ -82,9 +86,59 @@ flexDirection: 'column',
   listItem: {
     transition: "0.3s",
     cursor: "pointer",
+    color: '#858585'
   },
   test: {
-    variant:'h1'
+    variant: 'h1'
+  },
+  searchContainer: {
+    width: '65%',
+    display: 'flex',
+    background: '#F5F5F5',
+    color: ' #000000',
+    padding: '10px 0 10px 3px',
+    fontSize: '25px',
+  },
+  searchBar: {
+    width: '100%',
+    borderRadius: '4px',
+    height: '25px',
+    margin: 'auto',
+    border: '1px solid #F5F5F5',
+    background: '#F5F5F5',
+    color: '#858585',
+    fontFamily: 'Muli',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: '14px',
+    lineHeight: '20px',
+  },
+  addButton: {
+    textTransform: 'none',
+    fontSize: '14px',
+    background: '#311B92',
+    color: 'white',
+    width: '150px',
+    height: '42px',
+    marginLeft: '10px'
+  },
+  cancelButton: {
+    cursor: 'pointer',
+    padding: '0',
+    margin: 'auto',
+    marginRight: '30px',
+    fontSize: '14px',
+    width: '32px',
+    height: '18px',
+    background: '#FFFFFF',
+    borderRadius: '4px',
+    border: 'none',
+    color: 'rgba(0, 0, 0, 0.6)',
+  },
+  buttonContainer: {
+    display: 'flex',
+    marginTop: '10px',
+    justifyContent: 'flex-end',
   }
 }));
 
@@ -108,7 +162,7 @@ const UserList = props => {
   }, []);
 
   useEffect(() => {
-    if(user_id){
+    if (user_id) {
       dispatch(getUser(user_id))
     }
     dispatch(getSpecificHackathon(props.match.params.id));
@@ -119,14 +173,14 @@ const UserList = props => {
     let test = hackathon.admins.find(user => {
       return id === user.user_id
     })
-    if(test){
+    if (test) {
       return test.user_hackathon_role
     }
   }
 
   const isParticipant = hackathon && userInfo && (hackathon.projects.map(project => {
     return project.participants.find(part => {
-        return (part.user_id === userInfo.id)
+      return (part.user_id === userInfo.id)
     })
   }).filter(p => p !== undefined).length ? true : false)
 
@@ -135,7 +189,7 @@ const UserList = props => {
     dispatch(assignRole(hackathon.id, userInfo.id, { user_hackathon_role: 'organizer' }, setOpen))
   }
   const makeJudge = () => {
-      dispatch(assignRole(hackathon.id, userInfo.id, { user_hackathon_role: 'judge' }, setOpen))
+    dispatch(assignRole(hackathon.id, userInfo.id, { user_hackathon_role: 'judge' }, setOpen))
   }
 
   const handleChange = event => {
@@ -158,12 +212,12 @@ const UserList = props => {
       return hacker.username.toLowerCase().includes(searchTerm.toLowerCase());
     }) : false
 
-    console.log(userInfo)
+  console.log(userInfo)
 
 
   if (isFetching || !hackathon || !hackers) {
-    return(
-      <Loader type="Rings" color="#4885E1" height={100} width={100} />
+    return (
+      <Loader type="Rings" color="#311B92" height={100} width={100} />
     );
   }
 
@@ -171,84 +225,90 @@ const UserList = props => {
     return (
       <div className={styles.container}>
         <div className={styles.btnWrapper}>
-          <p id='hackathons-head'>Add an Organizer</p>
-      <Button id='view-archive-btn' onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</Button>
-      </div>
-        <div>
-          <TextField
+          <Button id='view-archive-btn' onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</Button>
+          <h1 id='hackathons-head'>Add organizers</h1>
+        </div>
+        <div className={styles.searchContainer}>
+          <input
             name="searchHackathon"
-            fullWidth
-            className={classes.searchBar}
+            className={styles.searchBar}
             type="text"
             placeholder="Search Users"
             variant="outlined"
             onChange={handleChange}
             value={searchTerm}
-            InputProps={{
-              classes: {
-                root: classes.inputOutline,
-                focused: classes.focusedOutline,
-                notchedOutline: classes.notchedOutline
-              }
-            }}
-          ></TextField>
+
+          />
         </div>
         <div className={styles.usersList}>
           {results.map((hacker, index) => {
             return (
-              <div key={index} className={styles.card} onClick={()=>handleOpen(hacker.id)} >
+              <div key={index} className={styles.card} onClick={() => handleOpen(hacker.id)} >
 
                 <div className={styles.unorderedList}>
-                <i class="material-icons">
-                  person_outline
-                </i>
+                  {/* <i class="material-icons">
+                    person_outline
+                </i> */}
                   <ListItemText className={styles.listItem} primary={hacker.username} secondary={fn(hacker.id)}
-                  secondaryTypographyProps={{
-                    color:'primary'
-                  }}>
+                  // secondaryTypographyProps={{
+                  //   color: 'primary'
+                  // }}
+                  >
                   </ListItemText>
                 </div>
               </div>
             );
           })}
           {userInfo ? (
-          <Modal
-            aria-labelledby="transition-modal-title"
-            aria-describedby="transition-modal-description"
-            className={styles.modal}
-            open={open}
-            onClose={handleClose}
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{
-              timeout: 500
-            }}
-          >
+            <Modal
+              aria-labelledby="transition-modal-title"
+              aria-describedby="transition-modal-description"
+              className={styles.modal}
+              open={open}
+              onClose={handleClose}
+              closeAfterTransition
+              BackdropComponent={Backdrop}
+              BackdropProps={{
+                timeout: 500
+              }}
+            >
               <Fade in={open}>
                 <div className={styles.paper}>
-                      <i class="material-icons">
-                      person_outline
-                      </i>
+                  {/* <i class="material-icons">
+                    person_outline
+                      </i> */}
+                  <div>
                     {userInfo.first_name !== null && userInfo.last_name !== null && (
                       <Typography>{`${userInfo.first_name} ${userInfo.last_name}`}</Typography>
-                     )}
-                      <Typography >{userInfo.username}</Typography>
+                    )}
+                    <Typography >{userInfo.username}</Typography>
                     {role && (
                       <Typography>{role}</Typography>
                     )}
+                  </div>
+                  <div className={styles.buttonContainer}>
                     {hackathon.organizer_id !== userInfo.id && (
                       <>
-                        {fn(userInfo.id) !== 'organizer' && !isParticipant  ? (
-                        <>
-                          <Button color='primary' variant='contained' onClick={() => makeOrganizer()}>Set as organizer</Button>
-                        </>
-                        ) : <p id='admin-err'>{userInfo.username} is already associated and can't be added as an organizer.</p>}
+                        {fn(userInfo.id) !== 'organizer' && !isParticipant ? (
+                          <>
+                            <button className={styles.cancelButton} onClick={handleClose}>Cancel</button>
+                            <Button className={styles.addButton} variant='contained' onClick={() => makeOrganizer()}>Add organizer</Button>
+                          </>
+
+                        ) : (
+                            <>
+
+                              <p id='admin-err'>{userInfo.username} is already associated and can't be added as an organizer.</p>
+                              <button className={styles.cancelButton} onClick={handleClose}>Cancel</button>
+                            </>
+                          )}
                       </>
                     )}
+                  </div>
                 </div>
               </Fade>
-          </Modal>
-          ):false}
+            </Modal>
+          ) : false}
         </div>
       </div>
     );

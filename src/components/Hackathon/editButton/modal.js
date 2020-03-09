@@ -31,13 +31,15 @@ const useStyles = makeStyles(theme => ({
     marginBottom: '20px',
   },
   button: {
+    cursor: 'pointer',
+    color: '#311B92',
     background: 'white',
     width: '187px',
     height: '42px',
-    // 'font-weight': 'bold',
+    'font-weight': 'bold',
     'font-size': '14px',
     'font-family': 'Muli',
-    border: '1px solid rgba(0, 0, 0, 0.87)',
+    border: '1px solid #311B92',
     'border-radius': '4px',
     'margin-bottom': '10px',
     'text-transform': 'none',
@@ -92,9 +94,9 @@ export default function SpringModal() {
 
   return (
     <div>
-      <Button disableRipple className={classes.button} type="button" onClick={handleOpen}>
+      <button className={classes.button} onClick={handleOpen}>
         Edit Event
-      </Button>
+      </button>
       <Modal
         aria-labelledby="spring-modal-title"
         aria-describedby="spring-modal-description"
@@ -109,7 +111,7 @@ export default function SpringModal() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="spring-modal-title">Hackathon Settings</h2>
+            <h3 id="spring-modal-title">Edit hackathon details</h3>
             <SimpleTabs />
             <Button color='primary' onClick={handleClose}>Exit</Button>
           </div>

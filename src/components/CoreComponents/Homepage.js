@@ -36,9 +36,9 @@ const Homepage = props => {
   }, [dispatch]);
 
   if (isFetching || !hackathons || !hackers) {
-    return <Loader type="Rings" color="#4885E1" height={100} width={100} />;
+    return <Loader type="Rings" color="#311B92" height={100} width={100} />;
   } else if (!hackathons[0]) {
-    return <Loader type="Rings" color="#4885E1" height={100} width={100} />;
+    return <Loader type="Rings" color="#311B92" height={100} width={100} />;
   }
 
   let upcomingHackathons = hackathons
@@ -57,10 +57,7 @@ const Homepage = props => {
             <div className="hero-left">
               <h1>Join a hackathon from <span>anywhere</span>.</h1>
               <p>
-                Hackathon Portal is the hub for everything hackathon. Whether
-                you are coordinating a hackathon, judging aproject, or
-                participating, Hakathon Portal is the best wayu to stay up to
-                date on the event's actvity
+                Hackathon Portal is the best way to organize or participate in hackathon events.
               </p>
               <button className='logIn-OutButton'
                 id='login-btn'
