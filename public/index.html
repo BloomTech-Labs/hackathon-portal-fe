@@ -14,6 +14,19 @@
       gtag('config', 'UA-156129750-1');
    </script>
    <script src="https://kit.fontawesome.com/73d3424557.js" crossorigin="anonymous"></script>
+   <script async src="https://js.refiner.io/v001/client.js"></script>
+   <script>
+      window._refinerQueue = window._refinerQueue || [];
+      function _refiner() { _refinerQueue.push(arguments); }
+      _refiner('setProject', '26e49100-6223-11ea-be3d-c56748ef3530');  // first we set the project ID
+      _refiner('identifyUser', {
+         id: 'USER-ID-ABC-123', // Each user needs an ID or email address
+         email: 'jane@awesome.com', // Each user needs an ID or email address
+         name: 'Jane Doe', // The full name of the user
+         signed_up_at: '2020-03-09T12:35:18-04:00', // The date and time when the user signed up
+         a_relevant_user_trait: 'Something', // Send over relevant user traits for better targeting (optional)
+      });
+   </script>
    <meta charset="utf-8" />
    <link rel="icon" href="%PUBLIC_URL%/logo.svg" />
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

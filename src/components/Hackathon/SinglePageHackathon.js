@@ -98,10 +98,10 @@ const SinglePage = props => {
    //const pending = !hackathon ? [] : hackathon.projects.filter(element=> !element.is_approved)
 
    if (isFetching) {
-      return <Loader type="Rings" color="#4885E1" height={100} width={100} />
+      return <Loader type="Rings" color="#311B92" height={100} width={100} />
    }
    if (hackathon === undefined) {
-      return <Loader type="Rings" color="#4885E1" height={100} width={100} />
+      return <Loader type="Rings" color="#311B92" height={100} width={100} />
    }
    return (
       <div className='single-hackathon-container'>
@@ -134,16 +134,18 @@ const SinglePage = props => {
 
             <div className='admins-parent'>
                <h3>Organizer</h3>
-               {hackathon?.admins?.map((admin, index) => {
-                  return (
-                     <div className='single-hackathon-admins'
-                        key={index}>
-                        <h2>{admin.username}</h2>
-                        <p>{admin.user_hackathon_role}</p>
-                     </div>
-                  );
-               })}
+               <div className='admins-container'>
+                  {hackathon?.admins?.map((admin, index) => {
+                     return (
+                        <div className='single-hackathon-admins'
+                           key={index}>
+                           <p>{admin.username}</p>
+                           {/* <p>{admin.user_hackathon_role}</p> */}
+                        </div>
 
+                     );
+                  })}
+               </div>
                <Link to={`/hackathon/${hackathon.id}/projects`}><button className='single-hackathon-buttons'>View Projects</button></Link>
 
 
@@ -155,7 +157,8 @@ const SinglePage = props => {
             <div className='sh-buttons-container'>
                {user.id === hackathon.organizer_id ? (
                   <div className='single-hackathon-crud-btns'>
-                     <button className='single-hackathon-buttons'>
+                     {console.log(hackathon)}
+                     <button className={`${hackathon.projects.length === 0 ? 'grey-no-pending' : ''} single-hackathon-button-pending`}>
                         <Link to={{ pathname: `/${props.match.params.id}/pendingprojects`, state: { hackathonId: Number(props.match.params.id) } }}>
                            Pending Projects
                         </Link>

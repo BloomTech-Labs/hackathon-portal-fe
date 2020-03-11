@@ -1,65 +1,96 @@
 export const style = {
-  'project-list-wrapper': {
+  projectListWrapper: {
     width: '80%',
-    border: '10px solid red',
+    margin: 'auto',
+  },
+  root: {
+    flexDirection: 'row'
+  },
+  middleContent: {
+    marginLeft: '0',
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  middleLeftContent: {
+    width: '50%',
+    display: 'flex'
   },
   radioGroup: {
     // border: '2px solid green',
-    width: '20%',
-    padding: '2%',
+    // display: 'flex',
+    'flex-directon': 'row',
+    width: '100%',
     textAlign: 'left'
+  },
+  filterRadios: {
+    width: '60%'
+  },
+  topRadios: {
+    display: 'flex'
+  },
+  bottomRadios: {
+    display: 'flex'
   },
   projectsHeader: {
     textAlign: 'left',
     fontWeight: 'bold',
     fontSize: '44px',
     color: '#232323',
-    marginLeft: '30px'
+    // marginLeft: '30px'
   },
   projectCards: {
-    background: "#1c1c1f",
-    border: "1px solid #D0DDFF",
+    background: "#FFFFFF",
+    border: "1px solid #858585",
+    borderRadius: '4px',
     padding: '25px',
-    margin: '20px',
-    width: "250px",
-    borderRadius: "3%",
+    marginTop: '20px',
+    height: '400px',
+    width: "350px",
+    borderRadius: "4px",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
   contentContainer: {
-    display: 'flex',
+    // border: '1px solid blue'
   },
   cardContainer: {
     display: 'flex',
+    justifyContent: 'space-evenly',
     flexWrap: 'wrap',
-    width: '80%',
+    width: '100%',
     margin: '0 auto'
   },
   projectTitle: {
     textAlign: 'left',
     fontWeight: 'bold',
     margin: '2% 0',
-    color: '#D0DDFF',
+    color: '#232323',
   },
   projectDescription: {
     textAlign: 'left',
     overflow: 'hidden',
-    color: '#D0DDFF',
+    color: '#232323',
     margin: '4% 2%',
     textOverflow: 'ellipsis'
   },
   viewMore: {
-    color: '#D0DDFF',
-    cursor: 'pointer'
+    color: '#311B92',
+    cursor: 'pointer',
+    fontWeight: 'bold',
+    marginTop: ''
   },
   button: {
-    background: '#311B92;',
+    background: '#311B92',
     color: '#FFFFFF',
     border: '1px solid',
     borderRadius: '4px',
     padding: '10px',
     width: '200px',
+    height: '50px;',
     minHeight: '50px',
     transition: '0.5s',
-    marginTop: '20px',
+    marginTop: '50px',
     "&:hover": {
       color: '#4885E1'
     }

@@ -111,7 +111,7 @@ function Hackathons(props) {
     );
 
   if (isFetching || !hackathons) {
-    return <Loader type="Rings" color="#4885E1" height={500} width={500} />;
+    return <Loader type="Rings" color="#311B92" height={100} width={100} />;
   }
 
   return (

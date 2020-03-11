@@ -32,6 +32,8 @@ import HackathonModal from '../Reusable/HackathonModal';
 
 import CreateHackathon from '../Hackathon/CreateHackathon'
 
+import ProjectSubmission from '../Projects/ProjectSubmission';
+
 const UserProfile = props => {
    const dispatch = useDispatch();
    const { loading, user, logout } = useAuth0();
@@ -59,24 +61,24 @@ const UserProfile = props => {
 
    const formatDate = date => {
       const months = [
-         "January",
-         "February",
-         "March",
-         "April",
-         "May",
-         "June",
-         "July",
-         "August",
-         "September",
-         "October",
-         "November",
-         "December"
+         "01",
+         "02",
+         "03",
+         "04",
+         "05",
+         "06",
+         "07",
+         "08",
+         "09",
+         "10",
+         "11",
+         "12"
       ];
       const newDate = new Date(date);
       const y = newDate.getFullYear();
       const d = newDate.getDate();
       const m = months[newDate.getMonth()];
-      return `${m} ${d}, ${y}`;
+      return `${m}/${d}/${y}`;
    };
 
    const getAndSetUserHook = async () => {
@@ -154,7 +156,8 @@ const UserProfile = props => {
          'Start Date',
          'End Date',
          'Role',
-         'Status'
+         'Status',
+         'Project submission'
       ];
 
       return header.map((header, i) => {
@@ -183,6 +186,11 @@ const UserProfile = props => {
                }}>Details</td> */}
                {/* </Link> */}
                <td className='td-status'>Status</td>
+               {/* <td><button className='submit-button' onClick={() => {
+                  console.log(hackathon)
+               }}>Submit</button></td> */}
+               {console.log(hackathon)}
+               <td><ProjectSubmission hackathon={hackathon} /></td>
             </tr>
          )
       })

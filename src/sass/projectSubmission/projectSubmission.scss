@@ -1,0 +1,62 @@
+.project-submission-content{
+    width:80%;
+    margin:auto;
+    .hackathon-name{
+        margin-bottom:none;
+        font-family: Muli;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 18px;
+        color: #232323;
+    }
+    .project-name{
+        margin-top:none;
+        font-family: Muli;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 18px;
+        color: #232323;
+    }
+   .submission-form {
+       display: flex;
+       flex-direction: column;
+       justify-content: space-between;
+    }
+    
+    .input {
+        background: #F5F5F5;
+        border:none;
+        border-bottom:1px solid #858585;
+        margin-bottom: 10px;
+        padding:15px;
+        font-family: Muli;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 20px;
+        color: #858585;
+    }
+    .submission-buttons {
+        display: flex;
+        justify-content: flex-end;
+        margin-top:200px;
+        
+        .cancel-button{
+            margin-right: 20px;
+            background:white;
+            border:none;
+            border-radius: 4px;
+            cursor:pointer;
+        }
+        .submission-button{
+            color: white;
+            background: #311B92;
+            border:none;
+            border-radius:4px;
+            padding:10px 20px;
+            cursor:pointer;
+        }
+    }
+}

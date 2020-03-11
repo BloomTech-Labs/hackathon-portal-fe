@@ -19,8 +19,8 @@
         // left: 35%;
         border: 1px solid #888;
         border-radius: 4px;
-        width: 30%;
-        height: 70%;
+        width: 500px;
+        height: 600px;
   }
 
 
@@ -85,6 +85,18 @@
     }
 }
 
+.submit-button{
+    cursor: pointer;
+    border: 1px solid #311B92;
+    border-radius: 4px;
+    color: #311B92;
+    padding: 10px 20px;
+    font-family: Muli;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 18px;
+}
 
 .hideModal {
     display: none;

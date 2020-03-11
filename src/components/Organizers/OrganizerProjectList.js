@@ -91,7 +91,7 @@ const OrganizerProjectList = props => {
 
 
     if (!hackathon) {
-        return <Loader type="Rings" color="#4885E1" height={100} width={100} />
+        return <Loader type="Rings" color="#311B92" height={100} width={100} />
     }
 
     console.log(hackathon)

@@ -27,9 +27,10 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2, 4, 3),
     color: 'black'
   },
-  button: {
+  joinButton: {
     color: 'white',
-  }
+    // backgroundColor: '#311B92'
+  },
 }));
 
 function JoinProjectModal({ project, hackathon_id, registered, history }) {
@@ -39,14 +40,14 @@ function JoinProjectModal({ project, hackathon_id, registered, history }) {
   const [formattedRole, setFormattedRole] = useState('')
   const [role, setRole] = useState('')
   const [error, setError] = useState('')
-  let spots = {'front_end_spots':'front end', 'back_end_spots':'back end', 'ux_spots':'ux', 'data_science_spots':'data science', 'android_spots':'android', 'ios_spots':'ios'};
+  let spots = { 'front_end_spots': 'front end', 'back_end_spots': 'back end', 'ux_spots': 'ux', 'data_science_spots': 'data science', 'android_spots': 'android', 'ios_spots': 'ios' };
   const { loading, user } = useAuth0();
   const dispatch = useDispatch();
 
   const handleOpen = () => {
     setOpen(true);
     Object.keys(spots).filter((role, index) => {
-      if(project[role] > 0){
+      if (project[role] > 0) {
         openRoles.push(Object.values(spots)[index])
       }
     })
@@ -71,16 +72,16 @@ function JoinProjectModal({ project, hackathon_id, registered, history }) {
     }
     const id = user.sub.replace('auth0|', '');
     e.preventDefault();
-    if(registered){
+    if (registered) {
       setError(true)
-    }else{
-      dispatch(joinProject(hackathon_id, id, {project_id: project.project_id, user_hackathon_role: 'participant', developer_role: formattedRole}, {[role]:project[role]-1}, history));
+    } else {
+      dispatch(joinProject(hackathon_id, id, { project_id: project.project_id, user_hackathon_role: 'participant', developer_role: formattedRole }, { [role]: project[role] - 1 }, history));
     }
   };
 
   return (
     <div>
-      <Button type="button" onClick={handleOpen} className={classes.button}>
+      <Button type="button" onClick={handleOpen} className={classes.joinButton}>
         Join Project
       </Button>
       <Modal
@@ -100,7 +101,7 @@ function JoinProjectModal({ project, hackathon_id, registered, history }) {
             <form onSubmit={handleSubmit}>
               <h2 id="projectTitle">{project.project_title}</h2>
               {openRoles.length > 1 && (<p>Choose your role:</p>)}
-              {!openRoles[0]?
+              {!openRoles[0] ?
                 false
                 :
                 <Select onChange={handleChange}>
