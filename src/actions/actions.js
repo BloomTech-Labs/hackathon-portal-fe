@@ -19,6 +19,7 @@ export const UPDATE_PROJECT_SUCCESS = 'UPDATE_PROJECT_SUCCESS';
 export const JOIN_PROJECT_SUCCESS = 'JOIN_PROJECT_SUCCESS';
 export const ASSIGN_ROLE_SUCCESS = 'ASSIGN_ROLE_SUCCESS';
 export const EDIT_PROJECT_SUCCESS = 'EDIT_PROJECT_SUCCESS';
+export const POST_SUBMITTED_PROJECT_SUCCESS = 'POST_SUBMITTED_PROJECT_SUCCESS'
 
 // ACTIONS
 
@@ -256,6 +257,19 @@ export const assignRole = (
 
       })
       .catch(error => {
+         dispatch({ type: FETCH_FAILURE, payload: error.response });
+      });
+}
+
+export const submitProject = projectDetails => async dispatch => {
+    (await axiosWithAuth())
+      .post('/project-submission', projectDetails)
+      .then(res => {
+         console.log(res)
+         dispatch({ type: POST_SUBMITTED_PROJECT_SUCCESS, payload: res.data })
+      })
+      .catch(error => {
+         console.log(error)
          dispatch({ type: FETCH_FAILURE, payload: error.response });
       });
 }

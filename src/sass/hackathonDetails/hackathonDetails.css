@@ -27,23 +27,60 @@
 }
 
 .single-hackathon-container .single-hackathon-buttons {
+  color: #311B92;
   background: white;
   width: 187px;
   height: 42px;
   font-weight: bold;
   font-size: 14px;
-  border: 1px solid rgba(0, 0, 0, 0.87);
+  border: 1px solid #311B92;
   border-radius: 4px;
   margin-bottom: 10px;
 }
 
-.single-hackathon-container .single-hackathon-buttons a {
+.single-hackathon-container .single-hackathon-button-pending {
+  cursor: pointer;
+  color: #D17F00;
+  background: white;
+  width: 187px;
+  height: 42px;
+  font-weight: bold;
+  font-size: 14px;
+  border: 1px solid #D17F00;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.single-hackathon-container .single-hackathon-button-pending a {
   text-decoration: none;
-  color: black;
+  color: #D17F00;
+}
+
+.single-hackathon-container .grey-no-pending {
+  border: 1px solid #858585;
+  color: #858585;
+}
+
+.single-hackathon-container .grey-no-pending a {
+  text-decoration: none;
+  color: #858585;
+}
+
+.single-hackathon-container .single-hackathon-buttons:hover {
+  cursor: pointer;
 }
 
 .single-hackathon-container .single-hackathon-admins {
   margin-bottom: 30px;
+  margin-bottom: 10px;
+}
+
+.single-hackathon-container .single-hackathon-admins h3 {
+  margin: 0;
+}
+
+.admins-container {
+  margin-bottom: 60px;
 }
 
 .single-hackathon-container-left {

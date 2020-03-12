@@ -15,8 +15,10 @@ import {
    DELETE_USER_FAIL,
    JOIN_PROJECT_SUCCESS,
    UPDATE_PROJECT_SUCCESS,
-   ASSIGN_ROLE_SUCCESS
+   ASSIGN_ROLE_SUCCESS,
+   POST_SUBMITTED_PROJECT_SUCCESS
 } from '../actions/actions';
+import { act } from 'react-dom/test-utils';
 
 const initialState = {
    singleHackathon: {},
@@ -24,6 +26,7 @@ const initialState = {
    hackathons: [],
    projects: [],
    userInfo: [],
+   submittedProject: {},
    isFetching: false,
    error: ''
 };
@@ -99,6 +102,12 @@ const reducer = (state = initialState, action) => {
             ...state,
             error: action.payload
          };
+      case POST_SUBMITTED_PROJECT_SUCCESS:
+            return {
+               ...state,
+               submittedProject: action.payload,
+               error: ''
+            }
       default:
          return state;
    }

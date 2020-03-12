@@ -1,0 +1,141 @@
+.project-submission-content {
+  width: 80%;
+  margin: auto;
+}
+
+.project-submission-content .hackathon-name {
+  margin-bottom: none;
+  font-family: Muli;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  color: #232323;
+}
+
+.project-submission-content .project-name {
+  margin-top: none;
+  font-family: Muli;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  color: #232323;
+}
+
+.project-submission-content .submission-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.project-submission-content .input {
+  background: #F5F5F5;
+  border: none;
+  border-bottom: 1px solid #858585;
+  margin-bottom: 10px;
+  padding: 15px;
+  font-family: Muli;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  color: #858585;
+}
+
+.project-submission-content .submission-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-top: 200px;
+}
+
+.project-submission-content .submission-buttons .cancel-button {
+  margin-right: 20px;
+  background: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.project-submission-content .submission-buttons .submission-button {
+  color: white;
+  font-size: 14px;
+  background: #311B92;
+  border: none;
+  border-radius: 4px;
+  width: 92px;
+  height: 42px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.project-submission-modal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.project-submission-modal .success-container {
+  height: 50%;
+  max-width: 80%;
+  margin-bottom: -180px;
+  white-space: normal;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.project-submission-modal .success-container .success-header {
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 40px;
+  color: #007C5D;
+}
+
+.project-submission-modal .success-container .ok-div {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-top: 180px;
+}
+
+.project-submission-modal .success-container .ok-div .ok-button {
+  color: white;
+  background: #311B92;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 16px;
+  cursor: pointer;
+  width: 92px;
+  height: 42px;
+  font-size: 14px;
+}
+/*# sourceMappingURL=projectSubmission.css.map */

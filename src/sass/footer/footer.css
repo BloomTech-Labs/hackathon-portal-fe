@@ -1,1 +1,8 @@
-/* No CSS *//*# sourceMappingURL=footer.css.map */
+.footer-container {
+  position: fixed;
+  bottom: 0;
+  background: blue;
+  width: 100%;
+  display: block;
+}
+/*# sourceMappingURL=footer.css.map */

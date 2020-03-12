@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
 .search-container {
   width: 65%;
-  margin: auto;
+  margin-left: 30px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -179,7 +179,7 @@
 }
 
 .fullList #hackathons-head {
-  margin: auto;
+  margin-left: 30px;
   width: 65%;
   color: #232323;
   text-align: left;
