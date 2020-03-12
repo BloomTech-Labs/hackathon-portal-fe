@@ -52,11 +52,56 @@
         }
         .submission-button{
             color: white;
+            font-size: 14px;
             background: #311B92;
             border:none;
             border-radius:4px;
+            width: 92px;
+            height: 42px;
             padding:10px 20px;
             cursor:pointer;
+        }
+    }
+}
+
+.project-submission-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    .success-container {
+        height: 50%;
+        max-width: 80%;
+        margin-bottom: -180px;
+        white-space: normal;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    
+        .success-header {
+            font-size: 32px;
+            font-weight: bold;
+            line-height: 40px;
+            color: #007C5D;
+        }
+        .ok-div{
+            width: 100%;
+            display:flex;
+            justify-content: flex-end;
+            margin-top:180px;
+
+            .ok-button {
+                color: white;
+                background: #311B92;
+                border:none;
+                border-radius:4px;
+                padding:12px 16px;
+                cursor:pointer;
+                width: 92px;
+                height: 42px;
+                font-size: 14px;
+        
+            }      
         }
     }
 }

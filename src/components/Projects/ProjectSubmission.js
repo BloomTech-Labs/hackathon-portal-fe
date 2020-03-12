@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 
 import { submitProject, updateProject } from '../../actions/actions';
+import moment from "moment";
 
 import '../../sass/hackathonModel/hackathonModel.scss'
 import '../../sass/projectSubmission/projectSubmission.scss'
@@ -17,6 +18,8 @@ const ProjectSubmission = ({ hackathon }) => {
     })
     const [activeStep, setActiveStep] = useState(0)
     const dispatch = useDispatch();
+    const currentDate = new Date().toString();
+
 
     const toggleModal = () => {
         setModal(!modal)
@@ -40,11 +43,42 @@ const ProjectSubmission = ({ hackathon }) => {
         setActiveStep(1)
         console.log(projectDetails)
     }
+
+    const submitButtonRender = () => {
+        // Upcoming for submit button
+        if(moment(hackathon?.start_date).isAfter(currentDate)) {
+            return null;
+        }
+        // past for submit button
+        if(moment(hackathon?.end_date).isBefore(currentDate)) {
+            if(hackathon?.project?.submitted === true) {
+                return (
+                    <p>Submitted</p>
+                )
+            } else {
+                return null;
+            }
+        }
+        
+        if(hackathon?.project?.submitted === true) {
+            return (
+                <p>Submitted</p>
+            )
+        }
+        if(hackathon?.user_hackathon_role === 'organizer') {
+            return null;
+        }
+        return (
+            <button className='submit-button' onClick={() => {
+                setModal(true)
+            }}>Submit</button>
+        )
+    }
     
     return (
         <div >
             <div className={`backdrop ${modal ? '' : 'hideModal'}`} onClick={handleBackgroundClick}>
-                <div className='modal' >
+                <div className='modal project-submission-modal' >
                     {activeStep === 0 && (
                          
                         <div className='project-submission-content'>
@@ -85,16 +119,19 @@ const ProjectSubmission = ({ hackathon }) => {
              } 
 
              {activeStep === 1 && (
-                 <div>
+                 <div className='success-container'>
                      <h2 className='success-header'>You have successfully submitted your project.</h2>
-                     <button className='ok-button' onClick={() => {setModal(false)}}> OK </button>
+                     <div className='ok-div'>
+                        <button className='ok-button' onClick={() => {setModal(false)}}> OK </button>
+                     </div>
                  </div>
              )}
                 </div>
             </div>
-            <button className='submit-button' onClick={() => {
-                setModal(true)
-            }}>Submit</button>
+            {console.log(hackathon)}
+
+            {submitButtonRender()}
+           
         </div>
     )
 }

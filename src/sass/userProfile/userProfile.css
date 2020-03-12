@@ -177,6 +177,10 @@
   color: #311B92;
 }
 
+.profile-wrapper .table tbody .tr-data .td-hackathon-name:hover {
+  cursor: pointer;
+}
+
 .profile-wrapper .table tbody .tr-data .td-details {
   font-weight: bold;
   font-size: 14px;
