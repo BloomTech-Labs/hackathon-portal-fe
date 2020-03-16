@@ -115,7 +115,7 @@ const OrganizerProjectList = props => {
                 // }}
                 >
                     <Fade in={open}>
-                        <CreateProject />
+                        <CreateProject handleClose={handleClose}/>
                     </Fade>
                 </Modal>
 
