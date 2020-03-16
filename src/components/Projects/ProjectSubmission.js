@@ -16,10 +16,10 @@ const ProjectSubmission = ({ hackathon }) => {
         deployed_url: '',
         video_url: '',
     })
+    const [submitted, setSubmitted] = useState(false)
     const [activeStep, setActiveStep] = useState(0)
     const dispatch = useDispatch();
     const currentDate = new Date().toString();
-
 
     const toggleModal = () => {
         setModal(!modal)
@@ -41,6 +41,7 @@ const ProjectSubmission = ({ hackathon }) => {
         dispatch(submitProject(projectDetails, hackathon?.project?.project_id))
         dispatch(updateProject(hackathon?.project?.project_id, {submitted: true}))
         setActiveStep(1)
+        setSubmitted(true)
         console.log(projectDetails)
     }
 
@@ -60,7 +61,7 @@ const ProjectSubmission = ({ hackathon }) => {
             }
         }
         
-        if(hackathon?.project?.submitted === true) {
+        if(hackathon?.project?.submitted === true || submitted === true) {
             return (
                 <p>Submitted</p>
             )
@@ -108,10 +109,11 @@ const ProjectSubmission = ({ hackathon }) => {
                                         onChange={handleChange} 
                                     />
                             <div className='submission-buttons'>
-                                <button onClick={() => {
+                                <button onClick={e => {
+                                    e.preventDefault()
                                     setModal(false)
                                 }} className='cancel-button'>Cancel</button>
-                                <button className='submission-button'>Submit</button>
+                                <button type='submit' className='submission-button'>Submit</button>
                             </div>
                         </form>
                     </div>
@@ -128,7 +130,6 @@ const ProjectSubmission = ({ hackathon }) => {
              )}
                 </div>
             </div>
-            {console.log(hackathon)}
 
             {submitButtonRender()}
            

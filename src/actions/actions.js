@@ -19,7 +19,8 @@ export const UPDATE_PROJECT_SUCCESS = 'UPDATE_PROJECT_SUCCESS';
 export const JOIN_PROJECT_SUCCESS = 'JOIN_PROJECT_SUCCESS';
 export const ASSIGN_ROLE_SUCCESS = 'ASSIGN_ROLE_SUCCESS';
 export const EDIT_PROJECT_SUCCESS = 'EDIT_PROJECT_SUCCESS';
-export const POST_SUBMITTED_PROJECT_SUCCESS = 'POST_SUBMITTED_PROJECT_SUCCESS'
+export const POST_SUBMITTED_PROJECT_SUCCESS = 'POST_SUBMITTED_PROJECT_SUCCESS';
+export const FETCH_SUBMITTED_PROJECT_SUCCESS = 'FETCH_SUBMITTED_PROJECT_SUCCESS';
 
 // ACTIONS
 
@@ -72,7 +73,6 @@ export const createProject = (
    (await axiosWithAuth())
       .post(`/projects`, projectInfo)
       .then(response => {
-         console.log('ACTION RESPONSE', response)
          dispatch({ type: POST_PROJECT_SUCCESS });
          dispatch(getSpecificHackathon(response.data.data.hackathon_id))
          // history.push(`/hackathon/${hackathon_id}`);
@@ -90,7 +90,7 @@ export const updateProject = (
    (await axiosWithAuth())
       .put(`/projects/${project_id}`, info)
       .then(response => {
-         console.log('ACTION RESPONSE', response)
+         // console.log('ACTION RESPONSE', response)
          dispatch({ type: UPDATE_PROJECT_SUCCESS });
       })
       .catch(error => {
@@ -109,7 +109,6 @@ export const joinProject = (
    (await axiosWithAuth())
       .post(`/hackathons/${hackathon_id}/join/${user_id}`, project)
       .then(response => {
-         console.log('ACTION RESPONSE', response)
          dispatch({ type: JOIN_PROJECT_SUCCESS })
          dispatch(updateProject(project.project_id, role))
          history.push(`/profile`)
@@ -155,7 +154,6 @@ export const createHackathon = (
    (await axiosWithAuth())
       .post(`/hackathons/u/${user_id}`, hackathonInfo)
       .then(response => {
-         console.log(response.data)
          // debugger
          dispatch({ type: POST_HACKATHON_SUCCESS, payload: response.data });
          // dispatch(getSpecificHackathon(response.data.id))
@@ -221,7 +219,6 @@ export const getUser = id => async dispatch => {
    (await axiosWithAuth())
       .get(`/users/${id}`)
       .then(response => {
-         console.log('TEST', response.data)
          dispatch({ type: FETCH_USER, payload: response.data });
       })
       .catch(error => {
@@ -251,7 +248,6 @@ export const assignRole = (
    (await axiosWithAuth())
       .post(`/hackathons/${hackathon_id}/join/${user_id}`, role)
       .then(response => {
-         console.log('ACTION RESPONSE', response)
          dispatch({ type: ASSIGN_ROLE_SUCCESS })
          setOpen(false)
 
@@ -265,7 +261,6 @@ export const submitProject = projectDetails => async dispatch => {
     (await axiosWithAuth())
       .post('/project-submission', projectDetails)
       .then(res => {
-         console.log(res)
          dispatch({ type: POST_SUBMITTED_PROJECT_SUCCESS, payload: res.data })
       })
       .catch(error => {
@@ -273,3 +268,14 @@ export const submitProject = projectDetails => async dispatch => {
          dispatch({ type: FETCH_FAILURE, payload: error.response });
       });
 }
+
+export const getSubmittedProject = projectId => async dispatch => {
+   (await axiosWithAuth())
+      .get(`/project-submission/${projectId}`)
+      .then(response => {
+         dispatch({ type: FETCH_SUBMITTED_PROJECT_SUCCESS, payload: response.data });
+      })
+      .catch(error => {
+         dispatch({ type: FETCH_FAILURE, payload: error.response });
+      });
+};

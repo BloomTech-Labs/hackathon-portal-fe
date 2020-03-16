@@ -158,7 +158,7 @@ const SinglePage = props => {
                {user.id === hackathon.organizer_id ? (
                   <div className='single-hackathon-crud-btns'>
                      {console.log(hackathon)}
-                     <button className={`${hackathon.projects.length === 0 ? 'grey-no-pending' : ''} single-hackathon-button-pending`}>
+                     <button className={`${hackathon?.projects?.length === 0 ? 'grey-no-pending' : ''} single-hackathon-button-pending`}>
                         <Link to={{ pathname: `/${props.match.params.id}/pendingprojects`, state: { hackathonId: Number(props.match.params.id) } }}>
                            Pending Projects
                         </Link>

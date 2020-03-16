@@ -119,9 +119,9 @@ const useStyles = makeStyles(theme => ({
     background: '#311B92',
     color: '#fff'
   },
-  topFormContent: {
-
-  }
+  errorMessage: {
+    color: 'red',
+  },
 }));
 
 
@@ -294,16 +294,24 @@ const CreateProject = props => {
               label="Project name"
               name="title"
               variant="filled"
-              margin="dense"
               className={classes.topInputs}
               defaultValue={formInfo.title}
               onChange={handleFormChange}
-            // InputProps={{
-            //   startAdornment: (
-            //     <InputAdornment position="start"></InputAdornment>
-            //   )
-            // }}
+              margin="dense"
+              inputProps={{
+                maxLength: 30
+
+              // startAdornment: (
+              //   <InputAdornment position="start"></InputAdornment>
+              // )
+            }}
             />
+            {projectInfo.title.length === 30 ?
+                <p className='errorMessage'>
+                  Character limit reached (30)
+                </p> : 
+                null
+            }
 
             <TextField
               className={classes.topInputs}
@@ -571,6 +579,9 @@ const CreateProject = props => {
         }}>Cancel</button> */}
         </div>
         <div className={classes.addProjectButtons}>
+          {/* {!projectInfo.title || projectInfo.title > 30 || !projectInfo.description ? (
+            
+          )} */}
           <Button
             variant="contained"
             className={classes.addProjectButton}
@@ -578,7 +589,7 @@ const CreateProject = props => {
 
           >
             ADD
-        </Button>
+          </Button>
         </div>
         {error && (<FormHelperText error>The total number of participants is more than the maximum number allowed per team</FormHelperText>)}
 

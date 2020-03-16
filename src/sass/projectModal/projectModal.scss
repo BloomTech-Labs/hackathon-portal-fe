@@ -26,3 +26,19 @@ p{
     font-family: Muli;
     background: #311B92;
 }
+
+.score-status {
+    font-weight: bold;
+}
+
+.links-p {
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    width: 500px; 
+    height: 1.2em; 
+    white-space: nowrap;
+     a{
+         text-decoration: none;
+         color: #311B92;
+     }
+}
