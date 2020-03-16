@@ -61,7 +61,7 @@ const Homepage = props => {
               </p>
               <button className='logIn-OutButton'
                 id='login-btn'
-                onClick={() => loginWithRedirect({})}>Join the fun</button>
+                onClick={() => loginWithRedirect({})}>Get Started</button>
             </div>
             <img className='hero-right' src={laptop} alt='a person laying down on a laptop' />
           </div>

@@ -95,6 +95,17 @@ export const style = {
       color: '#4885E1'
     }
   },
+  nameSpan: {
+    display: 'inline-block',
+    // height: '100%',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    width: '60%',
+    whiteSpace: 'nowrap',
+  },
+  listSpan: {
+    display: 'inline-block'
+  },
 
   'makeStyles-modal': {
     background: 'transparent',

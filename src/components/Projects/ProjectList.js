@@ -82,6 +82,7 @@ const ProjectList = props => {
     <div className={classes.projectListWrapper}>
       <h4 style={{ color: '#311B92' }} onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</h4>
       <Typography className={classes.projectsHeader} variant='h4'>{hackathon.name} project list</Typography>
+      {/* <h2> <span className={classes.nameSpan}>{hackathon.name}</span> <span className={classes.listSpan}>project list</span></h2> */}
 
       <div className={classes.contentContainer}>
         <RadioGroup value={filterBy} onChange={handleCheckboxChange} className={classes.radioGroup}>
@@ -188,9 +189,15 @@ const ProjectList = props => {
                             </div>
                             <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
                               <p className={classes.viewMore}>View More</p>
-                              {registered.project_id === project.project_id ? (
-                                <FormHelperText style={{ color: '#007C5D', fontSize: '16px', marginTop: '0px' }}>Participating</FormHelperText>
-                              ) : false}
+                              {!project.submitted ? (
+                                registered.project_id === project.project_id ? (
+                                  <FormHelperText style={{ color: '#007C5D', fontSize: '16px', marginTop: '0px' }}>Participating</FormHelperText>
+                                ) : false
+                              ): (
+                                registered.project_id === project.project_id ? (
+                                  <FormHelperText style={{ color: '#232323', fontSize: '16px', marginTop: '0px' }}>Submitted</FormHelperText>
+                                ) : false
+                              )}
                             </div>
                           </div>
                         </Card>

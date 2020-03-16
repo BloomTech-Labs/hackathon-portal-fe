@@ -16,7 +16,8 @@ import {
    JOIN_PROJECT_SUCCESS,
    UPDATE_PROJECT_SUCCESS,
    ASSIGN_ROLE_SUCCESS,
-   POST_SUBMITTED_PROJECT_SUCCESS
+   POST_SUBMITTED_PROJECT_SUCCESS,
+   FETCH_SUBMITTED_PROJECT_SUCCESS,
 } from '../actions/actions';
 import { act } from 'react-dom/test-utils';
 
@@ -27,6 +28,7 @@ const initialState = {
    projects: [],
    userInfo: [],
    submittedProject: {},
+   submittedProjectInfo: {},
    isFetching: false,
    error: ''
 };
@@ -107,7 +109,14 @@ const reducer = (state = initialState, action) => {
                ...state,
                submittedProject: action.payload,
                error: ''
-            }
+            };
+   
+      case FETCH_SUBMITTED_PROJECT_SUCCESS: 
+            return {
+               ...state, 
+               submittedProjectInfo: action.payload,
+               error: ''
+            };
       default:
          return state;
    }

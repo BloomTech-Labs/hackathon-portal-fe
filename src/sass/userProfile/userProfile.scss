@@ -39,6 +39,7 @@
                     padding-bottom: 12px;
                     margin-left: 1px;
                     cursor: pointer;
+                    padding-right: 0;
                 }
         }
     }
@@ -117,6 +118,7 @@
     .active {
         border-bottom: 1px solid #311B92;;
         color: #311B92 !important;
+        
     }
     .hidden {
         display: none;
@@ -156,13 +158,15 @@
             }
             td, th {
                 padding: 1rem;
+                text-overflow: ellipsis;
+                overflow: hidden; 
                 white-space: nowrap;
-                overflow: hidden;
                 padding-left: 0;
                 text-align: left;
                 border-bottom: 1.5px solid #DFE0EB;
             }
             th{
+
                 font-size: 14px;
                 line-height: 18px;
                 color: #9FA2B4;
@@ -176,4 +180,58 @@
         }
 
     }
+}
+.status-container{
+    display:flex;
+    img {
+        margin-right:10px;
+    }
+    .status-upcoming{
+        font-size: 16px;
+        line-height: 22px;
+        color: #D17F00;
+    }
+
+    .status-active {
+        font-size: 16px;
+        line-height: 22px;
+        color: #007C5D;
+    }
+
+    .status-finished {
+        font-size: 16px;
+        line-height: 22px;
+        color: #232323;
+    }
+
+}
+.hackathon-name-column{
+    max-width:300px;
+    min-width:300px;
+    overflow:hidden;
+    margin-right:5px;
+}
+.location-column{
+    max-width:200px;
+    min-width:200px;
+}
+.start-date-column{
+    max-width:100px;
+    min-width:100px;
+}
+.end-date-column{
+    max-width:100px;
+    min-width:100px;
+}
+.role-column{
+    max-width:100px;
+    min-width:100px;
+}
+.status-column{
+    max-width:100px;
+    min-width:100px;
+}
+.submission-column{
+    max-width:100px;
+    min-width:100px;
 }

@@ -34,6 +34,10 @@ import CreateHackathon from '../Hackathon/CreateHackathon'
 
 import ProjectSubmission from '../Projects/ProjectSubmission';
 
+import activeIcon from '../../images/active-icon.svg';
+import upcomingIcon from '../../images/upcoming-icon.svg';
+import finishedIcon from '../../images/finshed-icon.svg';
+
 const UserProfile = props => {
    const dispatch = useDispatch();
    const { loading, user, logout } = useAuth0();
@@ -54,7 +58,7 @@ const UserProfile = props => {
    const [hackathons, setHackathons] = useState([])
 
    useEffect(() => {
-      if (userProfile?.hackathons.length > 0) {
+      if (userProfile?.hackathons?.length > 0) {
          setHackathons(userProfile.hackathons)
       }
    }, [userProfile?.hackathons])
@@ -105,56 +109,12 @@ const UserProfile = props => {
       }
    }, [user]);
 
-   // const handleClickOpen = () => {
-   //    setOpen(true);
-   // };
-
-   // const handleClose = () => {
-   //    setOpen(false);
-   // };
-
-   // const handleDeleteClick = () => {
-   //    setDeleteOpen(true);
-   // };
-
-   // const handleDeleteClose = () => {
-   //    setDeleteOpen(false);
-   // };
-
-   // const handleChange = event => {
-   //    setProfileInfo({
-   //       ...profileInfo,
-   //       [event.target.name]: event.target.value
-   //    });
-   //    console.log(profileInfo);
-   // };
-
-   // const handleSubmit = async event => {
-   //    event.preventDefault();
-   //    (await axiosWithAuth())
-   //       .put(`/users/${user.id}`, profileInfo)
-   //       .then(res => {
-   //          setProfileInfo({
-   //             first_name: `${res.data.first_name}`,
-   //             last_name: `${res.data.last_name}`,
-   //             username: `${res.data.username}`,
-   //             email: `${res.data.email}`,
-   //             id: `${res.data.id}`
-   //          });
-   //          handleClose();
-   //          dispatch(getUser(profileInfo.id));
-   //       })
-   //       .catch(error => {
-   //          console.log('Profile Update', error);
-   //       });
-   // };
-
    const renderTableHeader = () => {
       const header = [
-         'Hackathon Name',
+         'Hackathon name',
          'Location',
-         'Start Date',
-         'End Date',
+         'Start date',
+         'End date',
          'Role',
          'Status',
          'Project submission'
@@ -171,26 +131,49 @@ const UserProfile = props => {
       // const { id, hackathon_name, start_date, end_date, user_hackathon_role } = userProfile.hackathons;
 
       return hackathonStatus.map(hackathon => {
+         const statusRender = () => {
+            if(moment(hackathon.start_date).isBefore(currentDate) &&
+               moment(hackathon.end_date).isAfter(currentDate) ||
+               moment(hackathon.start_date).isSame(currentDate) ||
+               moment(hackathon.end_date).isSame(currentDate)) {
+                  
+                  return (
+                     <div className='status-container'>
+                        <img src={activeIcon} />
+                        <p className='status-active'>Active</p>
+                     </div>
+                  ) 
+            }
+            if(moment(hackathon.start_date).isAfter(currentDate)) {
+               return (
+                  <div className='status-container'>
+                     <img src={upcomingIcon} />
+                     <p className='status-upcoming'>Upcoming</p>
+                  </div>
+               )
+            }
+            if(moment(hackathon.end_date).isBefore(currentDate)) {
+               return (
+                  <div className='status-container'>
+                     <img src={finishedIcon} />
+                     <p className='status-finished'>Finished</p>
+                  </div>
+               )
+            }
+         }
+
          return (
             <tr key={hackathon.id} className='tr-data'>
-               <td className='td-hackathon-name' onClick={() => {
+               <td className='td-hackathon-name hackathon-name-column' onClick={() => {
                   props.history.push(`/hackathon/${hackathon.hackathon_id}`)
                }}>{hackathon.hackathon_name}</td>
-               <td className='td-info'>Location</td>
-               <td className='td-info'>{formatDate(hackathon.start_date)}</td>
-               <td className='td-info'>{formatDate(hackathon.end_date)}</td>
-               <td className='td-info'>{hackathon.user_hackathon_role}</td>
-               {/* <Link to={`/hackathon/${hackathon.hackathon_id}`}> */}
-               {/* <td className='td-details' onClick={() => {
-                  props.history.push(`/hackathon/${hackathon.hackathon_id}`)
-               }}>Details</td> */}
-               {/* </Link> */}
-               <td className='td-status'>Status</td>
-               {/* <td><button className='submit-button' onClick={() => {
-                  console.log(hackathon)
-               }}>Submit</button></td> */}
-               {console.log(hackathon)}
-               <td><ProjectSubmission hackathon={hackathon} /></td>
+               <td className='td-info location-column'>{hackathon.location}</td>
+               <td className='td-info start-date-column'>{formatDate(hackathon.start_date)}</td>
+               <td className='td-info end-date-column'>{formatDate(hackathon.end_date)}</td>
+               <td className='td-info role-column'>{hackathon.user_hackathon_role}</td>
+               {/* <td className='td-status'>Status</td>           */}
+               <td className='status-column'>{statusRender()}</td>
+               <td className='submission-column'><ProjectSubmission hackathon={hackathon} /></td>
             </tr>
          )
       })
