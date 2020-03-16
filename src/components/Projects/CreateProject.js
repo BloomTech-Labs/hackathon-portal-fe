@@ -586,6 +586,9 @@ const CreateProject = props => {
             variant="contained"
             className={classes.addProjectButton}
             type='submit'
+            onClick={() => {
+              props.handleClose();
+            }}
 
           >
             ADD
