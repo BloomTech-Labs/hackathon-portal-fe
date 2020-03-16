@@ -559,7 +559,7 @@ const CreateProject = props => {
                     <Select value={role} onChange={handleRoleChange} displayEmpty className={classes.selectEmpty}>
                       <MenuItem value="" disabled>
                         Role
-          </MenuItem>
+                      </MenuItem>
                       <MenuItem value={"frontend"}>Frontend</MenuItem>
                       <MenuItem value={"backend"}>Backend</MenuItem>
                       <MenuItem value={"ux"}>UX</MenuItem>
