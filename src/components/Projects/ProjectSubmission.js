@@ -121,9 +121,9 @@ const ProjectSubmission = ({ hackathon }) => {
              } 
 
              {activeStep === 1 && (
-                 <div className='success-container'>
-                     <h2 className='success-header'>You have successfully submitted your project.</h2>
-                     <div className='ok-div'>
+                 <div className='success-container'> 
+                        <h2 className='success-header'>You have successfully submitted your project.</h2>
+                        <div className='ok-div'>
                         <button className='ok-button' onClick={() => {setModal(false)}}> OK </button>
                      </div>
                  </div>

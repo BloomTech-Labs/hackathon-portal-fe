@@ -1,160 +1,85 @@
-T🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline, feel free to add your own flare to it.
+#  Hackathon Portal
 
-🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
+ You can find the deployed project at [Hackathon-Portal](hackathon-portal.tech).
 
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
+##  Contributors
 
-# 1️⃣ Title of project goes here
 
-1️⃣ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
 
-## 4️⃣ Contributors
-
-🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
-
-|                                       [Student 1](https://github.com/)                                        |                                       [Student 2](https://github.com/)                                        |                                       [Student 3](https://github.com/)                                        |                                       [Student 4](https://github.com/)                                        |                                       [Student 5](https://github.com/)                                        |
+|                                       [Michael](https://github.com/msearles25)                                        |                                       [David](https://github.com/davidhennig)                                        |                                       [Brittany](https://github.com/brittanymae01)                                    |                                       [Mario](https://twitter.com/Mario_Marhx)                                        |                                       [Benjamin](https://github.com/bejolo018)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)             |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
+|                      [<img src="https://ca.slack-edge.com/T4JUEB3ME-UNCGZT27K-a9d50d8de6a1-512" width = "200" />](https://github.com/msearles25)                       |                      [<img src="https://ca.slack-edge.com/T4JUEB3ME-UNJV5ML8M-d258c22ed7c0-512" width = "200" />](https://github.com/davidhennig)                       |                      [<img src="https://ca.slack-edge.com/T4JUEB3ME-UNJV5K1RB-3d84b53b1c20-512" width = "200" />](https://github.com/brittanymae01)                       |                      [<img src="https://media-exp1.licdn.com/dms/image/C4E03AQFKRsU1k5N4Bg/profile-displayphoto-shrink_200_200/0?e=1590019200&v=beta&t=U7fAxTXUYJZNGvbTI3GcCaMWFkbPpeNb_bSg4XjdtXc" width = "200" />](https://www.mariomarhx.com/)                       |                      [                     <img src="https://ca.slack-edge.com/T4JUEB3ME-UFZGV9A05-501e3c7f7a72-512" width = "200" />](https://github.com/bejolo018)                       |
+|                        [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/msearles25)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/davidhennig)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/brittanymae01)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://www.mariomarhx.com/)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/bejolo018)             |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/michael-searles-3b7460196/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/david-hennig-83473350/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/brittany-isaacson-1b1460196/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/mariomarhx/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/benjamin-lopez-bb379b185/) |
 
 <br>
 <br>
-
-🚫 4️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
 
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
-![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](netlify link goes in these parenthesis)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](https://www.hackathon-portal.tech/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-
-🚫 more info on using badges [here](https://github.com/badges/shields)
 
 ## Project Overview
 
-1️⃣ [https://trello.com/b/l6ZqwkMo/labs-21-hackathon-portal](🚫add link to trello board here)
+ [Trello board](https://trello.com/b/l6ZqwkMo/labs-21-hackathon-portal])
 
-1️⃣ [Product Canvas](🚫add link to product canvas here)
+ [Product Canvas](https://www.notion.so/Hackathon-Portal-Labs-21-611efb31ce5845d3bd235ee73af4383a)
 
-1️⃣ [https://www.figma.com/file/5cFEwDifssLYAqxGeQceBm/Hackathon-Portal-UI?node-id=0%3A1](🚫add link to design files here) - 🚫 delete if not applicable
-
-🚫 Replace lorem ipsum with a description of your project
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+ [Design files](https://www.figma.com/file/5cFEwDifssLYAqxGeQceBm/Hackathon-Portal-UI?node-id=0%3A1)
 
 
-### 4️⃣ Key Features
+A comprehensive portal for hackathons where students can submit their work and judges can evaluate in one place.
 
--    feature one
--    feature two
--    feature three
--    feature four
--    feature five
 
-## 1️⃣ Tech Stack
+###  Key Features
+
+-    User on-boarding for 3 types of users: Organizers, Judges, and Hackers
+-    Showing a clear rubric for judges
+-    Organizers can assign judges to certain projects
+-    Judges can easily review and assign scores to submissions
+-    Easy way for hackers to submit projects
+-    Organizers can create a hackathon event
+-    Judges can sign onto/accept an assigned project
+
+##  Tech Stack
 
 ### Front end built using:
 
-#### _Front end framework goes here_
+-    React: Valuable for its speed, economy of code, and the team is already familiar with it.
+-    Redux: Temporary, but advanced state management, better for scaleable projects.
+-    Material UI: Implements a seamless way to integrate features such as, calendars or clocks to select dates and time.
+-    Sass: Facilitates clean, easy and less CSS in a programming construct.
 
-🚫 Why did you choose this framework?
+#### Front end deployed to `netlify.com`
 
--    point one
--    point two
--    point three
--    point four
+#### [Back end](https://github.com/Lambda-School-Labs/hackathon-portal-be) built using:
 
-🚫List the rest of the front end features and libraries in the same format as the framework above.
-
-#### Front end deployed to `🚫insert service here`
-
-#### [Back end](🚫link to back end repo here) built using:
-
-#### 🚫 back end framework goes here
-
--    point one
--    point two
--    point three
-
-🚫 List the rest of the back end end features and libraries in the same format as the framework above
+-    Node is lightweight, efficient, and its ability to use JavaScript on both frontend and backend opens new avenues for development. 
+-    Express simplifies development and makes it easier to write secure, modular and fast applications.
+-    PostgreSQL is a powerful data management system while being both free and open source.
+-    Heroku is a "polyglot platform" and is commonly understood by various other programing languages.
 
 # APIs
 
-## 2️⃣ Authentication API here
+##  Authentication API
 
-🚫Replace text below with a description of the API
+The data API is deployed on heroku and not for personal use
 
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
-
-## 2️⃣ Payment API here
-
-🚫Replace text below with a description of the API
-
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-Volunteering your time; it pays you and your whole community fantastic dividends. Maybe there's a happy little waterfall happening over here. You can spend all day playing with mountains. We don't have to be committed. We are just playing here. You have freedom here. The only guide is your heart. It's cold, but it's beautiful.
-
-# 3️⃣ Environment Variables
+#  Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
-🚫These are just examples, replace them with the specifics for your app
+    *  DB_ENV - this is your database URL.
+    *  BACKEND_API - the URL for the backend deoployment.
 
-    *  REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console
-    *  REACT_APP_authDomain - when you set up your Firebase project, this information will be in the dashboard
-    *  REACT_APP_databaseURL - in the Firebase dashboard
-    *  REACT_APP_projectID - in the Firebase dashboard
-    *  REACT_APP_storageBucket - in the Firebase dashboard
-    *  REACT_APP_messagingSenderId - in the Firebase dashboard
-    *  REACT_APP_stripe_API - this is your public Stripe API key, generated in the Stripe dashboard
-    *  REACT_APP_backendURL - optional for your local development server
-    *  REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
-    *  REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
-
-# 5️⃣ Content Licenses
-
-🚫For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
-
-| Image Filename | Source / Creator | License                                                                      |
-| -------------- | ---------------- | ---------------------------------------------------------------------------- |
-| doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
-| rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
-
-# 4️⃣ Testing
+#  Testing
 
 🚫Document what you used for testing and why
 
-# 4️⃣ Installation Instructions
+#  Installation Instructions
 
-🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
-
-## Other Scripts
-
-🚫replace these examples with your own
-
-    * typecheck - runs the TypeScript compiler
-    * build - creates a build of the application
-    * start - starts the production server after a build is created
-    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
+Run npm i and then npm start to get a development server running.
 
 # Contributing
 
@@ -194,4 +119,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](🚫_link to your backend readme here_) for details on the backend of our project.
+See [Backend Documentation](https://github.com/Lambda-School-Labs/hackathon-portal-be/blob/master/README.md) for details on the backend of our project.
