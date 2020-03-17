@@ -23,11 +23,9 @@ import "../../sass/createHackathon/createHackathon.scss";
 import 'date-fns';
 import TextField from '@material-ui/core/TextField';
 import {
-   Button,
    Typography,
    InputAdornment,
    makeStyles,
-   withStyles,
    Checkbox,
    FormControlLabel,
 } from '@material-ui/core';
@@ -41,139 +39,11 @@ import {
    KeyboardDatePicker
 } from '@material-ui/pickers';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import InputBase from '@material-ui/core/InputBase';
 import Radio from '@material-ui/core/Radio';
-import { blue, red } from '@material-ui/core/colors';
-import { relativeTimeRounding } from 'moment';
 
+import { style } from '../../MUI-Styles/createHackathonStyles';
 
-
-// const BootstrapInput = withStyles(theme => ({
-//    root: {
-//       'label + &': {
-//          marginTop: theme.spacing(3),
-//       },
-//    },
-//    input: {
-//       borderRadius: 3,
-//       position: 'relative',
-//       backgroundColor: theme.palette.background.paper,
-//       border: '1px solid #ced4da',
-//       fontSize: 16,
-//       transition: theme.transitions.create(['border-color', 'box-shadow']),
-//       fontFamily: [
-//          '-apple-system',
-//          'BlinkMacSystemFont',
-//          '"Segoe UI"',
-//          'Roboto',
-//          '"Helvetica Neue"',
-//          'Arial',
-//          'sans-serif',
-//          '"Apple Color Emoji"',
-//          '"Segoe UI Emoji"',
-//          '"Segoe UI Symbol"',
-//       ].join(','),
-//       '&:focus': {
-//          borderRadius: 4,
-//          borderColor: '#80bdff',
-//          boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
-//       },
-//    },
-// }))(InputBase);
-
-const useStyles = makeStyles(theme => ({
-   container: {
-      // border: '10px solid green',
-      width: '100%',
-      // height: '10vh',
-      // height: '200px',
-      // background: 'blue',
-   },
-   label: {
-      background: '#D0DDFF',
-      borderRadius: '5px',
-      marginBottom: '20px',
-   },
-   root: {
-      overflow: 'auto',
-      padding: '3%',
-      borderRadius: '4px',
-      width: '80%',
-      // '& > *': {
-
-      //    width: '100%',
-      // },
-      margin: 'auto',
-   },
-   button: {
-      width: '150px',
-      // marginTop: '50px'
-   },
-   formControl: {
-      width: '100 %',
-      // margin: theme.spacing(1),
-      // minWidth: 120,
-   },
-   selectEmpty: {
-      // marginTop: theme.spacing(2),
-   },
-   icon: {
-      borderRadius: '50%',
-      width: 16,
-      height: 16,
-      boxShadow: 'inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)',
-      backgroundColor: '#f5f8fa',
-      backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))',
-      '$root.Mui-focusVisible &': {
-         outline: '2px auto rgba(19,124,189,.6)',
-         outlineOffset: 2,
-      },
-      'input:hover ~ &': {
-         backgroundColor: '#ebf1f5',
-      },
-      'input:disabled ~ &': {
-         boxShadow: 'none',
-         background: 'rgba(206,217,224,.5)',
-      },
-   },
-   checkedIcon: {
-      backgroundColor: '#137cbd',
-      backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
-      '&:before': {
-         display: 'block',
-         width: 16,
-         height: 16,
-         backgroundImage: 'radial-gradient(#fff,#fff 28%,transparent 32%)',
-         content: '""',
-      },
-      'input:hover ~ &': {
-         backgroundColor: '#106ba3',
-      },
-   },
-   activeButton: {
-      backgroundColor: '#4885E1',
-      color: '#0A0A0B',
-      width: '8%',
-      // marginLeft: '3%',
-   },
-   backButton: {
-      border: '1px solid #4885E1',
-      color: '#4885E1'
-   },
-   buttonsContainer: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      top: 0,
-      right: 0,
-   },
-   buttonsSubContainer: {
-      top: 0,
-      right: 0,
-      // display: 'flex',
-      // justifyContent: 'space-between'
-   }
-}));
+const useStyles = makeStyles(theme => style)
 
 function StyledRadio(props) {
    const classes = useStyles();
@@ -275,20 +145,16 @@ const CreateHackathon = props => {
          nextStep();
 
       }
-      //  console.log(nameLength, descLength, locationLength)
-      //  console.log(page1Info)
    };
 
    function nextStep() {
       if (activeStep === 1) {
          const user_id = user.sub.replace('auth0|', '');
-         dispatch(createHackathon(user_id, hackathonInfo, history, setId, setActiveStep));
+         dispatch(createHackathon(user_id, hackathonInfo, setId, setActiveStep));
       } else {
          setActiveStep(prevActiveStep => prevActiveStep + 1);
       }
    }
-
-   // useEffect(() => { debugger }, [hackathonInfo])
 
    const handleBack = () => {
       setActiveStep(prevActiveStep => prevActiveStep - 1);
@@ -331,11 +197,6 @@ const CreateHackathon = props => {
                         defaultValue={page1Info.name}
                         onChange={handlePage1Change}
                         inputRef={register({ required: true })}
-                        InputProps={{
-                           startAdornment: (
-                              <InputAdornment position="start"></InputAdornment>
-                           )
-                        }}
                      />
                      {!nameLength ? <p className='create-error'>Please include a name</p> : null}
                      <p>* Required</p>
@@ -353,13 +214,6 @@ const CreateHackathon = props => {
                            defaultValue={page1Info.url}
                            onChange={handlePage1Change}
                            inputRef={register}
-                           InputProps={{
-                              startAdornment: (
-                                 <InputAdornment position="start">
-                                    {/* <LanguageIcon /> */}
-                                 </InputAdornment>
-                              )
-                           }}
                         />
                      </label>
 
@@ -376,13 +230,6 @@ const CreateHackathon = props => {
                            defaultValue={page1Info.location}
                            onChange={handlePage1Change}
                            inputRef={register}
-                           InputProps={{
-                              startAdornment: (
-                                 <InputAdornment position="start">
-                                    {/* <LocationOnIcon /> */}
-                                 </InputAdornment>
-                              )
-                           }}
                         />
                         {!locationLength ? <p className='create-error'>Please include a location (ex. San Francisco, Online, etc)</p> : null}
                      </label>
@@ -401,13 +248,6 @@ const CreateHackathon = props => {
                         defaultValue={page1Info.description}
                         onChange={handlePage1Change}
                         inputRef={register}
-                     // InputProps={{
-                     //    startAdornment: (
-                     //       <InputAdornment position="start">
-                     //          {/* <DescriptionIcon /> */}
-                     //       </InputAdornment>
-                     //    )
-                     // }}
                      />
 
                   </label>
@@ -519,7 +359,6 @@ const CreateHackathon = props => {
 
                   <div>
                      <label className="max-members">
-                        {/* <FormControl className={classes.margin}> */}
                         <InputLabel htmlFor="demo-customized-textbox"></InputLabel>
                         <TextField
                            type='number'
@@ -529,9 +368,6 @@ const CreateHackathon = props => {
                            placeholder="Max number of members (up to 30)"
                            value={max}
                            onChange={handleChange} />
-
-                        {/* </FormControl> */}
-
                      </label>
                   </div>
 

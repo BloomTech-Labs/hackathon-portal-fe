@@ -10,7 +10,7 @@ import {
   Typography
 } from "@material-ui/core";
 
-import { style } from "../../styles/hackathonListStyles";
+import { style } from "../../MUI-Styles/hackathonListStyles";
 
 const formatDate = date => {
   const months = [

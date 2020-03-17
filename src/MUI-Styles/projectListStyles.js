@@ -16,8 +16,6 @@ export const style = {
     display: 'flex'
   },
   radioGroup: {
-    // border: '2px solid green',
-    // display: 'flex',
     'flex-directon': 'row',
     width: '100%',
     textAlign: 'left'
@@ -36,7 +34,6 @@ export const style = {
     fontWeight: 'bold',
     fontSize: '44px',
     color: '#232323',
-    // marginLeft: '30px'
   },
   projectCards: {
     background: "#FFFFFF",
@@ -50,9 +47,6 @@ export const style = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-  },
-  contentContainer: {
-    // border: '1px solid blue'
   },
   cardContainer: {
     display: 'flex',
@@ -97,7 +91,6 @@ export const style = {
   },
   nameSpan: {
     display: 'inline-block',
-    // height: '100%',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     width: '60%',
@@ -110,24 +103,4 @@ export const style = {
   'makeStyles-modal': {
     background: 'transparent',
   }
-
-  // projectcard: {
-  //     padding: '25px',
-  //     height: '250px',
-  //      margin: '20px',
-  //     background: "#1c1c1f",
-  //     border: "1px solid #D0DDFF",
-  //      width: "250px",
-  //     borderRadius: "3%",
-  // },
-  // h3: {
-  //      margin:' 0 0 5px',
-  //     fontSize: '22px',
-  //     fontWeight: 'bold',
-  // },
-  // description: {
-  //     overflow: 'scroll',
-  //     textOverflow: 'ellipsis',
-  //     height: '164px'
-  // }
 }

@@ -7,72 +7,15 @@ import CreateProject from '../Projects/CreateProject';
 
 //STYLES
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import AddIcon from '@material-ui/icons/Add';
-import CardContent from '@material-ui/core/CardContent';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import Typography from '@material-ui/core/Typography';
 import Loader from 'react-loader-spinner';
 import "../../sass/organizerProjectList/organizerProjectList.scss"
 
+import { style } from '../../MUI-Styles/organizerProjectList';
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        background: 'white',
-        textTransform: 'none'
-    },
-    card: {
-        maxWidth: '25%',
-        margin: '0 auto',
-        color: 'white',
-        background: 'inherit',
-    },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
-    },
-    title: {
-        fontSize: 18,
-        color: 'white',
-    },
-    pos: {
-        marginBottom: 12,
-    },
-    modal: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
-        // opacity: '0.5',
-        color: 'white',
-        overflow: 'hidden'
-    },
-    paper: {
-        backgroundColor: theme.palette.background.paper,
-        border: '2px solid #000',
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3),
-    },
-    content: {
-        color: 'white',
-        border: '1px solid',
-        borderRadius: '13.5px',
-        paddingBottom: '0'
-    },
-    projects: {
-        display: 'flex',
-        flexDirection: 'column',
-        marginBottom: '50px'
-    },
-    listItem: {
-        color: 'black',
-        textAlign: 'left'
-    }
-}));
+const useStyles = makeStyles(theme => style)
 
 
 const OrganizerProjectList = props => {
@@ -110,9 +53,6 @@ const OrganizerProjectList = props => {
                     onClose={handleClose}
                     closeAfterTransition
                     BackdropComponent={Backdrop}
-                // BackdropProps={{
-                //     timeout: 500,
-                // }}
                 >
                     <Fade in={open}>
                         <CreateProject handleClose={handleClose}/>
@@ -126,11 +66,6 @@ const OrganizerProjectList = props => {
                             <p>
                                 {project.project_title}
                             </p>
-                            {/* <CardContent>
-                                    <Typography noWrap={true}>
-                                        {project.project_description}
-                                    </Typography>
-                                </CardContent> */}
                         </div>
                     )
                 })}

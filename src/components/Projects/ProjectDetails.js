@@ -20,7 +20,7 @@ import JoinProjectModal from './JoinProject';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import moment from 'moment';
 
-import "../../sass/projectModal/projectModal.scss";
+import "../../sass/projectDetails/projectDetails.scss";
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
 
 
 
-const ProjectModal = props => {
+const ProjectDetails = props => {
   const dispatch = useDispatch();
   const hackathon = useSelector(state => state.singleHackathon);
   const submittedProjectInfo = useSelector(state => state.submittedProjectInfo)
@@ -166,4 +166,4 @@ const ProjectModal = props => {
     </Dialog>
   )
 }
-export default ProjectModal;
+export default ProjectDetails;

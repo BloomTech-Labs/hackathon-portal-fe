@@ -21,7 +21,6 @@ const About = () => {
               Whether you are organizing a hackathon, participating, or evaluating a project,
               Hackathon Portal is the best way to stay up to date on the event’s activity.
             </p>
-            {/* <button>Contact Us</button> */}
           </div>
         </div>
       </div>

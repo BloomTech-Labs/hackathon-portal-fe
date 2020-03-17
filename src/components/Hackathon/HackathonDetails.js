@@ -1,11 +1,10 @@
 //Shows a desciption of a hackathon (past or present) on a single page, after clicking on a hackathons card
 // HackathonDescription
 
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
-import Button from '@material-ui/core/Button';
 import ServerModal from './editButton/modal';
 import Loader from 'react-loader-spinner';
 
@@ -16,10 +15,9 @@ import { editHackathon } from '../../actions/actions';
 
 // ACTIONS
 import { getSpecificHackathon } from '../../actions/actions';
-import { Typography } from '@material-ui/core';
 import '../../sass/hackathonDetails/hackathonDetails.scss';
 
-const SinglePage = props => {
+const HackathonDetails = props => {
    const dispatch = useDispatch();
    const hackathon = useSelector(state => state.singleHackathon);
    const isFetching = useSelector(state => state.isFetching);
@@ -38,12 +36,6 @@ const SinglePage = props => {
          setPending(hackathon?.projects?.filter(p => !p.is_approved))
       }
    }, [hackathon]);
-
-   // useEffect(() => {
-   //    if (hackathon.projects) {
-   //       setPending(hackathon.projects.filter(p => !p.is_approved))
-   //    }
-   // }, [hackathon.projects])
 
    const handleIsOpen = () => {
       setIsOpen({ is_open: !isOpen.is_open })
@@ -81,21 +73,6 @@ const SinglePage = props => {
       const day = days[newDate.getDay()];
       return `${day}, ${m} ${d}, ${y}`;
    };
-
-   // const userRoles = userRole => {
-   //    const { admins } = hackathon;
-   //    admins.filter(user => {
-   //       if (user.user_hackathon_role === userRole) {
-   //          console.log(user.username)
-   //          return user.username
-   //       }
-   //       return null;
-   //    })
-   // }
-
-   // const userRole = userRoles('organizer')
-
-   //const pending = !hackathon ? [] : hackathon.projects.filter(element=> !element.is_approved)
 
    if (isFetching) {
       return <Loader type="Rings" color="#311B92" height={100} width={100} />
@@ -140,7 +117,6 @@ const SinglePage = props => {
                         <div className='single-hackathon-admins'
                            key={index}>
                            <p>{admin.username}</p>
-                           {/* <p>{admin.user_hackathon_role}</p> */}
                         </div>
 
                      );
@@ -181,4 +157,4 @@ const SinglePage = props => {
    )
 }
 
-export default SinglePage;
+export default HackathonDetails;

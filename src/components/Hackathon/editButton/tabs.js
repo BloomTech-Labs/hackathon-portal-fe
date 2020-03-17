@@ -20,17 +20,12 @@ import {
    Button,
    TextField,
    Typography,
-   InputAdornment,
    Checkbox,
    FormControlLabel
 } from '@material-ui/core';
-import PersonIcon from '@material-ui/icons/Person';
-import DescriptionIcon from '@material-ui/icons/Description';
-import LanguageIcon from '@material-ui/icons/Language';
 import TodayIcon from '@material-ui/icons/Today';
 import EventIcon from '@material-ui/icons/Event';
 import ScheduleIcon from '@material-ui/icons/Schedule';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
 import DateFnsUtils from '@date-io/date-fns';
 import {
    MuiPickersUtilsProvider,
@@ -38,6 +33,8 @@ import {
    KeyboardDatePicker
 } from '@material-ui/pickers';
 
+
+import { style } from '../../../MUI-Styles/editButton/tabsStyles'
 
 function TabPanel(props) {
    const { children, value, index, ...other } = props;
@@ -78,60 +75,11 @@ const AntTabs = withStyles({
 const AntTab = withStyles(theme => ({
    root: {
       textTransform: 'none',
-      // minWidth: 72,
-      // fontWeight: theme.typography.fontWeightRegular,
-      // marginRight: theme.spacing(4),
-      // fontFamily: [
-      //    '-apple-system',
-      //    'BlinkMacSystemFont',
-      //    '"Segoe UI"',
-      //    'Roboto',
-      //    '"Helvetica Neue"',
-      //    'Arial',
-      //    'sans-serif',
-      //    '"Apple Color Emoji"',
-      //    '"Segoe UI Emoji"',
-      //    '"Segoe UI Symbol"',
-      // ].join(','),
-      // '&:hover': {
-      //    color: '#40a9ff',
-      //    opacity: 1,
-      // },
-      // '&$selected': {
-      //    color: '#1890ff',
-      //    fontWeight: theme.typography.fontWeightMedium,
-      // },
-      // '&:focus': {
-      //    color: '#40a9ff',
-      // },
    },
    selected: {},
 }))(props => <Tab disableRipple {...props} />);
 
-const useStyles = makeStyles(theme => ({
-   root: {
-      height: '490px',
-      backgroundColor: theme.palette.background.paper,
-      // background: 'black'
-   },
-   editinfo: {
-      display: 'flex',
-      flexDirection: 'column',
-   },
-   editdate: {
-      margin: 'auto',
-      width: '50%',
-   },
-   tabs: {
-      background: '#311B92',
-   },
-   indicator: {
-
-   },
-   button: {
-      background: '#311B92'
-   }
-}));
+const useStyles = makeStyles(theme => style)
 
 export const SimpleTabs = props => {
    const classes = useStyles();
@@ -225,13 +173,6 @@ export const SimpleTabs = props => {
                         className={classes.label}
                         defaultValue={hackathon.name}
                         inputRef={register}
-                     // InputProps={{
-                     //    startAdornment: (
-                     //       <InputAdornment position="start">
-                     //          <PersonIcon />
-                     //       </InputAdornment>
-                     //    )
-                     // }}
                      />
                   </label>
                   <label className="url">
@@ -247,13 +188,6 @@ export const SimpleTabs = props => {
                         margin="dense"
                         defaultValue={hackathon.url}
                         inputRef={register}
-                     // InputProps={{
-                     //    startAdornment: (
-                     //       <InputAdornment position="start">
-                     //          <LanguageIcon />
-                     //       </InputAdornment>
-                     //    )
-                     // }}
                      />
                   </label>
                   <label className="location-input">
@@ -269,13 +203,6 @@ export const SimpleTabs = props => {
                         label='Hackathon Location'
                         defaultValue={hackathon.location}
                         inputRef={register}
-                     // InputProps={{
-                     //    startAdornment: (
-                     //       <InputAdornment position="start">
-                     //          <LocationOnIcon />
-                     //       </InputAdornment>
-                     //    )
-                     // }}
                      />
                   </label>
 
@@ -294,13 +221,6 @@ export const SimpleTabs = props => {
                         label='Hackathon Description'
                         defaultValue={hackathon.description}
                         inputRef={register}
-                     // InputProps={{
-                     //    startAdornment: (
-                     //       <InputAdornment position="start">
-                     //          <DescriptionIcon />
-                     //       </InputAdornment>
-                     //    )
-                     // }}
                      />
                   </label>
                   <Button className={classes.button} color='primary' variant='contained' type="submit" disabled={saveButton}>Save</Button>

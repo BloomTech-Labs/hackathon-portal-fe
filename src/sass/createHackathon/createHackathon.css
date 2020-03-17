@@ -18,7 +18,7 @@
 }
 
 p {
-  padding: o;
+  padding: 0;
   margin: 0;
   text-align: left;
   font-family: Muli;
@@ -83,5 +83,9 @@ p {
 
 .MuiFormControlLabel-root {
   width: 100%;
+}
+
+.MuiIconButton-label p {
+  padding-left: 30px;
 }
 /*# sourceMappingURL=createHackathon.css.map */

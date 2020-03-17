@@ -1,7 +1,7 @@
 // The homepage for the website
 // Do we want to display all of upcoming hackathons or just 3?
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getHackathons, getHackers } from "../../actions/actions";
 import Loader from "react-loader-spinner";
@@ -21,13 +21,13 @@ import organize from "../../svgs/organize.svg"
 import participate from '../../svgs/participate.svg'
 import evaluate from '../../svgs/evaluate.svg'
 
-const Homepage = props => {
+const Homepage = () => {
   const isFetching = useSelector(state => state.isFetching);
   const dispatch = useDispatch();
   const hackers = useSelector(state => state.hackers);
   const hackathons = useSelector(state => state.hackathons);
   const currentDate = new Date().toString();
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { loginWithRedirect } = useAuth0();
 
   useEffect(() => {
     dispatch(getHackathons()).then(() => {
@@ -74,7 +74,6 @@ const Homepage = props => {
           <div className="values">
             <div>
               <img src={organize} alt='a clipboard' />
-              <organize />
               <h3>Organize</h3>
               <p>
                 Get things moving with our streamlined process. Organizing a hackathon has never been faster.
@@ -100,7 +99,7 @@ const Homepage = props => {
           <h2>Upcoming Hackathons</h2>
           <div className="upcoming-hackathons">
             {upcomingHackathons.slice(0, 3).map(hackathon => (
-              <HackathonCard hackathon={hackathon} />
+              <HackathonCard key={hackathon.id} hackathon={hackathon} />
             ))}
           </div>
 

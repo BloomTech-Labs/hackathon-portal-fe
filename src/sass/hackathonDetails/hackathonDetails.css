@@ -26,6 +26,13 @@
   line-height: 22px;
 }
 
+.single-hackathon-container .single-hackathon-title h1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 500px;
+  white-space: nowrap;
+}
+
 .single-hackathon-container .single-hackathon-buttons {
   color: #311B92;
   background: white;
