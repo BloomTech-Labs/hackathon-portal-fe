@@ -67,7 +67,9 @@ const ProjectModal = props => {
 
   useEffect(() => {
     dispatch(getSpecificHackathon((props.match.params.id)))
-    dispatch(getSubmittedProject(project_id))
+    if(project.submitted === true) {
+      dispatch(getSubmittedProject(project_id))
+    }
   }, [dispatch, props.match.params.id, project_id]);
 
   if (isFetching || !hackathon) {
