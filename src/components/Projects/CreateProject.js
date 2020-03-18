@@ -153,7 +153,7 @@ const CreateProject = props => {
       e.preventDefault();
       console.log(projectInfo, currentUser)
       dispatch(createProject(hackathon.id, projectInfo, props.history))
-      if (match) props.history.push(`/hackathon/${hackathon.id}`)
+      if (match) props.history.push(`/hackathon/${hackathon.id}/projects`)
     }
   }
 
@@ -381,7 +381,10 @@ const CreateProject = props => {
             className={classes.addProjectButton}
             type='submit'
             onClick={() => {
-              props.handleClose();
+              if(props?.match?.params?.id) {
+                return null;
+              }
+              return props.handleClose();
             }}
 
           >

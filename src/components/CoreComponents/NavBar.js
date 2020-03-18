@@ -22,7 +22,7 @@ const NavBar = () => {
             {!isAuthenticated && (
                <div className='navBar-div'>
 
-                  <Link className='navBarLink' to="/">
+                  <Link className='navBarLink home-link' to="/">
                      Home
                </Link>
                   <Link className='navBarLink' to="/about">
@@ -50,21 +50,21 @@ const NavBar = () => {
 
             {isAuthenticated && (
                <div className="navBar-div">
-                  <Link className="navBarLink" to="/">
+                  <Link className="navBarLink shorter-link" to="/">
                      Home
-               </Link>
-                  <Link className="navBarLink" to='/about'>
+                  </Link>
+                  <Link className="navBarLink about-link" to='/about'>
                      About
-               </Link>
+                  </Link>
                   <Link className="navBarLink" to="/hackathons">
                      All Hackathons
-               </Link>
+                  </Link>
                   <Link className="navBarLink" to="/profile">
                      Dashboard
-               </Link>
+                  </Link>
                   <button className="logIn-OutButton" onClick={() => logout()}>
                      Log Out
-               </button>
+                  </button>
                </div>
             )}
          </div>

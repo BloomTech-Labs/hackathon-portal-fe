@@ -1,35 +1,50 @@
+@import '../variables/variables.scss';
+
+
 .homepage {
   margin: auto;
-  // height: 100vh;
+  height: 100vh;
 
   .hero-background {
     width: 100%;
-    height: 70%;
+    height: 90%;
     background-color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
+      @include tablet-only {
+          height:50vh;
+    }
   }
   .hero-content {
     width: 80%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @include tablet-only {
+      width:90%;
+    }
   }
   .hero-left {
     width: 35%;
-
+    @include tablet-only {
+      width: 45%;
+      height: 30%;
+    }
     p {
       font-size: 16px;
       line-height: 22px;
       width: 80%;
+      @include tablet-only {
+        width:100%;
+      }
     }
 
     button {
       font-size: 14px;
       line-height: 18px;
-      width: 170px;
-      height: 55px;
+      width: 108px;
+      height: 42px;
       border-radius: 4px;
       margin-top: 5%;
       color:#FFFFFF;
@@ -58,6 +73,13 @@
     min-width: 60%;
     height: 60vh;
     border-radius: 4px;
+    @include tablet-only {
+      // position: absolute;
+      // right: 35px;
+      // top: 200px;
+      min-width: 90px;
+      height: 38vh;
+    }
   }
 }
 
@@ -65,6 +87,9 @@
   margin: 60px auto;
   text-align: left;
   width: 80%;
+  @include tablet-only {
+    width: 90%;
+  }
   
   .upcoming-hackathons {
     display: flex;
@@ -102,16 +127,30 @@
   margin-top: 100px;
   font-size: 32px;
   line-height: 40px;
+  text-align:center;
+  @include tablet-only {
+    width: 90%;
+  }
 
-  h2 {
-    font-size: 32px;
-    line-height: 40px;
+  .values-header {
+    h2 {
+      font-size: 32px;
+      line-height: 40px;
+    }
+    p{
+      margin: auto;
+      text-align: center;
+    }
+    
   }
 
   p {
+    padding-right: 0;
     font-size: 16px;
     line-height: 22px;
     width: 70%;
+    margin: auto;
+    text-align: center;
   }
 
   .values {
@@ -128,12 +167,14 @@
       font-size: 14px;
       line-height: 20px;
       width:80%;
+      @include tablet-only {
+        width: 90%;
+      }
     }
     h3 {
       font-weight: bold;
       font-size: 18px;
       line-height: 24px;
-      // text-align: left;
     }
   }
 }

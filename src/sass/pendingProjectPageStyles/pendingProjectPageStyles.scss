@@ -1,0 +1,7 @@
+@import '../variables/variables.scss';
+
+.pendingContainer {
+    @include tablet-only {
+        width:90%;
+    }
+}

@@ -24,12 +24,15 @@ import {
   Typography,
 } from "@material-ui/core";
 import Loader from 'react-loader-spinner';
+import '../../sass/userList/userList.scss';
+
 
 const useStyles = makeStyles(theme => style);
 
 const useListStyles = makeStyles(theme => ({
   container: {
     margin: '10% 10% 0 10%',
+    
   },
   userListContainer: {
     display: 'flex',
@@ -221,7 +224,7 @@ const UserList = props => {
 
   if (hackathon.organizer_id === user.id) {
     return (
-      <div className={styles.container}>
+      <div className='container'>
         <div className={styles.btnWrapper}>
           <Button id='view-archive-btn' onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</Button>
           <h1 id='hackathons-head'>Add organizers</h1>
@@ -241,7 +244,7 @@ const UserList = props => {
         <div className={styles.usersList}>
           {results.map((hacker, index) => {
             return (
-              <div key={index} className={styles.card} onClick={() => handleOpen(hacker.id)} >
+              <div key={index} className={`${styles.card} card`} onClick={() => handleOpen(hacker.id)} >
 
                 <div className={styles.unorderedList}>
                   <ListItemText className={styles.listItem} primary={hacker.username} secondary={fn(hacker.id)}

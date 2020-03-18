@@ -1,0 +1,16 @@
+.container {
+  margin: 10% 10% 0 10%;
+}
+
+@media (max-width: 991px) {
+  .container {
+    margin: 10% 5% 0 5%;
+  }
+}
+
+@media (max-width: 991px) {
+  .container .card {
+    width: 250px;
+  }
+}
+/*# sourceMappingURL=userList.css.map */

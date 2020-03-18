@@ -222,7 +222,7 @@ const Dashboard = props => {
                      </tbody>
                   </table>
 
-               ) : <p className={`empty-hackathon-list ${tabs.active ? '' : 'hidden'}`}>Uh-oh...you’re not participating in any hackathons. Create a new hackathon or <span classname='find-one-link'><a>find one</a></span> to participate in.</p>
+               ) : <span className={`empty-hackathon-list ${tabs.active ? '' : 'hidden'}`}>Uh-oh...you’re not participating in any hackathons. Create a new hackathon or <span classname='find-one-link'><a>find one</a></span> to participate in.</span>
                }
 
                {pastHackathons.length ? (
@@ -232,7 +232,7 @@ const Dashboard = props => {
                         {renderTableData(pastHackathons)}
                      </tbody>
                   </table>
-               ) : <p className={`empty-hackathon-list ${tabs.past ? '' : 'hidden'}`}>Uh-oh...you haven't participated in any hackathons. Create a new hackathon or <span classname='find-one-link'><a>find one</a></span> to participate in.</p>
+               ) : <p className={`empty-hackathon-list ${tabs.past ? '' : 'hidden'}`}>Uh-oh...you haven't participated in any hackathons. Create a new hackathon or <span className='find-one-link'><a>find one</a></span> to participate in.</p>
                }
             </div>
          </section>

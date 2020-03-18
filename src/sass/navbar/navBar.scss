@@ -1,3 +1,5 @@
+@import '../variables/variables.scss';
+
 .navBar {
     width:100%;
     margin: auto;
@@ -6,19 +8,30 @@
     position: fixed;
     top: 0;
     background-color: white;
+    z-index: 1000;
 }
 .navbar-content {
     display: flex;
     justify-content: space-between;
     margin: auto;
     width: 80%;
+    @include tablet-only {
+        width: 90%;
+    }
 }
 .navBar-div{
-    width: 55%;
+    width: 45%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     text-align:center;
+
+    @include tablet-only {
+        width: 55%;
+    }
+    @include phone-only {
+        display:none;
+    }
 
     a {
         text-decoration: none;
@@ -66,7 +79,7 @@
 }
 
 .navBarLink{
-  width: 106px;
+//   width: 106px;
   height: 18px;
   font-family: Muli;
   font-size: 14px;
@@ -77,3 +90,10 @@
   letter-spacing: 0.3px;
   color: #311B92;
 }
+
+// .shorter-link {
+//     width: 50px;
+// }
+// .about-link {
+//     width: 55px;
+// }

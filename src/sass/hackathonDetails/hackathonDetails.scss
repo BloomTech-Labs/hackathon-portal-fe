@@ -1,9 +1,14 @@
+@import '../variables/variables.scss';
+
 .single-hackathon-container{
     width:80%;
     margin:auto;
     padding-top:60px;
     display:flex;
     justify-content: space-between;
+    @include tablet-only {
+        width: 90%;
+    }
     h3{
         font-family: Muli;
         font-style: normal;

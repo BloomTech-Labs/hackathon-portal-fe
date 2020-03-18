@@ -67,30 +67,32 @@ const Homepage = () => {
           </div>
         </div>
         <section className="middle-content">
-          <h2>Features</h2>
-          <p>
-            Hackathon Portal makes it easier to get involved
-          </p>
+          <div className='values-header'>
+            <h2>Features</h2>
+            <p>
+              Hackathon Portal makes it easier to get involved
+            </p>
+          </div>
           <div className="values">
             <div>
               <img src={organize} alt='a clipboard' />
               <h3>Organize</h3>
               <p>
-                Get things moving with our streamlined process. Organizing a hackathon has never been faster.
+                Get things moving with our streamlined process. <br /> Organizing a hackathon has never been faster.
               </p>
             </div>
             <div>
               <img src={participate} alt='an award for winning' />
               <h3>Participate</h3>
               <p>
-                Add to your portfolio while meeting new people. Participate in remote or offline events.
+                Add to your portfolio while meeting new people. <br /> Participate in remote or offline events.
               </p>
             </div>
             <div>
               <img src={evaluate} alt='a box that has the words vote on it' />
               <h3>Evaluate</h3>
               <p>
-                Move through the judging process quicker. Evaluate submissions with minimal effort.
+                Move through the judging process quicker. <br /> Evaluate submissions with minimal effort.
               </p>
             </div>
           </div>
