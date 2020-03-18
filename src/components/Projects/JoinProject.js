@@ -14,9 +14,12 @@ import { Button, Select, MenuItem, FormHelperText } from '@material-ui/core';
 // ACTIONS
 import { joinProject } from '../../actions/actions';
 
+
 import { style } from '../../MUI-Styles/joinProjectStyles'
 
 const useStyles = makeStyles(theme => style)
+
+
 
 function JoinProjectModal({ project, hackathon_id, registered, history }) {
   const classes = useStyles();
