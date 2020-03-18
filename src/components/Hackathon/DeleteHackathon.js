@@ -14,23 +14,9 @@ import { makeStyles } from '@material-ui/core/styles';
 // ACTIONS
 import { deleteHackathon } from '../../actions/actions'
 
-const useStyles = makeStyles(theme => ({
-  button: {
-    color: '#C21F1D',
-    background: 'white',
-    width: '187px',
-    height: '42px',
-    'font-weight': 'bold',
-    'font-size': '14px',
-    'font-family': 'Muli',
-    border: '1px solid #C21F1D',
-    'border-radius': '4px',
-    'text-transform': 'none',
-    "&:hover": {
-      backgroundColor: "transparent"
-    }
-  },
-}))
+import { style } from '../../MUI-Styles/deleteHackathonStyles';
+
+const useStyles = makeStyles(theme => style)
 
 export default function DeleteHackathonModal(props) {
   const dispatch = useDispatch();

@@ -11,11 +11,9 @@ import Homepage from "./components/CoreComponents/Homepage";
 import Hackathons from "./components/Hackathon/HackathonList";
 import CreateHackathon from "./components/Hackathon/CreateHackathon";
 import EditHackathon from "./components/Hackathon/EditHackathon";
-import SinglePage from "./components/Hackathon/SinglePageHackathon";
-import SuccessPage from "./components/NotBeingUsed/SuccessPage";
-import UserProfile from "./components/UserProfile/UserProfile";
+import HackathonDetails from "./components/Hackathon/HackathonDetails";
+import Dashboard from "./components/Dashboard/Dashboard";
 import PendingProjects from "./components/Projects/PendingProjectsPage";
-import PastHackathons from "./components/Hackathon/PastHackathons";
 import CreateProject from "./components/Projects/CreateProject";
 import ProjectList from "./components/Projects/ProjectList";
 import UserList from "./components/Organizers/UserList";
@@ -24,7 +22,7 @@ import About from "./components/CoreComponents/About";
 
 // ACTIONS
 import { getHackathons } from "./actions/actions";
-import ProjectModal from "./components/Projects/ProjectModal";
+import ProjectDetails from "./components/Projects/ProjectDetails";
 
 import "./sass/app/app.scss";
 
@@ -39,7 +37,7 @@ function App(props) {
     <StylesProvider injectFirst>
       <div className="App">
         <Router history={history}>
-          <container className="main-container">
+          <div className="main-container">
             <header>
               <NavBar />
             </header>
@@ -47,14 +45,13 @@ function App(props) {
               <Switch>
                 <Route exact path="/" component={Homepage} />
                 <Route exact path="/hackathons" component={Hackathons} />
-                {/* <Route exact path='/hackathons/archive' component={PastHackathons} /> Route to pastHackathons component, not being used*/}
                 <Route exact path="/about" component={About} />
                 <Route
                   exact
                   path="/hackathon/:id/projects/:project_id"
-                  component={ProjectModal}
+                  component={ProjectDetails}
                 />
-                <PrivateRoute path="/profile" component={UserProfile} />
+                <PrivateRoute path="/profile" component={Dashboard} />
                 <PrivateRoute
                   path="/:id/pendingprojects"
                   id={`:id`}
@@ -74,9 +71,8 @@ function App(props) {
                 <PrivateRoute
                   exact
                   path={`/hackathon/:id`}
-                  component={SinglePage}
+                  component={HackathonDetails}
                 />
-                {/* <Route path="/success" component={SuccessPage} /> */}
                 <PrivateRoute
                   exact
                   path="/hackathon/:id/projects"
@@ -92,14 +88,13 @@ function App(props) {
                   path="/hackathon/:id/users"
                   component={UserList}
                 />
-                {/* <Route path="/success" component={SuccessPage} /> */}
                 <Route component={ErrorPage} />
               </Switch>
             </div>
             {/* <footer>
               <Footer />
             </footer> */}
-          </container>
+          </div>
         </Router>
       </div>
     </StylesProvider>

@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 .profile-wrapper{
     width:80%;
+    height:100%;
     margin:auto;
+
     .top-content{
         display: flex;
         text-align: center;
@@ -234,4 +236,22 @@
 .submission-column{
     max-width:100px;
     min-width:100px;
+}
+
+.past-div {
+    height: 42px;
+    width: 196px;
+    margin: 10px 0;
+}
+.find-one-link{
+    a{
+        color: #311B92;
+        text-decoration: none;
+    }
+}
+
+.empty-hackathon-list {
+    width: 30%;
+    font-size: 16px;
+    line-height: 22px;
 }

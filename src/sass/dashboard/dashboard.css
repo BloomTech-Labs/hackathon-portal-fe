@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
 .profile-wrapper {
   width: 80%;
+  height: 100%;
   margin: auto;
 }
 
@@ -53,6 +54,7 @@
   padding-bottom: 12px;
   margin-left: 1px;
   cursor: pointer;
+  padding-right: 0;
 }
 
 .profile-wrapper .logged-in-as h3 {
@@ -195,8 +197,9 @@
 
 .profile-wrapper .table tbody td, .profile-wrapper .table tbody th {
   padding: 1rem;
-  white-space: nowrap;
+  text-overflow: ellipsis;
   overflow: hidden;
+  white-space: nowrap;
   padding-left: 0;
   text-align: left;
   border-bottom: 1.5px solid #DFE0EB;
@@ -214,4 +217,86 @@
   line-height: 22px;
   color: #252733;
 }
-/*# sourceMappingURL=userProfile.css.map */
+
+.status-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.status-container img {
+  margin-right: 10px;
+}
+
+.status-container .status-upcoming {
+  font-size: 16px;
+  line-height: 22px;
+  color: #D17F00;
+}
+
+.status-container .status-active {
+  font-size: 16px;
+  line-height: 22px;
+  color: #007C5D;
+}
+
+.status-container .status-finished {
+  font-size: 16px;
+  line-height: 22px;
+  color: #232323;
+}
+
+.hackathon-name-column {
+  max-width: 300px;
+  min-width: 300px;
+  overflow: hidden;
+  margin-right: 5px;
+}
+
+.location-column {
+  max-width: 200px;
+  min-width: 200px;
+}
+
+.start-date-column {
+  max-width: 100px;
+  min-width: 100px;
+}
+
+.end-date-column {
+  max-width: 100px;
+  min-width: 100px;
+}
+
+.role-column {
+  max-width: 100px;
+  min-width: 100px;
+}
+
+.status-column {
+  max-width: 100px;
+  min-width: 100px;
+}
+
+.submission-column {
+  max-width: 100px;
+  min-width: 100px;
+}
+
+.past-div {
+  height: 42px;
+  width: 196px;
+  margin: 10px 0;
+}
+
+.find-one-link a {
+  color: #311B92;
+  text-decoration: none;
+}
+
+.empty-hackathon-list {
+  width: 30%;
+  font-size: 16px;
+  line-height: 22px;
+}
+/*# sourceMappingURL=dashboard.css.map */

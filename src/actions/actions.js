@@ -65,9 +65,9 @@ export const deleteProject = (
 }
 
 export const createProject = (
-   hackathon_id,
+   hackathonId,
    projectInfo,
-   history
+   
 ) => async dispatch => {
    dispatch({ type: FETCH_START });
    (await axiosWithAuth())
@@ -75,7 +75,6 @@ export const createProject = (
       .then(response => {
          dispatch({ type: POST_PROJECT_SUCCESS });
          dispatch(getSpecificHackathon(response.data.data.hackathon_id))
-         // history.push(`/hackathon/${hackathon_id}`);
       })
       .catch(error => {
          dispatch({ type: FETCH_FAILURE, payload: error.response });
@@ -90,7 +89,6 @@ export const updateProject = (
    (await axiosWithAuth())
       .put(`/projects/${project_id}`, info)
       .then(response => {
-         // console.log('ACTION RESPONSE', response)
          dispatch({ type: UPDATE_PROJECT_SUCCESS });
       })
       .catch(error => {
@@ -146,7 +144,6 @@ export const getSpecificHackathon = id => async dispatch => {
 export const createHackathon = (
    user_id,
    hackathonInfo,
-   history,
    setId,
    setActiveStep
 ) => async dispatch => {
@@ -154,13 +151,9 @@ export const createHackathon = (
    (await axiosWithAuth())
       .post(`/hackathons/u/${user_id}`, hackathonInfo)
       .then(response => {
-         // debugger
          dispatch({ type: POST_HACKATHON_SUCCESS, payload: response.data });
-         // dispatch(getSpecificHackathon(response.data.id))
          setId(response.data.id)
          setActiveStep(prev => prev + 1)
-         // console.log(response.data)
-         // history.push(`/success/${response.data.id}`);
       })
       .catch(error => {
          dispatch({ type: FETCH_FAILURE, payload: error.response });

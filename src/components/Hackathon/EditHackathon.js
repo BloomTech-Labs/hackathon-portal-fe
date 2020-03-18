@@ -36,26 +36,9 @@ import {
 } from '@material-ui/pickers';
 import Loader from 'react-loader-spinner';
 
-const useStyles = makeStyles(theme => ({
-   label: {
-      background: '#D0DDFF',
-      borderRadius: '5px',
-      marginBottom: '20px',
-   },
-   root: {
-      padding: '3%',
-      borderRadius: '5px',
-         width: '50%',
-         '& > *': {
-   
-           width: '100%',
-         },
-   },
-   button: {
-      width: '150px',
-      marginTop: '50px'
-   }
-}));
+import { style } from '../../MUI-Styles/editHackathonStyles';
+
+const useStyles = makeStyles(theme => style)
 
 const EditHackathon = props => {
    const dispatch = useDispatch();

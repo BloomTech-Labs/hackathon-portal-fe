@@ -67,5 +67,3 @@ export const Search = (search, name) => {
 
     )
 }
-
-// onClick={()=>handleOpen(hacker.id)}

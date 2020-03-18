@@ -7,10 +7,10 @@ import moment from 'moment';
 
 // ACTIONS
 import { getSpecificHackathon } from "../../actions/actions";
-import { Typography, Avatar, FormControlLabel, Radio, RadioGroup, FormHelperText, makeStyles, Card, Portal } from "@material-ui/core";
+import { Typography, Avatar, FormControlLabel, Radio, RadioGroup, FormHelperText, makeStyles, Card } from "@material-ui/core";
 
 // STYLES
-import { style } from '../../styles/projectListStyles';
+import { style } from '../../MUI-Styles/projectListStyles';
 import Button from '@material-ui/core/Button';
 import Loader from 'react-loader-spinner';
 

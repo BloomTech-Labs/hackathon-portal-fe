@@ -7,7 +7,7 @@ import '../../sass/footer/footer.scss'
 const Footer = () => {
     return (
         <div className='footer-container'>
-            <h1>test</h1>
+                <p> Have feedback? Contact us at: HackathonPortalFeedback@gmail.com</p>
         </div>
     )
 }

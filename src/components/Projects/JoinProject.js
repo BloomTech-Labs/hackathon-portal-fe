@@ -14,24 +14,12 @@ import { Button, Select, MenuItem, FormHelperText } from '@material-ui/core';
 // ACTIONS
 import { joinProject } from '../../actions/actions';
 
-const useStyles = makeStyles(theme => ({
-  modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  paper: {
-    // backgroundColor: theme.palette.background.paper,
-    // border: '2px solid #000',
-    // boxShadow: theme.shadows[5],
-    // padding: theme.spacing(2, 4, 3),
-    color: 'black'
-  },
-  joinButton: {
-    color: 'white',
-    // backgroundColor: '#311B92'
-  },
-}));
+
+import { style } from '../../MUI-Styles/joinProjectStyles'
+
+const useStyles = makeStyles(theme => style)
+
+
 
 function JoinProjectModal({ project, hackathon_id, registered, history }) {
   const classes = useStyles();

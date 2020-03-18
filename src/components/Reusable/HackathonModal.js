@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { TextField } from "@material-ui/core"
 import '../../sass/hackathonModel/hackathonModel.scss'
 
 import CreateHackathon from '../Hackathon/CreateHackathon'

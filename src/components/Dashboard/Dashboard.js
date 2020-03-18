@@ -7,30 +7,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import moment from 'moment';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
-import { Link } from "react-router-dom";
 
-import Button from '@material-ui/core/Button';
-
-import {
-   Dialog,
-   DialogActions,
-   DialogContent,
-   DialogTitle,
-   TextField
-} from '@material-ui/core';
 import Loader from 'react-loader-spinner';
 
 // ACTIONS
 import { getUser } from '../../actions/actions';
 import { deleteUser } from '../../actions/actions';
-import ProfileCard from './ProfileCard';
-import HacakthonModal from '../Reusable/HackathonModal';
 
-
-import '../../sass/userProfile/userProfile.scss'
+import '../../sass/dashboard/dashboard.scss'
 import HackathonModal from '../Reusable/HackathonModal';
-
-import CreateHackathon from '../Hackathon/CreateHackathon'
 
 import ProjectSubmission from '../Projects/ProjectSubmission';
 
@@ -38,16 +23,15 @@ import activeIcon from '../../images/active-icon.svg';
 import upcomingIcon from '../../images/upcoming-icon.svg';
 import finishedIcon from '../../images/finshed-icon.svg';
 
-const UserProfile = props => {
+const Dashboard = props => {
    const dispatch = useDispatch();
-   const { loading, user, logout } = useAuth0();
-   const userProfile = useSelector(state => state.userInfo);
+   const { loading, user } = useAuth0();
+   const dashboard = useSelector(state => state.userInfo);
    const currentDate = new Date().toString();
    const [tabs, setTabs] = useState({
       active: true,
       past: false
    });
-   const [deleteOpen, setDeleteOpen] = useState(false);
    const [profileInfo, setProfileInfo] = useState({
       first_name: '',
       last_name: '',
@@ -58,10 +42,10 @@ const UserProfile = props => {
    const [hackathons, setHackathons] = useState([])
 
    useEffect(() => {
-      if (userProfile?.hackathons?.length > 0) {
-         setHackathons(userProfile.hackathons)
+      if (dashboard?.hackathons?.length > 0) {
+         setHackathons(dashboard.hackathons)
       }
-   }, [userProfile?.hackathons])
+   }, [dashboard?.hackathons])
 
    const formatDate = date => {
       const months = [
@@ -128,7 +112,6 @@ const UserProfile = props => {
    }
 
    const renderTableData = (hackathonStatus) => {
-      // const { id, hackathon_name, start_date, end_date, user_hackathon_role } = userProfile.hackathons;
 
       return hackathonStatus.map(hackathon => {
          const statusRender = () => {
@@ -139,7 +122,7 @@ const UserProfile = props => {
                   
                   return (
                      <div className='status-container'>
-                        <img src={activeIcon} />
+                        <img src={activeIcon} alt='green dot' />
                         <p className='status-active'>Active</p>
                      </div>
                   ) 
@@ -147,7 +130,7 @@ const UserProfile = props => {
             if(moment(hackathon.start_date).isAfter(currentDate)) {
                return (
                   <div className='status-container'>
-                     <img src={upcomingIcon} />
+                     <img src={upcomingIcon} alt='yellow dot'/>
                      <p className='status-upcoming'>Upcoming</p>
                   </div>
                )
@@ -155,7 +138,7 @@ const UserProfile = props => {
             if(moment(hackathon.end_date).isBefore(currentDate)) {
                return (
                   <div className='status-container'>
-                     <img src={finishedIcon} />
+                     <img src={finishedIcon} alt='black dot' />
                      <p className='status-finished'>Finished</p>
                   </div>
                )
@@ -171,7 +154,6 @@ const UserProfile = props => {
                <td className='td-info start-date-column'>{formatDate(hackathon.start_date)}</td>
                <td className='td-info end-date-column'>{formatDate(hackathon.end_date)}</td>
                <td className='td-info role-column'>{hackathon.user_hackathon_role}</td>
-               {/* <td className='td-status'>Status</td>           */}
                <td className='status-column'>{statusRender()}</td>
                <td className='submission-column'><ProjectSubmission hackathon={hackathon} /></td>
             </tr>
@@ -190,12 +172,14 @@ const UserProfile = props => {
       ) {
          return hackathon;
       }
+      return null;
    });
 
    let pastHackathons = hackathons.filter(hackathon => {
       if (moment(hackathon.end_date).isBefore(currentDate)) {
          return hackathon;
       }
+      return null;
    });
 
    return (
@@ -226,7 +210,7 @@ const UserProfile = props => {
          <div className='above-table'>
             <p className={`hackathons-header ${tabs.active ? '' : 'hidden'}`}>Active & upcoming hackathons</p>
             <p className={`hackathons-header ${tabs.past ? '' : 'hidden'}`}>Past hackathons</p>
-            <HackathonModal />
+            {tabs.past ? <div className='past-div'></div> : <HackathonModal />}
          </div>
          <section className='hackathons-section'>
             <div className='profile-container'>
@@ -238,7 +222,7 @@ const UserProfile = props => {
                      </tbody>
                   </table>
 
-               ) : null
+               ) : <p className={`empty-hackathon-list ${tabs.active ? '' : 'hidden'}`}>Uh-oh...you’re not participating in any hackathons. Create a new hackathon or <span classname='find-one-link'><a>find one</a></span> to participate in.</p>
                }
 
                {pastHackathons.length ? (
@@ -248,7 +232,7 @@ const UserProfile = props => {
                         {renderTableData(pastHackathons)}
                      </tbody>
                   </table>
-               ) : <p className={`${tabs.past ? '' : 'hidden'}`}>Nothing to display</p>
+               ) : <p className={`empty-hackathon-list ${tabs.past ? '' : 'hidden'}`}>Uh-oh...you haven't participated in any hackathons. Create a new hackathon or <span classname='find-one-link'><a>find one</a></span> to participate in.</p>
                }
             </div>
          </section>
@@ -256,4 +240,4 @@ const UserProfile = props => {
    );
 };
 
-export default UserProfile;
+export default Dashboard;

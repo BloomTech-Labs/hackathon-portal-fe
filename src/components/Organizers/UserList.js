@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 import { useAuth0 } from "../../auth0-hooks/react-auth0-spa";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { style } from "../../styles/hackathonListStyles";
+import { style } from "../../MUI-Styles/hackathonListStyles";
 import Button from '@material-ui/core/Button'
 
 // ACTION
@@ -65,8 +65,6 @@ const useListStyles = makeStyles(theme => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    // height: '150px',
-    // width: '500px'
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
@@ -246,13 +244,7 @@ const UserList = props => {
               <div key={index} className={styles.card} onClick={() => handleOpen(hacker.id)} >
 
                 <div className={styles.unorderedList}>
-                  {/* <i class="material-icons">
-                    person_outline
-                </i> */}
                   <ListItemText className={styles.listItem} primary={hacker.username} secondary={fn(hacker.id)}
-                  // secondaryTypographyProps={{
-                  //   color: 'primary'
-                  // }}
                   >
                   </ListItemText>
                 </div>
@@ -274,9 +266,6 @@ const UserList = props => {
             >
               <Fade in={open}>
                 <div className={styles.paper}>
-                  {/* <i class="material-icons">
-                    person_outline
-                      </i> */}
                   <div>
                     {userInfo.first_name !== null && userInfo.last_name !== null && (
                       <Typography>{`${userInfo.first_name} ${userInfo.last_name}`}</Typography>

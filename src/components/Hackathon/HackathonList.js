@@ -38,7 +38,6 @@ const formatDate = date => {
 };
 
 function Hackathons(props) {
-  //   const classes = useStyles();
   const isFetching = useSelector(state => state.isFetching);
   const dispatch = useDispatch();
   const hackathons = useSelector(state => state.hackathons);
@@ -93,9 +92,6 @@ function Hackathons(props) {
   const activeSearch = searchFn(activeHackathons)
   const pastSearch = searchFn(pastHackathons);
 
-  // console.log(upcomingHackathons);
-  // console.log(pastHackathons);
-
   const results = !searchTerm.length
     ? hackathons
     : hackathons.filter(
@@ -132,8 +128,6 @@ function Hackathons(props) {
         />
       </label>
       <container class="hackathon-list-header">
-
-        {/* this is the drop down menu */}
 
         <div className="filter" onClick={() => {
           setDropdown(!dropdown)

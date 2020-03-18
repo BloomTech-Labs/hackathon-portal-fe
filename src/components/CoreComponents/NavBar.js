@@ -4,13 +4,12 @@
 import React from 'react';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import { Link } from 'react-router-dom';
-import HackathonLogo from '../../images/HackathonLogo.png';
 
 import '../../sass/navbar/navBar.scss'
 import logo from '../../svgs/logo.svg'
 
 
-const NavBar = props => {
+const NavBar = () => {
    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
    return (

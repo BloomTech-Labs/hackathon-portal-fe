@@ -2,7 +2,6 @@
 // Either as a organizer (with pre-approval), or as a hacker (without pre-approval)
 
 import React, { useState, useEffect } from 'react';
-import { blue } from '@material-ui/core/colors';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -15,16 +14,11 @@ import TextField from '@material-ui/core/TextField';
 import {
   Button,
   Typography,
-  InputAdornment,
   makeStyles,
   withStyles,
-  Checkbox,
   FormControlLabel,
   FormHelperText,
-} from '@material-ui/core';// BackdropProps={{
-//     timeout: 500,
-// }}
-import DescriptionIcon from '@material-ui/icons/Description';
+} from '@material-ui/core';
 
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -34,106 +28,10 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import Select from '@material-ui/core/Select';
 import Loader from 'react-loader-spinner';
 import "../../sass/hackathonModel/hackathonModel.scss";
-import { findByLabelText } from '@testing-library/react';
 
+import { style } from '../../MUI-Styles/createProjectStyles'
 
-const useStyles = makeStyles(theme => ({
-  container: {
-    display: 'flex',
-    justifyContent: 'center',
-    color: 'black',
-    width: '28.3%',
-    // maxHeight: '70%',
-    margin: '0 auto',
-  },
-  label: {
-    background: '#9E9E9E',
-    borderRadius: '5px',
-    marginBottom: '20px',
-  },
-  root: {
-
-    padding: '3%',
-    borderRadius: '5px',
-    background: 'white',
-    minWidth: '100%',
-    '& > *': {
-
-      Width: '100%',
-    },
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    minHeight: '500px',
-  },
-  button: {
-    marginTop: '50px',
-    width: '92px',
-    height: '42px',
-    background: 'rgba(0, 0, 0, 0.87)',
-    // color: '#FFFFFF',
-  },
-  formControl: {
-    // margin: theme.spacing(1),
-    // 'max-width': '40%',
-    marginRight: '5px',
-    minWidth: '23%',
-    borderRadius: '4px',
-    background: 'rgba(0, 0, 0, 0.04);',
-  },
-  topInputs: {
-    background: '#F5F5F5',
-    ':focused': {
-      color: 'green'
-    }
-  },
-  maxMembers: {
-    width: '100%',
-  },
-  topDropdowns: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    marginBottom: '10px',
-  },
-  bottomDropdowns: {
-    minWidth: '100%',
-    display: 'flex',
-    justifyContent: 'flex-start',
-  },
-  iosBox: {
-    marginRight: '2%',
-  },
-  radioGroup: {
-    display: 'flex',
-  },
-  rgroupContainer: {
-    display: 'flex',
-    flexWrap: 'nowrap',
-    flexDirection: 'row-reverse',
-  },
-  addProjectButtons: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-  },
-  addProjectButton: {
-    background: '#311B92',
-    color: '#fff'
-  },
-  errorMessage: {
-    color: 'red',
-  },
-}));
-
-
-const GreenCheckbox = withStyles({
-  root: {
-    color: 'rgba(0, 0, 0, 0.6)',
-    '&$checked': {
-      color: 'rgba(0, 0, 0, 0.87)',
-    },
-  },
-  checked: {},
-})(props => <Checkbox color="default" {...props} />);
+const useStyles = makeStyles(theme => style)
 
 const GreenRadio = withStyles({
   root: {
@@ -174,7 +72,7 @@ const CreateProject = props => {
     ux: false,
     ds: false,
     ios: false,
-    and: false,    // display: 'flex',
+    and: false,  
   });
   const [role, setRole] = useState(" ")
   const { loading, user } = useAuth0();
@@ -300,10 +198,6 @@ const CreateProject = props => {
               margin="dense"
               inputProps={{
                 maxLength: 30
-
-              // startAdornment: (
-              //   <InputAdornment position="start"></InputAdornment>
-              // )
             }}
             />
             {projectInfo.title.length === 30 ?
@@ -325,13 +219,6 @@ const CreateProject = props => {
               margin="dense"
               defaultValue={formInfo.description}
               onChange={handleFormChange}
-            // InputProps={{
-            //   startAdornment: (
-            //     <InputAdornment position="start">
-            //       <DescriptionIcon />
-            //     </InputAdornment>
-            //   )
-            // }}
             />
           </label>
 
@@ -359,24 +246,6 @@ const CreateProject = props => {
               <label className={classes.maxMembers}>
                 <div className={classes.topDropdowns}>
 
-                  {/* <Typography gutterBottom variant="h5" component="h5">
-                Will there be specific roles for this project?
-            </Typography> */}
-                  {/* <FormHelperText style={{ color: '#4885E1' }} </FormHelperText> */}
-
-                  {/* <FormControlLabel
-                control={
-                  <GreenCheckbox
-                    name='frontend'
-                    checked={checked.frontend}
-                    onChange={handleButtonChange('frontend')}
-                    value="checked"
-                  />
-                }
-                label="Front End"
-              /> */}
-
-                  {/* {checked.frontend && ( */}
                   <FormControl className={classes.formControl}>
                     <InputLabel id="demo-simple-select-label">Front end</InputLabel>
                     <Select
@@ -392,21 +261,7 @@ const CreateProject = props => {
                       })}
                     </Select>
                   </FormControl>
-                  {/* // )} */}
 
-                  {/* <FormControlLabel
-                control={
-                  <GreenCheckbox
-                    name='backend'
-                    checked={checked.backend}
-                    onChange={handleButtonChange('backend')}
-                    value="checked"
-                  />
-                }
-                label="Back End"
-              /> */}
-
-                  {/* {checked.backend && ( */}
                   <FormControl className={classes.formControl}>
                     <InputLabel id="demo-simple-select-label">Back end</InputLabel>
                     <Select
@@ -421,21 +276,7 @@ const CreateProject = props => {
                       })}
                     </Select>
                   </FormControl>
-                  {/* )} */}
-
-                  {/* <FormControlLabel
-                control={
-                  <GreenCheckbox
-                    name='ux'
-                    checked={checked.ux}
-                    onChange={handleButtonChange('ux')}
-                    value="checked"
-                  />
-                }
-                label="UX"
-              /> */}
-
-                  {/* {checked.ux && ( */}
+               
                   <FormControl className={classes.formControl}>
                     <InputLabel id="demo-simple-select-label">UX</InputLabel>
                     <Select
@@ -450,21 +291,7 @@ const CreateProject = props => {
                       })}
                     </Select>
                   </FormControl>
-                  {/* )} */}
-
-                  {/* <FormControlLabel
-                control={
-                  <GreenCheckbox
-                    name='ds'
-                    checked={checked.ds}
-                    onChange={handleButtonChange('ds')}
-                    value="checked"
-                  />
-                }
-                label="Data Science"
-              /> */}
-
-                  {/* {checked.ds && ( */}
+               
                   <FormControl className={classes.formControl}>
                     <InputLabel id="demo-simple-select-label">Data Science</InputLabel>
                     <Select
@@ -480,20 +307,7 @@ const CreateProject = props => {
                     </Select>
                   </FormControl>
                 </div>
-                {/* )} */}
-
-                {/* <FormControlLabel
-                control={minHeight
-                    name='ios'
-                    checked={checked.ios}
-                    onChange={handleButtonChange('ios')}
-                    value="checked"
-                  />
-                }
-                label="IOS"
-              /> */}
-
-                {/* {checked.ios && ( */}
+                
                 <div className={classes.bottomDropdowns}>
                   <FormControl className={`${classes.formControl} ${classes.iosBox}`}>
                     <InputLabel id="demo-simple-select-label">IOS</InputLabel>
@@ -509,21 +323,7 @@ const CreateProject = props => {
                       })}
                     </Select>
                   </FormControl>
-                  {/* )} */}
-
-                  {/* <FormControlLabel
-                control={
-                  <GreenCheckbox
-                    name='and'
-                    checked={checked.and}
-                    onChange={handleButtonChange('and')}
-                    value="checked"
-                  />
-                }
-                label="Android"
-              /> */}
-
-                  {/* {checked.and && ( */}
+            
                   <FormControl className={classes.formControl}>
                     <InputLabel id="demo-simple-select-label">Android</InputLabel>
                     <Select
@@ -539,7 +339,6 @@ const CreateProject = props => {
                     </Select>
                   </FormControl>
                 </div>
-                {/* )} */}
               </label>
 
               <label className="total-members">
@@ -574,14 +373,9 @@ const CreateProject = props => {
             </>
           )}
 
-          {/* <button className='cancel-button' onClick={() => {
-          props.toggleModal()
-        }}>Cancel</button> */}
         </div>
         <div className={classes.addProjectButtons}>
-          {/* {!projectInfo.title || projectInfo.title > 30 || !projectInfo.description ? (
             
-          )} */}
           <Button
             variant="contained"
             className={classes.addProjectButton}
