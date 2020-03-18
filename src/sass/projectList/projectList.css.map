@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,mBAAmB,CAAC;EAChB,KAAK,EAAE,GAAG;CACb",
+    "sources": [
+        "projectList.scss",
+        "../variables/variables.scss"
+    ],
+    "names": [],
+    "file": "projectList.css"
+}

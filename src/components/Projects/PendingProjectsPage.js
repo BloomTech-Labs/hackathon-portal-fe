@@ -9,6 +9,8 @@ import Button from '@material-ui/core/Button';
 import Loader from 'react-loader-spinner';
 
 import { style } from '../../MUI-Styles/pendingProjectPageStyles';
+import '../../sass/pendingProjectPageStyles/pendingProjectPageStyles.scss';
+
 
 const useStyles = makeStyles(theme => style)
 
@@ -56,7 +58,7 @@ const PendingProjects = props => {
     }
 
     return (
-        <div className={classes.pendingContainer}>
+        <div className={`${classes.pendingContainer} pendingContainer`}>
 
             <Button className={classes.backButton} id='view-archive-btn' onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</Button>
 

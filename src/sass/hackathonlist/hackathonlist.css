@@ -178,6 +178,12 @@
   text-align: center;
 }
 
+@media (max-width: 991px) {
+  .fullList {
+    margin: 15% 2.5% 0px 2.5%;
+  }
+}
+
 .fullList #hackathons-head {
   margin-left: 30px;
   width: 65%;

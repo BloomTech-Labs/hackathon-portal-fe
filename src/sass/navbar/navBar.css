@@ -6,6 +6,7 @@
   position: fixed;
   top: 0;
   background-color: white;
+  z-index: 1000;
 }
 
 .navbar-content {
@@ -19,8 +20,14 @@
   width: 80%;
 }
 
+@media (max-width: 991px) {
+  .navbar-content {
+    width: 90%;
+  }
+}
+
 .navBar-div {
-  width: 55%;
+  width: 45%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -31,6 +38,18 @@
       -ms-flex-align: center;
           align-items: center;
   text-align: center;
+}
+
+@media (max-width: 991px) {
+  .navBar-div {
+    width: 55%;
+  }
+}
+
+@media (max-width: 479px) {
+  .navBar-div {
+    display: none;
+  }
 }
 
 .navBar-div a {
@@ -78,7 +97,6 @@
 }
 
 .navBarLink {
-  width: 106px;
   height: 18px;
   font-family: Muli;
   font-size: 14px;

@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "ACII,MAAM,EAAE,SAAS,EAAE,KAAK;EDF5B,AAAA,iBAAiB,CAAC;IAEV,KAAK,EAAC,GAAG;GAEhB",
+    "sources": [
+        "pendingProjectPageStyles.scss",
+        "../variables/variables.scss"
+    ],
+    "names": [],
+    "file": "pendingProjectPageStyles.css"
+}

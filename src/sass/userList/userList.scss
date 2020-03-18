@@ -1,0 +1,13 @@
+@import '../variables/variables.scss';
+
+.container {
+    margin: 10% 10% 0 10%;
+    @include tablet-only {
+        margin: 10% 5% 0 5%;
+    }
+    .card {
+        @include tablet-only {
+            width: 250px;
+        }
+    }
+}

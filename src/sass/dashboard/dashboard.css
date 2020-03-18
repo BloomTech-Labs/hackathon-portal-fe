@@ -5,6 +5,12 @@
   margin: auto;
 }
 
+@media (max-width: 991px) {
+  .profile-wrapper {
+    width: 90%;
+  }
+}
+
 .profile-wrapper .top-content {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -253,9 +259,23 @@
   margin-right: 5px;
 }
 
+@media (max-width: 991px) {
+  .hackathon-name-column {
+    max-width: 170px;
+    min-width: 170px;
+  }
+}
+
 .location-column {
   max-width: 200px;
   min-width: 200px;
+}
+
+@media (max-width: 991px) {
+  .location-column {
+    max-width: 140px;
+    min-width: 140px;
+  }
 }
 
 .start-date-column {
@@ -263,9 +283,23 @@
   min-width: 100px;
 }
 
+@media (max-width: 991px) {
+  .start-date-column {
+    max-width: 90px;
+    min-width: 90px;
+  }
+}
+
 .end-date-column {
   max-width: 100px;
   min-width: 100px;
+}
+
+@media (max-width: 991px) {
+  .end-date-column {
+    max-width: 90px;
+    min-width: 90px;
+  }
 }
 
 .role-column {
@@ -273,14 +307,35 @@
   min-width: 100px;
 }
 
+@media (max-width: 991px) {
+  .role-column {
+    max-width: 85px;
+    min-width: 85px;
+  }
+}
+
 .status-column {
   max-width: 100px;
   min-width: 100px;
 }
 
+@media (max-width: 991px) {
+  .status-column {
+    max-width: 85px;
+    min-width: 85px;
+  }
+}
+
 .submission-column {
   max-width: 100px;
   min-width: 100px;
+}
+
+@media (max-width: 991px) {
+  .submission-column {
+    max-width: 77px;
+    min-width: 77px;
+  }
 }
 
 .past-div {
@@ -289,14 +344,25 @@
   margin: 10px 0;
 }
 
-.find-one-link a {
-  color: #311B92;
-  text-decoration: none;
+@media (max-width: 991px) {
+  .past-div {
+    max-width: 77px;
+    min-width: 77px;
+  }
 }
 
 .empty-hackathon-list {
   width: 30%;
   font-size: 16px;
   line-height: 22px;
+}
+
+.find-one-link {
+  color: #311B92;
+}
+
+.find-one-link a {
+  color: #311B92;
+  text-decoration: none;
 }
 /*# sourceMappingURL=dashboard.css.map */

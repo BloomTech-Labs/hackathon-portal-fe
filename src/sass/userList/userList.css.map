@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,UAAU,CAAC;EACP,MAAM,EAAE,aAAa;CASxB;;ACRG,MAAM,EAAE,SAAS,EAAE,KAAK;EDF5B,AAAA,UAAU,CAAC;IAGH,MAAM,EAAE,WAAW;GAO1B;;;ACRG,MAAM,EAAE,SAAS,EAAE,KAAK;EDF5B,AAKI,UALM,CAKN,KAAK,CAAC;IAEE,KAAK,EAAE,KAAK;GAEnB",
+    "sources": [
+        "userList.scss",
+        "../variables/variables.scss"
+    ],
+    "names": [],
+    "file": "userList.css"
+}

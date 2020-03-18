@@ -14,6 +14,8 @@ import { style } from '../../MUI-Styles/projectListStyles';
 import Button from '@material-ui/core/Button';
 import Loader from 'react-loader-spinner';
 
+import '../../sass/projectList/projectList.scss';
+
 const useStyles = makeStyles(theme => style);
 
 
@@ -79,7 +81,7 @@ const ProjectList = props => {
   }
 
   return (
-    <div className={classes.projectListWrapper}>
+    <div className={`${classes.projectListWrapper} projectListWrapper`}>
       <h4 style={{ color: '#311B92' }} onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</h4>
       <Typography className={classes.projectsHeader} variant='h4'>{hackathon.name} project list</Typography>
 
