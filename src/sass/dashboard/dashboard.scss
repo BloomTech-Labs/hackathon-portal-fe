@@ -15,6 +15,10 @@
         border-bottom: .1px solid #E5E5E5;
         padding-top: 60px;
         padding-bottom: 0px;
+        @include phone-only{
+            flex-direction: column;
+            padding-top: 40px;
+        }
         .top-left{
             h1{
                 font-family: Muli;
@@ -30,9 +34,23 @@
                 display: flex;
                 align-items: center;
                 text-align: center;
+                @include phone-only {
+                    margin-top: 20px;
+                    width: 100%;
+                }
                 .tabPast {
                     padding-left: 40px;
                     padding-right: 40px;
+                    @include phone-only {
+                        text-align: center;
+                        width: 50%;
+                    }
+                }
+                .tabPresent {
+                    @include phone-only {
+                        width: 100%;
+                        text-align: center;
+                    }
                 }
                 p {
                     font-family: Muli;
@@ -70,6 +88,36 @@
                 color: #311B92;
             }
         }
+        @include phone-only {
+            display: none;
+        }
+    }
+    .mobile-logged-in {
+        display: none;
+        @include phone-only {
+            display: block;
+            h3{
+                font-family: Muli;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 22px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin:0px; 
+                p{
+                    font-family: Muli;
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 18px;
+                    line-height: 24px;
+                    margin-left: 10px;
+                    color: #311B92;
+                    padding-right: 0;
+                }
+            }
+        }   
     }
     .above-table{
         display: flex;
@@ -77,12 +125,23 @@
         text-align: center;
         justify-content: space-between;
         margin-top: 50px;
+        
+        @include phone-only {
+            flex-direction: column;
+    
+        }
         .hackathons-header{
             font-family: Muli;
             font-style: normal;
             font-weight: bold;
             font-size: 32px;
             line-height: 40px;
+            
+            @include phone-only {
+                text-align: center;
+                padding-right: 0px;
+                margin-bottom: 20px;
+            }
         }
         .dashboard-buttons{
             font-family: Muli;
@@ -220,6 +279,10 @@
         max-width: 170px;
         min-width: 170px;
     }
+    @include phone-only {
+        max-width: 20%;
+        min-width: 20%;
+    }
 }
 .location-column{
     max-width:200px;
@@ -227,6 +290,9 @@
     @include tablet-only {
         max-width:140px;
         min-width:140px;
+    }
+    @include phone-only {
+        display: none;
     }
 }
 .start-date-column{
@@ -236,6 +302,10 @@
         max-width:90px;
         min-width:90px;
     }
+    @include phone-only {
+        max-width: 15%;
+        min-width: 15%;
+    }
 }
 .end-date-column{
     max-width:100px;
@@ -243,6 +313,10 @@
     @include tablet-only {
         max-width:90px;
         min-width:90px;
+    }
+    @include phone-only {
+        max-width: 15%;
+        min-width: 15%;
     }
 }
 .role-column{
@@ -252,6 +326,9 @@
         max-width:85px;
         min-width:85px;
     }
+    @include phone-only {
+        display: none;
+    }
 }
 .status-column{
     max-width:100px;
@@ -260,6 +337,9 @@
         max-width:85px;
         min-width:85px;
     }
+    @include phone-only {
+        display: none;
+    }
 }
 .submission-column{
     max-width:100px;
@@ -267,6 +347,10 @@
     @include tablet-only {
         max-width:77px;
         min-width:77px;
+    }
+    @include phone-only {
+        max-width: 15%;
+        min-width: 15%;
     }
 }
 
@@ -291,4 +375,10 @@
         color: #311B92;
         text-decoration: none;
     }
+}
+
+.hidden-mobile {
+    @include phone-only {
+            display: none;
+        }
 }

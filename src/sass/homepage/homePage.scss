@@ -15,6 +15,9 @@
       @include tablet-only {
           height:50vh;
     }
+    @include phone-only {
+      height: 80vh;
+    }
   }
   .hero-content {
     width: 80%;
@@ -24,6 +27,9 @@
     @include tablet-only {
       width:90%;
     }
+    @include phone-only {
+      display: inline;
+    }
   }
   .hero-left {
     width: 35%;
@@ -31,12 +37,23 @@
       width: 45%;
       height: 30%;
     }
+    @include phone-only {
+      width: 100%;
+      justify-content: center;
+      margin:auto;
+      text-align: center;
+    }
     p {
       font-size: 16px;
       line-height: 22px;
       width: 80%;
       @include tablet-only {
         width:100%;
+      }
+      @include phone-only{
+        width:77%;
+        margin:auto;
+        text-align: center;
       }
     }
 
@@ -50,6 +67,10 @@
       color:#FFFFFF;
       background-color: #311B92;
       border: 1px solid #311B92;
+      @include phone-only {
+        margin:auto;
+        margin-top:5%;
+      }
     }
 
     button:hover{
@@ -80,6 +101,9 @@
       min-width: 90px;
       height: 38vh;
     }
+    @include phone-only {
+      height: 35vh;
+    }
   }
 }
 
@@ -99,7 +123,11 @@
     font-weight: bold;
     font-size: 32px;
     line-height: 40px;
+    @include phone-only {
+      flex-direction: column;
+    }
   }
+
 }
 
 .displayInfo {
@@ -131,7 +159,11 @@
   @include tablet-only {
     width: 90%;
   }
-
+  div{
+    @include phone-only {
+      margin-bottom: 20px;
+    }
+  }
   .values-header {
     h2 {
       font-size: 32px;
@@ -162,6 +194,9 @@
     justify-content: space-between;
     div{
       width:30%;
+      @include phone-only {
+        width: 100%;
+      }
     }
     p {
       font-size: 14px;
@@ -175,6 +210,34 @@
       font-weight: bold;
       font-size: 18px;
       line-height: 24px;
+    }
+    @include phone-only {
+      flex-direction: column;
+    }
+  }
+}
+.hackathon-card{
+  @include phone-only {
+    display: flex;
+    position: relative;
+    width: 100%;
+  }
+  .card-image {
+    @include phone-only{
+      position: absolute;
+      width: 35%;
+      left: 0;
+    }
+  }
+
+  .content {
+    @include phone-only {
+      margin-left: 40%;
+    }
+    span {
+      @include phone-only {
+        margin-top: 0;
+      }
     }
   }
 }

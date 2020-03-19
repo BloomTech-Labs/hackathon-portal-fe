@@ -10,6 +10,7 @@ import { SimpleTabs } from './tabs';
 import Button from '@material-ui/core/Button';
 
 import { style } from '../../../MUI-Styles/editButton/modalStyles';
+import '../../../sass/editHackathon/editHackathon.scss'
 
 const useStyles = makeStyles(theme => style)
 
@@ -64,7 +65,7 @@ export default function SpringModal() {
       <Modal
         aria-labelledby="spring-modal-title"
         aria-describedby="spring-modal-description"
-        className={classes.modal}
+        className={`${classes.modal} mui-modal`}
         open={open}
         onClose={handleClose}
         closeAfterTransition

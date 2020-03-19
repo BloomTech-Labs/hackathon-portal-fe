@@ -122,7 +122,7 @@ const EditHackathon = props => {
       <div className="createHackathonContainer1">
          <form
             onSubmit={handleSubmit(handleFormSubmit)}
-            className={classes.root}
+            className={`${classes.root} root`}
             style={{ width: '50%', margin: '0 auto' }}
          >
             {page1 && (
@@ -256,7 +256,7 @@ const EditHackathon = props => {
 
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardDatePicker
-                           className={classes.label}
+                           className={`${classes.label} label`}
                               autoOk
                               fullWidth
                               name="startDate"
@@ -280,7 +280,7 @@ const EditHackathon = props => {
 
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardTimePicker
-                            className={classes.label}
+                            className={`${classes.label} label`}
                               fullWidth
                               ampm={true}
                               name="startTime"
@@ -305,7 +305,7 @@ const EditHackathon = props => {
 
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardDatePicker
-                           className={classes.label}
+                           className={`${classes.label} label`}
                               fullWidth
                               autoOk
                               name="endDate"
@@ -328,7 +328,7 @@ const EditHackathon = props => {
 
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                            <KeyboardTimePicker
-                           className={classes.label}
+                           className={`${classes.label} label`}
                               fullWidth
                               ampm={true}
                               name="endTime"

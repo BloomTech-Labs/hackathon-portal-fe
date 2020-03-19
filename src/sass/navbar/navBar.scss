@@ -91,9 +91,16 @@
   color: #311B92;
 }
 
-// .shorter-link {
-//     width: 50px;
-// }
-// .about-link {
-//     width: 55px;
-// }
+.hamburger-menu{
+    display:none;
+    @include phone-only{
+        display:block;
+        margin: 13px 5px 0px 0px; 
+    }
+}
+.line {
+    width: 18px;
+    height: 2px;
+    background-color: #232323;
+    margin: 6px 0;
+}

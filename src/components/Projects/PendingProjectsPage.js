@@ -59,15 +59,16 @@ const PendingProjects = props => {
 
     return (
         <div className={`${classes.pendingContainer} pendingContainer`}>
+            <h1>Pending projects</h1>
 
-            <Button className={classes.backButton} id='view-archive-btn' onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</Button>
+            <Button className={`${classes.backButton} backButton`} id='view-archive-btn' onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</Button>
 
             <div>
                 <div className='pendingList'>
 
                     {pending.length ? pending.map(e => {
                         return (
-                            (<form className={classes.pendingProjectCard} key={e.project_id}
+                            (<form className={`${classes.pendingProjectCard} pendingProjectCard`} key={e.project_id}
                                 onSubmit={handleApprove(e.project_id)}
                             >
                                 <div className={classes.upperContent}>

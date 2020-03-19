@@ -9,6 +9,9 @@
     @include tablet-only {
         width: 90%;
     }
+    @include phone-only {
+        flex-direction: column;
+    }
     h3{
         font-family: Muli;
         font-style: normal;
@@ -29,8 +32,13 @@
             overflow: hidden; 
             text-overflow: ellipsis;
             width: 500px; 
-            // height: 1.2em; 
             white-space: nowrap;
+            @include phone-only {
+                width: 100%;
+            }
+        }
+        @include phone-only {
+            text-align: center;
         }
     }
 
@@ -44,12 +52,8 @@
         border: 1px solid #311B92;
         border-radius: 4px;
         margin-bottom: 10px;
-        //  a{
-        //      text-decoration: none;
-        //      color: #D17F00;
-        //      border: 1px solid #D17F00;
-        //  }
     }
+    
     .single-hackathon-button-pending {
         cursor: pointer;
         color: #D17F00;
@@ -80,11 +84,26 @@
         cursor: pointer;
     }
 
+    .admins-parent {
+        @include phone-only {
+            text-align: center;
+        }
+    }
     .single-hackathon-admins {
         margin-bottom: 30px;
         margin-bottom: 10px;
         h3{
             margin:0;
+        }
+        @include phone-only {
+            width: 50%;
+            margin: auto;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            p{
+                padding:0;
+            }
         }
     }
 }
@@ -93,9 +112,22 @@
 }
 .single-hackathon-container-left{
 width:45%;
+@include phone-only {
+    width: 100%;
+}
 }
 .description{
     width:48%;
+    @include phone-only {
+        width: 100%;
+        text-align:center;
+        margin:auto;
+        p{
+            text-align:center;
+            margin:auto;
+            padding:0;
+        }
+    }
 }
 .single-hackathon-description{
     display: flex;
@@ -106,20 +138,36 @@ width:45%;
     width: 70%;
     display:flex;
     justify-content: space-between;
+    @include phone-only {
+        margin: auto;
+        text-align: center;
+    }
+    p{
+        @include phone-only {
+            text-align: center;
+            padding: 0;
+        }
+    }
 }
-// .start-container{
-//     width:;
-// }
-// .end-container{
-//     width:25%;
-// }
+
 .single-hackathon-container-right{
     width:48%;
+
+    @include phone-only {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        width:100%;
+    }
     img {
         width: 100%;
-        // min-width: 40%;
         height: 40vh;
         border-radius: 4px;
+        @include phone-only {
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
     }
   
 }
@@ -127,9 +175,7 @@ width:45%;
     display: flex;
     justify-content: flex-end;
     margin-top: 5%;
+    @include phone-only {
+        margin: 0px;
+    }
 }
-
-// .MuiButtonBase-root.MuiButton-text {
-//     font-weight: bold;
-
-// }

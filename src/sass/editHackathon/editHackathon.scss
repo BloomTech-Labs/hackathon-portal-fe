@@ -1,0 +1,19 @@
+@import '../variables/variables.scss';
+
+.mui-modal{
+    @include phone-only {
+        width:90%;
+    }
+}
+
+.root {
+    @include phone-only {
+        width: 100%;
+    }
+}
+
+.label {
+    @include phone-only {
+        width:100%;
+    }
+}

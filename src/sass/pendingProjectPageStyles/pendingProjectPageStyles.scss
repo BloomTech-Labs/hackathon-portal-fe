@@ -4,4 +4,17 @@
     @include tablet-only {
         width:90%;
     }
+    h1{
+        margin-top:130px;
+    }
+    .backButton {
+        padding:0;
+    }
+    .pendingProjectCard {
+        margin-left:0;
+        @include phone-only {
+            height: 150px;
+            width:80%;
+        }
+    }
 }
