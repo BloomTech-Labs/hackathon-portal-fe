@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { connect } from "react-redux";
 
@@ -27,20 +27,26 @@ import ProjectDetails from "./components/Projects/ProjectDetails";
 import "./sass/app/app.scss";
 
 import { StylesProvider } from "@material-ui/styles"
+import SideDrawer from './components/CoreComponents/SideDrawer';
+
 
 function App(props) {
   useEffect(() => {
     props.getHackathons();
   }, [props]);
 
+  const [hamburger, setHamburger] = useState(false)
+
   return (
     <StylesProvider injectFirst>
-      <div className="App">
+      <div className={`App ${hamburger ? 'hamburger-shown' : ''}`}>
         <Router history={history}>
           <div className="main-container">
             <header>
-              <NavBar />
+              <NavBar hamburger={hamburger} setHamburger={setHamburger}/>
             </header>
+            <SideDrawer hamburger={hamburger} setHamburger={setHamburger}/>
+
             <div className="all-but-nav">
               <Switch>
                 <Route exact path="/" component={Homepage} />

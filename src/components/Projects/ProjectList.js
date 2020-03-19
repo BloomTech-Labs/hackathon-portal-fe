@@ -83,13 +83,13 @@ const ProjectList = props => {
   return (
     <div className={`${classes.projectListWrapper} projectListWrapper`}>
       <h4 style={{ color: '#311B92' }} onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</h4>
-      <Typography className={classes.projectsHeader} variant='h4'>{hackathon.name} project list</Typography>
+      <Typography className={`${classes.projectsHeader} projectsHeader`} variant='h4'>{hackathon.name} project list</Typography>
 
       <div className={classes.contentContainer}>
         <RadioGroup value={filterBy} onChange={handleCheckboxChange} className={classes.radioGroup}>
           <h3>Filter</h3>
-          <div className={classes.middleContent}>
-            <div className={classes.middleLeftContent}>
+          <div className={`${classes.middleContent} middle-content`}>
+            <div className={`${classes.middleLeftContent} middle-left-content`}>
               <div className={classes.showAll}>
                 <FormControlLabel
                   control={<Radio style={{ color: 'black' }} />}
@@ -97,9 +97,9 @@ const ProjectList = props => {
                   label="Show all"
                 />
               </div>
-              <div className={classes.filterRadios}>
+              <div className={`${classes.filterRadios} filter-radio`}>
 
-                <div className={classes.topRadios}>
+                <div className={`${classes.topRadios} top-radios`}>
                   <FormControlLabel
                     control={<Radio style={{ color: 'black' }} />}
                     value='front_end_spots'
@@ -119,7 +119,7 @@ const ProjectList = props => {
                     style={{ color: 'black' }}
                   />
                 </div>
-                <div className={classes.bottomRadios}>
+                <div className={`${classes.bottomRadios} bottom-radios`}>
                   <FormControlLabel
                     control={<Radio style={{ color: 'black' }} />}
                     value='back_end_spots'
@@ -143,7 +143,7 @@ const ProjectList = props => {
               </div>
             </div>
             {!moment(hackathon.end_date).isBefore(currentDate) ?
-              <Button className={classes.button} onClick={() => props.history.push(`/hackathon/${hackathon.id}/create/project`)}>Add a project idea</Button> : null}
+              <Button className={`${classes.button} button`} onClick={() => props.history.push(`/hackathon/${hackathon.id}/create/project`)}>Add a project idea</Button> : null}
           </div>
         </RadioGroup>
         {!hackathon.projects ?
@@ -160,7 +160,7 @@ const ProjectList = props => {
                   {projects.map((project, index) => {
                     return (
                       project.is_approved && (
-                        <Card key={index} className={classes.projectCards}
+                        <Card key={index} className={`${classes.projectCards} project-cards`}
                           onClick={() => props.history.push(`/hackathon/${hackathon.id}/projects/${project.project_id}`)}>
                           <div>
                             <Typography variant='h5' className={classes.projectTitle}>{project.project_title}</Typography>
@@ -214,3 +214,4 @@ const ProjectList = props => {
 };
 
 export default ProjectList;
+//test

@@ -2,4 +2,62 @@
 
 .projectListWrapper {
     width: 90%;
+    .projectsHeader{
+        @include phone-only{
+            text-align:center;
+            margin:auto;
+        }
+    }
+
+    .middle-content {
+        @include phone-only {
+            display: flex;
+            flex-direction: column;
+            margin-top: 0;
+            width: 100%;
+            .middle-left-content {
+                @include phone-only {
+                    width: 100%;
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+
+        .filter-radio {
+            @include phone-only {
+                display: flex;
+                justify-content: space-between;
+                width: 70%;
+                margin: auto;
+            }
+        }
+
+        .top-radios {
+            @include phone-only {
+                flex-direction: column;
+                // justify-content: center;
+                // align-items: center;
+                // width:45%;
+            }
+        }
+        .bottom-radios {
+            @include phone-only {
+                flex-direction: column ;
+            }
+        }
+
+        .button {
+            @include phone-only {
+                margin: auto;
+            }
+        }
+    }
+
+    .project-cards {
+        @include phone-only {
+            width: 447px;
+            height: 250px;
+        }
+     }
 }

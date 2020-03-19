@@ -173,7 +173,7 @@ const CreateProject = props => {
   }
 
   return (
-    <div className={classes.container}>
+    <div className={`${classes.container} mui-modal`}>
       <form
         noValidate autoComplete="off"
         className={classes.root}

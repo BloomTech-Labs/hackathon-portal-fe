@@ -1,15 +1,16 @@
 // The navbar for the website
 // possibly rename nav-bar classnames to be more clear
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import { Link } from 'react-router-dom';
 
 import '../../sass/navbar/navBar.scss'
 import logo from '../../svgs/logo.svg'
 
+// import SideDrawer from './SideDrawer';
 
-const NavBar = () => {
+const NavBar = ({ hamburger, setHamburger }) => {
    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
    return (
@@ -18,7 +19,13 @@ const NavBar = () => {
             <Link to="/">
                <img id="logo" src={logo} alt="logo"></img>
             </Link>
-
+            <div className='hamburger-menu' onClick={() => {
+               setHamburger(!hamburger)
+            }}>
+               <div className='line'></div>
+               <div className='line'></div>
+               <div className='line'></div>
+            </div>
             {!isAuthenticated && (
                <div className='navBar-div'>
 
@@ -68,6 +75,8 @@ const NavBar = () => {
                </div>
             )}
          </div>
+         {/* <SideDrawer /> */}
+
       </div>
    );
 };

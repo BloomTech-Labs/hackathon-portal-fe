@@ -12,6 +12,8 @@ import {
 
 import { style } from "../../MUI-Styles/hackathonListStyles";
 
+import '../../sass/homepage/homePage.scss'
+
 const formatDate = date => {
   const months = [
     "January",
@@ -40,10 +42,10 @@ const HackathonCard = ({ hackathon }) => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.card} key={hackathon.id}>
+    <Card className={`${classes.card} hackathon-card`} key={hackathon.id}>
       <Link to={`/hackathon/${hackathon.id}`} className={classes.link}>
         <CardMedia
-          className={classes.media}
+          className={`${classes.media} card-image`}
           image="https://picsum.photos/300/300"
           id="hackathon-card"
         />

@@ -63,7 +63,7 @@ const Dashboard = props => {
          "12"
       ];
       const newDate = new Date(date);
-      const y = newDate.getFullYear();
+      const y = newDate.getFullYear().toString().substr(2);
       const d = newDate.getDate();
       const m = months[newDate.getMonth()];
       return `${m}/${d}/${y}`;
@@ -105,8 +105,15 @@ const Dashboard = props => {
       ];
 
       return header.map((header, i) => {
+         const headerClasses = () => {
+            if(i === 1 || i === 4 || i === 5) {
+               return 'hidden-mobile'
+            } else {
+               return ''
+            }
+         }
          return (
-            <th key={i} className='th-header'>{header}</th>
+            <th key={i} className={`th-header ${headerClasses()}`}>{header}</th>
          )
       })
    }
@@ -188,6 +195,9 @@ const Dashboard = props => {
          <div className='top-content'>
             <div className='top-left'>
                <h1> Dashboard</h1>
+               <div className='mobile-logged-in'>
+                  <h3 className='bottom-left'>Logged in as: <p>{profileInfo.email}</p></h3>
+               </div>
             </div>
             <div className='top-right'>
                <p className={`tabs tabPresent ${tabs.active ? 'active' : ''}`} onClick={() => {

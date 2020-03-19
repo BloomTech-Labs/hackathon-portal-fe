@@ -1,0 +1,38 @@
+.side-drawer-container {
+    background: #311B92;
+    height: 100vh;
+    margin: 0;
+    top: 0;
+    width: 100%;
+    position: absolute;
+    z-index: 1001;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .x-button{
+        position: absolute;
+        top: 25px;
+        right: 25px;
+    }
+    .side-bar-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .sideBarLink {
+        color: white;
+        text-decoration:none;
+        font-weight: bold;
+        font-size: 32px;
+        line-height: 40px;
+        margin: 16px 0px 16px 0px;
+    }
+}
+
+.drawer-closed {
+    display: none;
+}
