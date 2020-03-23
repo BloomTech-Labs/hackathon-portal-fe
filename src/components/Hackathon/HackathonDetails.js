@@ -37,10 +37,10 @@ const HackathonDetails = props => {
       }
    }, [hackathon]);
 
-   const handleIsOpen = () => {
-      setIsOpen({ is_open: !isOpen.is_open })
-      dispatch(editHackathon(props.match.params.id, hackathon.organizer_id, props.history, { is_open: !isOpen.is_open }))
-   }
+   // const handleIsOpen = () => {
+   //    setIsOpen({ is_open: !isOpen.is_open })
+   //    dispatch(editHackathon(props.match.params.id, hackathon.organizer_id, props.history, { is_open: !isOpen.is_open }))
+   // }
 
    const formatDate = date => {
       const days = [
@@ -129,7 +129,7 @@ const HackathonDetails = props => {
          </div>
          <div className='single-hackathon-container-right'>
 
-            <img src="https://picsum.photos/300/300" />
+            <img alt="an image" src="https://picsum.photos/300/300" />
             <div className='sh-buttons-container'>
                {user.id === hackathon.organizer_id ? (
                   <div className='single-hackathon-crud-btns'>

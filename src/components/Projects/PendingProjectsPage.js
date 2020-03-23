@@ -17,12 +17,13 @@ const useStyles = makeStyles(theme => style)
 const PendingProjects = props => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const { loading, user } = useAuth0();
+    const { user } = useAuth0();
+    // const { loading, user } = useAuth0();
     const isFetching = useSelector(state => state.isFetching);
     const hackathon = useSelector(state => state.singleHackathon);
-    const projects = useSelector(state => state.projects);
+    // const projects = useSelector(state => state.projects);
     const hackathonId = (props.history.location.state.hackathonId)
-    const [count, setCount] = useState(0);
+    // const [count, setCount] = useState(0);
 
     useEffect(() => {
         dispatch(getSpecificHackathon(hackathonId))

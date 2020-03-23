@@ -56,6 +56,8 @@
 
 .signUpButton:hover{
     cursor: pointer;
+    opacity: 0.6;
+    transition: 0.2s;
 }
 
 .logIn-OutButton {
@@ -76,6 +78,8 @@
 
 .logIn-OutButton:hover{
     cursor: pointer;
+    opacity: 0.6;
+    transition: 0.2s;
 }
 
 .navBarLink{
@@ -89,6 +93,11 @@
   line-height: 1.29;
   letter-spacing: 0.3px;
   color: #311B92;
+
+  &:hover {
+    opacity: 0.6;
+    transition: 0.2s;  
+  }
 }
 
 .hamburger-menu{

@@ -35,7 +35,11 @@ export const style = {
     width: '100%',
     paddingTop: "56.25%", // 16:9
     margin: '0 auto',
-    'border-radius': '4px'
+    'border-radius': '4px',
+    '&:hover': {
+      opacity: '0.6',
+      transition: '0.2s'
+    }
   },
   expandOpen: {
     transform: "rotate(180deg)"

@@ -19,7 +19,7 @@ import {
    POST_SUBMITTED_PROJECT_SUCCESS,
    FETCH_SUBMITTED_PROJECT_SUCCESS,
 } from '../actions/actions';
-import { act } from 'react-dom/test-utils';
+// import { act } from 'react-dom/test-utils';
 
 const initialState = {
    singleHackathon: {},
@@ -105,18 +105,18 @@ const reducer = (state = initialState, action) => {
             error: action.payload
          };
       case POST_SUBMITTED_PROJECT_SUCCESS:
-            return {
-               ...state,
-               submittedProject: action.payload,
-               error: ''
-            };
-   
-      case FETCH_SUBMITTED_PROJECT_SUCCESS: 
-            return {
-               ...state, 
-               submittedProjectInfo: action.payload,
-               error: ''
-            };
+         return {
+            ...state,
+            submittedProject: action.payload,
+            error: ''
+         };
+
+      case FETCH_SUBMITTED_PROJECT_SUCCESS:
+         return {
+            ...state,
+            submittedProjectInfo: action.payload,
+            error: ''
+         };
       default:
          return state;
    }

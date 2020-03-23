@@ -17,8 +17,7 @@ import { getSpecificHackathon, getHackers, getUser, assignRole } from "../../act
 // STYLES
 import {
   makeStyles,
-  TextField,
-  Modal, projectModal,
+  Modal,
   Backdrop,
   Fade,
   ListItemText,
@@ -28,14 +27,15 @@ import Loader from 'react-loader-spinner';
 import '../../sass/userList/userList.scss';
 
 
-const useStyles = makeStyles(theme => style);
+// const useStyles = makeStyles(theme => style);
 
 const useListStyles = makeStyles(theme => useListStyle);
 
 const UserList = props => {
-  const classes = useStyles();
+  // const classes = useStyles();
   const styles = useListStyles();
-  const { user, loading } = useAuth0();
+  const { user } = useAuth0();
+  // const { user, loading } = useAuth0();
   const dispatch = useDispatch();
   const userInfo = useSelector(state => state.userInfo);
   const hackers = useSelector(state => state.hackers);
@@ -78,9 +78,9 @@ const UserList = props => {
   const makeOrganizer = () => {
     dispatch(assignRole(hackathon.id, userInfo.id, { user_hackathon_role: 'organizer' }, setOpen))
   }
-  const makeJudge = () => {
-    dispatch(assignRole(hackathon.id, userInfo.id, { user_hackathon_role: 'judge' }, setOpen))
-  }
+  // const makeJudge = () => {
+  //   dispatch(assignRole(hackathon.id, userInfo.id, { user_hackathon_role: 'judge' }, setOpen))
+  // }
 
   const handleChange = event => {
     setSearchTerm(event.target.value);

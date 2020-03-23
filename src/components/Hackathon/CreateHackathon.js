@@ -24,7 +24,6 @@ import 'date-fns';
 import TextField from '@material-ui/core/TextField';
 import {
    Typography,
-   InputAdornment,
    makeStyles,
    Checkbox,
    FormControlLabel,
@@ -45,21 +44,21 @@ import { style } from '../../MUI-Styles/createHackathonStyles';
 
 const useStyles = makeStyles(theme => style)
 
-function StyledRadio(props) {
-   const classes = useStyles();
+// function StyledRadio(props) {
+//    const classes = useStyles();
 
 
-   return (
-      <Radio
-         className={classes.root}
-         disableRipple
-         color="default"
-         checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
-         icon={<span className={classes.icon} />}
-         {...props}
-      />
-   );
-}
+//    return (
+//       <Radio
+//          className={classes.root}
+//          disableRipple
+//          color="default"
+//          checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
+//          icon={<span className={classes.icon} />}
+//          {...props}
+//       />
+//    );
+// }
 
 const CreateHackathon = props => {
    const [page1Info, setPage1Info] = useState({});
@@ -77,7 +76,7 @@ const CreateHackathon = props => {
    });
    const [state, setState] = useState({ is_open: true });
    const [max, setMax] = useState();
-   const { loading, user } = useAuth0();
+   const { user } = useAuth0();
    const dispatch = useDispatch();
    const classes = useStyles();
    const [activeStep, setActiveStep] = React.useState(0);
@@ -89,7 +88,7 @@ const CreateHackathon = props => {
 
 
 
-   let { register, handleSubmit, errors, clearError } = useForm();
+   let { register, handleSubmit } = useForm();
 
    useEffect(() => {
       setHackathonInfo({
@@ -385,11 +384,11 @@ const CreateHackathon = props => {
                {activeStep === 0 && (
                   <button className='back-button dashboard-buttons' style={{ display: 'none' }} onClick={handleBack}>
                      Back
-               </button>)}
+                  </button>)}
                {activeStep > 0 && (
                   <button className='back-button dashboard-buttons' onClick={handleBack}>
                      Back
-               </button>)}
+                  </button>)}
                <div className='modal-button-container'>
 
 
