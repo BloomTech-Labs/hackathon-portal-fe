@@ -110,21 +110,40 @@ const HackathonDetails = props => {
             </div>
 
             <div className='admins-parent'>
-               <h3>Organizer</h3>
-               <div className='admins-container'>
-                  {hackathon?.admins?.map((admin, index) => {
-                     return (
-                        <div className='single-hackathon-admins'
-                           key={index}>
-                           <p>{admin.username}</p>
-                        </div>
+               <div className='organizer-judge-container'>
+                  <div className='organizers-container'>
+                     <h3>Organizer</h3>
+                     <div className='admins-container'>
+                        {hackathon?.admins?.map((admin, index) => {
+                           return (
+                              admin.user_hackathon_role === 'organizer' &&
+                              <div className='single-hackathon-admins'
+                                 key={index}>
+                                 <p>{admin.username}</p>
+                              </div>
 
-                     );
-                  })}
+                           );
+                        })}
+                     </div>
+                  </div>
+                  <div className='judges-container'>
+                     <h3>Judge</h3>
+                     <div className='admins-container'>
+                        {console.log(hackathon)}
+
+                        {hackathon?.admins?.map((admin, index) => {
+                           return (
+                              admin.user_hackathon_role === 'judge' &&
+                              <div className='single-hackathon-admins'
+                                 key={index}>
+                                 <p>{admin.username}</p>
+                              </div>
+                           );
+                        })}
+                     </div>
+                  </div>
                </div>
                <Link to={`/hackathon/${hackathon.id}/projects`}><button className='single-hackathon-buttons'>View Projects</button></Link>
-
-
             </div>
          </div>
          <div className='single-hackathon-container-right'>

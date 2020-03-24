@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import moment from 'moment';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
+import { Link } from 'react-router-dom';
 
 import Loader from 'react-loader-spinner';
 
@@ -18,6 +19,8 @@ import '../../sass/dashboard/dashboard.scss'
 import HackathonModal from '../Reusable/HackathonModal';
 
 import ProjectSubmission from '../Projects/ProjectSubmission';
+import DeleteUser from './DeleteUser';
+
 
 import activeIcon from '../../images/active-icon.svg';
 import upcomingIcon from '../../images/upcoming-icon.svg';
@@ -106,7 +109,7 @@ const Dashboard = props => {
 
       return header.map((header, i) => {
          const headerClasses = () => {
-            if(i === 1 || i === 4 || i === 5) {
+            if (i === 1 || i === 4 || i === 5) {
                return 'hidden-mobile'
             } else {
                return ''
@@ -122,27 +125,27 @@ const Dashboard = props => {
 
       return hackathonStatus.map(hackathon => {
          const statusRender = () => {
-            if(moment(hackathon.start_date).isBefore(currentDate) &&
+            if (moment(hackathon.start_date).isBefore(currentDate) &&
                moment(hackathon.end_date).isAfter(currentDate) ||
                moment(hackathon.start_date).isSame(currentDate) ||
                moment(hackathon.end_date).isSame(currentDate)) {
-                  
-                  return (
-                     <div className='status-container'>
-                        <img src={activeIcon} alt='green dot' />
-                        <p className='status-active'>Active</p>
-                     </div>
-                  ) 
-            }
-            if(moment(hackathon.start_date).isAfter(currentDate)) {
+
                return (
                   <div className='status-container'>
-                     <img src={upcomingIcon} alt='yellow dot'/>
+                     <img src={activeIcon} alt='green dot' />
+                     <p className='status-active'>Active</p>
+                  </div>
+               )
+            }
+            if (moment(hackathon.start_date).isAfter(currentDate)) {
+               return (
+                  <div className='status-container'>
+                     <img src={upcomingIcon} alt='yellow dot' />
                      <p className='status-upcoming'>Upcoming</p>
                   </div>
                )
             }
-            if(moment(hackathon.end_date).isBefore(currentDate)) {
+            if (moment(hackathon.end_date).isBefore(currentDate)) {
                return (
                   <div className='status-container'>
                      <img src={finishedIcon} alt='black dot' />
@@ -189,14 +192,18 @@ const Dashboard = props => {
       return null;
    });
 
+   console.log(props)
+
    return (
       <div className='profile-wrapper'>
 
          <div className='top-content'>
             <div className='top-left'>
                <h1> Dashboard</h1>
+
+               <DeleteUser userId={user.id} />
                <div className='mobile-logged-in'>
-                  <h3 className='bottom-left'>Logged in as: <p>{profileInfo.email}</p></h3>
+                  <h3 className='bottom-left'>Logged in as: <DeleteUser email={profileInfo?.email} userId={user.id} /> </h3>
                </div>
             </div>
             <div className='top-right'>
@@ -215,7 +222,7 @@ const Dashboard = props => {
             </div>
          </div>
          <div className='logged-in-as'>
-            <h3 className='bottom-left'>Logged in as: <p>{profileInfo.email}</p></h3>
+            <h3 className='bottom-left'>Logged in as: <DeleteUser email={profileInfo?.email} userId={user.id} /></h3>
          </div>
          <div className='above-table'>
             <p className={`hackathons-header ${tabs.active ? '' : 'hidden'}`}>Active & upcoming hackathons</p>
@@ -232,7 +239,7 @@ const Dashboard = props => {
                      </tbody>
                   </table>
 
-               ) : <span className={`empty-hackathon-list ${tabs.active ? '' : 'hidden'}`}>Uh-oh...you’re not participating in any hackathons. Create a new hackathon or <span classname='find-one-link'><a>find one</a></span> to participate in.</span>
+               ) : <span className={`empty-hackathon-list ${tabs.active ? '' : 'hidden'}`}>Uh-oh...you’re not participating in any hackathons. <br />Create a new hackathon or <span className='find-one-link'><Link to='/hackathons'>find one</Link></span> to participate in.</span>
                }
 
                {pastHackathons.length ? (
@@ -242,7 +249,7 @@ const Dashboard = props => {
                         {renderTableData(pastHackathons)}
                      </tbody>
                   </table>
-               ) : <p className={`empty-hackathon-list ${tabs.past ? '' : 'hidden'}`}>Uh-oh...you haven't participated in any hackathons. Create a new hackathon or <span className='find-one-link'><a>find one</a></span> to participate in.</p>
+               ) : <p className={`empty-hackathon-list ${tabs.past ? '' : 'hidden'}`}>Uh-oh...you haven't participated in any hackathons. <br />Create a new hackathon or <span className='find-one-link'><Link to="/hackathons" >find one</Link></span> to participate in.</p>
                }
             </div>
          </section>

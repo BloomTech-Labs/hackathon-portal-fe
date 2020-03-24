@@ -67,7 +67,7 @@ export const deleteProject = (
 export const createProject = (
    hackathonId,
    projectInfo,
-   
+
 ) => async dispatch => {
    dispatch({ type: FETCH_START });
    (await axiosWithAuth())
@@ -251,7 +251,7 @@ export const assignRole = (
 }
 
 export const submitProject = projectDetails => async dispatch => {
-    (await axiosWithAuth())
+   (await axiosWithAuth())
       .post('/project-submission', projectDetails)
       .then(res => {
          dispatch({ type: POST_SUBMITTED_PROJECT_SUCCESS, payload: res.data })

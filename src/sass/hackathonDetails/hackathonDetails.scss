@@ -85,8 +85,32 @@
     }
 
     .admins-parent {
+        display:flex;
+        flex-direction: column;
+        width: 90%;
         @include phone-only {
+            width: 100%;
             text-align: center;
+            justify-content: space-evenly;
+            .organizers-container{
+                width:50%;
+            }
+            .judges-container{
+                width:50%;
+            }
+        }
+        .organizers-container{
+            width:50%;
+        }
+        .judges-container{
+            width:50%;
+        }
+    }
+    .organizer-judge-container{
+        display: flex;
+        justify-content: space-between;
+        @include phone-only {
+            display:flex;
         }
     }
     .single-hackathon-admins {
@@ -96,9 +120,9 @@
             margin:0;
         }
         @include phone-only {
-            width: 50%;
+            width: 100%;
             margin: auto;
-            text-align: center;
+            text-align: left;
             display: flex;
             justify-content: center;
             p{
@@ -109,12 +133,16 @@
 }
 .admins-container{
     margin-bottom: 60px;
+    @include phone-only {
+        width:100%;
+        // text-align: left;
+    }
 }
 .single-hackathon-container-left{
-width:45%;
-@include phone-only {
-    width: 100%;
-}
+    width:45%;
+    @include phone-only {
+        width: 100%;
+    }
 }
 .description{
     width:48%;
@@ -135,16 +163,31 @@ width:45%;
        
 }
 .single-hackathon-dates{
-    width: 70%;
+    width: 90%;
     display:flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    .start-container{
+        width:50%;
+    }
+    .end-container{
+        width:50%;
+    }
     @include phone-only {
         margin: auto;
         text-align: center;
+        width:100%;
+        justify-content: space-evenly;
+        .start-container{
+            width:50%;
+        }
+        .end-container{
+            width:50%;
+        }
     }
     p{
         @include phone-only {
             text-align: center;
+            justify-content: space-evenly;
             padding: 0;
         }
     }

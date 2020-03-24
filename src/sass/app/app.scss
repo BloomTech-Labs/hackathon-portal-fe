@@ -1,12 +1,15 @@
 html {
     margin: 0;
     padding: 0;
-    height: 100%;
+    height: calc(100% - 92px);
+    position: relative;
+
 }
 body {
     margin: 0;
     padding: 0;
-    height: 100%;
+    height: calc(100% - 92px);
+    position: relative;
 }
 
 * {
@@ -18,7 +21,11 @@ body {
 
 .App{
     height: 100%;
+    position: relative;
     .main-container {
+        height: 100%;
+        position: relative;
+
         .all-but-nav{
             margin-top: 92px;
             height:100%;
@@ -29,4 +36,3 @@ body {
     height: 100vh;
     overflow: hidden;
 }
-

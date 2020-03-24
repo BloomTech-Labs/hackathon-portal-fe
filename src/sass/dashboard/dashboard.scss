@@ -2,7 +2,8 @@
 @import '../variables/variables.scss';
 .profile-wrapper{
     width:80%;
-    height:100%;
+    height: calc(100vh - 92px);
+    overflow: auto;
     margin:auto;
     @include tablet-only {
         width: 90%;
@@ -365,7 +366,7 @@
 }
 
 .empty-hackathon-list {
-    width: 30%;
+    width: 100%;
     font-size: 16px;
     line-height: 22px;
 }
@@ -374,6 +375,7 @@
     a{
         color: #311B92;
         text-decoration: none;
+        font-weight: bold;
     }
 }
 
@@ -381,4 +383,8 @@
     @include phone-only {
             display: none;
         }
+}
+
+.profile-container {
+    margin-top: 10px;
 }

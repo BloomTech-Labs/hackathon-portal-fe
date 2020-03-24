@@ -60,10 +60,8 @@ const PendingProjects = props => {
 
     return (
         <div className={`${classes.pendingContainer} pendingContainer`}>
-            <h1>Pending projects</h1>
-
             <Button className={`${classes.backButton} backButton`} id='view-archive-btn' onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</Button>
-
+            <h1>Pending projects</h1>
             <div>
                 <div className='pendingList'>
 
@@ -94,7 +92,7 @@ const PendingProjects = props => {
                                 </div>
                             </form>)
                         )
-                    }) : <p>No pending projects</p>}
+                    }) : <p>There are no pending projects for this hackathon.</p>}
                 </div>
             </div>
         </div>

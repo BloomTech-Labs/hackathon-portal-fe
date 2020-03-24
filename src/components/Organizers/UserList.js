@@ -59,6 +59,7 @@ const UserList = props => {
     dispatch(getHackers());
   }, [user_id, open]);
 
+  // this finds the user role
   const fn = (id) => {
     let test = hackathon.admins.find(user => {
       return id === user.user_id
@@ -111,11 +112,18 @@ const UserList = props => {
     );
   }
 
+  const organzierColor = organizer => {
+    if (organizer === 'organizer') {
+      return 'organizer-color'
+    }
+    return '';
+  }
+
   if (hackathon.organizer_id === user.id) {
     return (
       <div className='container'>
         <div className={styles.btnWrapper}>
-          <Button id='view-archive-btn' onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</Button>
+          <Button className={styles.backButton} id='view-archive-btn' onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</Button>
           <h1 id='hackathons-head' className='organizers-header' >Add organizers</h1>
         </div>
         <div className={`${styles.searchContainer} search-container`}>
@@ -133,12 +141,15 @@ const UserList = props => {
         <div className={`${styles.usersList} user-list`}>
           {results.map((hacker, index) => {
             return (
-              <div key={index} className={`${styles.card} card`} onClick={() => handleOpen(hacker.id)} >
-
-                <div className={styles.unorderedList}>
-                  <ListItemText className={styles.listItem} primary={hacker.username} secondary={fn(hacker.id)}
-                  >
-                  </ListItemText>
+              <div
+                key={index}
+                className={`${styles.card} card ${organzierColor(fn(hacker.id))}`}
+                onClick={() => handleOpen(hacker.id)} >
+                <div className='hacker-username'>
+                  {hacker.username}
+                </div>
+                <div className='hacker-role'>
+                  {fn(hacker.id)}
                 </div>
               </div>
             );
