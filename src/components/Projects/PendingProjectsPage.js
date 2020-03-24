@@ -17,12 +17,13 @@ const useStyles = makeStyles(theme => style)
 const PendingProjects = props => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const { loading, user } = useAuth0();
+    const { user } = useAuth0();
+    // const { loading, user } = useAuth0();
     const isFetching = useSelector(state => state.isFetching);
     const hackathon = useSelector(state => state.singleHackathon);
-    const projects = useSelector(state => state.projects);
+    // const projects = useSelector(state => state.projects);
     const hackathonId = (props.history.location.state.hackathonId)
-    const [count, setCount] = useState(0);
+    // const [count, setCount] = useState(0);
 
     useEffect(() => {
         dispatch(getSpecificHackathon(hackathonId))
@@ -59,10 +60,8 @@ const PendingProjects = props => {
 
     return (
         <div className={`${classes.pendingContainer} pendingContainer`}>
-            <h1>Pending projects</h1>
-
             <Button className={`${classes.backButton} backButton`} id='view-archive-btn' onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</Button>
-
+            <h1>Pending projects</h1>
             <div>
                 <div className='pendingList'>
 
@@ -93,7 +92,7 @@ const PendingProjects = props => {
                                 </div>
                             </form>)
                         )
-                    }) : <p>No pending projects</p>}
+                    }) : <p>There are no pending projects for this hackathon.</p>}
                 </div>
             </div>
         </div>

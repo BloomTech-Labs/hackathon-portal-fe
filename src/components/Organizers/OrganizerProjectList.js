@@ -22,7 +22,7 @@ const OrganizerProjectList = props => {
     const classes = useStyles();
     const hackathon = useSelector(state => state.singleHackathon)
     const [open, setOpen] = React.useState(false);
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const handleOpen = () => {
         setOpen(true);
@@ -55,7 +55,7 @@ const OrganizerProjectList = props => {
                     BackdropComponent={Backdrop}
                 >
                     <Fade in={open}>
-                        <CreateProject handleClose={handleClose}/>
+                        <CreateProject handleClose={handleClose} />
                     </Fade>
                 </Modal>
 

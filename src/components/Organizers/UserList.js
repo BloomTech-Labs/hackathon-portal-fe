@@ -17,8 +17,7 @@ import { getSpecificHackathon, getHackers, getUser, assignRole } from "../../act
 // STYLES
 import {
   makeStyles,
-  TextField,
-  Modal, projectModal,
+  Modal,
   Backdrop,
   Fade,
   ListItemText,
@@ -28,14 +27,15 @@ import Loader from 'react-loader-spinner';
 import '../../sass/userList/userList.scss';
 
 
-const useStyles = makeStyles(theme => style);
+// const useStyles = makeStyles(theme => style);
 
 const useListStyles = makeStyles(theme => useListStyle);
 
 const UserList = props => {
-  const classes = useStyles();
+  // const classes = useStyles();
   const styles = useListStyles();
-  const { user, loading } = useAuth0();
+  const { user } = useAuth0();
+  // const { user, loading } = useAuth0();
   const dispatch = useDispatch();
   const userInfo = useSelector(state => state.userInfo);
   const hackers = useSelector(state => state.hackers);
@@ -59,6 +59,7 @@ const UserList = props => {
     dispatch(getHackers());
   }, [user_id, open]);
 
+  // this finds the user role
   const fn = (id) => {
     let test = hackathon.admins.find(user => {
       return id === user.user_id
@@ -78,9 +79,9 @@ const UserList = props => {
   const makeOrganizer = () => {
     dispatch(assignRole(hackathon.id, userInfo.id, { user_hackathon_role: 'organizer' }, setOpen))
   }
-  const makeJudge = () => {
-    dispatch(assignRole(hackathon.id, userInfo.id, { user_hackathon_role: 'judge' }, setOpen))
-  }
+  // const makeJudge = () => {
+  //   dispatch(assignRole(hackathon.id, userInfo.id, { user_hackathon_role: 'judge' }, setOpen))
+  // }
 
   const handleChange = event => {
     setSearchTerm(event.target.value);
@@ -111,11 +112,18 @@ const UserList = props => {
     );
   }
 
+  const organzierColor = organizer => {
+    if (organizer === 'organizer') {
+      return 'organizer-color'
+    }
+    return '';
+  }
+
   if (hackathon.organizer_id === user.id) {
     return (
       <div className='container'>
         <div className={styles.btnWrapper}>
-          <Button id='view-archive-btn' onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</Button>
+          <Button className={styles.backButton} id='view-archive-btn' onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</Button>
           <h1 id='hackathons-head' className='organizers-header' >Add organizers</h1>
         </div>
         <div className={`${styles.searchContainer} search-container`}>
@@ -133,12 +141,15 @@ const UserList = props => {
         <div className={`${styles.usersList} user-list`}>
           {results.map((hacker, index) => {
             return (
-              <div key={index} className={`${styles.card} card`} onClick={() => handleOpen(hacker.id)} >
-
-                <div className={styles.unorderedList}>
-                  <ListItemText className={styles.listItem} primary={hacker.username} secondary={fn(hacker.id)}
-                  >
-                  </ListItemText>
+              <div
+                key={index}
+                className={`${styles.card} card ${organzierColor(fn(hacker.id))}`}
+                onClick={() => handleOpen(hacker.id)} >
+                <div className='hacker-username'>
+                  {hacker.username}
+                </div>
+                <div className='hacker-role'>
+                  {fn(hacker.id)}
                 </div>
               </div>
             );

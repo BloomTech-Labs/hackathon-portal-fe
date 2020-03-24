@@ -43,9 +43,9 @@ function App(props) {
         <Router history={history}>
           <div className="main-container">
             <header>
-              <NavBar hamburger={hamburger} setHamburger={setHamburger}/>
+              <NavBar hamburger={hamburger} setHamburger={setHamburger} />
             </header>
-            <SideDrawer hamburger={hamburger} setHamburger={setHamburger}/>
+            <SideDrawer hamburger={hamburger} setHamburger={setHamburger} />
 
             <div className="all-but-nav">
               <Switch>
@@ -97,11 +97,11 @@ function App(props) {
                 <Route component={ErrorPage} />
               </Switch>
             </div>
-            {/* <footer>
-              <Footer />
-            </footer> */}
           </div>
         </Router>
+        {/* <footer>
+          <Footer />
+        </footer> */}
       </div>
     </StylesProvider>
   );
