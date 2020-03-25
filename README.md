@@ -97,7 +97,11 @@ Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it 
 
 ### Feature Requests
 
-We would love to hear from you about new features which would improve this app and further the aims of our project. Please provide as much detail and information as possible to show us why you think your new feature should be implemented.
+The judge feature needs to be fully realized. Currently the backend is setup to handle judges by means of roles assigned to the user on the front end.
+Our thoughts for handling this would be to change the "Add Organizer" button in the "Hackathon Details" page to a"Add Organizer/Judge" button. Then when you selected a user on the "User List" page, you could chose to add the user as an organizer or a judge. 
+(Look in the release canvas section of the Notion doc for more information.)
+
+Upon completion of this feature we would like to add a rubric system for judges to utilize so that ratings could better be understood and distributed. 
 
 ### Pull Requests
 
