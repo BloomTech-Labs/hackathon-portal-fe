@@ -100,8 +100,8 @@ function App(props) {
           </div>
         </Router>
         {/* <footer>
-          <Footer />
-        </footer> */}
+            <Footer />
+          </footer> */}
       </div>
     </StylesProvider>
   );
