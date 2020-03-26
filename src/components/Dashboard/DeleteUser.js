@@ -9,15 +9,9 @@ import {
 } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { useDispatch } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
-
 
 // ACTIONS
 import { deleteUser } from '../../actions/actions'
-
-import { style } from '../../MUI-Styles/deleteHackathonStyles';
-
-const useStyles = makeStyles(theme => style)
 
 export default function DeleteDashboardModal(props) {
     const dispatch = useDispatch();
@@ -25,8 +19,6 @@ export default function DeleteDashboardModal(props) {
     const [deleteOpen, setDeleteOpen] = useState(false);
 
     const { logout } = useAuth0();
-
-    const classes = useStyles();
 
     const handleDeleteClick = () => {
         setDeleteOpen(true);
@@ -44,7 +36,6 @@ export default function DeleteDashboardModal(props) {
     return (
         <div>
             <p onClick={handleDeleteClick}>{props.email}</p>
-            {console.log(deleteOpen)}
             <Dialog
                 open={deleteOpen}
                 onClose={handleDeleteClose}

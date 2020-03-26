@@ -2,9 +2,9 @@
 @import '../variables/variables.scss';
 .profile-wrapper{
     width:80%;
-    height: calc(100vh - 92px);
     overflow: auto;
     margin:auto;
+    height: calc(100vh - 92px);
     @include tablet-only {
         width: 90%;
     }

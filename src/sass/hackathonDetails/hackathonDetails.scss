@@ -1,6 +1,7 @@
 @import '../variables/variables.scss';
 
 .single-hackathon-container{
+    height: calc(100vh - 152px);
     width:80%;
     margin:auto;
     padding-top:60px;

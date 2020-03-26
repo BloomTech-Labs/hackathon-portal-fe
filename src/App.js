@@ -97,11 +97,11 @@ function App(props) {
                 <Route component={ErrorPage} />
               </Switch>
             </div>
+            {/* <footer>
+              <Footer />
+            </footer> */}
           </div>
         </Router>
-        {/* <footer>
-            <Footer />
-          </footer> */}
       </div>
     </StylesProvider>
   );

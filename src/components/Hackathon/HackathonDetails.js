@@ -11,7 +11,6 @@ import Loader from 'react-loader-spinner';
 
 // COMPONENTS
 import DeleteHackathon from './DeleteHackathon';
-import { editHackathon } from '../../actions/actions';
 
 // ACTIONS
 import { getSpecificHackathon } from '../../actions/actions';
@@ -21,7 +20,7 @@ const HackathonDetails = props => {
    const dispatch = useDispatch();
    const hackathon = useSelector(state => state.singleHackathon);
    const isFetching = useSelector(state => state.isFetching);
-   const [isOpen, setIsOpen] = useState({ is_open: true });
+   // const [isOpen, setIsOpen] = useState({ is_open: true });
    const { user } = useAuth0();
    const [pending, setPending] = useState([])
 
@@ -32,7 +31,7 @@ const HackathonDetails = props => {
 
    useEffect(() => {
       if (hackathon) {
-         setIsOpen({ is_open: hackathon.is_open })
+         // setIsOpen({ is_open: hackathon.is_open })
          setPending(hackathon?.projects?.filter(p => !p.is_approved))
       }
    }, [hackathon]);
@@ -86,7 +85,6 @@ const HackathonDetails = props => {
             <div className='single-hackathon-title'>
                <h1>{hackathon.name}</h1>
             </div>
-            {console.log(props, 'this is props')}
             <div className='single-hackathon-description'>
                <div className='description'>
                   <h3>Description</h3>
@@ -129,8 +127,6 @@ const HackathonDetails = props => {
                   <div className='judges-container'>
                      <h3>Judge</h3>
                      <div className='admins-container'>
-                        {console.log(hackathon)}
-
                         {hackathon?.admins?.map((admin, index) => {
                            return (
                               admin.user_hackathon_role === 'judge' &&
@@ -148,12 +144,11 @@ const HackathonDetails = props => {
          </div>
          <div className='single-hackathon-container-right'>
 
-            <img alt="an image" src="https://picsum.photos/300/300" />
+            <img alt="random" src="https://picsum.photos/300/300" />
             <div className='sh-buttons-container'>
                {user.id === hackathon.organizer_id ? (
                   <div className='single-hackathon-crud-btns'>
-                     {console.log(hackathon)}
-                     <button className={`${hackathon?.projects?.length === 0 ? 'grey-no-pending' : ''} single-hackathon-button-pending`}>
+                     <button className={`${pending?.length === 0 ? 'grey-no-pending' : ''} single-hackathon-button-pending`}>
                         <Link to={{ pathname: `/${props.match.params.id}/pendingprojects`, state: { hackathonId: Number(props.match.params.id) } }}>
                            Pending Projects
                         </Link>

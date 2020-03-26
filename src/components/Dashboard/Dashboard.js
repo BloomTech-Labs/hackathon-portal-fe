@@ -13,7 +13,6 @@ import Loader from 'react-loader-spinner';
 
 // ACTIONS
 import { getUser } from '../../actions/actions';
-import { deleteUser } from '../../actions/actions';
 
 import '../../sass/dashboard/dashboard.scss'
 import HackathonModal from '../Reusable/HackathonModal';
@@ -156,7 +155,7 @@ const Dashboard = props => {
          }
 
          return (
-            <tr key={hackathon.id} className='tr-data'>
+            <tr key={hackathon.hackathon_id} className='tr-data'>
                <td className='td-hackathon-name hackathon-name-column' onClick={() => {
                   props.history.push(`/hackathon/${hackathon.hackathon_id}`)
                }}>{hackathon.hackathon_name}</td>
@@ -191,8 +190,6 @@ const Dashboard = props => {
       }
       return null;
    });
-
-   console.log(props)
 
    return (
       <div className='profile-wrapper'>

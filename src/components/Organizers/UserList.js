@@ -7,7 +7,6 @@ import React, { useEffect, useState } from "react";
 import { useAuth0 } from "../../auth0-hooks/react-auth0-spa";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { style } from "../../MUI-Styles/hackathonListStyles";
 import { useListStyle } from '../../MUI-Styles/userListStyles';
 import Button from '@material-ui/core/Button'
 
@@ -20,7 +19,6 @@ import {
   Modal,
   Backdrop,
   Fade,
-  ListItemText,
   Typography,
 } from "@material-ui/core";
 import Loader from 'react-loader-spinner';

@@ -12,7 +12,7 @@ export const style = {
     justifyContent: 'space-between',
   },
   middleLeftContent: {
-    width: '50%',
+    width: '60%',
     display: 'flex'
   },
   radioGroup: {
@@ -43,7 +43,6 @@ export const style = {
     marginTop: '20px',
     height: '400px',
     width: "350px",
-    borderRadius: "4px",
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
