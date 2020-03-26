@@ -78,7 +78,7 @@ export default function SpringModal() {
           <div className={classes.paper}>
             <h3 id="spring-modal-title">Edit hackathon details</h3>
             <SimpleTabs />
-            <Button color='primary' onClick={handleClose}>Exit</Button>
+            <Button className={classes.editClose} color='primary' onClick={handleClose}>Exit</Button>
           </div>
         </Fade>
       </Modal>

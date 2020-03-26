@@ -70,7 +70,7 @@ const Homepage = () => {
           <div className='values-header'>
             <h2>Features</h2>
             <p>
-              Hackathon Portal makes it easier to get involved
+              Hackathon Portal makes it easier to get involved.
             </p>
           </div>
           <div className="values">

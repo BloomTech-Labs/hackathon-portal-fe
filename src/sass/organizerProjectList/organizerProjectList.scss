@@ -8,6 +8,12 @@
     font-family: Muli;
     font-weight: bold;
     color:rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.6;
+        transition: 0.2s;
+    }
 
 }
 .project-title{

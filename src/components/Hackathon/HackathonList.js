@@ -118,7 +118,7 @@ function Hackathons(props) {
         <img src={search} alt='magnifying glass for search' />
         <input
           name="searchHackathon"
-          fullWidth
+          // fullWidth
           className="searchBar"
           type="text"
           placeholder="Search all Hackathons"
@@ -127,7 +127,7 @@ function Hackathons(props) {
           value={searchTerm}
         />
       </label>
-      <container class="hackathon-list-header">
+      <div className="hackathon-list-header">
 
         <div className="filter" onClick={() => {
           setDropdown(!dropdown)
@@ -160,14 +160,14 @@ function Hackathons(props) {
             </div>
           </div>
         </div>
-      </container >
+      </div >
 
       <h3 className="hackathonHeaders">Upcoming Hackathons</h3>
       <div className="cardParent">
 
         {upcomingSearch.length === 0 ? <p>Nothing to display</p> : upcomingHackathons.map(hackathon => (
 
-          <HackathonCard hackathon={hackathon} />
+          <HackathonCard hackathon={hackathon} key={hackathon.hackathon_id} />
         ))}
       </div>
       <h3 className="hackathonHeaders">Active Hackathons</h3>

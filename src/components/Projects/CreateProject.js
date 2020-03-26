@@ -72,7 +72,7 @@ const CreateProject = props => {
     ux: false,
     ds: false,
     ios: false,
-    and: false,  
+    and: false,
   });
   const [role, setRole] = useState(" ")
   const { loading, user } = useAuth0();
@@ -99,7 +99,7 @@ const CreateProject = props => {
       });
     }
 
-  }, [formInfo, spots]);
+  }, [formInfo, spots, hackathon, user.id]);
 
 
 
@@ -118,11 +118,6 @@ const CreateProject = props => {
   const handleFormChange = e => {
     setFormInfo({ ...formInfo, [e.target.name]: e.target.value });
   }
-
-
-  const handleButtonChange = name => event => {
-    setChecked({ ...checked, [name]: event.target.checked });
-  };
 
   const handleChange = name => event => {
     setSpots({ ...spots, [name]: event.target.value });
@@ -187,6 +182,7 @@ const CreateProject = props => {
           ) : <Typography variant='h5'>Add a project</Typography>}
           <label className="title">
             <TextField
+              required
               type="text"
               fullWidth
               label="Project name"
@@ -198,13 +194,13 @@ const CreateProject = props => {
               margin="dense"
               inputProps={{
                 maxLength: 30
-            }}
+              }}
             />
             {projectInfo.title.length === 30 ?
-                <p className='errorMessage'>
-                  Character limit reached (30)
-                </p> : 
-                null
+              <p className='errorMessage'>
+                Character limit reached (30)
+                </p> :
+              null
             }
 
             <TextField
@@ -219,6 +215,7 @@ const CreateProject = props => {
               margin="dense"
               defaultValue={formInfo.description}
               onChange={handleFormChange}
+              required
             />
           </label>
 
@@ -276,7 +273,7 @@ const CreateProject = props => {
                       })}
                     </Select>
                   </FormControl>
-               
+
                   <FormControl className={classes.formControl}>
                     <InputLabel id="demo-simple-select-label">UX</InputLabel>
                     <Select
@@ -291,7 +288,7 @@ const CreateProject = props => {
                       })}
                     </Select>
                   </FormControl>
-               
+
                   <FormControl className={classes.formControl}>
                     <InputLabel id="demo-simple-select-label">Data Science</InputLabel>
                     <Select
@@ -307,7 +304,7 @@ const CreateProject = props => {
                     </Select>
                   </FormControl>
                 </div>
-                
+
                 <div className={classes.bottomDropdowns}>
                   <FormControl className={`${classes.formControl} ${classes.iosBox}`}>
                     <InputLabel id="demo-simple-select-label">IOS</InputLabel>
@@ -323,7 +320,7 @@ const CreateProject = props => {
                       })}
                     </Select>
                   </FormControl>
-            
+
                   <FormControl className={classes.formControl}>
                     <InputLabel id="demo-simple-select-label">Android</InputLabel>
                     <Select
@@ -343,7 +340,8 @@ const CreateProject = props => {
 
               <label className="total-members">
                 <Typography gutterBottom variant="h6" component="h6">
-                  Total Members: {spotsArray.reduce((acc, curr) => acc + curr)}
+                  Total Members: <span className={spotsArray.reduce((acc, curr) => acc + curr) > hackathon.max_team_participants ? 'max-hackers-error' : ''
+                  }>{spotsArray.reduce((acc, curr) => acc + curr)}</span>
                 </Typography>
               </label>
 
@@ -375,20 +373,20 @@ const CreateProject = props => {
 
         </div>
         <div className={classes.addProjectButtons}>
-            
+
           <Button
             variant="contained"
             className={classes.addProjectButton}
             type='submit'
             onClick={() => {
-              if(props?.match?.params?.id) {
+              if (props?.match?.params?.id) {
                 return null;
               }
               return props.handleClose();
             }}
 
           >
-            ADD
+            Add
           </Button>
         </div>
         {error && (<FormHelperText error>The total number of participants is more than the maximum number allowed per team</FormHelperText>)}

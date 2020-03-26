@@ -16,6 +16,17 @@ import Loader from 'react-loader-spinner';
 
 import '../../sass/projectList/projectList.scss';
 
+// modal from material ui
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
+
+// modal styles
+import { modalStyle } from '../../MUI-Styles/organizerProjectList';
+
+// create a project component
+import CreateProject from '../Projects/CreateProject';
+
 const useStyles = makeStyles(theme => style);
 
 
@@ -30,6 +41,8 @@ const ProjectList = props => {
   const [registered, setRegistered] = useState({ registered: false, project_id: 0 })
   const { user } = useAuth0();
   const currentDate = new Date().toString();
+
+  const [modal, setModal] = useState(false)
 
   useEffect(() => {
     dispatch(getSpecificHackathon(props.match.params.id));
@@ -78,6 +91,10 @@ const ProjectList = props => {
 
   if (isFetching || !hackathon) {
     return <Loader type="Rings" color="#311B92" height={100} width={100} />;
+  }
+
+  const handleModal = () => {
+    setModal(!modal)
   }
 
   return (
@@ -143,7 +160,20 @@ const ProjectList = props => {
               </div>
             </div>
             {!moment(hackathon.end_date).isBefore(currentDate) ?
-              <Button className={`${classes.button} button`} onClick={() => props.history.push(`/hackathon/${hackathon.id}/create/project`)}>Add a project idea</Button> : null}
+              <Button className={`${classes.button} button`} onClick={handleModal}>Add a project idea</Button> : null}
+            <Modal
+              aria-labelledby="transition-modal-title"
+              aria-describedby="transition-modal-description"
+              className={classes.addProjectModal}
+              open={modal}
+              onClose={handleModal}
+              closeAfterTransition
+              BackdropComponent={Backdrop}
+            >
+              <Fade in={modal}>
+                <CreateProject handleClose={handleModal} />
+              </Fade>
+            </Modal>
           </div>
         </RadioGroup>
         {!hackathon.projects ?
@@ -194,11 +224,11 @@ const ProjectList = props => {
                                 registered.project_id === project?.project_id ? (
                                   <FormHelperText style={{ color: '#007C5D', fontSize: '16px', marginTop: '0px' }}>Participating</FormHelperText>
                                 ) : false
-                              ): (
-                                registered.project_id === project?.project_id ? (
-                                  <FormHelperText style={{ color: '#232323', fontSize: '16px', marginTop: '0px' }}>Submitted</FormHelperText>
-                                ) : false
-                              )}
+                              ) : (
+                                  registered.project_id === project?.project_id ? (
+                                    <FormHelperText style={{ color: '#232323', fontSize: '16px', marginTop: '0px' }}>Submitted</FormHelperText>
+                                  ) : false
+                                )}
                             </div>
                           </div>
                         </Card>
@@ -209,7 +239,7 @@ const ProjectList = props => {
                 <Typography variant='h6'>This hackathon currently has no projects</Typography>
         }
       </div>
-    </div>
+    </div >
   );
 };
 

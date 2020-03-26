@@ -12,7 +12,7 @@ export const style = {
     justifyContent: 'space-between',
   },
   middleLeftContent: {
-    width: '50%',
+    width: '60%',
     display: 'flex'
   },
   radioGroup: {
@@ -43,7 +43,6 @@ export const style = {
     marginTop: '20px',
     height: '400px',
     width: "350px",
-    borderRadius: "4px",
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -85,8 +84,12 @@ export const style = {
     minHeight: '50px',
     transition: '0.5s',
     marginTop: '50px',
+    textTransform: 'none',
+
     "&:hover": {
-      color: '#4885E1'
+      backgroundColor: '#311B92',
+      opacity: '0.6',
+      transition: '0.2s'
     }
   },
   nameSpan: {
@@ -102,5 +105,8 @@ export const style = {
 
   'makeStyles-modal': {
     background: 'transparent',
+  },
+  addProjectModal: {
+    marginTop: '150px'
   }
 }

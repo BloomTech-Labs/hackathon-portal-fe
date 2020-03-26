@@ -15,6 +15,7 @@ export const useListStyle = {
     textAlign: 'left'
   },
   backButton: {
+    textTransform: 'none',
     color: '#311B92',
   },
   usersList: {

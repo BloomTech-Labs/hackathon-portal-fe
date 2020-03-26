@@ -13,7 +13,6 @@ import Loader from 'react-loader-spinner';
 
 // ACTIONS
 import { getUser } from '../../actions/actions';
-import { deleteUser } from '../../actions/actions';
 
 import '../../sass/dashboard/dashboard.scss'
 import HackathonModal from '../Reusable/HackathonModal';
@@ -121,6 +120,10 @@ const Dashboard = props => {
       })
    }
 
+   const capatalizeFirstLetter = string => {
+      return string.slice(0).charAt(0).toUpperCase() + string.slice(1);
+   }
+
    const renderTableData = (hackathonStatus) => {
 
       return hackathonStatus.map(hackathon => {
@@ -156,14 +159,14 @@ const Dashboard = props => {
          }
 
          return (
-            <tr key={hackathon.id} className='tr-data'>
+            <tr key={hackathon.hackathon_id} className='tr-data'>
                <td className='td-hackathon-name hackathon-name-column' onClick={() => {
                   props.history.push(`/hackathon/${hackathon.hackathon_id}`)
                }}>{hackathon.hackathon_name}</td>
                <td className='td-info location-column'>{hackathon.location}</td>
                <td className='td-info start-date-column'>{formatDate(hackathon.start_date)}</td>
                <td className='td-info end-date-column'>{formatDate(hackathon.end_date)}</td>
-               <td className='td-info role-column'>{hackathon.user_hackathon_role}</td>
+               <td className='td-info role-column'>{capatalizeFirstLetter(hackathon.user_hackathon_role)}</td>
                <td className='status-column'>{statusRender()}</td>
                <td className='submission-column'><ProjectSubmission hackathon={hackathon} /></td>
             </tr>
@@ -191,8 +194,6 @@ const Dashboard = props => {
       }
       return null;
    });
-
-   console.log(props)
 
    return (
       <div className='profile-wrapper'>

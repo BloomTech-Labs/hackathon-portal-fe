@@ -150,9 +150,9 @@ export const SimpleTabs = props => {
       <div className={classes.root}>
          <AppBar position="static">
             <AntTabs className={classes.tabs} value={value} onChange={handleChange} aria-label="simple tabs example">
-               <Tab label="info" {...a11yProps(0)} />
-               <Tab label="dates" {...a11yProps(1)} />
-               <Tab label="actions" {...a11yProps(2)} />
+               <Tab className={classes.singleTab} label="info" {...a11yProps(0)} />
+               <Tab className={classes.singleTab} label="dates" {...a11yProps(1)} />
+               <Tab className={classes.singleTab} label="actions" {...a11yProps(2)} />
             </AntTabs>
          </AppBar>
          <form

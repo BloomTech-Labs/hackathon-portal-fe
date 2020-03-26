@@ -3,7 +3,6 @@
 
 .homepage {
   margin: auto;
-  height: 100vh;
 
   .hero-background {
     width: 100%;
@@ -109,6 +108,7 @@
 
 .homePageDataDisplay {
   margin: 60px auto;
+  margin-bottom: 0;
   text-align: left;
   width: 80%;
   @include tablet-only {

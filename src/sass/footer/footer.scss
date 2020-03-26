@@ -1,10 +1,9 @@
 
-    // background: green;
-    // border: 1px solid blue;
     footer {
         position: absolute;
         bottom: 0;
         width: 100%;
+        // border: 10px solid green;
     }
     .footer-container {
         width: 100%;
@@ -13,12 +12,15 @@
         background: #311B92;
         height: 50px;
         width: 100%;
-    // border: 1px solid red;
+        // border: 10px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
             
             p{
                 width:80%;
-                margin:auto;
+                // margin:auto;
                 font-family: Muli;
                 font-style: normal;
                 font-weight: normal;

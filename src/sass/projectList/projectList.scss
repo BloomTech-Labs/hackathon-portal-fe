@@ -1,7 +1,10 @@
 @import '../variables/variables.scss';
 
 .projectListWrapper {
-    width: 90%;
+    width: 80%;
+    margin-top:130px;
+    height: 100%;
+    
     .projectsHeader{
         @include phone-only{
             text-align:center;
@@ -10,6 +13,8 @@
     }
 
     .middle-content {
+        margin: 0;
+        width:100%;
         @include phone-only {
             display: flex;
             flex-direction: column;
@@ -25,6 +30,7 @@
 
 
         .filter-radio {
+            // width:70%;
             @include phone-only {
                 display: flex;
                 justify-content: space-between;

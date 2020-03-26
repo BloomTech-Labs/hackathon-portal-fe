@@ -1,16 +1,17 @@
-html {
+html, body {
     margin: 0;
     padding: 0;
     height: calc(100% - 92px);
-    position: relative;
+}
 
-}
-body {
-    margin: 0;
-    padding: 0;
-    height: calc(100% - 92px);
-    position: relative;
-}
+// body {
+//     margin: 0;
+//     padding: 0;
+//     // height: calc(100% - 92px);
+//     position: relative;
+//     height: 100%;
+
+// }
 
 * {
     font-family: Muli;
@@ -21,14 +22,14 @@ body {
 
 .App{
     height: 100%;
-    position: relative;
+
     .main-container {
         height: 100%;
         position: relative;
 
         .all-but-nav{
-            margin-top: 92px;
             height:100%;
+            margin-top: 92px;
         }
     }
 }

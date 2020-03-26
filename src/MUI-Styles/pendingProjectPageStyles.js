@@ -1,6 +1,3 @@
-import { createMuiTheme } from '@material-ui/core/styles';
-
-const theme = createMuiTheme();
 
 export const style = {
     pendingContainer: {
@@ -9,7 +6,6 @@ export const style = {
     },
     pendingProjectCard: {
         padding: '25px',
-        width: '20%',
         height: '250px',
         margin: '20px',
         background: "white",
