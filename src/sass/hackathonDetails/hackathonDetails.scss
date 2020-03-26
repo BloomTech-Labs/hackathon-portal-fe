@@ -53,8 +53,13 @@
         border: 1px solid #311B92;
         border-radius: 4px;
         margin-bottom: 10px;
+
+        &:hover {
+            opacity: 0.6;
+            transition: 0.2s;
+        }
     }
-    
+
     .single-hackathon-button-pending {
         cursor: pointer;
         color: #D17F00;
@@ -66,6 +71,11 @@
         border: 1px solid #D17F00;
         border-radius: 4px;
         margin-bottom: 10px;
+
+        &:hover {
+            opacity: 0.6;
+            transition: 0.2s;
+        }
          
         a{
              text-decoration: none;

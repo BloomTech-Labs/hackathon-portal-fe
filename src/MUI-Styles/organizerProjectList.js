@@ -2,7 +2,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme();
 
-export const style = {
+export const modalStyle = {
     root: {
         background: 'white',
         textTransform: 'none'
@@ -30,9 +30,13 @@ export const style = {
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
+        height: '100%',
         // opacity: '0.5',
         color: 'white',
         overflow: 'hidden'
+    },
+    test: {
+        height: '100%'
     },
     paper: {
         backgroundColor: theme.palette.background.paper,

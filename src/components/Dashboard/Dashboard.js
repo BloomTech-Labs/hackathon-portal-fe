@@ -120,6 +120,10 @@ const Dashboard = props => {
       })
    }
 
+   const capatalizeFirstLetter = string => {
+      return string.slice(0).charAt(0).toUpperCase() + string.slice(1);
+   }
+
    const renderTableData = (hackathonStatus) => {
 
       return hackathonStatus.map(hackathon => {
@@ -162,7 +166,7 @@ const Dashboard = props => {
                <td className='td-info location-column'>{hackathon.location}</td>
                <td className='td-info start-date-column'>{formatDate(hackathon.start_date)}</td>
                <td className='td-info end-date-column'>{formatDate(hackathon.end_date)}</td>
-               <td className='td-info role-column'>{hackathon.user_hackathon_role}</td>
+               <td className='td-info role-column'>{capatalizeFirstLetter(hackathon.user_hackathon_role)}</td>
                <td className='status-column'>{statusRender()}</td>
                <td className='submission-column'><ProjectSubmission hackathon={hackathon} /></td>
             </tr>

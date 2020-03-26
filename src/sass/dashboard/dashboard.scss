@@ -87,6 +87,12 @@
                 line-height: 24px;
                 margin-left: 10px;
                 color: #311B92;
+                cursor: pointer;
+
+                &:hover {
+                    opacity: 0.6;
+                    transition: 0.2s;
+                }
             }
         }
         @include phone-only {
@@ -160,6 +166,12 @@
             text-align: center;
             margin: 10px 0px;
             cursor: pointer;
+
+           &:hover{
+               background-color: #311B92;
+               opacity: 0.6;
+               transition: 0.2s;
+           }
         }
         .back-button, .next-button, .finish-button{
             width: 92px;
@@ -167,9 +179,16 @@
         }
         .back-button {
             background: #fff;
-            border: 1px solid rgba(0, 0, 0, 0.6);
-            color: rgba(0, 0, 0, 0.6);
+            border: 1px solid #311B92;
+            color: #311B92;
             margin-right:10px;
+
+            &:hover {
+                    background-color: #fff;
+                    opacity: 0.6;
+                    transition: 0.2s;
+                }
+            
         }
         .cancel-button {
             margin-right: 10px;
@@ -179,6 +198,11 @@
             font-size: 14px;
             font-weight: bold;
             cursor: pointer;
+
+            &:hover {
+                opacity: 0.6;
+                transition: 0.2s;
+            }
         }
     }
     .active {
@@ -205,10 +229,13 @@
                     font-size: 18px;
                     line-height: 24px;
                     color: #311B92;
+
                 }
 
                 .td-hackathon-name:hover{
                     cursor: pointer;
+                    opacity: 0.6;
+                    transition: 0.2s;
                 }
 
                 .td-details {

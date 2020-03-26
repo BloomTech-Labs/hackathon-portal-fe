@@ -61,8 +61,8 @@ export const style = {
       width: '8%',
    },
    backButton: {
-      border: '1px solid #4885E1',
-      color: '#4885E1'
+      border: '1px solid #311B92',
+      color: '#311B92',
    },
    buttonsContainer: {
       display: 'flex',

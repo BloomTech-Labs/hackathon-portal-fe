@@ -11,7 +11,10 @@ export const style = {
     'border-radius': '4px',
     'text-transform': 'none',
     "&:hover": {
-      backgroundColor: "transparent"
+      // backgroundColor: "transparent"
+      background: '#fff',
+      opacity: '0.6',
+      transition: '0.2s',
     }
   },
 }

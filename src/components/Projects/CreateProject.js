@@ -182,6 +182,7 @@ const CreateProject = props => {
           ) : <Typography variant='h5'>Add a project</Typography>}
           <label className="title">
             <TextField
+              required
               type="text"
               fullWidth
               label="Project name"
@@ -214,6 +215,7 @@ const CreateProject = props => {
               margin="dense"
               defaultValue={formInfo.description}
               onChange={handleFormChange}
+              required
             />
           </label>
 
@@ -338,7 +340,8 @@ const CreateProject = props => {
 
               <label className="total-members">
                 <Typography gutterBottom variant="h6" component="h6">
-                  Total Members: {spotsArray.reduce((acc, curr) => acc + curr)}
+                  Total Members: <span className={spotsArray.reduce((acc, curr) => acc + curr) > hackathon.max_team_participants ? 'max-hackers-error' : ''
+                  }>{spotsArray.reduce((acc, curr) => acc + curr)}</span>
                 </Typography>
               </label>
 
@@ -383,7 +386,7 @@ const CreateProject = props => {
             }}
 
           >
-            ADD
+            Add
           </Button>
         </div>
         {error && (<FormHelperText error>The total number of participants is more than the maximum number allowed per team</FormHelperText>)}
