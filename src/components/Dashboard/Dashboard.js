@@ -9,7 +9,7 @@ import moment from 'moment';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 import { Link } from 'react-router-dom';
 
-import Loader from 'react-loader-spinner';
+import Load from '../Reusable/LoaderWithContainer';
 
 // ACTIONS
 import { getUser } from '../../actions/actions';
@@ -24,6 +24,7 @@ import DeleteUser from './DeleteUser';
 import activeIcon from '../../images/active-icon.svg';
 import upcomingIcon from '../../images/upcoming-icon.svg';
 import finishedIcon from '../../images/finshed-icon.svg';
+
 
 const Dashboard = props => {
    const dispatch = useDispatch();
@@ -175,7 +176,7 @@ const Dashboard = props => {
    }
 
    if (loading || !profileInfo) {
-      return <Loader type="Rings" color="#4885E1" height={100} width={100} />
+     return <Load />
    }
 
    let presentHackathons = hackathons.filter(hackathon => {
@@ -194,7 +195,7 @@ const Dashboard = props => {
       }
       return null;
    });
-
+   
    return (
       <div className='profile-wrapper'>
 

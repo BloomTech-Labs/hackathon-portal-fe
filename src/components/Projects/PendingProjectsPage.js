@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import { editProject, getSpecificHackathon, deleteProject } from '../../actions/actions';
 import Button from '@material-ui/core/Button';
-import Loader from 'react-loader-spinner';
+import Load from '../Reusable/LoaderWithContainer';
 
 import { style } from '../../MUI-Styles/pendingProjectPageStyles';
 import '../../sass/pendingProjectPageStyles/pendingProjectPageStyles.scss';
@@ -55,7 +55,7 @@ const PendingProjects = props => {
     }
     console.log(hackathon, 'this is hackathon')
     if (isFetching || !hackathon) {
-        return <Loader type="Rings" color="#311B92" height={100} width={100} />;
+        return <Load />;
     }
 
     return (

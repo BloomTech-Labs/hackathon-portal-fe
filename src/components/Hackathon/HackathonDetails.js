@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import ServerModal from './editButton/modal';
-import Loader from 'react-loader-spinner';
+import Load from '../Reusable/LoaderWithContainer';
 
 
 // COMPONENTS
@@ -74,10 +74,10 @@ const HackathonDetails = props => {
    };
 
    if (isFetching) {
-      return <Loader type="Rings" color="#311B92" height={100} width={100} />
+      return <Load />
    }
    if (hackathon === undefined) {
-      return <Loader type="Rings" color="#311B92" height={100} width={100} />
+      return <Load />
    }
    return (
       <div className='single-hackathon-container'>

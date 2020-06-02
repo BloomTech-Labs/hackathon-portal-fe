@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getHackathons } from "../../actions/actions";
 import moment from "moment";
 
-import Loader from "react-loader-spinner";
+import Load from '../Reusable/LoaderWithContainer';
 
 import HackathonCard from "../Reusable/HackathonCard";
 
@@ -107,7 +107,7 @@ function Hackathons(props) {
     );
 
   if (isFetching || !hackathons) {
-    return <Loader type="Rings" color="#311B92" height={100} width={100} />;
+    return <Load />;
   }
 
   return (

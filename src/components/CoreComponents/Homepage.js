@@ -4,7 +4,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getHackathons, getHackers } from "../../actions/actions";
-import Loader from "react-loader-spinner";
+import Load from '../Reusable/LoaderWithContainer.jsx';
 import { Link } from "react-router-dom";
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 
@@ -36,9 +36,9 @@ const Homepage = () => {
   }, [dispatch]);
 
   if (isFetching || !hackathons || !hackers) {
-    return <Loader type="Rings" color="#311B92" height={100} width={100} />;
+    return <Load />;
   } else if (!hackathons[0]) {
-    return <Loader type="Rings" color="#311B92" height={100} width={100} />;
+    return <Load />;
   }
 
   let upcomingHackathons = hackathons
@@ -48,6 +48,8 @@ const Homepage = () => {
       }
     })
     : [];
+
+
 
   return (
     <>

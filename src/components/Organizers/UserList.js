@@ -21,9 +21,10 @@ import {
   Fade,
   Typography,
 } from "@material-ui/core";
-import Loader from 'react-loader-spinner';
+
 import '../../sass/userList/userList.scss';
 
+import Load from '../Reusable/LoaderWithContainer';
 
 // const useStyles = makeStyles(theme => style);
 
@@ -106,7 +107,7 @@ const UserList = props => {
 
   if (isFetching || !hackathon || !hackers) {
     return (
-      <Loader type="Rings" color="#311B92" height={100} width={100} />
+      <Load />
     );
   }
 
