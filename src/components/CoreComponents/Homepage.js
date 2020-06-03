@@ -21,7 +21,7 @@ import organize from "../../svgs/organize.svg"
 import participate from '../../svgs/participate.svg'
 import evaluate from '../../svgs/evaluate.svg'
 
-const Homepage = () => {
+const Homepage = (props) => {
   const isFetching = useSelector(state => state.isFetching);
   const dispatch = useDispatch();
   const hackers = useSelector(state => state.hackers);
@@ -37,9 +37,7 @@ const Homepage = () => {
 
   if (isFetching || !hackathons || !hackers) {
     return <Load />;
-  } else if (!hackathons[0]) {
-    return <Load />;
-  }
+   } // removed redundant !hackathons[0]
 
   let upcomingHackathons = hackathons
     ? hackathons.filter(hackathon => {
@@ -48,8 +46,6 @@ const Homepage = () => {
       }
     })
     : [];
-
-
 
   return (
     <>
@@ -63,9 +59,10 @@ const Homepage = () => {
               </p>
               <button className='logIn-OutButton'
                 id='login-btn'
-                onClick={() => loginWithRedirect({})}>Get Started</button>
+                onClick={() => loginWithRedirect({})}
+                >Get Started</button>
             </div>
-            <img className='hero-right' src={laptop} alt='a person laying down on a laptop' />
+            <img className='hero-right' src={laptop} alt='a person laying down with laptop' />
           </div>
         </div>
         <section className="middle-content">
@@ -80,21 +77,21 @@ const Homepage = () => {
               <img src={organize} alt='a clipboard' />
               <h3>Organize</h3>
               <p>
-                Get things moving with our streamlined process. <br /> Organizing a hackathon has never been faster.
+                Get things moving with our streamlined process. Organizing a hackathon has never been faster.
               </p>
             </div>
             <div>
               <img src={participate} alt='an award for winning' />
               <h3>Participate</h3>
               <p>
-                Add to your portfolio while meeting new people. <br /> Participate in remote or offline events.
+                Add to your portfolio while meeting new people. Participate in remote or offline events.
               </p>
             </div>
             <div>
               <img src={evaluate} alt='a box that has the words vote on it' />
               <h3>Evaluate</h3>
               <p>
-                Move through the judging process quicker. <br /> Evaluate submissions with minimal effort.
+                Move through the judging process quicker. Evaluate submissions with minimal effort.
               </p>
             </div>
           </div>
