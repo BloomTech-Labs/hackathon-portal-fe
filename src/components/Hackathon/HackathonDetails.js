@@ -143,6 +143,7 @@ const HackathonDetails = props => {
                <Link to={`/hackathon/${hackathon.id}/projects`}><button className='single-hackathon-buttons'>View Projects</button></Link>
             </div>
          </div>
+         
          <div className='single-hackathon-container-right'>
 
             <img alt="random" src="https://source.unsplash.com/featured/?{programming},{coding}" />
