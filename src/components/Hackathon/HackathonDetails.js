@@ -144,7 +144,7 @@ const HackathonDetails = props => {
          </div>
          <div className='single-hackathon-container-right'>
 
-            <img alt="random" src="https://picsum.photos/300/300" />
+            <img alt="random" src="https://source.unsplash.com/featured/?{programming},{coding}" />
             <div className='sh-buttons-container'>
                {user.id === hackathon.organizer_id ? (
                   <div className='single-hackathon-crud-btns'>

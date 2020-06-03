@@ -46,7 +46,7 @@ const HackathonCard = ({ hackathon }) => {
       <Link to={`/hackathon/${hackathon.id}`} className={classes.link}>
         <CardMedia
           className={`${classes.media} card-image`}
-          image="https://picsum.photos/300/300"
+          image="https://source.unsplash.com/featured/?{programming},{coding}"
           id="hackathon-card"
         />
       </Link>
