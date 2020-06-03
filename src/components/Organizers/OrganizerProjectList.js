@@ -10,10 +10,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import Loader from 'react-loader-spinner';
 import "../../sass/organizerProjectList/organizerProjectList.scss"
 
 import { modalStyle } from '../../MUI-Styles/organizerProjectList';
+import Load from '../Reusable/LoaderWithContainer';
 
 const useStyles = makeStyles(theme => modalStyle)
 
@@ -34,7 +34,7 @@ const OrganizerProjectList = props => {
 
 
     if (!hackathon) {
-        return <Loader type="Rings" color="#311B92" height={100} width={100} />
+        return <Load />
     }
 
     return (

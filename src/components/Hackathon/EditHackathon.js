@@ -34,7 +34,7 @@ import {
    KeyboardTimePicker,
    KeyboardDatePicker
 } from '@material-ui/pickers';
-import Loader from 'react-loader-spinner';
+import Load from '../Reusable/LoaderWithContainer';
 
 import { style } from '../../MUI-Styles/editHackathonStyles';
 
@@ -115,7 +115,7 @@ const EditHackathon = props => {
    
 
    if (isFetching || !hackathon) {
-      return <Loader type="Rings" color="#4885E1" height={100} width={100} />
+      return <Load />
    }
 
    return (

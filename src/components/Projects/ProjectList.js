@@ -12,7 +12,7 @@ import { Typography, Avatar, FormControlLabel, Radio, RadioGroup, FormHelperText
 // STYLES
 import { style } from '../../MUI-Styles/projectListStyles';
 import Button from '@material-ui/core/Button';
-import Loader from 'react-loader-spinner';
+import Load from '../Reusable/LoaderWithContainer';
 
 import '../../sass/projectList/projectList.scss';
 
@@ -90,7 +90,7 @@ const ProjectList = props => {
   }, [filterBy])
 
   if (isFetching || !hackathon) {
-    return <Loader type="Rings" color="#311B92" height={100} width={100} />;
+    return <Load />;
   }
 
   const handleModal = () => {
@@ -99,7 +99,7 @@ const ProjectList = props => {
 
   return (
     <div className={`${classes.projectListWrapper} projectListWrapper`}>
-      <h4 style={{ color: '#311B92' }} onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</h4>
+      <h4 style={{ color: '#311B92', cursor: 'pointer' }} onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</h4>
       <Typography className={`${classes.projectsHeader} projectsHeader`} variant='h4'>{hackathon.name} project list</Typography>
 
       <div className={classes.contentContainer}>

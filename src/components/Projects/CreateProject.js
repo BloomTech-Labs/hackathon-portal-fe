@@ -26,7 +26,7 @@ import Radio from '@material-ui/core/Radio';
 import MenuItem from '@material-ui/core/MenuItem';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Select from '@material-ui/core/Select';
-import Loader from 'react-loader-spinner';
+import Load from '../Reusable/LoaderWithContainer';
 import "../../sass/hackathonModel/hackathonModel.scss";
 
 import { style } from '../../MUI-Styles/createProjectStyles'
@@ -154,11 +154,11 @@ const CreateProject = props => {
 
   if (loading || !hackathon) {
     return (
-      <Loader type="Rings" color="#311B92" height={100} width={100} />
+      <Load />
     )
   } else if (!hackathon.organizer_id) {
     return (
-      <Loader type="Rings" color="#311B92" height={100} width={100} />
+      <Load />
     )
   }
 
