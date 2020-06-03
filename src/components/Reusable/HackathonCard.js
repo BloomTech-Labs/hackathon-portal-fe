@@ -11,7 +11,6 @@ import {
 } from "@material-ui/core";
 
 import { style } from "../../MUI-Styles/hackathonListStyles";
-
 import '../../sass/homepage/homePage.scss'
 
 const formatDate = date => {

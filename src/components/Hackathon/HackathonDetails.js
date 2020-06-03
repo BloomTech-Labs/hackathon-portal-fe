@@ -79,6 +79,7 @@ const HackathonDetails = props => {
    if (hackathon === undefined) {
       return <Load />
    }
+   
    return (
       <div className='single-hackathon-container'>
          <div className='single-hackathon-container-left'>
