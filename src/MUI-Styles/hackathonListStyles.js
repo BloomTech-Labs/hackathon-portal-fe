@@ -6,10 +6,9 @@ export const style = {
     'padding-left': '0px',
   },
   card: {
-    // 'text-align': 'center',
-    "box-shadow": 'none',
+    // boxShadow: 'none',
     width: "30%",
-    // margin: '10px',
+    marginRight: '16px',
     marginBottom: "3%",
   },
   pastCard: {

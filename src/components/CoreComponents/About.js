@@ -14,7 +14,7 @@ const About = () => {
         <div className="hero-content">
           <img className="hero-left" src={cheer} alt='a group of three people cheering and jumping in the air' />
           <div className="hero-right">
-            <h4>About Hackathon Portal</h4>
+            {/* <h4>About Hackathon Portal</h4> */}
             <h1>We make <br />hackathons <span>easier</span>.</h1>
             <p>
               Hackathon Portal is the hub for everything hackathon.

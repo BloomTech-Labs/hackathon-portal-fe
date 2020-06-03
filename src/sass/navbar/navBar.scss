@@ -20,15 +20,12 @@
     }
 }
 .navBar-div{
-    width: 45%;
+    width: 480px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     text-align:center;
 
-    @include tablet-only {
-        width: 55%;
-    }
     @include phone-only {
         display:none;
     }
