@@ -82,6 +82,7 @@ const HackathonDetails = props => {
    return (
       <div className='single-hackathon-container'>
          <div className='single-hackathon-container-left'>
+         <h4 style={{ color: '#311B92', cursor: 'pointer', margin: 0 }} onClick={() => props.history.push(`/hackathons`)}>Back</h4>
             <div className='single-hackathon-title'>
                <h1>{hackathon.name}</h1>
             </div>

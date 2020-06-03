@@ -3,11 +3,9 @@
 
 .search-container {
     width: 65%;
-    margin-left: 30px;
     display: flex;
     background-color: #F5F5F5;
     color: #000000;
-    // border: 1px solid red;
     padding: 10px 0 10px 3px;
     font-size: 25px;
     @include phone-only{
@@ -105,7 +103,6 @@
                     }
                 }
                 .checkmark {
-
                         position: absolute;
                         top: 1px;
                         left: 1px;
@@ -147,9 +144,7 @@
         }
 
 }
-.filter-icon {
-    // width
-}
+
 .hackathonHeaders {
     font-family: Muli;
     font-style: normal;
@@ -158,21 +153,24 @@
     line-height: 40px;
     text-align: left;
     letter-spacing: 0.1px;
-    margin-left: 32px;
     @include phone-only {
         margin:0;
         margin-bottom: 20px;;
     }
 }
 .fullList {
-    margin: 10% 7.5% 0px 7.5%;
-    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 60px;
     @include tablet-only {
         margin: 15% 2.5% 0px 2.5%;
     }
+    @include phone-only {
+        padding-top: 0;
+        margin: 0 auto;
+    }
 
     #hackathons-head {
-        margin-left: 30px;
         width: 65%;
         color: #232323;
         text-align: left;
@@ -190,9 +188,12 @@
     margin: auto;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
 }
 .content {
+    padding: 6%;
+    @include phone-only {
+        padding: 0;
+    }
     a{
         span, p{
             text-align: left;

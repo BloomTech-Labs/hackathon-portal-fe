@@ -99,7 +99,7 @@ const ProjectList = props => {
 
   return (
     <div className={`${classes.projectListWrapper} projectListWrapper`}>
-      <h4 style={{ color: '#311B92', cursor: 'pointer' }} onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</h4>
+      <h4 style={{ color: '#311B92', cursor: 'pointer', margin: 0 }} onClick={() => props.history.push(`/hackathon/${hackathon.id}`)}>Back</h4>
       <Typography className={`${classes.projectsHeader} projectsHeader`} variant='h4'>{hackathon.name} project list</Typography>
 
       <div className={classes.contentContainer}>
