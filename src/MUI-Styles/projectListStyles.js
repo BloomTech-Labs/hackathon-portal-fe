@@ -2,6 +2,7 @@ export const style = {
   projectListWrapper: {
     width: '80%',
     margin: 'auto',
+    paddingBottom: 30,
   },
   root: {
     flexDirection: 'row'
@@ -41,7 +42,8 @@ export const style = {
     borderRadius: '4px',
     padding: '25px',
     marginTop: '20px',
-    height: '400px',
+    marginLeft: '20px',
+    marginRight: '20px',
     width: "350px",
     display: 'flex',
     flexDirection: 'column',
@@ -49,7 +51,7 @@ export const style = {
   },
   cardContainer: {
     display: 'flex',
-    justifyContent: 'space-evenly',
+   // justifyContent: 'space-evenly',
     flexWrap: 'wrap',
     width: '100%',
     margin: '0 auto'
