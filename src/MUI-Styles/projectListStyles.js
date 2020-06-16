@@ -17,11 +17,10 @@ export const style = {
   },
   radioGroup: {
     'flex-directon': 'row',
-    width: '100%',
     textAlign: 'left'
   },
   filterRadios: {
-    width: '60%'
+    width: '20%'
   },
   topRadios: {
     display: 'flex'
