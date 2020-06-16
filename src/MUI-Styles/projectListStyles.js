@@ -17,11 +17,10 @@ export const style = {
   },
   radioGroup: {
     'flex-directon': 'row',
-    width: '100%',
     textAlign: 'left'
   },
   filterRadios: {
-    width: '60%'
+    width: '20%',
   },
   topRadios: {
     display: 'flex'
@@ -34,6 +33,8 @@ export const style = {
     fontWeight: 'bold',
     fontSize: '44px',
     color: '#232323',
+    paddingBottom: '30px',
+    paddingTop: '30px'
   },
   projectCards: {
     background: "#FFFFFF",

@@ -5,9 +5,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import moment from 'moment';
 
+
 // ACTIONS
 import { getSpecificHackathon } from "../../actions/actions";
-import { Typography, Avatar, FormControlLabel, Radio, RadioGroup, FormHelperText, makeStyles, Card } from "@material-ui/core";
+import { Typography, Avatar, FormControlLabel, Radio, Select, RadioGroup, InputLabel, MenuItem, FormHelperText, makeStyles, Card } from "@material-ui/core";
 
 // STYLES
 import { style } from '../../MUI-Styles/projectListStyles';
@@ -103,61 +104,60 @@ const ProjectList = props => {
       <Typography className={`${classes.projectsHeader} projectsHeader`} variant='h4'>{hackathon.name} project list</Typography>
 
       <div className={classes.contentContainer}>
-        <RadioGroup value={filterBy} onChange={handleCheckboxChange} className={classes.radioGroup}>
-          <h3>Filter</h3>
+        <div  className={classes.radioGroup}>
           <div className={`${classes.middleContent} middle-content`}>
             <div className={`${classes.middleLeftContent} middle-left-content`}>
-              <div className={classes.showAll}>
-                <FormControlLabel
-                  control={<Radio style={{ color: 'black' }} />}
-                  value=''
-                  label="Show all"
-                />
-              </div>
-              <div className={`${classes.filterRadios} filter-radio`}>
-
-                <div className={`${classes.topRadios} top-radios`}>
-                  <FormControlLabel
+              
+              <InputLabel>Filter by role</InputLabel>
+              <Select className={`${classes.filterRadios} filter-radio`} value={filterBy} onChange={handleCheckboxChange}>
+                   <MenuItem
+                    control={<Radio style={{ color: 'black' }} />}
+                    value=''
+                    label='View All'
+                    style={{ color: 'black' }}
+                  >View all</MenuItem>
+                  <MenuItem
                     control={<Radio style={{ color: 'black' }} />}
                     value='front_end_spots'
                     label="Front-end"
                     style={{ color: 'black' }}
-                  />
-                  <FormControlLabel
+                  >Front end</MenuItem>
+                  <MenuItem
                     control={<Radio style={{ color: 'black' }} />}
                     value='ux_spots'
                     label="UX design"
                     style={{ color: 'black' }}
-                  />
-                  <FormControlLabel
+                  >UX Design</MenuItem>
+                  <MenuItem
                     control={<Radio style={{ color: 'black' }} />}
                     value='ios_spots'
                     label="iOS"
                     style={{ color: 'black' }}
-                  />
-                </div>
-                <div className={`${classes.bottomRadios} bottom-radios`}>
-                  <FormControlLabel
+                  >iOS</MenuItem>
+              
+                
+                  <MenuItem
                     control={<Radio style={{ color: 'black' }} />}
                     value='back_end_spots'
                     label="Back-end"
                     style={{ color: 'black' }}
-                  />
-                  <FormControlLabel
+                  >Back end</MenuItem>
+                  <MenuItem
                     control={<Radio style={{ color: 'black' }} />}
                     value='data_science_spots'
                     label="Data science"
                     style={{ color: 'black' }}
-                  />
+                  >Data Science</MenuItem>
 
-                  <FormControlLabel
+                  <MenuItem
                     control={<Radio style={{ color: 'black' }} />}
                     value='android_spots'
                     label="Android"
                     style={{ color: 'black' }}
-                  />
-                </div>
-              </div>
+                  >Android</MenuItem>
+             
+              </Select>
+              
             </div>
             {!moment(hackathon.end_date).isBefore(currentDate) ?
               <Button className={`${classes.button} button`} onClick={handleModal}>Add a project idea</Button> : null}
@@ -175,7 +175,7 @@ const ProjectList = props => {
               </Fade>
             </Modal>
           </div>
-        </RadioGroup>
+        </div>
         {!hackathon.projects ?
           <Typography variant='h6'>This hackathon currently has no projects</Typography>
           :
@@ -238,7 +238,7 @@ const ProjectList = props => {
                 :
                 <Typography variant='h6'>This hackathon currently has no projects</Typography>
         }
-      </div>
+      </div> 
     </div >
   );
 };
