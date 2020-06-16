@@ -51,7 +51,6 @@ export const style = {
   },
   cardContainer: {
     display: 'flex',
-   // justifyContent: 'space-evenly',
     flexWrap: 'wrap',
     width: '100%',
     margin: '0 auto'
