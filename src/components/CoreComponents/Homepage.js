@@ -89,7 +89,7 @@ const Homepage = (props) => {
             </div>
             <div>
               <img src={evaluate} alt='a box that has the words vote on it' />
-              <h3>Evaluate</h3>
+              <h3>Evaluate (coming soon)</h3>
               <p>
                 Move through the judging process quicker. Evaluate submissions with minimal effort.
               </p>
