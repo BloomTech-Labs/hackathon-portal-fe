@@ -33,6 +33,7 @@ const useStyles = makeStyles(theme => ({
 const ProjectDetails = props => {
   const dispatch = useDispatch();
   const hackathon = useSelector(state => state.singleHackathon);
+  console.log(hackathon)
   const submittedProjectInfo = useSelector(state => state.submittedProjectInfo)
   const isFetching = useSelector(state => state.isFetching);
   const [open, setOpen] = useState(true);
@@ -153,7 +154,7 @@ const ProjectDetails = props => {
           Close
         </Button>
         {(spotsOpen && !registered.registered && !isPast && !project.submitted) || 
-        (!spotsOpen && !project.participants.length && !registered.registered && !isPast && !project.submitted) ?
+        (!spotsOpen && !project.participants.length && !registered.registered && !isPast && !project.submitted) && (hackathon.is_open === true) ?
           <button className='join-project-button'>
             <JoinProjectModal project={project} hackathon_id={hackathon.id}
               history={props.history} registered={registered.registered} />

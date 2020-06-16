@@ -69,6 +69,7 @@ function JoinProjectModal({ project, hackathon_id, registered, history }) {
 
   return (
     <div>
+      {/* this button needs to only be there if the hackathon is open */}
       <Button type="button" onClick={handleOpen} className={classes.joinButton}>
         Join Project
       </Button>
