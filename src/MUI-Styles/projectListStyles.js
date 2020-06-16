@@ -20,7 +20,7 @@ export const style = {
     textAlign: 'left'
   },
   filterRadios: {
-    width: '20%'
+    width: '20%',
   },
   topRadios: {
     display: 'flex'
@@ -33,6 +33,8 @@ export const style = {
     fontWeight: 'bold',
     fontSize: '44px',
     color: '#232323',
+    paddingBottom: '30px',
+    paddingTop: '30px'
   },
   projectCards: {
     background: "#FFFFFF",

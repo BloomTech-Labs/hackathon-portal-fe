@@ -107,13 +107,15 @@ const ProjectList = props => {
         <div  className={classes.radioGroup}>
           <div className={`${classes.middleContent} middle-content`}>
             <div className={`${classes.middleLeftContent} middle-left-content`}>
+              
               <InputLabel>Filter by role</InputLabel>
               <Select className={`${classes.filterRadios} filter-radio`} value={filterBy} onChange={handleCheckboxChange}>
                    <MenuItem
                     control={<Radio style={{ color: 'black' }} />}
-                    value={null}
+                    value=''
+                    label='View All'
                     style={{ color: 'black' }}
-                  >View All</MenuItem>
+                  >View all</MenuItem>
                   <MenuItem
                     control={<Radio style={{ color: 'black' }} />}
                     value='front_end_spots'
@@ -155,6 +157,7 @@ const ProjectList = props => {
                   >Android</MenuItem>
              
               </Select>
+              
             </div>
             {!moment(hackathon.end_date).isBefore(currentDate) ?
               <Button className={`${classes.button} button`} onClick={handleModal}>Add a project idea</Button> : null}
