@@ -1,6 +1,6 @@
 // Can create a project idea for a hackathon
 // Either as a organizer (with pre-approval), or as a hacker (without pre-approval)
-
+/* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import { useDispatch, useSelector } from 'react-redux';

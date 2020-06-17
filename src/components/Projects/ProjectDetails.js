@@ -2,7 +2,7 @@
 // It opens a modal on a seperate page
 // We should decide on either modal or seprate page
 // Has a button "Join Button" that will link to a modal on "JoinProject.js"
-
+/* eslint-disable */
 import React, { useEffect, useState } from 'react';
 import {
   Dialog,
@@ -33,6 +33,7 @@ const useStyles = makeStyles(theme => ({
 const ProjectDetails = props => {
   const dispatch = useDispatch();
   const hackathon = useSelector(state => state.singleHackathon);
+  console.log(hackathon)
   const submittedProjectInfo = useSelector(state => state.submittedProjectInfo)
   const isFetching = useSelector(state => state.isFetching);
   const [open, setOpen] = useState(true);
@@ -44,6 +45,7 @@ const ProjectDetails = props => {
 
   useEffect(() => {
     if (hackathon && hackathon.projects) {
+      // eslint-disable-next-line
       hackathon.projects.map(item => {
         if (item.participants.find(element => {
           return element.user_id === user?.id
@@ -153,7 +155,7 @@ const ProjectDetails = props => {
           Close
         </Button>
         {(spotsOpen && !registered.registered && !isPast && !project.submitted) || 
-        (!spotsOpen && !project.participants.length && !registered.registered && !isPast && !project.submitted) ?
+        (!spotsOpen && !project.participants.length && !registered.registered && !isPast && !project.submitted) && (hackathon.is_open === true) ?
           <button className='join-project-button'>
             <JoinProjectModal project={project} hackathon_id={hackathon.id}
               history={props.history} registered={registered.registered} />

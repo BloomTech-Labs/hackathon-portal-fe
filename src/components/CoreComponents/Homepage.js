@@ -40,6 +40,7 @@ const Homepage = (props) => {
    } // removed redundant !hackathons[0]
 
   let upcomingHackathons = hackathons
+  // eslint-disable-next-line
     ? hackathons.filter(hackathon => {
       if (moment(hackathon.start_date).isAfter(currentDate)) {
         return hackathon;
@@ -89,7 +90,7 @@ const Homepage = (props) => {
             </div>
             <div>
               <img src={evaluate} alt='a box that has the words vote on it' />
-              <h3>Evaluate</h3>
+              <h3>Evaluate (coming soon)</h3>
               <p>
                 Move through the judging process quicker. Evaluate submissions with minimal effort.
               </p>

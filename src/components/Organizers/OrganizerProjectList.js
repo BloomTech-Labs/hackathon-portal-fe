@@ -1,6 +1,7 @@
 //Organizer of hackathon can see a list of projects
 //Can create projects after creating hackathons
 //Try to find "Create Projects"
+/* eslint-disable */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CreateProject from '../Projects/CreateProject';

@@ -34,6 +34,7 @@ function JoinProjectModal({ project, hackathon_id, registered, history }) {
 
   const handleOpen = () => {
     setOpen(true);
+    // eslint-disable-next-line
     Object.keys(spots).filter((role, index) => {
       if (project[role] > 0) {
         openRoles.push(Object.values(spots)[index])
@@ -69,6 +70,7 @@ function JoinProjectModal({ project, hackathon_id, registered, history }) {
 
   return (
     <div>
+      {/* this button needs to only be there if the hackathon is open */}
       <Button type="button" onClick={handleOpen} className={classes.joinButton}>
         Join Project
       </Button>

@@ -1,5 +1,5 @@
 // A page that shows a list of all approved project ideas in a hackathon
-
+/* eslint-disable */
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
@@ -21,8 +21,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 
-// modal styles
-import { modalStyle } from '../../MUI-Styles/organizerProjectList';
+
 
 // create a project component
 import CreateProject from '../Projects/CreateProject';
@@ -46,6 +45,7 @@ const ProjectList = props => {
 
   useEffect(() => {
     dispatch(getSpecificHackathon(props.match.params.id));
+    // eslint-disable-next-line
   }, [dispatch, props.match.params.id]);
 
   const handleCheckboxChange = e => {

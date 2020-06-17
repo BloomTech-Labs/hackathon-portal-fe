@@ -2,7 +2,7 @@
 // Contains a search bar that can search through all users and return back matching searched results
 // Only used to add organizers
 // Try extracting the search function and creating its own component so it can be used outside of the UserList component
-
+/* eslint-disable */
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "../../auth0-hooks/react-auth0-spa";
 import { useDispatch, useSelector } from "react-redux";
@@ -48,6 +48,7 @@ const UserList = props => {
   useEffect(() => {
     dispatch(getSpecificHackathon(props.match.params.id));
     dispatch(getHackers());
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {

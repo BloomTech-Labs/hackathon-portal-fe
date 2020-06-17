@@ -101,7 +101,6 @@ const ProjectSubmission = ({ hackathon }) => {
                                     placeholder='Additional url'
                                     name='deployed_url'
                                     onChange={handleChange}
-                                    required
                                 />
                                 <input
                                     className='input'
@@ -109,7 +108,7 @@ const ProjectSubmission = ({ hackathon }) => {
                                     placeholder='Video upload'
                                     name='video_url'
                                     onChange={handleChange}
-                                    required
+                                   
                                 />
                                 <div className='submission-buttons'>
                                     <button onClick={e => {

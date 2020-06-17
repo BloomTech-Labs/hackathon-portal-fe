@@ -45,7 +45,7 @@ const About = () => {
               </div>
             </div>
           </div>
-          <img className="bottom-right" src={teamwork} />
+          <img className="bottom-right" alt='team members' src={teamwork} />
         </div>
       </div>
     </div>

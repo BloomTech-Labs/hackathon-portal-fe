@@ -1,5 +1,5 @@
 // A page that shows an organizer a list of pending project ideas for their hackathon that can be approved or denied
-
+/* eslint-disable */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => style)
 const PendingProjects = props => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const { user } = useAuth0();
+    //const { user } = useAuth0();
     // const { loading, user } = useAuth0();
     const isFetching = useSelector(state => state.isFetching);
     const hackathon = useSelector(state => state.singleHackathon);
@@ -27,12 +27,13 @@ const PendingProjects = props => {
 
     useEffect(() => {
         dispatch(getSpecificHackathon(hackathonId))
+        // eslint-disable-next-line
     }, []);
 
     const pending = !hackathon ? [] : hackathon.projects.filter(element => !element.is_approved)
 
     const handledisapprove = data => (e) => {
-        const id = user.sub.replace('auth0|', '');
+        //const id = user.sub.replace('auth0|', '');
         e.preventDefault();
         dispatch(
             deleteProject(
@@ -43,7 +44,7 @@ const PendingProjects = props => {
     }
 
     const handleApprove = data => (e) => {
-        const id = user.sub.replace('auth0|', '');
+       // const id = user.sub.replace('auth0|', '');
         e.preventDefault();
         dispatch(
             editProject(
