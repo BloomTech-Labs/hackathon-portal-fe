@@ -1,6 +1,6 @@
 // Creates a hackathon
 // Do we need a hackathon URL? yes
-
+/* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import useForm from 'react-hook-form';

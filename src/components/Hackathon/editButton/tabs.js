@@ -1,5 +1,5 @@
 //The tabs within Hackathon Settings. Needs to be renamed from tabs.js
-
+/* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, withStyles } from '@material-ui/core/styles';

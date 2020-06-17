@@ -1,7 +1,7 @@
 // Shows your user profile
 // When refreshing on the page it breaks.
 // Clicking on the modal takes you out of the modal
-
+/* eslint-disable */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';

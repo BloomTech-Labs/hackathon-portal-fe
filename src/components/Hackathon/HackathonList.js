@@ -3,7 +3,7 @@
 // Try to extract search function and create its own component
 // Don't forget to delete past hackathons page
 // Take out the upcoming hackathon component and make it a reuseable
-
+/* eslint-disable */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getHackathons } from "../../actions/actions";

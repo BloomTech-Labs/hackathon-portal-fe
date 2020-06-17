@@ -2,7 +2,7 @@
 // It opens a modal on a seperate page
 // We should decide on either modal or seprate page
 // Has a button "Join Button" that will link to a modal on "JoinProject.js"
-
+/* eslint-disable */
 import React, { useEffect, useState } from 'react';
 import {
   Dialog,

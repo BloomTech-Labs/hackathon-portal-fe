@@ -1,6 +1,6 @@
 // A counting "stepper" that counts what step you are on in a process
 // Seems to only be used on the CreateHackathon page
-
+/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, withStyles } from '@material-ui/core/styles';

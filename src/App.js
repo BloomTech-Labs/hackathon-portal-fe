@@ -6,7 +6,6 @@ import { Router, Route, Switch } from "react-router-dom";
 import history from "./utils/history";
 import PrivateRoute from "./components/CoreComponents/PrivateRoute";
 import NavBar from "./components/CoreComponents/NavBar";
-import Footer from "./components/CoreComponents/Footer";
 import Homepage from "./components/CoreComponents/Homepage";
 import Hackathons from "./components/Hackathon/HackathonList";
 import CreateHackathon from "./components/Hackathon/CreateHackathon";

@@ -1,5 +1,5 @@
 // A page that shows an organizer a list of pending project ideas for their hackathon that can be approved or denied
-
+/* eslint-disable */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
