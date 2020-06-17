@@ -72,6 +72,7 @@ const Dashboard = props => {
       return `${m}/${d}/${y}`;
    };
 
+   
    const getAndSetUserHook = async () => {
       (await axiosWithAuth())
          .get(`/users/${user.id}`)
