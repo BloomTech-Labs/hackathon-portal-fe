@@ -45,6 +45,7 @@ const ProjectDetails = props => {
 
   useEffect(() => {
     if (hackathon && hackathon.projects) {
+      // eslint-disable-next-line
       hackathon.projects.map(item => {
         if (item.participants.find(element => {
           return element.user_id === user?.id

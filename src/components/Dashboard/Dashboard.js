@@ -48,6 +48,7 @@ const Dashboard = props => {
       if (dashboard?.hackathons?.length > 0) {
          setHackathons(dashboard.hackathons)
       }
+      // eslint-disable-next-line
    }, [dashboard?.hackathons])
 
    const formatDate = date => {
@@ -72,7 +73,7 @@ const Dashboard = props => {
       return `${m}/${d}/${y}`;
    };
 
-   
+
    const getAndSetUserHook = async () => {
       (await axiosWithAuth())
          .get(`/users/${user.id}`)

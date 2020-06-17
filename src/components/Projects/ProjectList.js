@@ -21,8 +21,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 
-// modal styles
-import { modalStyle } from '../../MUI-Styles/organizerProjectList';
+
 
 // create a project component
 import CreateProject from '../Projects/CreateProject';
@@ -46,6 +45,7 @@ const ProjectList = props => {
 
   useEffect(() => {
     dispatch(getSpecificHackathon(props.match.params.id));
+    // eslint-disable-next-line
   }, [dispatch, props.match.params.id]);
 
   const handleCheckboxChange = e => {

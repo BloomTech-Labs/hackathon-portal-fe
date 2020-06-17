@@ -55,6 +55,7 @@ function Hackathons(props) {
   }, [dispatch]);
 
   let upcomingHackathons = hackathons
+  // eslint-disable-next-line
     ? hackathons.filter(hackathon => {
       if (moment(hackathon.start_date).isAfter(currentDate)) {
         return hackathon;
@@ -62,6 +63,7 @@ function Hackathons(props) {
     })
     : [];
   let activeHackathons = hackathons
+  // eslint-disable-next-line
     ? hackathons.filter(hackathon => {
       if (
         (moment(hackathon.start_date).isBefore(currentDate) &&
@@ -73,6 +75,7 @@ function Hackathons(props) {
       }
     })
     : [];
+    // eslint-disable-next-line
   let pastHackathons = hackathons
     ? hackathons.filter(hackathon => {
       if (moment(hackathon.end_date).isBefore(currentDate)) {

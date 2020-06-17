@@ -48,6 +48,7 @@ const UserList = props => {
   useEffect(() => {
     dispatch(getSpecificHackathon(props.match.params.id));
     dispatch(getHackers());
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {

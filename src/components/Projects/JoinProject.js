@@ -34,6 +34,7 @@ function JoinProjectModal({ project, hackathon_id, registered, history }) {
 
   const handleOpen = () => {
     setOpen(true);
+    // eslint-disable-next-line
     Object.keys(spots).filter((role, index) => {
       if (project[role] > 0) {
         openRoles.push(Object.values(spots)[index])

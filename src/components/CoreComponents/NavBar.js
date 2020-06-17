@@ -1,7 +1,7 @@
 // The navbar for the website
 // possibly rename nav-bar classnames to be more clear
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useAuth0 } from '../../auth0-hooks/react-auth0-spa';
 import { Link } from 'react-router-dom';
 

@@ -40,6 +40,7 @@ const Homepage = (props) => {
    } // removed redundant !hackathons[0]
 
   let upcomingHackathons = hackathons
+  // eslint-disable-next-line
     ? hackathons.filter(hackathon => {
       if (moment(hackathon.start_date).isAfter(currentDate)) {
         return hackathon;
